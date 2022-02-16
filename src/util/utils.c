@@ -1,33 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ray3.h                                             :+:    :+:            */
+/*   utils.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/15 19:08:36 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 13:49:27 by ngerrets      ########   odam.nl         */
+/*   Created: 2022/02/16 13:23:33 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/02/16 13:45:16 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY3_H
-# define RAY3_H
+#include "utils.h"
 
-# include "vec3.h"
-
-# define INFINITY 1e300
-
-typedef struct s_ray3
+void	ft_bzero(void *s, size_t length)
 {
-	t_v3	origin;
-	t_v3	direction;
-	double	distance;
-}			t_ray3;
+	unsigned char	*d;
+	size_t			i;
 
-/* ray3.c */
-t_ray3	ray3(t_v3 origin, t_v3 normalized_direction);
+	d = s;
+	i = 0;
+	while (i < length)
+	{
+		d[i] = 0;
+		i++;
+	}
+}
 
-/* ray_debug.c */
-void	ray_print(t_ray3 ray3);
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t				i;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-#endif
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	i = 0;
+	d = dst;
+	s = src;
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dst);
+}

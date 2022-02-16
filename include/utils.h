@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ray3.h                                             :+:    :+:            */
+/*   utils.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/15 19:08:36 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 13:49:27 by ngerrets      ########   odam.nl         */
+/*   Created: 2022/02/16 13:24:30 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/02/16 13:45:34 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY3_H
-# define RAY3_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# include "vec3.h"
+# include <stddef.h>
 
-# define INFINITY 1e300
-
-typedef struct s_ray3
-{
-	t_v3	origin;
-	t_v3	direction;
-	double	distance;
-}			t_ray3;
-
-/* ray3.c */
-t_ray3	ray3(t_v3 origin, t_v3 normalized_direction);
-
-/* ray_debug.c */
-void	ray_print(t_ray3 ray3);
+void	ft_bzero(void *s, size_t length);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 #endif

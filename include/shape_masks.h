@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ray3.h                                             :+:    :+:            */
+/*   shape_masks.h                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/15 19:08:36 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 13:49:27 by ngerrets      ########   odam.nl         */
+/*   Created: 2022/02/16 13:15:29 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/02/16 13:20:13 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY3_H
-# define RAY3_H
+#ifndef SHAPE_MASKS_H
+# define SHAPE_MASKS_H
 
 # include "vec3.h"
 
-# define INFINITY 1e300
-
-typedef struct s_ray3
+/* SHAPE_PLANE */
+typedef struct s_mask_plane
 {
-	t_v3	origin;
-	t_v3	direction;
-	double	distance;
-}			t_ray3;
+	t_v3	normal;
+}			t_mask_plane;
 
-/* ray3.c */
-t_ray3	ray3(t_v3 origin, t_v3 normalized_direction);
+/* SHAPE_SQUARE */
+typedef struct s_mask_square
+{
+	t_v3	normal;
+	double	width;
+}			t_mask_square;
 
-/* ray_debug.c */
-void	ray_print(t_ray3 ray3);
+/* SHAPE_CIRCLE */
+typedef struct s_mask_cicle
+{
+	t_v3	normal;
+	double	radius;
+}			t_mask_circle;
 
 #endif

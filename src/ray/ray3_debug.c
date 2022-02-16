@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 19:34:01 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/15 19:56:13 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/16 12:16:05 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 void	ray_print(t_ray3 ray3)
 {
-	printf("ray:\n");
-	printf("  origin ");
+	printf("RAY:\n");
+	printf("| origin ");
 	vec3_print(ray3.origin);
-	printf("  direction ");
+	printf("| direction ");
 	vec3_print(ray3.direction);
-	printf("  distance: ");
+	printf("| distance: ");
 	if (ray3.distance == INFINITY)
 		printf("INFINITY\n");
 	else if (ray3.distance > 10000)

@@ -6,14 +6,14 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 19:03:06 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/15 19:50:07 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/16 12:35:34 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VEC3_H
 # define VEC3_H
 
-# define VECTOR_DEBUG_PRINT_MESSAGE "vec3: (%.2f, %.2f, %.2f)\n"
+# define VECTOR_DEBUG_PRINT_MESSAGE "VEC3: (%.3f, %.3f, %.3f)\n"
 
 typedef struct s_v3
 {

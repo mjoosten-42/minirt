@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 19:34:01 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 12:16:05 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/17 11:18:07 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ray_print(t_ray3 ray3)
 {
-	printf("RAY:\n");
+	printf("# -  RAY  - - - - - - - - - - - - - - - -\n");
 	printf("| origin ");
 	vec3_print(ray3.origin);
 	printf("| direction ");
@@ -27,4 +27,5 @@ void	ray_print(t_ray3 ray3)
 		printf("%.2e\n", ray3.distance);
 	else
 		printf("%.2f\n", ray3.distance);
+	printf("# - - - - - - - - - - - - - - - - - - - -\n");
 }

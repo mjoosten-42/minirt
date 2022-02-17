@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:51:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 14:05:57 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/17 11:17:00 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ static void	_shape_print_mask(t_shape *shape)
 
 void	shape_print(t_shape *shape)
 {
-	printf("SHAPE:\n");
+	printf("# - SHAPE - - - - - - - - - - - - - - - -\n");
 	printf("|  type %d\n", shape->type);
 	printf("|  origin ");
 	vec3_print(shape->origin);
-	printf("|  ");
+	printf("|  color ");
 	color_print_f(shape->color);
 	printf("|  MASK:\n");
 	_shape_print_mask(shape);
+	printf("# - - - - - - - - - - - - - - - - - - - -\n");
 }

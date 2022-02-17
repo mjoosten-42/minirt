@@ -6,87 +6,58 @@
 #    By: ngerrets <ngerrets@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/07/15 14:47:03 by ngerrets      #+#    #+#                  #
-#    Updated: 2022/02/15 19:47:57 by ngerrets      ########   odam.nl          #
+#    Updated: 2022/02/17 11:12:09 by ngerrets      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-# For now this is the default Makefile I use for C projects
-# Manually edit:
+MAIN := main/test.c
+
 NAME := minirt
 COMPILE_FLAGS ?= -Wall -Wextra
 LINKING_FLAGS ?= 
-LIBRARIES ?=
-SOURCE_DIRECTORY ?= src
-HEADER_DIRECTORY ?= include
-OBJECTS_DIRECTORY ?= objects
-BINARIES_DIRECTORY ?= .
 
-MAKE_BONUS = 0
+SRC_DIR ?= src
+HDR_DIR ?= include
+OBJ_DIR ?= objects
 
-# Don't manually edit:
 SOURCES :=
-include sources.mk
+include make/sources.mk
 HEADERS :=
-include headers.mk
+include make/headers.mk
 
-INCLUDES := $(patsubst %,-I%,$(dir $(HEADERS)))
-OBJECTS := $(patsubst %,$(OBJECTS_DIRECTORY)/%,$(SOURCES:.c=.o))
-NAME := $(BINARIES_DIRECTORY)/$(NAME)
+SOURCES += $(MAIN)
+OBJECTS := $(patsubst %,$(OBJ_DIR)/%,$(SOURCES:.c=.o))
 
-# Default make-rule. Compile and link files.
+.PHONY: all files
 all: $(NAME)
 
-# dependencies:
-#	@$(MAKE) -C lib/get_next_line
+files:
+	./make/make_sources.sh
+	$(MAKE) all
 
-# Link files
-# @echo "\nBuilding dependencies..."
-# @$(MAKE) dependencies
-$(NAME): $(BINARIES_DIRECTORY) $(HEADERS) $(OBJECTS)
+$(NAME): $(HEADERS) $(OBJECTS)
 	@echo "\nLinking files..."
 	@$(CC) $(OBJECTS) -o $(NAME) $(LINKING_FLAGS)
 	@echo "Done!"
 
-# Create binaries directory
-$(BINARIES_DIRECTORY):
-	@mkdir -p $(BINARIES_DIRECTORY)
-
-# Compile files
-$(OBJECTS_DIRECTORY)/%.o: %.c $(HEADERS)
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@echo "Compiling: $@"
 	@mkdir -p $(@D)
-	@$(CC) -DBONUS=$(MAKE_BONUS) $(COMPILE_FLAGS) $(INCLUDES) -c -o $@ $<
+	@$(CC)  $(COMPILE_FLAGS) $(patsubst %,-I%,$(dir $(HEADERS))) -c -o $@ $<
 
-# Clean objects
+.PHONY: clean fclean re
 clean:
-	@rm -Rf $(OBJECTS_DIRECTORY)
+	@rm -Rf $(OBJ_DIR)
 	@echo "Objects cleaned."
 
-# cleandeps:
-# 	@$(MAKE) -C lib/get_next_line clean
-# 	@echo "Dependencies cleaned."
-
-# Clean objects and binaries
 fclean: clean
-	@rm -f $(BINARIES_DIRECTORY)/$(NAME)
-	@echo "Binaries cleaned."
+	@rm -f $(NAME)
+	@echo "Binary cleaned."
 
-# Clean, recompile and relink project
 re: fclean all
 
-# Compile, link and run project
-run: all
-	@echo "Running..."
-	@./$(NAME)
-
-# Prints header and source files
+.PHONY: print
 print:
 	@echo "---HEADERS: $(HEADERS)" | xargs -n1
 	@echo "---SOURCES: $(SOURCES)" | xargs -n1
 	@echo "---OBJECTS: $(OBJECTS)" | xargs -n1
-
-# In case of bonus
-bonus: MAKE_BONUS = 1
-bonus: re
-
-.PHONY: all clean fclean re run print cleandeps dependencies bonus

@@ -6,7 +6,7 @@
 #    By: ngerrets <ngerrets@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/07/15 14:47:03 by ngerrets      #+#    #+#                  #
-#    Updated: 2022/02/17 11:12:09 by ngerrets      ########   odam.nl          #
+#    Updated: 2022/02/17 17:30:22 by ngerrets      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ MAIN := main/test.c
 
 NAME := minirt
 COMPILE_FLAGS ?= -Wall -Wextra
-LINKING_FLAGS ?= 
+LINKING_FLAGS ?= -L./lib/mlx -lmlx -framework OpenGL -framework AppKit
 
 SRC_DIR ?= src
 HDR_DIR ?= include

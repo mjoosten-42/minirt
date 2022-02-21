@@ -6,15 +6,15 @@
 #    By: ngerrets <ngerrets@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/07/15 14:47:03 by ngerrets      #+#    #+#                  #
-#    Updated: 2022/02/17 17:30:22 by ngerrets      ########   odam.nl          #
+#    Updated: 2022/02/21 15:18:22 by ngerrets      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-MAIN := main/test.c
+MAIN ?= main.c
 
 NAME := minirt
 COMPILE_FLAGS ?= -Wall -Wextra
-LINKING_FLAGS ?= -L./lib/mlx -lmlx -framework OpenGL -framework AppKit
+LINKING_FLAGS ?= libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 
 SRC_DIR ?= src
 HDR_DIR ?= include
@@ -25,7 +25,7 @@ include make/sources.mk
 HEADERS :=
 include make/headers.mk
 
-SOURCES += $(MAIN)
+SOURCES += main/$(MAIN)
 OBJECTS := $(patsubst %,$(OBJ_DIR)/%,$(SOURCES:.c=.o))
 
 .PHONY: all files

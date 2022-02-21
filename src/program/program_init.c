@@ -12,6 +12,7 @@
 
 #include "program.h"
 #include "utils.h"
+#include "log.h"
 
 static t_program	*_allocate(void)
 {
@@ -23,21 +24,38 @@ static t_program	*_allocate(void)
 	return (program);
 }
 
-void	_init(t_program *program)
+void	_init_mlx(t_program *program)
 {
 	program->mlx = mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE, WINDOW_RESIZE);
 	if (program->mlx == NULL)
+	{
+		LOG_ERR("Failed to initialize MLX");
 		exit(EXIT_FAILURE);
+	}
+	LOG("Initialized MLX");
 	program->buffer = mlx_new_image(program->mlx, WINDOW_W, WINDOW_H);
 	if (program->buffer == NULL)
+	{
+		LOG_ERR("Failed to initialize screen buffer");
 		exit(EXIT_FAILURE);
+	}
+	LOG("Initialized screen buffer");
+}
+
+void	program_run(t_program *program)
+{
+	mlx_image_to_window(program->mlx, program->buffer, 0, 0);
+	LOG("Put screen buffer to window");
+	LOG("Running mlx_loop");
 	mlx_loop(program->mlx);
 }
 
 void	program_terminate(t_program *program)
 {
 	mlx_terminate(program->mlx);
+	LOG("Terminated MLX");
 	free(program);
+	LOG("Freed program struct");
 }
 
 t_program	*program_get(void)
@@ -48,7 +66,12 @@ t_program	*program_get(void)
 	{
 		program = _allocate();
 		if (program != NULL)
-			_init(program);
+		{
+			LOG("Allocated program struct");
+			_init_mlx(program);
+		}
+		else
+			LOG_ERR("Failed to allocate program struct");
 	}
 	return (program);
 }

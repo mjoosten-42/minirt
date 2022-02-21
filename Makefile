@@ -6,7 +6,7 @@
 #    By: ngerrets <ngerrets@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/07/15 14:47:03 by ngerrets      #+#    #+#                  #
-#    Updated: 2022/02/21 15:18:22 by ngerrets      ########   odam.nl          #
+#    Updated: 2022/02/21 17:59:55 by ngerrets      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LINKING_FLAGS ?= libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 
 SRC_DIR ?= src
 HDR_DIR ?= include
-OBJ_DIR ?= objects
+OBJ_DIR ?= obj
 
 SOURCES :=
 include make/sources.mk
@@ -47,7 +47,7 @@ $(OBJ_DIR)/%.o: %.c $(HEADERS)
 
 .PHONY: clean fclean re
 clean:
-	@rm -Rf $(OBJ_DIR)
+	@rm -Rf build/
 	@echo "Objects cleaned."
 
 fclean: clean
@@ -61,3 +61,7 @@ print:
 	@echo "---HEADERS: $(HEADERS)" | xargs -n1
 	@echo "---SOURCES: $(SOURCES)" | xargs -n1
 	@echo "---OBJECTS: $(OBJECTS)" | xargs -n1
+
+.PHONY: run
+run: all
+	./$(NAME)

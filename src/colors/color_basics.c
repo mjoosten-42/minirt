@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 10:38:34 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 13:03:37 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/21 17:27:02 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	color_to_int(t_color c)
 	trgb[1] = c.g * 255;
 	trgb[2] = c.r * 255;
 	trgb[3] = 255;
-
 	return (*(int *)trgb);
 }
 

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   log.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/17 11:11:40 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/21 17:50:48 by ngerrets      ########   odam.nl         */
+/*   Created: 2022/02/21 15:31:06 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/02/21 17:58:25 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "program.h"
-#include "log.h"
+#ifndef LOG_H
+# define LOG_H
 
+# define ANSI_RED "\x1b[31m"
+# define ANSI_RESET "\x1b[0m"
 
-int	main(void)
-{
-	t_program	*program;
+# define LOG(a) log_msg(__LINE__, __FILE__, __func__, a)
+# define LOG_ERR(a) log_err(__LINE__, __FILE__, __func__, a)
 
-	program = program_get();
-	if (program == NULL)
-		return (EXIT_FAILURE);
-	program_run(program);
-	LOG("Program end");
-	return (EXIT_SUCCESS);
-}
+void	log_msg(int line, const char *file, const char *func, const char *msg);
+void	log_err(int line, const char *file, const char *func, const char *msg);
+
+#endif

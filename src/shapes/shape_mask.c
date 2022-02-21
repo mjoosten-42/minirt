@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:35:19 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/21 17:56:20 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/21 19:19:05 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static size_t	_get_size(t_shape_type type)
 	return (size);
 }
 
-void	*shape_mask_allocate(t_shape_type type)
+static void	*shape_mask_allocate(t_shape_type type)
 {
 	size_t	size;
 	void	*mask;

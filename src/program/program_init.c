@@ -13,6 +13,7 @@
 #include "program.h"
 #include "utils.h"
 #include "log.h"
+#include "shape.h"
 
 static t_program	*_allocate(void)
 {
@@ -52,10 +53,11 @@ void	program_run(t_program *program)
 
 void	program_terminate(t_program *program)
 {
+	mlx_delete_image(program->mlx, program->buffer);
+	LOG("Freed screen buffer");
 	mlx_terminate(program->mlx);
 	LOG("Terminated MLX");
-	//ADD WAY TO FREE SHAPES (AND THEIR MASKS)
-	ft_lstclear(&program->shapes, free);
+	ft_lstclear(&program->shapes, shape_free);
 	LOG("Freed shape list");
 	free(program);
 	LOG("Freed program struct");

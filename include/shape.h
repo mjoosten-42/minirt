@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:11:37 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 13:57:29 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/21 19:19:52 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_shape
 
 /* shape.c */
 t_shape	*shape_create(t_shape_type type, t_v3 origin, t_color col, void *mask);
+void	shape_free(void *shape);
 
 /* shape_mask.c */
 void	*shape_mask(t_shape_type type, void *data);

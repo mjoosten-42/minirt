@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:22:20 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/21 17:54:41 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/21 19:25:09 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils.h"
 #include "log.h"
 
-t_shape	*shape_allocate(void)
+static t_shape	*shape_allocate(void)
 {
 	t_shape	*shape;
 
@@ -41,4 +41,15 @@ t_shape	*shape_create(t_shape_type type, t_v3 origin, t_color col, void *mask)
 	shape->color = col;
 	shape->mask = mask;
 	return (shape);
+}
+
+/*
+**	Assumes it gets a t_shape struct
+*/
+void	shape_free(void *shape)
+{
+	free(((t_shape *)shape)->mask);
+	LOG("Shape mask freed");
+	free(shape);
+	LOG("Shape freed");
 }

@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/21 17:26:48 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/21 18:46:33 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PROGRAM_H
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "list.h"
 # include <stdlib.h>
 
 # define WINDOW_W 1024
@@ -31,6 +32,7 @@ typedef struct s_program
 {
 	t_mlx		*mlx;
 	t_mlx_image	*buffer;
+	t_list		*shapes;
 }				t_program;
 
 /* program_init.c */

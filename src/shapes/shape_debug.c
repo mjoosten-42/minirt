@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:51:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/17 11:17:00 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/21 18:49:31 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ static void	_shape_print_mask(t_shape *shape)
 		printf("|  |  normal ");
 		vec3_print(((t_mask_square *)shape->mask)->normal);
 		printf("|  |  width: %.3f\n", ((t_mask_square *)shape->mask)->width);
+	}
+	if (shape->type == SHAPE_CIRCLE)
+	{
+		printf("|  |  normal ");
+		vec3_print(((t_mask_circle *)shape->mask)->normal);
+		printf("|  |  radius: %.3f\n", ((t_mask_circle *)shape->mask)->radius);
 	}
 }
 

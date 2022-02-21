@@ -1,6 +1,16 @@
 SOURCES :=	src/colors/color_basics.c \
 	src/colors/color_debug.c \
 	src/colors/color_math.c \
+	src/list/ft_lstadd_back.c \
+	src/list/ft_lstadd_front.c \
+	src/list/ft_lstclear.c \
+	src/list/ft_lstdelone.c \
+	src/list/ft_lstiter.c \
+	src/list/ft_lstlast.c \
+	src/list/ft_lstmap.c \
+	src/list/ft_lstnew.c \
+	src/list/ft_lstremone_bonus.c \
+	src/list/ft_lstsize.c \
 	src/log.c \
 	src/program/program_init.c \
 	src/ray/ray3.c \

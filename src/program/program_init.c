@@ -54,6 +54,9 @@ void	program_terminate(t_program *program)
 {
 	mlx_terminate(program->mlx);
 	LOG("Terminated MLX");
+	//ADD WAY TO FREE SHAPES (AND THEIR MASKS)
+	ft_lstclear(&program->shapes, free);
+	LOG("Freed shape list");
 	free(program);
 	LOG("Freed program struct");
 }

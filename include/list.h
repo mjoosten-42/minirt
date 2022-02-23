@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/21 18:12:48 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/21 18:21:41 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/23 10:58:40 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include <stdlib.h>
 
+/**
+**	Linked-list element
+**	@param content <void*> Pointer to the content of the element
+**	@param next <t_list*> Pointer to next element. NULL if last element.
+*/
 typedef struct s_list
 {
 	void			*content;

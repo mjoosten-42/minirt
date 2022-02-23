@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 10:32:26 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/17 11:13:41 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/23 10:49:15 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 // # define C_BLACK 0xff000000
 // # define C(r, g, b) (t_color){r, g, b}
 
+/**
+**	Represents a color, values usually range from 0.0 to and including 1.0
+**	@param r <float> Red
+**	@param g <float> Green
+**	@param b <float> Blue
+*/
 typedef struct s_color
 {
 	float	r;
@@ -26,6 +32,7 @@ typedef struct s_color
 	float	b;
 }			t_color;
 
+/* HIGHLY ILLIGAL STUFF? */
 static const t_color	g_black = (t_color){0, 0, 0};
 static const t_color	g_white = (t_color){1, 1, 1};
 static const t_color	g_red = (t_color){1, 0, 0};

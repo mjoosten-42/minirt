@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 19:08:36 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 13:49:27 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/02/23 12:20:20 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,17 @@
 
 # include "vec3.h"
 
+/**
+**	A "unique" way to define Infinity for rays
+*/
 # define INFINITY 1e300
 
+/**
+**	Represents a 3-dimensional ray
+**	@param origin <t_v3> Origin point of the ray
+**	@param direction <t_v3> Normalized vector as direction
+**	@param distance <double> Distance of the ray, usually Infinite at start
+*/
 typedef struct s_ray3
 {
 	t_v3	origin;

@@ -15,6 +15,12 @@
 
 # define VECTOR_DEBUG_PRINT_MESSAGE "VEC3: (%.3f, %.3f, %.3f)\n"
 
+/**
+**	Three dimensional vector/coordinate
+**	@param x <double> Horizontal axis
+**	@param y <double> Depth axis
+**	@param z <double> Height axis
+*/
 typedef struct s_v3
 {
 	double	x;

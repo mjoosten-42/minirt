@@ -15,6 +15,15 @@
 
 # include "vec3.h"
 
+typedef enum e_shape_type
+{
+	SHAPE_NONE = 0,
+	SHAPE_PLANE,
+	SHAPE_SQUARE,
+	SHAPE_CIRCLE,
+	SHAPE_TRIANGLE
+}	t_shape_type;
+
 /* SHAPE_PLANE */
 typedef struct s_mask_plane
 {
@@ -34,5 +43,12 @@ typedef struct s_mask_cicle
 	t_v3	normal;
 	double	radius;
 }			t_mask_circle;
+
+/* SHAPE_TRIANGLE */
+typedef struct s_mask_triangle
+{
+	t_v3	point2;
+	t_v3	point3;
+}			t_mask_triangle;
 
 #endif

@@ -18,14 +18,13 @@
 # include "shape_masks.h"
 # include <stdlib.h>
 
-typedef enum e_shape_type
-{
-	SHAPE_NONE,
-	SHAPE_PLANE,
-	SHAPE_SQUARE,
-	SHAPE_CIRCLE
-}	t_shape_type;
-
+/**
+**	Represents a default shape
+**	@param type <t_shape_type> Enumerator for the type of shape (like circle)
+**	@param origin <t_v3> Origin point vector of the shape. Usually the center
+**	@param color <t_color> Color the shape has overall.
+**	@param mask <void*> Pointer to the shape's collision data, it's mask.
+*/
 typedef struct s_shape
 {
 	t_shape_type	type;

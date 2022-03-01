@@ -6,7 +6,7 @@
 #    By: ngerrets <ngerrets@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/07/15 14:47:03 by ngerrets      #+#    #+#                  #
-#    Updated: 2022/02/21 17:59:55 by ngerrets      ########   odam.nl          #
+#    Updated: 2022/03/01 12:41:13 by ngerrets      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(OBJ_DIR)/%.o: %.c $(HEADERS)
 
 .PHONY: clean fclean re
 clean:
-	@rm -Rf build/
+	@rm -Rf $(OBJ_DIR)/
 	@echo "Objects cleaned."
 
 fclean: clean

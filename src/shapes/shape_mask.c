@@ -25,6 +25,7 @@ static size_t	_get_size(t_shape_type type)
 	size += (type == SHAPE_PLANE) * sizeof(t_mask_plane);
 	size += (type == SHAPE_SQUARE) * sizeof(t_mask_square);
 	size += (type == SHAPE_CIRCLE) * sizeof(t_mask_circle);
+	size += (type == SHAPE_TRIANGLE) * sizeof(t_mask_triangle);
 	return (size);
 }
 

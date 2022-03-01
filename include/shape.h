@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:11:37 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/21 19:19:52 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/01 12:39:47 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "vec3.h"
 # include "color.h"
+# include "ray3.h"
 # include "shape_masks.h"
 # include <stdlib.h>
 
@@ -33,14 +34,21 @@ typedef struct s_shape
 	void			*mask;
 }					t_shape;
 
+typedef int (*t_collfunc)(const t_shape *, const t_ray3 *);
+
 /* shape.c */
 t_shape	*shape_create(t_shape_type type, t_v3 origin, t_color col, void *mask);
 void	shape_free(void *shape);
+void	*shape_get_coll_func(t_shape_type type);
 
 /* shape_mask.c */
 void	*shape_mask(t_shape_type type, void *data);
 
 /* shape_debug.c */
 void	shape_print(t_shape *shape);
+
+/* shape_sphere.c */
+t_mask_sphere	shape_sphere_mask(double radius);
+int				shape_sphere_collision(const t_shape *sphere, const t_ray3 *ray);
 
 #endif

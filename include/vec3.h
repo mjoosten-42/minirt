@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 19:03:06 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 12:35:34 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/01 12:16:31 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_v3	vec3_dup(t_v3 vec3);
 double	vec3_dot(t_v3 v1, t_v3 v2);
 void	vec3_mul(t_v3 *vec3, double length);
 t_v3	vec3_cross(t_v3 v1, t_v3 v2);
+t_v3	vec3_sub(t_v3 v1, t_v3 v2);
+t_v3	vec3_add(t_v3 v1, t_v3 v2);
 
 /* vec3_debug.c */
 void	vec3_print(t_v3 vec3);

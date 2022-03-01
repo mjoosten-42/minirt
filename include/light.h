@@ -6,12 +6,12 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/21 20:08:57 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/23 10:50:32 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/01 12:39:13 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIGHT_H
-# define LIGHT
+# define LIGHT_H
 
 # include "vec3.h"
 # include "color.h"

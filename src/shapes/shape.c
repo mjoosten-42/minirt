@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:22:20 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/21 19:25:09 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/01 12:41:39 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,19 @@ void	shape_free(void *shape)
 	LOG("Shape mask freed");
 	free(shape);
 	LOG("Shape freed");
+}
+
+void	*shape_get_coll_func(t_shape_type type)
+{
+	static const t_collfunc	f[] =
+	{
+		[SHAPE_NONE] = NULL,
+		[SHAPE_PLANE] = NULL,
+		[SHAPE_SQUARE] = NULL,
+		[SHAPE_CIRCLE] = NULL,
+		[SHAPE_TRIANGLE] = NULL,
+		[SHAPE_SPHERE] = shape_sphere_collision
+	};
+
+	return (f[type]);
 }

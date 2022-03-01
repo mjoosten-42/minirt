@@ -22,16 +22,14 @@
 # define ANSI_RED "\x1b[31m"
 # define ANSI_RESET "\x1b[0m"
 
-/**
+/*
 **	NOT NORM way to print log message with file:line & function to STDOUT
-**	@param a Custom message to print
 */
 # define LOG(a) log_msg(__LINE__, __FILE__, __func__, a)
 
-/**
+/*
 **	NOT NORM way to print log message with file:line & function to STDOUT. 
 **	Printed text is simply RED for clarity
-**	@param a Custom message to print
 */
 # define LOG_ERR(a) log_err(__LINE__, __FILE__, __func__, a)
 

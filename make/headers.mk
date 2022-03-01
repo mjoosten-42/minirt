@@ -1,4 +1,5 @@
 HEADERS :=	include/color.h \
+	include/light.h \
 	include/list.h \
 	include/log.h \
 	include/program.h \

@@ -1,6 +1,7 @@
 SOURCES :=	src/colors/color_basics.c \
 	src/colors/color_debug.c \
 	src/colors/color_math.c \
+	src/lights/light.c \
 	src/list/ft_lstadd_back.c \
 	src/list/ft_lstadd_front.c \
 	src/list/ft_lstclear.c \
@@ -13,11 +14,15 @@ SOURCES :=	src/colors/color_basics.c \
 	src/list/ft_lstsize.c \
 	src/log.c \
 	src/program/program_init.c \
+	src/program/scene_draw.c \
 	src/ray/ray3.c \
 	src/ray/ray3_debug.c \
+	src/raycasting.c \
 	src/shapes/shape.c \
 	src/shapes/shape_debug.c \
 	src/shapes/shape_mask.c \
+	src/shapes/shape_plane.c \
+	src/shapes/shape_sphere.c \
 	src/util/utils.c \
 	src/vec3/vec3_basics.c \
 	src/vec3/vec3_debug.c \

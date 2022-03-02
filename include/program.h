@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/23 10:58:25 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/02 18:36:19 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,21 @@
 // }           t_img;
 
 /**
+**	Camera data
+**	@param origin <t_v3> Origin point vector
+**	@param direction <t_v3> Normal vector
+**	@param up <t_v3> Normal vector that points up from direction
+**	@param fov <float> Field of view
+*/
+typedef struct s_cam
+{
+	t_v3	origin;
+	t_v3	direction;
+	t_v3	up;
+	float	fov;
+}			t_cam;
+
+/**
 **	Holds important data needed throughout the program
 **	@param mlx <t_mlx*> Main MLX42 pointer
 **	@param buffer <t_mlx_image*> MLX42-Image that holds the screen buffer
@@ -39,6 +54,7 @@ typedef struct s_program
 	t_mlx		*mlx;
 	t_mlx_image	*buffer;
 	t_list		*shapes;
+	t_cam		camera;
 }				t_program;
 
 /* program_init.c */

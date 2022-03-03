@@ -6,26 +6,33 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/01 12:38:43 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/03 11:39:15 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray3.h"
-#include "shape.h"
-#include "list.h"
+#include "collision.h"
 #include "log.h"
 
-
-
-int	raycast_check_collision(t_list *shapes, const t_ray3 *ray)
+static t_collision	_null_collision(void)
 {
-	t_shape	*current_shape;
+	return ((t_collision){.shape = NULL});
+}
+
+static t_collision	_collision(t_v3 point, t_shape *shape)
+{
+	return ((t_collision){.point = point, .shape = shape});
+}
+
+t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
+{
+	t_shape		*current_shape;
 	t_collfunc	f;
 
 	if (shapes == NULL)
 	{
 		LOG_ERR("No shapes to check collision on");
-		return (0);
+		return (_null_collision());
 	}
 	while (shapes != NULL)
 	{
@@ -33,12 +40,12 @@ int	raycast_check_collision(t_list *shapes, const t_ray3 *ray)
 		if (current_shape == NULL)
 		{
 			LOG_ERR("Content == NULL");
-			return (0);
+			return (_null_collision());
 		}
 		f = shape_get_coll_func(current_shape->type);
 		if (f != NULL && f(current_shape, ray) > 0)
-			return (1);
+			return (_collision(vec3(0, 0, 0), current_shape));
 		shapes = shapes->next;
 	}
-	return (0);
+	return (_null_collision());
 }

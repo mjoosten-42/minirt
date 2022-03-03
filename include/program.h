@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/02 18:36:19 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/03 10:42:30 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "list.h"
 # include <stdlib.h>
+# include "vec3.h"
 
 # define WINDOW_W 1024
 # define WINDOW_H 1024
@@ -61,5 +62,8 @@ typedef struct s_program
 t_program	*program_get(void);
 void		program_run(t_program *program);
 void		program_terminate(t_program *program);
+
+/* scene_draw.c */
+void		scene_draw(t_program *program);
 
 #endif

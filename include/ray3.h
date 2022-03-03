@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 19:08:36 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/23 12:20:20 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/03 11:32:24 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RAY3_H
 
 # include "vec3.h"
+# include "list.h"
 
 /**
 **	A "unique" way to define Infinity for rays

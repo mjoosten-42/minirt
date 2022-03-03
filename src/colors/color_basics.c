@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 10:38:34 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/21 17:27:02 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/03 11:40:58 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	color_to_int(t_color c)
 {
 	unsigned char	trgb[4];
 
-	trgb[0] = c.b * 255;
-	trgb[1] = c.g * 255;
-	trgb[2] = c.r * 255;
-	trgb[3] = 255;
+	trgb[1] = c.b * 255;
+	trgb[2] = c.g * 255;
+	trgb[3] = c.r * 255;
+	trgb[0] = 255;
 	return (*(int *)trgb);
 }
 
@@ -40,9 +40,9 @@ t_color	color_from_int(int c)
 	t_color			result;
 
 	*(int *)trgb = c;
-	result.r = (float)trgb[2] / 255.0;
-	result.g = (float)trgb[1] / 255.0;
-	result.b = (float)trgb[0] / 255.0;
+	result.r = (float)trgb[3] / 255.0;
+	result.g = (float)trgb[2] / 255.0;
+	result.b = (float)trgb[1] / 255.0;
 	return (result);
 }
 

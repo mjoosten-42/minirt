@@ -34,19 +34,25 @@ void	_init_mlx(t_program *program)
 		exit(EXIT_FAILURE);
 	}
 	LOG("Initialized MLX");
-	program->buffer = mlx_new_image(program->mlx, WINDOW_W, WINDOW_H);
-	if (program->buffer == NULL)
-	{
-		LOG_ERR("Failed to initialize screen buffer");
-		exit(EXIT_FAILURE);
-	}
-	LOG("Initialized screen buffer");
+	//program->buffer = mlx_new_image(program->mlx, WINDOW_W, WINDOW_H);
+	//if (program->buffer == NULL)
+	//{
+	//	LOG_ERR("Failed to initialize screen buffer");
+	//	exit(EXIT_FAILURE);
+	//}
+	//LOG("Initialized screen buffer");
 }
 
 void	program_run(t_program *program)
 {
-	mlx_image_to_window(program->mlx, program->buffer, 0, 0);
-	LOG("Put screen buffer to window");
+	//mlx_image_to_window(program->mlx, program->buffer, 0, 0);
+	//LOG("Put screen buffer to window");
+	LOG("Drawing scene...");
+	//if (mlx_image_to_window(program->mlx, program->buffer, 0, 0) == NULL)
+	//	LOG_ERR("Unable to put image to window");
+	scene_draw(program);
+	//ft_bzero(program->buffer->pixels, program->buffer->width * program->buffer->height);
+	LOG("Scene drawn");
 	LOG("Running mlx_loop");
 	mlx_loop(program->mlx);
 }

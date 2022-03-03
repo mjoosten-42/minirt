@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:35:19 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/21 19:32:30 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/03 11:25:27 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static size_t	_get_size(t_shape_type type)
 	size += (type == SHAPE_SQUARE) * sizeof(t_mask_square);
 	size += (type == SHAPE_CIRCLE) * sizeof(t_mask_circle);
 	size += (type == SHAPE_TRIANGLE) * sizeof(t_mask_triangle);
+	size += (type == SHAPE_SPHERE) * sizeof(t_mask_sphere);
 	return (size);
 }
 

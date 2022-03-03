@@ -6,7 +6,7 @@
 #    By: ngerrets <ngerrets@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/07/15 14:47:03 by ngerrets      #+#    #+#                  #
-#    Updated: 2022/03/01 12:41:13 by ngerrets      ########   odam.nl          #
+#    Updated: 2022/03/03 12:34:57 by ngerrets      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ all: $(NAME)
 
 files:
 	./make/make_sources.sh
-	$(MAKE) all
 
 $(NAME): $(HEADERS) $(OBJECTS)
 	@echo "\nLinking files..."

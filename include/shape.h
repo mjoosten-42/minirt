@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:11:37 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/01 12:39:47 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/03 12:55:40 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,23 @@
 # include "ray3.h"
 # include "shape_masks.h"
 # include <stdlib.h>
+
+typedef enum e_material_type
+{
+	MATERIAL_DEFAULT = 0,
+	MATERIAL_CUSTOM
+}	t_material_type;
+
+/**
+**	data to define behaviour of impacting rays
+**	@param reflection	<float> percentage (0.0 - 1.0) of "mirrorness"
+**
+*/
+typedef struct s_material
+{
+	t_material_type	type;
+	float			reflection;
+}				t_material;
 
 /**
 **	Represents a default shape
@@ -31,15 +48,13 @@ typedef struct s_shape
 	t_shape_type	type;
 	t_v3			origin;
 	t_color			color;
+	t_material		material;
 	void			*mask;
 }					t_shape;
-
-typedef int (*t_collfunc)(const t_shape *, const t_ray3 *);
 
 /* shape.c */
 t_shape	*shape_create(t_shape_type type, t_v3 origin, t_color col, void *mask);
 void	shape_free(void *shape);
-void	*shape_get_coll_func(t_shape_type type);
 
 /* shape_mask.c */
 void	*shape_mask(t_shape_type type, void *data);
@@ -47,8 +62,7 @@ void	*shape_mask(t_shape_type type, void *data);
 /* shape_debug.c */
 void	shape_print(t_shape *shape);
 
-/* shape_sphere.c */
-t_mask_sphere	shape_sphere_mask(double radius);
-int				shape_sphere_collision(const t_shape *sphere, const t_ray3 *ray);
+/* shape_material.c */
+int	shape_is_default_material(t_shape *shape);
 
 #endif

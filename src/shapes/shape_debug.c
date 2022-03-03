@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:51:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/21 18:49:31 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/03 12:31:15 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static void	_shape_print_mask(t_shape *shape)
 		vec3_print(((t_mask_circle *)shape->mask)->normal);
 		printf("|  |  radius: %.3f\n", ((t_mask_circle *)shape->mask)->radius);
 	}
+	if (shape->type == SHAPE_SPHERE)
+		printf("|  |  radius: %.3f\n", ((t_mask_sphere *)shape->mask)->radius);
 }
 
 void	shape_print(t_shape *shape)

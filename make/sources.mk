@@ -1,4 +1,5 @@
-SOURCES :=	src/colors/color_basics.c \
+SOURCES :=	src/collisions.c \
+	src/colors/color_basics.c \
 	src/colors/color_debug.c \
 	src/colors/color_math.c \
 	src/lights/light.c \
@@ -21,8 +22,8 @@ SOURCES :=	src/colors/color_basics.c \
 	src/shapes/shape.c \
 	src/shapes/shape_debug.c \
 	src/shapes/shape_mask.c \
+	src/shapes/shape_material.c \
 	src/shapes/shape_plane.c \
-	src/shapes/shape_sphere.c \
 	src/util/utils.c \
 	src/vec3/vec3_basics.c \
 	src/vec3/vec3_debug.c \

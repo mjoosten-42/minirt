@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:42:17 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/03 11:38:20 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/03 16:10:58 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,9 @@ void	scene_draw(t_program *program)
 	unsigned int	y;
 	t_collision		coll;
 	t_ray3			ray;
-	int				c;
+	t_color			c;
 
+	_clear(program->buffer);
 	y = 0;
 	while (y < program->buffer->height)
 	{
@@ -112,10 +113,12 @@ void	scene_draw(t_program *program)
 			ray = ray3(_get_origin(program), _get_direction(x, y, program));
 			coll = raycast_get_collision(program->shapes, &ray);
 			if (coll.shape != NULL)
-				c = color_to_int(coll.shape->color);
+				c = coll.shape->color;
 			else
-				c = 0x000000FF;
-			mlx_putpixel(program->buffer, x, y, c);
+				c = color_f(0, 0, 0);
+			color_luminosity(&c, vec3_dot(vec3(0, 1, 0), coll.normal));
+			//color_cap(&c);
+			mlx_putpixel(program->buffer, x, y, color_to_int(c));
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 12:02:48 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 15:33:42 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/03/03 16:04:16 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_color	color_blend(t_color c1, t_color c2, float percentage)
 
 void	color_luminosity(t_color *c, float multiplier)
 {
+	if (multiplier < 0)
+		multiplier = 0;
 	c->r *= multiplier;
 	c->g *= multiplier;
 	c->b *= multiplier;
@@ -40,10 +42,10 @@ void	color_norm_if_large(t_color *c)
 
 void	color_cap(t_color *c)
 {
-	if (c->r > 1.0)
-		c->r = 1.0;
-	if (c->g > 1.0)
-		c->g = 1.0;
-	if (c->b > 1.0)
-		c->b = 1.0;
+	if (c->r > 1.000)
+		c->r = 1.000;
+	if (c->g > 1.000)
+		c->g = 1.000;
+	if (c->b > 1.000)
+		c->b = 1.000;
 }

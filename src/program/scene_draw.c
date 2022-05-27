@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:42:17 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/03 16:10:58 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/05/27 12:41:16 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,9 @@ void	scene_draw(t_program *program)
 			if (coll.shape != NULL)
 				c = coll.shape->color;
 			else
-				c = color_f(0, 0, 0);
-			color_luminosity(&c, vec3_dot(vec3(0, 1, 0), coll.normal));
+				c = color_f(0.5, 0.5, 0.5);
+			if (coll.shape != NULL)
+				color_luminosity(&c, vec3_dot(vec3(0, 1, 0), coll.normal));
 			//color_cap(&c);
 			mlx_putpixel(program->buffer, x, y, color_to_int(c));
 			x++;

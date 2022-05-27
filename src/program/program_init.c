@@ -15,6 +15,18 @@
 #include "log.h"
 #include "shape.h"
 
+#define ESC 256
+
+void	_mlx_keypress(int key, int os_key, void *program)
+{
+	if (key == ESC)
+	{
+		program_terminate(program);
+		exit(EXIT_SUCCESS);
+	}
+	(void)os_key;
+}
+
 static t_program	*_allocate(void)
 {
 	t_program	*program;
@@ -54,6 +66,8 @@ void	program_run(t_program *program)
 	scene_draw(program);
 	//ft_bzero(program->buffer->pixels, program->buffer->width * program->buffer->height);
 	LOG("Scene drawn");
+	mlx_key_hook(program->mlx, _mlx_keypress, program);
+	LOG("ESC hook");
 	LOG("Running mlx_loop");
 	mlx_loop(program->mlx);
 }

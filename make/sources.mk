@@ -16,7 +16,6 @@ SOURCES :=	src/collisions.c \
 	src/shapes/shape_mask.c \
 	src/shapes/shape_material.c \
 	src/shapes/shape_plane.c \
-	src/util/utils.c \
 	src/vec3/vec3_basics.c \
 	src/vec3/vec3_debug.c \
 	src/vec3/vec3_math.c \

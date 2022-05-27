@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: ngerrets <ngerrets@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2021/07/15 14:47:03 by ngerrets      #+#    #+#                  #
-#    Updated: 2022/03/03 12:34:57 by ngerrets      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/07/15 14:47:03 by ngerrets          #+#    #+#              #
+#    Updated: 2022/05/27 13:18:40 by mjoosten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ MAIN ?= main.c
 
 NAME := minirt
 COMPILE_FLAGS ?= -Wall -Wextra
-LINKING_FLAGS ?= libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+LINKING_FLAGS ?= libft.a libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 
 SRC_DIR ?= src
 HDR_DIR ?= include

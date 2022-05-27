@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "program.h"
-#include "utils.h"
 #include "log.h"
 #include "shape.h"
+#include "../lib/libft/include/libft.h"
 
 #define ESC 256
 

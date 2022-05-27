@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   program.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/03 10:42:30 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   program.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/05/27 14:51:46 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PROGRAM_H
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
-# include "list.h"
+# include "../lib/libft/include/libft.h"
 # include <stdlib.h>
 # include "vec3.h"
 

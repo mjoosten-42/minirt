@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ray3.h                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/15 19:08:36 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/03 11:32:24 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ray3.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/15 19:08:36 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/05/27 14:51:56 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RAY3_H
 
 # include "vec3.h"
-# include "list.h"
+# include "../lib/libft/include/libft.h"
 
 /**
 **	A "unique" way to define Infinity for rays

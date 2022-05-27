@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:11:40 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/27 13:19:27 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:03:04 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,6 @@ static void	_build_shapes(t_program *program)
 	_add_shape(&program->shapes, shape);
 
 	ft_lstiter(program->shapes, (void (*)(void *))shape_print);
-}
-
-#include "utils.h"
-
-void	ft_bfull(void *s, size_t length)
-{
-	unsigned char	*d;
-	size_t			i;
-
-	d = s;
-	i = 0;
-	while (i < length)
-	{
-		d[i] = 255;
-		i++;
-	}
 }
 
 static void	_clear(t_mlx_image *img)

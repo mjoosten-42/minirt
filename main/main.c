@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/17 11:11:40 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/03 16:20:23 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 11:11:40 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/05/27 13:19:27 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ static void	_clear(t_mlx_image *img)
 	}
 }
 
-int	main(void)
+void	get_shapes(t_program *program, char *file);
+
+int	main(int argc, char **argv)
 {
 	t_program	*program;
 
@@ -93,7 +95,10 @@ int	main(void)
 	if (program == NULL)
 		return (EXIT_FAILURE);
 
-	_build_shapes(program);
+	if (argc != 2)
+		_build_shapes(program);
+	else
+		get_shapes(program, argv[1]);
 	program_run(program);
 	program_terminate(program);
 	LOG("Program end");

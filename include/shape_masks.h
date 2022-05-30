@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   shape_masks.h                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/16 13:15:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/01 12:07:26 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   shape_masks.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/16 13:15:29 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/05/30 11:15:54 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_mask_square
 **	@param normal <t_v3> Normal vector
 **	@param radius <double> Radius
 */
-typedef struct s_mask_cicle
+typedef struct s_mask_circle
 {
 	t_v3	normal;
 	double	radius;
@@ -71,7 +71,7 @@ typedef struct s_mask_triangle
 **	SHAPE_SPHERE
 **	@param radius <double> Radius
 */
-typedef struct s_mask_shere
+typedef struct s_mask_sphere
 {
 	double	radius;
 }			t_mask_sphere;

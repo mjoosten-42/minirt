@@ -4,8 +4,11 @@ SOURCES :=	src/collisions.c \
 	src/colors/color_math.c \
 	src/lights/light.c \
 	src/log.c \
+	src/parse/color.c \
+	src/parse/double.c \
 	src/parse/parse.c \
-	src/parse/util.c \
+	src/parse/shape_init.c \
+	src/parse/vector.c \
 	src/program/program_init.c \
 	src/program/scene_draw.c \
 	src/ray/ray3.c \

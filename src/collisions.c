@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   collisions.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/01 12:06:19 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/03 15:54:40 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   collisions.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 12:06:19 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/05/30 15:49:48 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	*collision_get_func(t_shape_type type)
 		[SHAPE_SQUARE] = NULL,
 		[SHAPE_CIRCLE] = NULL,
 		[SHAPE_TRIANGLE] = NULL,
-		[SHAPE_SPHERE] = collision_sphere
+		[SHAPE_SPHERE] = collision_sphere,
+		[SHAPE_CYLINDER] = NULL
 	};
 
 	return (f[type]);

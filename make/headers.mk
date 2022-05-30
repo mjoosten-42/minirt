@@ -2,6 +2,7 @@ HEADERS :=	include/collision.h \
 	include/color.h \
 	include/light.h \
 	include/log.h \
+	include/parse.h \
 	include/program.h \
 	include/ray3.h \
 	include/shape.h \

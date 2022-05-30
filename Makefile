@@ -6,14 +6,14 @@
 #    By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 14:47:03 by ngerrets          #+#    #+#              #
-#    Updated: 2022/05/27 13:18:40 by mjoosten         ###   ########.fr        #
+#    Updated: 2022/05/30 14:51:48 by mjoosten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MAIN ?= main.c
 
 NAME := minirt
-COMPILE_FLAGS ?= -Wall -Wextra
+COMPILE_FLAGS ?= -Wall -Wextra -g
 LINKING_FLAGS ?= libft.a libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 
 SRC_DIR ?= src

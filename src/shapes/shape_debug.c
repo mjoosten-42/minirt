@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:51:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/30 10:55:10 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:47:13 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ static void	_shape_print_mask(t_shape *shape)
 	}
 	if (shape->type == SHAPE_SPHERE)
 		printf("|  |  radius: %.3f\n", ((t_mask_sphere *)shape->mask)->radius);
+	if (shape->type == SHAPE_CYLINDER)
+	{
+		printf("|  |  normal ");
+		vec3_print(((t_mask_cylinder *)shape->mask)->normal);
+		printf("|  |  diameter: %.3f\n", ((t_mask_cylinder *)shape->mask)->diameter);
+		printf("|  |  height: %.3f\n", ((t_mask_cylinder *)shape->mask)->height);
+	}
 }
 
 void	shape_print(t_shape *shape)
@@ -49,7 +56,8 @@ void	shape_print(t_shape *shape)
 	"SQUARE",
 	"CIRCLE",
 	"TRIANGLE",
-	"SPHERE"
+	"SPHERE",
+	"CYLINDER"
 	};
 
 	printf("# - SHAPE - - - - - - - - - - - - - - - -\n");

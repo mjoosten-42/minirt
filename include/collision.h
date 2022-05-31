@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   collision.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/03 11:29:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/03 12:56:39 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   collision.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/03 11:29:31 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/05/31 13:12:10 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray);
 /* collisions.c */
 void		*collision_get_func(t_shape_type type);
 t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray);
+
+/* shape_plane.c */
+t_collision	shape_plane_collision(const t_shape *plane, const t_ray3 *ray);
 
 #endif

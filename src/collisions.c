@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 12:06:19 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/30 15:49:48 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/31 13:11:54 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*collision_get_func(t_shape_type type)
 	static const t_collfunc	f[] =
 	{
 		[SHAPE_NONE] = NULL,
-		[SHAPE_PLANE] = NULL,
+		[SHAPE_PLANE] = shape_plane_collision,
 		[SHAPE_SQUARE] = NULL,
 		[SHAPE_CIRCLE] = NULL,
 		[SHAPE_TRIANGLE] = NULL,

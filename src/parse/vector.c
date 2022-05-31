@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/31 09:39:17 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:46:47 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 #include "../lib/libft/include/libft.h"
 #include "parse.h"
 #include "log.h"
+#include <math.h>
 
 #define EPSILON 0.1
-
-double	dabs(double a);
 
 t_v3	parse_vector_norm(char *str)
 {
@@ -26,7 +25,7 @@ t_v3	parse_vector_norm(char *str)
 
 	vector = parse_vector(str);
 	len = vec3_length(vector);
-	if (dabs(len - 1) > EPSILON)
+	if (fabs(len - 1) > EPSILON)
 	{
 		LOG_ERR("Vector is not normalized");
 		exit(EXIT_FAILURE);
@@ -54,11 +53,4 @@ t_v3	parse_vector(char *str)
 	vector.y = atod(strs[1]);
 	vector.z = atod(strs[2]);
 	return (vector);
-}
-
-double	dabs(double a)
-{
-	if (a < 0)
-		return (-a);
-	return (a);
 }

@@ -66,7 +66,7 @@ void	program_run(t_program *program)
 	scene_draw(program);
 	//ft_bzero(program->buffer->pixels, program->buffer->width * program->buffer->height);
 	LOG("Scene drawn");
-	mlx_key_hook(program->mlx, _mlx_keypress, program);
+	mlx_key_hook(program->mlx, (t_mlx_keyfunc)_mlx_keypress, program);
 	LOG("ESC hook");
 	LOG("Running mlx_loop");
 	mlx_loop(program->mlx);
@@ -80,6 +80,8 @@ void	program_terminate(t_program *program)
 	LOG("Terminated MLX");
 	ft_lstclear(&program->shapes, shape_free);
 	LOG("Freed shape list");
+	ft_lstclear(&program->lights, free);
+	LOG("Freed light list");
 	free(program);
 	LOG("Freed program struct");
 }

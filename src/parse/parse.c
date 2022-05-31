@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/30 15:47:40 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/31 12:18:24 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,104 +17,95 @@
 #include "shape_masks.h"
 #include "../lib/libft/include/libft.h"
 #include "parse.h"
+#include "light.h"
 
-char	**get_next_parameters(int fd);
-int		open_rt(char *file);
+char		**get_args(char *line);
+void		build_object(t_program *program, char **args);
+t_object	get_object(t_program *program, char *str);
+int			open_rt(char *file);
 
-void	get_shapes(t_program *program, char *file)
+void	build_scene(t_program *program, char *file)
 {
-	t_list	*new;
-	t_shape	*shape;
-	char	**strs;
+	char	**args;
+	char	*line;
 	int		fd;
 
 	fd = open_rt(file);
-	strs = get_next_parameters(fd);
-	while (strs)
+	line = ft_get_next_line(fd);
+	while (line)
 	{
-		shape = get_shape(strs);
-		new = ft_lstnew(shape);
-		if (!new)
-			exit(EXIT_FAILURE);
-		ft_lstadd_back(&program->shapes, new);
-		LOG("Added shape");
-		ft_free_array(strs);
-		strs = get_next_parameters(fd);
+		args = get_args(line);
+		if (args[0])
+			build_object(program, args);
+		free(line);
+		line = ft_get_next_line(fd);
 	}
-	LOG("Initialized shapes");
 	close(fd);
+	LOG("build scene");
 	ft_lstiter(program->shapes, (void (*)(void *))shape_print);
+	ft_lstiter(program->lights, (void (*)(void *))light_print);
 }
 
-t_shape	*get_shape(char **strs)
+char	**get_args(char *line)
 {
-	const static t_shape_table	table[] = {
-		{ "A", get_ambience, 3, SHAPE_NONE },
-		{ "C", get_camera, 4, SHAPE_NONE },
-		{ "L", get_light, 4, SHAPE_NONE },
-		{ "sp", get_sphere, 4, SHAPE_SPHERE },
-		{ "pl", get_plane, 4, SHAPE_PLANE },
-		{ "cy", get_cylinder, 6, SHAPE_CYLINDER }
-	};
-	t_shape	*shape;
-	int		tablesize;
-	int		argsize;
-	int		i;
-
-	i = 0;
-	tablesize = sizeof(table) / sizeof(*table);
-	shape = ft_malloc(sizeof(t_shape));
-	while (i < tablesize)
-	{
-		if (!ft_strncmp(*strs, table[i].id, ft_strlen(table[i].id)))
-		{
-			argsize = ft_argsize(strs);
-			if (argsize != table[i].nb_args)
-			{
-				LOG_ERR("Wrong amount of arguments");
-				exit(EXIT_FAILURE);
-			}
-			shape->type = table[i].type;
-			if (**strs != 'A')
-				shape->origin = parse_vector(strs[1]);
-			shape->mask = table[i].f(strs);
-			if (**strs != 'C')
-				shape->color = parse_color(strs[argsize - 1]);
-			return (shape);
-		}
-		i++;
-	}
-	LOG_ERR(ft_strjoin(*strs, ": not an identifier"));
-	exit(EXIT_FAILURE);
-}
-
-char	**get_next_parameters(int fd)
-{
-	char	**strs;
-	char	*line;
+	char	**args;
 	size_t	len;
 
-	line = ft_get_next_line(fd);
-	if (!line)
-		return (NULL);
 	len = ft_strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = 0;
-	strs = ft_split(line, ' ');
-	if (!strs)
-	{
-		LOG_ERR("ft_split allocation failed");
-		exit(EXIT_FAILURE);
-	}
-	free(line);
-	if (line[0] == ' ' && strs[0])
+	if (line[0] == ' ')
 	{
 		LOG_ERR("Line starting with space");
 		exit(EXIT_FAILURE);
 	}
-	if (!strs[0])
-		return (get_next_parameters(fd));
-	return (strs);
+	args = ft_split(line, ' ');
+	if (!args)
+	{
+		LOG_ERR("split allocation failed");
+		exit(EXIT_FAILURE);
+	}
+	return (args);
+}
+
+void	build_object(t_program *program, char **args)
+{
+	t_object	object;
+	int			argsize;
+
+	object = get_object(program, args[0]);
+	argsize = ft_argsize(args);
+	if (argsize != object.nb_args)
+	{
+		LOG_ERR("Wrong amount of arguments");
+		exit(EXIT_FAILURE);
+	}
+	object.f(args, object.ptr);
+}
+
+t_object	get_object(t_program *program, char *str)
+{
+	const t_object	table[] = {
+	{OBJECT_AMBIENCE, "A", 3, build_ambience, &program->ambience},
+	{OBJECT_CAMERA, "C", 4, build_camera, &program->camera},
+	{OBJECT_LIGHT, "L", 4, build_light, &program->lights},
+	{OBJECT_SPHERE, "sp", 4, build_sphere, &program->shapes},
+	{OBJECT_PLANE, "pl", 4, build_plane, &program->shapes},
+	{OBJECT_CYLINDER, "cy", 6, build_cylinder, &program->shapes}
+	};
+	int				tablesize;
+	int				i;
+
+	i = 0;
+	tablesize = sizeof(table) / sizeof(*table);
+	while (i < tablesize)
+	{
+		if (ft_strncmp(str, table[i].id, ft_strlen(str)) == 0)
+			return ((t_object){table[i].type, table[i].id, table[i].nb_args, table[i].f, table[i].ptr});
+		i++;
+	}
+	LOG_ERR(ft_strjoin(str, ": not an identifier"));
+	exit(EXIT_FAILURE);
 }
 
 int	open_rt(char *file)
@@ -122,26 +113,18 @@ int	open_rt(char *file)
 	int	fd;
 	int	len;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		perror(file);
-		exit(EXIT_FAILURE);
-	}
 	len = ft_strlen(file);
 	if (len < 3 || ft_strncmp(file + len - 3, ".rt", len))
 	{
 		LOG_ERR("Expected .rt file");
 		exit(EXIT_FAILURE);
 	}
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		perror(file);
+		exit(EXIT_FAILURE);
+	}
 	LOG("Opened file");
 	return (fd);
-}
-
-int	ft_argsize(char **strs)
-{
-	int	i = 0;
-	while (strs[i])
-		i++;
-	return (i);
 }

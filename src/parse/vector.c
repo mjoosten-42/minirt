@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/30 15:27:54 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/31 09:39:17 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ t_v3	parse_vector_norm(char *str)
 	double	len;
 
 	vector = parse_vector(str);
-	len = vec3_length(vector) - 1;
-	if (dabs(len) < EPSILON)
-		return (vector);
-	LOG_ERR("Vector is not normalized");
-	exit(EXIT_FAILURE);
+	len = vec3_length(vector);
+	if (dabs(len - 1) > EPSILON)
+	{
+		LOG_ERR("Vector is not normalized");
+		exit(EXIT_FAILURE);
+	}
+	return (vector);
 }
 
 t_v3	parse_vector(char *str)
@@ -56,7 +58,7 @@ t_v3	parse_vector(char *str)
 
 double	dabs(double a)
 {
-	if (a > 0)
-		return (a);
-	return (-a);
+	if (a < 0)
+		return (-a);
+	return (a);
 }

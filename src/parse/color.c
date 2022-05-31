@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:23:19 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/30 14:46:30 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/31 11:50:55 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../lib/libft/include/libft.h"
 #include "log.h"
 
-float	parse_rgb(char *str);
+float	parse_rgb_value(char *str);
 
 t_color	parse_color(char *str)
 {
@@ -33,21 +33,31 @@ t_color	parse_color(char *str)
 		LOG_ERR("Incorrect amount of RGB");
 		exit(EXIT_FAILURE);
 	}
-	color.r = parse_rgb(strs[0]);
-	color.g = parse_rgb(strs[1]);
-	color.b = parse_rgb(strs[2]);
+	color.r = parse_rgb_value(strs[0]);
+	color.g = parse_rgb_value(strs[1]);
+	color.b = parse_rgb_value(strs[2]);
 	return (color);
 }
 
-float	parse_rgb(char *str)
+float	parse_rgb_value(char *str)
 {
 	int	result;
+	int	prev;
 	int	i;
 
 	i = 0;
+	prev = 0;
 	result = 0;
 	while (ft_isdigit(str[i]))
+	{
 		result = 10 * result + (str[i++] - '0');
+		if (prev > result)
+		{
+			LOG_ERR("Overflow");
+			exit(EXIT_FAILURE);
+		}
+		prev = result;
+	}
 	if (str[i] != 0 || ft_strlen(str) > 3 || result > 255)
 	{
 		LOG_ERR("Incorrect RGB value");

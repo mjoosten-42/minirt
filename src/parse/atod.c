@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   double.c                                           :+:      :+:    :+:   */
+/*   atod.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:35:50 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/30 12:55:16 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/31 12:07:52 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ double	atod(char *str)
 {
 	double	int_part;
 	double	double_part;
-	int		min;
+	int		sign;
 	int		len;
 	int		i;
 
 	i = 0;
-	min = 0;
+	sign = 1;
 	int_part = 0;
 	double_part = 0;
 	if (str[i] == '-')
 	{
-		min = 1;
+		sign = -1;
 		i++;
 		if (!ft_isdigit(str[i]))
 		{
@@ -38,7 +38,7 @@ double	atod(char *str)
 	while (ft_isdigit(str[i]))
 		int_part = 10 * int_part + (str[i++] - '0');
 	if (!str[i])
-		return (int_part);
+		return (int_part * sign);
 	if (str[i] != '.')
 	{
 		LOG_ERR(ft_strjoin(str, " : incorrectly formatted"));
@@ -58,9 +58,7 @@ double	atod(char *str)
 			LOG_ERR(ft_strjoin(str, " : incorrectly formatted"));
 			exit(EXIT_FAILURE);
 		}
-		double_part = double_part / 10 + (double)(str[len] - '0') / 10;
+		double_part = double_part / 10.0 + (double)(str[len] - '0') / 10.0;
 	}
-	if (min)
-		return (-(int_part + double_part));
-	return (int_part + double_part);
+	return ((int_part + double_part) * sign);
 }

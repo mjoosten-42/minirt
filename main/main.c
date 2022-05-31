@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:11:40 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/27 15:03:04 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/31 12:13:09 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,7 @@ static void	_build_shapes(t_program *program)
 	ft_lstiter(program->shapes, (void (*)(void *))shape_print);
 }
 
-static void	_clear(t_mlx_image *img)
-{
-	unsigned int	x;
-	unsigned int	y;
-
-	x = 0;
-	while (x < img->width)
-	{
-		y = 0;
-		while (y < img->height)
-		{
-			mlx_putpixel(img, x, y, 0xFFFFFFFF);
-			y++;
-		}
-		x++;
-	}
-}
-
-void	get_shapes(t_program *program, char *file);
+void	build_scene(t_program *program, char *file);
 
 int	main(int argc, char **argv)
 {
@@ -82,7 +64,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		_build_shapes(program);
 	else
-		get_shapes(program, argv[1]);
+		build_scene(program, argv[1]);
 	program_run(program);
 	program_terminate(program);
 	LOG("Program end");

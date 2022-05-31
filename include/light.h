@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   light.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/21 20:08:57 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/01 12:39:13 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   light.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/21 20:08:57 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/05/31 11:46:36 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ typedef struct s_light
 	double	range;
 }			t_light;
 
+/**
+**	Ambient lighting data
+**	@param intensity <float> Intensity
+**	@param color <t_color> Light color.
+*/
+typedef struct s_ambience
+{
+	float	intensity;
+	t_color	color;
+}			t_ambience;
+
 t_light	*light_create(t_v3 origin, t_color color);
+void	light_print(t_light *light);
 
 #endif

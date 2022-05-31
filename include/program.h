@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/27 14:51:46 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/31 11:47:03 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../lib/libft/include/libft.h"
 # include <stdlib.h>
 # include "vec3.h"
+# include "light.h"
 
 # define WINDOW_W 1024
 # define WINDOW_H 1024
@@ -49,13 +50,16 @@ typedef struct s_cam
 **	@param mlx <t_mlx*> Main MLX42 pointer
 **	@param buffer <t_mlx_image*> MLX42-Image that holds the screen buffer
 **	@param shapes <t_list*> Pointer to first element of all the shapes
+**	@param light <t_list*> Pointer to first element of all the lights
 */
 typedef struct s_program
 {
 	t_mlx		*mlx;
 	t_mlx_image	*buffer;
-	t_list		*shapes;
 	t_cam		camera;
+	t_ambience	ambience;
+	t_list		*lights;
+	t_list		*shapes;
 }				t_program;
 
 /* program_init.c */

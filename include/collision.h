@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/03 11:29:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 17:13:35 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/01 17:45:08 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ t_rdata		raycast(t_program *program, t_ray3 *ray);
 /* collisions.c */
 t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray);
 t_collision	collision_plane(const t_shape *plane, const t_ray3 *ray);
+t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray);
 
 #endif

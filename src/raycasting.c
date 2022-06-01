@@ -1,5 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
+<<<<<<< HEAD
 /*                                                        ::::::::            */
 /*   raycasting.c                                       :+:    :+:            */
 /*                                                     +:+                    */
@@ -7,6 +8,15 @@
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
 /*   Updated: 2022/06/01 17:43:38 by ngerrets      ########   odam.nl         */
+=======
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/01 16:13:46 by mjoosten         ###   ########.fr       */
+>>>>>>> f1afde1b98cd8bc878bf95d634caa99bbd8b6b64
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +46,7 @@ void	*collision_get_func(t_shape_type type)
 		[SHAPE_CIRCLE] = NULL,
 		[SHAPE_TRIANGLE] = NULL,
 		[SHAPE_SPHERE] = collision_sphere,
-		[SHAPE_CYLINDER] = NULL
+		[SHAPE_CYLINDER] = collision_cylinder
 	};
 
 	return (f[type]);
@@ -83,14 +93,14 @@ t_color	ray_to_light(t_program *program, t_collision coll)
 	t_collision	shadow_coll;
 	t_light		*light;
 
-	c = color_f(0, 0, 0);
+	c = coll.shape->color;
 	if (program->lights == NULL)
-		return (c);
+		return (color_f(0, 0, 0));
 	shadow_coll = collision_none();
 	light = (t_light *)program->lights->content;
 	ray.origin = coll.point;
 	ray.direction = vec3_sub(light->origin, coll.point);
-	vec3_normalize(&(ray.direction));
+	vec3_normalize(&ray.direction);
 	ray.origin = vec3_add(ray.origin, vec3_mul(ray.direction, __FLT_EPSILON__));
 	shadow_coll = raycast_get_collision(program->shapes, &ray);
 	c = coll.shape->color;

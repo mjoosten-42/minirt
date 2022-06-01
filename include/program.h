@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/01 15:45:14 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:38:53 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "light.h"
 # include "mat4.h"
 
-# define WINDOW_W 1920
-# define WINDOW_H 1080
+# define WINDOW_W 1280
+# define WINDOW_H 800
 # define WINDOW_TITLE "WINDOW TITLE"
 # define WINDOW_RESIZE 0
 

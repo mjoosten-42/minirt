@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/01 14:20:08 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:34:07 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,26 +76,25 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 	return (closest_collision);
 }
 
-void	ray_to_light(t_program *program, t_collision coll, t_color *c)
+t_color	ray_to_light(t_program *program, t_collision coll)
 {
+	t_color		c;
 	t_ray3		ray;
 	t_collision	shadow_coll;
+	t_light		*light;
 
 	if (program->lights == NULL)
-	{
-		*c = (t_color){0, 0, 0};
-		return ;
-	}
+		return (color_f(0, 0, 0));
 	shadow_coll = collision_none();
-	ray = ray3(coll.point, vec3_sub(((t_light *)program->lights->content)->origin, coll.point));
+	light = (t_light *)program->lights->content;
+	ray = ray3(coll.point, vec3_sub(light->origin, coll.point));
 	ray.origin = vec3_add(ray.origin, vec3_mul(ray.direction, __FLT_EPSILON__));
 	shadow_coll = raycast_get_collision(program->shapes, &ray);
 	if (shadow_coll.shape == NULL)
 	{
-		color_luminosity(c, ((t_light *)program->lights->content)->intensity);
+		color_luminosity(&c, light->intensity);
+		return (c);
 	}
 	else
-	{
-		*c = (t_color){0, 0, 0};
-	}
+		return (light->color);
 }

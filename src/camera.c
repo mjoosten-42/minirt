@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/01 13:51:12 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 13:57:45 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/01 14:32:43 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	camera_calculate_matrix(t_cam *camera)
 		vec3_normalize(&right);
 	up = vec3_cross(camera->direction, right);
 	vec3_normalize(&up);
-	camera->view_matrix = matrix(right, up, camera->direction, camera->origin);
+	camera->view_matrix = matrix(right, up, camera->direction, vec3(0, 0, 0));
 }

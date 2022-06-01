@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/01 13:23:57 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 13:46:47 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/01 14:09:24 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ t_v3	mat4_mul_vec3(const t_mat4 *m, const t_v3 *vec)
 		vec->z * m->data[2][2] + m->data[3][2];
 	t[3] = vec->x * m->data[0][3] + vec->y * m->data[1][3] +
 		vec->z * m->data[2][3] + m->data[3][3];
-	
 	r.x = t[0] / t[3];
 	r.y = t[1] / t[3];
 	r.z = t[2] / t[3];
+
+	return (r);
 }

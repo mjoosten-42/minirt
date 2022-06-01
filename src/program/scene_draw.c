@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   scene_draw.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/01 14:37:52 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   scene_draw.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 11:42:17 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/01 15:21:39 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ void	scene_draw(t_program *program)
 			if (coll.shape != NULL)
 				c = ray_to_light(program, coll);
 			else
-				c = color_f(0.5, 0.5, 0.5);
+				c = color_f(0, 0, 0);
+			color_cap(&c);
 			mlx_putpixel(program->buffer, x, y, color_to_int(c));
 			x++;
 		}

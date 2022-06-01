@@ -1,4 +1,5 @@
 SOURCES :=	src/camera.c \
+	src/collisions/cylinder.c \
 	src/collisions/plane.c \
 	src/collisions/sphere.c \
 	src/colors/color_basics.c \

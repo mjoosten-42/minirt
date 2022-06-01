@@ -1,5 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
+<<<<<<< HEAD
 /*                                                        ::::::::            */
 /*   scene_draw.c                                       :+:    :+:            */
 /*                                                     +:+                    */
@@ -7,6 +8,15 @@
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:42:17 by ngerrets      #+#    #+#                 */
 /*   Updated: 2022/06/01 14:32:53 by ngerrets      ########   odam.nl         */
+=======
+/*                                                        :::      ::::::::   */
+/*   scene_draw.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/01 14:27:11 by mjoosten         ###   ########.fr       */
+>>>>>>> 40d3d25289c10f6f5e9d02a6ba101d9e53b4fed6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +67,8 @@ t_v3	ray_get_dir(double x, double y, t_scene *scene)
 	return (r);
 }
 */
+
+void	ray_to_light(t_program *program, t_collision coll, t_color *c);
 
 static t_v3	_get_origin(t_program *program)
 {
@@ -122,7 +134,10 @@ void	scene_draw(t_program *program)
 			else
 				c = color_f(0.5, 0.5, 0.5);
 			if (coll.shape != NULL)
-				color_luminosity(&c, vec3_dot(vec3(0, 1, 0), coll.normal));
+			{
+				//color_luminosity(&c, vec3_dot(vec3(0, 1, 0), coll.normal));
+				ray_to_light(program, coll, &c);
+			}
 			//color_cap(&c);
 			mlx_putpixel(program->buffer, x, y, color_to_int(c));
 			x++;

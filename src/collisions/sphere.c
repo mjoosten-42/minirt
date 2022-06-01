@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collisions.c                                       :+:      :+:    :+:   */
+/*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 12:06:19 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/01 10:58:51 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:22:40 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray)
 	if (discr < 0)
 		return (coll);
 	_quadratic(t, values, discr);
+	if (t[0] < 0)
+		return (coll);
 	coll.shape = (t_shape *)sphere;
 	coll.point = vec3_add(ray->origin, vec3_mul(ray->direction, t[0]));
 	coll.normal = vec3_sub(coll.point, sphere->origin);

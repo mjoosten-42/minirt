@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   vec3_basics.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/15 19:15:30 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/16 15:41:44 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   vec3_basics.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/15 19:15:30 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/01 13:08:59 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,9 @@ void	vec3_normalize(t_v3 *vec3)
 t_v3	vec3_dup(t_v3 vec3)
 {
 	return ((t_v3){vec3.x, vec3.y, vec3.z});
+}
+
+t_v3	vec3_inv(t_v3 vec3)
+{
+	return ((t_v3){-vec3.x, -vec3.y, -vec3.z});
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   objects.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/01 10:45:13 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   objects.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/30 10:49:24 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/06/01 13:55:19 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ void	build_camera(char **args, void *ptr)
 	}
 	camera.origin = parse_vector(args[1]);
 	camera.direction = parse_vector_norm(args[2]);
-	camera.up = vec3(0, 1, 0);
 	camera.fov = ft_atoi(args[3]);
 	if (camera.fov < 0 || camera.fov > 180)
 	{
 		LOG_ERR("FOV out of range");
 		exit(EXIT_FAILURE);
 	}
+	camera.fov = tan(camera.fov / 2 * M_PI / 180);
+	camera_calculate_matrix(&camera);
 	*(t_cam *)ptr = camera;
 	once = 1;
 }

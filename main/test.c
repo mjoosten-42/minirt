@@ -6,13 +6,14 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 19:38:16 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/17 11:12:04 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/01 13:26:55 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray3.h"
 #include "color.h"
 #include "shape.h"
+#include "mat4.h"
 
 int	main(void)
 {
@@ -45,6 +46,16 @@ int	main(void)
 	shape = shape_create(SHAPE_SQUARE, vec3(1, 1, 1), color_f(1, 0, 0),
 		shape_mask(SHAPE_SQUARE, &(t_mask_square){vec3(0, 1, 0), 10.0}));
 	shape_print(shape);
+
+	t_mat4 m;
+
+	m = matrix(vec3(1, 1, 1), vec3(2, 2, 2), vec3(3, 3, 3), vec3(4, 4, 4));
+
+	printf("%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n",
+		m.data[0][0], m.data[0][1], m.data[0][2], m.data[0][3],
+		m.data[1][0], m.data[1][1], m.data[1][2], m.data[1][3],
+		m.data[2][0], m.data[2][1], m.data[2][2], m.data[2][3],
+		m.data[3][0], m.data[3][1], m.data[3][2], m.data[3][3]);
 
 	return (0);
 }

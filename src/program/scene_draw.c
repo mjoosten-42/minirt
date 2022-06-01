@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:42:17 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 17:05:12 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/01 17:46:44 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static void	_clear(t_mlx_image *img)
 //	This function gets run for every pixel, returning the color that it should have
 t_color	calc_pixel(t_program *program, unsigned int x, unsigned int y)
 {
-	t_collision		coll;
 	t_ray3			ray;
 	t_rdata			rdata;
 

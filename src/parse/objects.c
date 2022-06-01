@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   objects.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/05/30 10:49:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/06/01 13:55:19 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   objects.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/06/01 14:32:47 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	build_light(char **args, void *ptr)
 {
 	t_light	*light;
 
-	light = ft_malloc(sizeof(light));
+	light = ft_malloc(sizeof(t_light));
 	light->origin = parse_vector(args[1]);
 	light->intensity = atod(args[2]);
 	if (light->intensity < 0 || light->intensity > 1)

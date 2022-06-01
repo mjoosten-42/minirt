@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   program.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 15:36:16 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   program.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/01 15:45:14 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "mat4.h"
 
 # define WINDOW_W 1920
-# define WINDOW_H 1024
+# define WINDOW_H 1080
 # define WINDOW_TITLE "WINDOW TITLE"
 # define WINDOW_RESIZE 0
 

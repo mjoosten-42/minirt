@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/01 10:36:16 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:03:44 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "log.h"
 #include <math.h>
 
+int	nb_of_char(char *str, char c);
 
 t_v3	parse_vector_norm(char *str)
 {
@@ -39,6 +40,11 @@ t_v3	parse_vector(char *str)
 	t_v3	vector;
 	char	**strs;
 
+	if (nb_of_char(str, ',') != 2)
+	{
+		LOG_ERR("Only two comma's per vector allowed");
+		exit(EXIT_FAILURE);
+	}
 	strs = ft_split(str, ',');
 	if (!strs)
 	{
@@ -54,4 +60,18 @@ t_v3	parse_vector(char *str)
 	vector.y = atod(strs[1]);
 	vector.z = atod(strs[2]);
 	return (vector);
+}
+
+int	nb_of_char(char *str, char c)
+{
+	int	amount;
+
+	amount = 0;
+	while (*str)
+	{
+		if (*str == c)
+			amount++;
+		str++;
+	}
+	return (amount);
 }

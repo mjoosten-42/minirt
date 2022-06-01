@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 12:06:19 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/31 15:17:04 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:58:51 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,6 @@ typedef struct s_abc
 	double	b;
 	double	c;
 }	t_abc;
-
-void	*collision_get_func(t_shape_type type)
-{
-	static const t_collfunc	f[] =
-	{
-		[SHAPE_NONE] = NULL,
-		[SHAPE_PLANE] = shape_plane_collision,
-		[SHAPE_SQUARE] = NULL,
-		[SHAPE_CIRCLE] = NULL,
-		[SHAPE_TRIANGLE] = NULL,
-		[SHAPE_SPHERE] = collision_sphere,
-		[SHAPE_CYLINDER] = NULL
-	};
-
-	return (f[type]);
-}
 
 static double	_discriminant(t_abc values)
 {

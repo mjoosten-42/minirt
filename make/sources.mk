@@ -1,4 +1,5 @@
-SOURCES :=	src/collisions.c \
+SOURCES :=	src/collisions/plane.c \
+	src/collisions/sphere.c \
 	src/colors/color_basics.c \
 	src/colors/color_debug.c \
 	src/colors/color_math.c \

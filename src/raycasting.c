@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/01 10:51:04 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:01:49 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ t_collision	collision_none(void)
 static t_collision	_collision(t_v3 point, t_shape *shape)
 {
 	return ((t_collision){.point = point, .shape = shape});
+}
+
+void	*collision_get_func(t_shape_type type)
+{
+	static const t_collfunc	f[] =
+	{
+		[SHAPE_NONE] = NULL,
+		[SHAPE_PLANE] = collision_plane,
+		[SHAPE_SQUARE] = NULL,
+		[SHAPE_CIRCLE] = NULL,
+		[SHAPE_TRIANGLE] = NULL,
+		[SHAPE_SPHERE] = collision_sphere,
+		[SHAPE_CYLINDER] = NULL
+	};
+
+	return (f[type]);
 }
 
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)

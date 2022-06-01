@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/31 12:18:24 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:36:34 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ void	build_scene(t_program *program, char *file)
 	LOG("build scene");
 	ft_lstiter(program->shapes, (void (*)(void *))shape_print);
 	ft_lstiter(program->lights, (void (*)(void *))light_print);
+	if (program->camera.fov == 0)
+	{
+		LOG_ERR("Missing camera");
+		exit(EXIT_FAILURE);
+	}
+	if (program->lights == NULL && program->ambience.intensity == 0)
+	{
+		LOG_ERR("Missing lighting");
+		exit(EXIT_FAILURE);
+	}
 }
 
 char	**get_args(char *line)

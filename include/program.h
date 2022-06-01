@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/31 11:47:03 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:57:28 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_program
 }				t_program;
 
 /* program_init.c */
-t_program	*program_get(void);
+t_program	program_get(void);
 void		program_run(t_program *program);
 void		program_terminate(t_program *program);
 

@@ -27,16 +27,6 @@ void	_mlx_keypress(int key, int os_key, void *program)
 	(void)os_key;
 }
 
-static t_program	*_allocate(void)
-{
-	t_program	*program;
-
-	program = malloc(sizeof(t_program));
-	if (program != NULL)
-		ft_bzero(program, sizeof(t_program));
-	return (program);
-}
-
 void	_init_mlx(t_program *program)
 {
 	program->mlx = mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE, WINDOW_RESIZE);
@@ -86,20 +76,11 @@ void	program_terminate(t_program *program)
 	LOG("Freed program struct");
 }
 
-t_program	*program_get(void)
+t_program	program_get(void)
 {
-	static t_program	*program = NULL;
+	t_program	program;
 
-	if (program == NULL)
-	{
-		program = _allocate();
-		if (program != NULL)
-		{
-			LOG("Allocated program struct");
-			_init_mlx(program);
-		}
-		else
-			LOG_ERR("Failed to allocate program struct");
-	}
+	ft_bzero(&program, sizeof(program));
+	_init_mlx(&program);
 	return (program);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/01 14:34:07 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/01 15:29:09 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,21 @@ t_color	ray_to_light(t_program *program, t_collision coll)
 		return (color_f(0, 0, 0));
 	shadow_coll = collision_none();
 	light = (t_light *)program->lights->content;
-	ray = ray3(coll.point, vec3_sub(light->origin, coll.point));
+	ray.origin = coll.point;
+	ray.direction = vec3_sub(light->origin, coll.point);
+	vec3_normalize(&(ray.direction));
 	ray.origin = vec3_add(ray.origin, vec3_mul(ray.direction, __FLT_EPSILON__));
 	shadow_coll = raycast_get_collision(program->shapes, &ray);
-	if (shadow_coll.shape == NULL)
+	c = coll.shape->color;
+	if (shadow_coll.shape != NULL)
 	{
-		color_luminosity(&c, light->intensity);
+		color_luminosity(&c, program->ambience.intensity);
 		return (c);
 	}
-	else
-		return (light->color);
+	color_luminosity(&c, fmax(light->intensity, program->ambience.intensity));
+	//float phong;
+	//phong = 3.0 * vec3_dot(coll.normal, ray.direction);
+	//color_luminosity(&c, fmax(phong, program->ambience.intensity));
+	color_luminosity(&c, fmax(vec3_dot(coll.normal, ray.direction), program->ambience.intensity));
+	return (c);
 }

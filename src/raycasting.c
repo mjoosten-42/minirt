@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/01 14:34:07 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:29:24 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ t_color	ray_to_light(t_program *program, t_collision coll)
 	t_collision	shadow_coll;
 	t_light		*light;
 
+	c = color_f(0, 0, 0);
 	if (program->lights == NULL)
-		return (color_f(0, 0, 0));
+		return (c);
 	shadow_coll = collision_none();
 	light = (t_light *)program->lights->content;
 	ray = ray3(coll.point, vec3_sub(light->origin, coll.point));
@@ -92,9 +93,10 @@ t_color	ray_to_light(t_program *program, t_collision coll)
 	shadow_coll = raycast_get_collision(program->shapes, &ray);
 	if (shadow_coll.shape == NULL)
 	{
+		c = coll.shape->color;
 		color_luminosity(&c, light->intensity);
 		return (c);
 	}
 	else
-		return (light->color);
+		return (c);
 }

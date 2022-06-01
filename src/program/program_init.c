@@ -72,8 +72,6 @@ void	program_terminate(t_program *program)
 	LOG("Freed shape list");
 	ft_lstclear(&program->lights, free);
 	LOG("Freed light list");
-	free(program);
-	LOG("Freed program struct");
 }
 
 t_program	program_get(void)

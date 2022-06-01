@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:42:17 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 13:06:48 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/01 14:32:53 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,16 @@ static t_v3 _get_direction(int x, int y, t_program *program)
 	direction.y = (1.0 - 2.0 * (y + 0.5) / program->mlx->height) * program->camera.fov;
 	direction.z = 1.0;
 	vec3_normalize(&direction);
+	direction = mat4_mul_vec3(&program->camera.view_matrix, &direction);
+	//vec3_sub(direction, program->camera.origin);
+	vec3_normalize(&direction);
 	return (direction);
 }
 
-static t_v3	_apply_rotation(t_v3 *dir, t_cam* camera)
-{
+//static t_v3	_apply_rotation(t_v3 *dir, t_cam* camera)
+//{
 	
-}
+//}
 
 static void	_clear(t_mlx_image *img)
 {

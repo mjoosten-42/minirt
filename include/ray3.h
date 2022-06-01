@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ray3.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 19:08:36 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/01 10:50:18 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   ray3.h                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/15 19:08:36 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/01 17:33:56 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "vec3.h"
 # include "../lib/libft/include/libft.h"
 # include <math.h> // INFINITY
+
+# define RAY_MAX_BOUNCES 6
 
 /**
 **	Represents a 3-dimensional ray
@@ -28,6 +30,7 @@ typedef struct s_ray3
 	t_v3	origin;
 	t_v3	direction;
 	double	distance;
+	int		bounces;
 }			t_ray3;
 
 /* ray3.c */

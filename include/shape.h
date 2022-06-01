@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:11:37 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/03 12:55:40 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/01 17:09:23 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef enum e_material_type
 {
 	MATERIAL_DEFAULT = 0,
-	MATERIAL_CUSTOM
+	MATERIAL_MIRROR
 }	t_material_type;
 
 /**

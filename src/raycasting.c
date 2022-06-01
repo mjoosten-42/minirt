@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/01 15:31:54 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/01 17:43:38 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_color	ray_to_light(t_program *program, t_collision coll)
 	ray.origin = vec3_add(ray.origin, vec3_mul(ray.direction, __FLT_EPSILON__));
 	shadow_coll = raycast_get_collision(program->shapes, &ray);
 	c = coll.shape->color;
-	if (shadow_coll.shape != NULL)
+	if (shadow_coll.shape != NULL && shadow_coll.distance < vec3_length(vec3_sub(light->origin, coll.point)))
 	{
 		color_luminosity(&c, program->ambience.intensity);
 		return (c);
@@ -105,4 +105,32 @@ t_color	ray_to_light(t_program *program, t_collision coll)
 	//color_luminosity(&c, fmax(phong, program->ambience.intensity));
 	color_luminosity(&c, fmax(vec3_dot(coll.normal, ray.direction), program->ambience.intensity));
 	return (c);
+}
+
+//	𝑟=𝑑−2(𝑑⋅𝑛)𝑛
+t_rdata	raycast(t_program *program, t_ray3 *ray)
+{
+	t_rdata			rdata;
+	t_material_type	mtype;
+
+	rdata.last_coll = raycast_get_collision(program->shapes, ray);
+	if (rdata.last_coll.shape == NULL)
+		return (rdata);
+	mtype = rdata.last_coll.shape->material.type;
+	if (ray->bounces >= RAY_MAX_BOUNCES || mtype == MATERIAL_DEFAULT)
+	{
+		rdata.color = ray_to_light(program, rdata.last_coll);
+	}
+	else if (mtype == MATERIAL_MIRROR)
+	{
+		t_ray3	new_ray;
+		new_ray.origin = rdata.last_coll.point;
+		new_ray.direction = vec3_sub(ray->direction, vec3_mul(vec3_mul(rdata.last_coll.normal, vec3_dot(ray->direction, rdata.last_coll.normal)), 2));
+		new_ray.origin = vec3_add(new_ray.origin, vec3_mul(new_ray.direction, __FLT_EPSILON__));
+		new_ray.bounces = ray->bounces + 1;
+		t_rdata new_rd = raycast(program, &new_ray);
+		rdata.color = color_blend(ray_to_light(program, rdata.last_coll), new_rd.color, rdata.last_coll.shape->material.reflection);
+		//rdata.color = new_rd.color;
+	}
+	return (rdata);
 }

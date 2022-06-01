@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 17:46:23 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/01 17:51:52 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ t_color	ray_to_light(t_program *program, t_collision coll)
 	return (c);
 }
 
-//	𝑟=𝑑−2(𝑑⋅𝑛)𝑛
 t_rdata	raycast(t_program *program, t_ray3 *ray)
 {
 	t_rdata			rdata;
@@ -121,8 +120,10 @@ t_rdata	raycast(t_program *program, t_ray3 *ray)
 	{
 		rdata.color = ray_to_light(program, rdata.last_coll);
 	}
+	//	TODO: Move every material implementation to other functions
 	else if (mtype == MATERIAL_MIRROR)
 	{
+		//	Formala for mirroring a vector: 𝑟=𝑑−2(𝑑⋅𝑛)𝑛
 		t_ray3	new_ray;
 		new_ray.origin = rdata.last_coll.point;
 		new_ray.direction = vec3_sub(ray->direction, vec3_mul(vec3_mul(rdata.last_coll.normal, vec3_dot(ray->direction, rdata.last_coll.normal)), 2));

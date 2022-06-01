@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   program.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/31 11:47:03 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   program.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/01 13:55:41 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include "vec3.h"
 # include "light.h"
+# include "mat4.h"
 
 # define WINDOW_W 1024
 # define WINDOW_H 1024
@@ -34,14 +35,14 @@
 **	Camera data
 **	@param origin <t_v3> Origin point vector
 **	@param direction <t_v3> Normal vector
-**	@param up <t_v3> Normal vector that points up from direction
+**	@param view_matrix <t_mat4> Camera view matrix for rotation calculation
 **	@param fov <float> Field of view
 */
 typedef struct s_cam
 {
 	t_v3	origin;
 	t_v3	direction;
-	t_v3	up;
+	t_mat4	view_matrix;
 	float	fov;
 }			t_cam;
 
@@ -66,6 +67,9 @@ typedef struct s_program
 t_program	*program_get(void);
 void		program_run(t_program *program);
 void		program_terminate(t_program *program);
+
+/* camera.c */
+void		camera_calculate_matrix(t_cam *camera);
 
 /* scene_draw.c */
 void		scene_draw(t_program *program);

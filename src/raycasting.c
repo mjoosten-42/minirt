@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycasting.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 15:29:09 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/01 15:31:54 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ t_color	ray_to_light(t_program *program, t_collision coll)
 	t_collision	shadow_coll;
 	t_light		*light;
 
+	c = color_f(0, 0, 0);
 	if (program->lights == NULL)
-		return (color_f(0, 0, 0));
+		return (c);
 	shadow_coll = collision_none();
 	light = (t_light *)program->lights->content;
 	ray.origin = coll.point;

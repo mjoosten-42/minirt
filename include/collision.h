@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 11:29:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/31 13:12:10 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:24:38 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 **	@param point <t_v3> Point-Vector of world collision
 **	@param normal <t_v3> Normal vector of collision
 **	@param shape <t_shape*> Shape that got collided with
+**	@param distance <double> Distance to the collision point, in t
 */
 typedef struct s_collision
 {
 	t_v3	point;
 	t_v3	normal;
 	t_shape	*shape;
+	double	distance;
 }			t_collision;
 
 typedef t_collision (*t_collfunc)(const t_shape *, const t_ray3 *);

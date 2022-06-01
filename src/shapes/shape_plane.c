@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:51:48 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/31 14:50:10 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:49:25 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,43 @@
 #include "collision.h"
 #include <math.h>
 
-# define EPSILON 0.1
-
 t_mask_plane	shape_plane_mask(t_v3 normal)
 {
 	return ((t_mask_plane){normal});
 }
 
-/*     (P0 - l0) . n
-** D = -------------
+/* https://en.wikipedia.org/wiki/Line–plane_intersection
+**
+**     (p0 - l0) . n
+** t = -------------
 **		   l . n
+**
+** p0: plane origin
+** l0: ray origin
+** n: plane normal
+** l: ray direction
+**
+** if the denominator l . n is zero, the ray is perpendicular to the plane
 */
-
 t_collision	shape_plane_collision(const t_shape *plane, const t_ray3 *ray)
 {
 	t_mask_plane	*mask;
 	t_collision		coll;
+	double			denom;
 	double			t;
 
+	t = 0;
+	coll = collision_none();
 	mask = (t_mask_plane *)plane->mask;
-	if (vec3_dot(ray->direction, mask->normal) == 0)
-		return (collision_none());
-	t = vec3_dot(vec3_sub(plane->origin, ray->origin), mask->normal) / vec3_dot(ray->direction, mask->normal);
-	coll.point = vec3_add(ray->origin, vec3_mul(ray->direction, t));
-	coll.shape = (t_shape *)plane;
-	coll.normal = ray->direction;
+	denom = vec3_dot(ray->direction, mask->normal);
+	if (fabs(denom) > __DBL_EPSILON__)
+		t = vec3_dot(vec3_sub(plane->origin, ray->origin), mask->normal) / denom;
+	if (t > __DBL_EPSILON__)
+	{
+		coll.point = vec3_add(ray->origin, vec3_mul(ray->direction, t));
+		coll.shape = (t_shape *)plane;
+		coll.normal = mask->normal;
+		coll.distance = t;
+	}
 	return (coll);
 }

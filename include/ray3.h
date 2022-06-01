@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:08:36 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/27 14:51:56 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:50:18 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 
 # include "vec3.h"
 # include "../lib/libft/include/libft.h"
-
-/**
-**	A "unique" way to define Infinity for rays
-*/
-# define INFINITY 1e300
+# include <math.h> // INFINITY
 
 /**
 **	Represents a 3-dimensional ray

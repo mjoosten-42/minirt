@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/31 12:41:53 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:45:13 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 
 void	build_ambience(char **args, void *ptr)
 {
+	static int	once;
 	t_ambience	ambience;
 
-	if (((t_ambience *)ptr)->intensity != 0)
+	if (once)
 	{
 		LOG_ERR("Multipe ambient lightings");
 		exit(EXIT_FAILURE);
@@ -34,19 +35,22 @@ void	build_ambience(char **args, void *ptr)
 	}
 	ambience.color = parse_color(args[2]);
 	*(t_ambience *)ptr = ambience;
+	once = 1;
 }
 
 void	build_camera(char **args, void *ptr)
 {
-	t_cam	camera;
+	static int	once;
+	t_cam		camera;
 
-	if (((t_cam *)ptr)->fov != 0)
+	if (once)
 	{
 		LOG_ERR("Multipe cameras");
 		exit(EXIT_FAILURE);
 	}
 	camera.origin = parse_vector(args[1]);
 	camera.direction = parse_vector_norm(args[2]);
+	camera.up = vec3(0, 1, 0);
 	camera.fov = ft_atoi(args[3]);
 	if (camera.fov < 0 || camera.fov > 180)
 	{
@@ -54,6 +58,7 @@ void	build_camera(char **args, void *ptr)
 		exit(EXIT_FAILURE);
 	}
 	*(t_cam *)ptr = camera;
+	once = 1;
 }
 
 void	build_light(char **args, void *ptr)
@@ -89,7 +94,7 @@ void	build_plane(char **args, void *ptr)
 	t_mask_plane	*plane;
 
 	plane = ft_malloc(sizeof(t_mask_plane));
-	plane->normal = parse_vector(args[2]);
+	plane->normal = parse_vector_norm(args[2]);
 	shape = shape_create(SHAPE_PLANE, parse_vector(args[1]), parse_color(args[3]), plane);
 	ft_lstadd_back(ptr, ft_lstnew(shape));
 }

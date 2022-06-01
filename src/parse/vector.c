@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/31 14:46:47 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:36:16 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "log.h"
 #include <math.h>
 
-#define EPSILON 0.1
 
 t_v3	parse_vector_norm(char *str)
 {
@@ -25,11 +24,13 @@ t_v3	parse_vector_norm(char *str)
 
 	vector = parse_vector(str);
 	len = vec3_length(vector);
-	if (fabs(len - 1) > EPSILON)
+	/*
+	if (fabs(len - 1) > __DBL_EPSILON__)
 	{
 		LOG_ERR("Vector is not normalized");
 		exit(EXIT_FAILURE);
 	}
+	*/
 	return (vector);
 }
 

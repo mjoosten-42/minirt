@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:11:40 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/31 12:13:09 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:46:14 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static void	_build_shapes(t_program *program)
 	shape = shape_create(SHAPE_CIRCLE, vec3(0, 5, 0), color_f(0.1, 0.9, 0), mask);
 	_add_shape(&program->shapes, shape);
 
-	mask = shape_mask(SHAPE_PLANE, &(t_mask_plane){vec3(0, -1, 0)});
-	shape = shape_create(SHAPE_PLANE, vec3(9, 0, 1), color_f(0, 0.7, 0), mask);
-	_add_shape(&program->shapes, shape);
+	//mask = shape_mask(SHAPE_PLANE, &(t_mask_plane){vec3(0, -1, 0)});
+	//shape = shape_create(SHAPE_PLANE, vec3(9, 0, 1), color_f(0, 0.7, 0), mask);
+	//_add_shape(&program->shapes, shape);
 
 	mask = shape_mask(SHAPE_SPHERE, &(t_mask_sphere){0.89});
 	shape = shape_create(SHAPE_SPHERE, vec3(-0.3, 0.5, 6), color_f(0.4, 0.2, 0.8), mask);

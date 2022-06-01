@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 13:55:41 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/01 14:00:14 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_program
 }				t_program;
 
 /* program_init.c */
-t_program	*program_get(void);
+t_program	program_get(void);
 void		program_run(t_program *program);
 void		program_terminate(t_program *program);
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   vec3.h                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/15 19:03:06 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/03 12:51:03 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   vec3.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/15 19:03:06 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/01 13:09:05 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_v3	vec3(double x, double y, double z);
 double	vec3_length(t_v3 vec3);
 void	vec3_normalize(t_v3 *vec3);
 t_v3	vec3_dup(t_v3 vec3);
+t_v3	vec3_inv(t_v3 vec3);
 
 /* vec3_math.c */
 double	vec3_dot(t_v3 v1, t_v3 v2);

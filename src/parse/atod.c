@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:35:50 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/31 12:07:52 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:58:33 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ double	atod(char *str)
 			LOG_ERR(ft_strjoin(str, " : incorrectly formatted"));
 			exit(EXIT_FAILURE);
 		}
-		double_part = double_part / 10.0 + (double)(str[len] - '0') / 10.0;
+		double_part = double_part / 10 + (double)(str[len] - '0') / 10;
 	}
 	return ((int_part + double_part) * sign);
 }

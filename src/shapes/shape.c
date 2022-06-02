@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shape.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 13:22:20 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/27 15:06:19 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   shape.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/16 13:22:20 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/02 14:56:38 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static t_material	_material_default(void)
 {
-	return ((t_material){.type = MATERIAL_DEFAULT});
+	return ((t_material){.type = MATERIAL_DEFAULT, 0.0, 4.0});
 }
 
 static t_shape	*shape_allocate(void)

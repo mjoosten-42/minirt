@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_advanced.c                                    :+:      :+:    :+:   */
+/*   equations.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 14:06:03 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/02 16:16:58 by mjoosten         ###   ########.fr       */
+/*   Created: 2022/06/02 17:01:02 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/06/02 17:02:24 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
-#include <math.h>
+#ifndef EQUATIONS_H
+# define EQUATIONS_H
 
-t_v3	vec3_calc_reflection(t_v3 incoming, t_v3 normal)
+typedef struct s_abc
 {
-	t_v3	refl;
+	double	a;
+	double	b;
+	double	c;
+}	t_abc;
 
-	refl = vec3_sub(incoming,
-		vec3_mul(vec3_mul(normal, vec3_dot(incoming, normal)), 2));
-	return (refl);
-}
+void	_quadratic(double t[2], t_abc values, double discr);
+double	_discriminant(t_abc values);
 
-// Return angle between two vectors in radians
-double	vec3_angle(t_v3 v1, t_v3 v2)
-{
-	return (acos(vec3_dot(v1, v2) / (vec3_length(v1) * vec3_length(v2))));
-}
+#endif

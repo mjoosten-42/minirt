@@ -10,6 +10,7 @@ SOURCES :=	src/camera.c \
 	src/lights/light.c \
 	src/log.c \
 	src/mat4.c \
+	src/math/quadratic.c \
 	src/parse/atod.c \
 	src/parse/color.c \
 	src/parse/objects.c \

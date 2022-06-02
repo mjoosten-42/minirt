@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   vector.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/01 11:03:44 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   vector.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/30 13:09:47 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/06/02 17:11:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
-#include "../lib/libft/include/libft.h"
+#include "libft.h"
 #include "parse.h"
 #include "log.h"
 #include <math.h>

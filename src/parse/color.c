@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 13:23:19 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/31 11:50:55 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   color.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/30 13:23:19 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/06/02 17:11:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 #include "parse.h"
-#include "../lib/libft/include/libft.h"
+#include "libft.h"
 #include "log.h"
 
 float	parse_rgb_value(char *str);

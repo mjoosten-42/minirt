@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 19:08:36 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 14:45:35 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 17:11:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RAY3_H
 
 # include "vec3.h"
-# include "../lib/libft/include/libft.h"
+# include "libft.h"
 # include <math.h> // INFINITY
 
 # define RAY_MAX_BOUNCES 20

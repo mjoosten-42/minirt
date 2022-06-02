@@ -6,13 +6,13 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 10:49:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/06/02 15:07:26 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 17:11:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape_masks.h"
 #include "parse.h"
-#include "../lib/libft/include/libft.h"
+#include "libft.h"
 #include "program.h"
 #include "light.h"
 #include "log.h"

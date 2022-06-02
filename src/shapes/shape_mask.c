@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shape_mask.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 13:35:19 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/27 15:06:17 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   shape_mask.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/16 13:35:19 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/02 17:11:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape.h"
 #include "log.h"
-#include "../lib/libft/include/libft.h"
+#include "libft.h"
 
 /*
 **	Cheeky way to get sizeof :)

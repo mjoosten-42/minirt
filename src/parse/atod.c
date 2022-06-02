@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   atod.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 11:35:50 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/01 11:58:33 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   atod.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/30 11:35:50 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/06/02 17:11:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft/include/libft.h"
+#include "libft.h"
 #include "log.h"
 
 double	atod(char *str)

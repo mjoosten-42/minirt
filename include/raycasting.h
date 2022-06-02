@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 12:24:49 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 12:37:48 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 15:50:23 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef t_rdata (*t_rcastfunc)(t_program *, t_ray3 *, t_rdata);
 void	*material_get_func(t_material_type type);
 
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray);
-t_color		ray_to_light(t_program *program, t_collision coll);
+t_color		raycast_calc_lighting(t_program *program, t_collision coll);
 t_rdata		raycast(t_program *program, t_ray3 *ray);
 
 

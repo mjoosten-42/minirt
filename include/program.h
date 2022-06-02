@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   program.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/01 16:38:53 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   program.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/02 15:51:20 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_program
 	t_mlx_image	*buffer;
 	t_cam		camera;
 	t_ambience	ambience;
+	int			lights_amount;
 	t_list		*lights;
 	t_list		*shapes;
 }				t_program;

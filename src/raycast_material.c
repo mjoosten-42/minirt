@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 11:50:42 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 14:11:38 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 15:50:18 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 t_rdata	material_cast_default(t_program *program, t_ray3 *ray, t_rdata rdata)
 {
 	(void)ray;
-	rdata.color = ray_to_light(program, rdata.last_coll);
+	rdata.color = raycast_calc_lighting(program, rdata.last_coll);
 	return (rdata);
 }
 
@@ -31,7 +31,7 @@ t_rdata	material_cast_mirror(t_program *program, t_ray3 *ray, t_rdata rdata)
 	mirrored_ray.origin = vec3_add(mirrored_ray.origin, vec3_mul(mirrored_ray.direction, __FLT_EPSILON__));
 	mirrored_ray.bounces = ray->bounces + 1;
 	new_rd = raycast(program, &mirrored_ray);
-	rdata.color = color_blend(ray_to_light(program, rdata.last_coll), new_rd.color, rdata.last_coll.shape->material.reflection);
+	rdata.color = color_blend(raycast_calc_lighting(program, rdata.last_coll), new_rd.color, rdata.last_coll.shape->material.reflection);
 	return (rdata);
 }
 

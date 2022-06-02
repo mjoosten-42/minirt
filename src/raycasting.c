@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 14:50:57 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 15:59:32 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,26 +103,39 @@ static t_color	_calc_specular(const t_collision *coll,
 	return (c);
 }
 
-t_color	ray_to_light(t_program *program, t_collision coll)
+static t_color	ray_to_light(t_program *program, t_collision coll, const t_light *light)
 {
-	t_color		ambient_c;
 	t_color		diffuse_c;
 	t_color		specular_c;
 	t_ray3		ray;
 	t_collision	shadow_coll;
-	t_light		*light;
 
-	ambient_c = _calc_ambient(coll.shape->color, &(program->ambience));
-	if (program->lights == NULL)
-		return (ambient_c);
-	light = (t_light *)program->lights->content;
 	ray = _calc_lightray(light, &coll);
 	shadow_coll = raycast_get_collision(program->shapes, &ray);
 	if (shadow_coll.shape != NULL && shadow_coll.distance < vec3_length(vec3_sub(light->origin, coll.point)))
-		return (ambient_c);
+		return (color_f(0, 0, 0));
 	diffuse_c = _calc_diffuse(&coll, light, &ray);
 	specular_c = _calc_specular(&coll, light, &ray, coll.shape->material.shine);
-	return (color_add(specular_c, color_add(diffuse_c, ambient_c)));
+	return (color_add(specular_c, diffuse_c));
+}
+
+t_color	raycast_calc_lighting(t_program *program, t_collision coll)
+{
+	float	ratio;
+	t_list	*list;
+	t_color	c;
+
+	c = _calc_ambient(coll.shape->color, &(program->ambience));
+	if (program->lights_amount == 0)
+		return (c);
+	ratio = 1.0 / (float)program->lights_amount;
+	list = program->lights;
+	while (list != NULL)
+	{
+		c = color_add(c, ray_to_light(program, coll, (t_light *)list->content));
+		list = list->next;
+	}
+	return (c);
 }
 
 t_rdata	raycast(t_program *program, t_ray3 *ray)

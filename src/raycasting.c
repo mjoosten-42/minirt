@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 14:24:31 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 14:44:45 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,37 @@ static t_color	_calc_diffuse(const t_collision *coll,
 	t_color	c;
 
 	c = color_mul(light->color, coll->shape->color);
-	color_luminosity(&c, vec3_dot(ray->direction, coll->normal));
+	color_luminosity(&c, vec3_dot(ray->direction, coll->normal) * light->intensity);
 	return (c);
 }
 
+/*cos_angle = dot(reflection, to_camera);
+  cos_angle = clamp(cos_angle, 0.0, 1.0);
+  cos_angle = pow(cos_angle, u_Shininess);*/
+
 static t_color	_calc_specular(const t_collision *coll,
-	const t_light *light, const t_ray3 *ray)
+	const t_light *light, const t_ray3 *ray, const t_cam *cam)
 {
 	t_color	c;
+	t_v3	refl;
+	t_v3	to_cam;
+	double	angle;
+	double	shine = 20.0;
 
+	c = light->color;
+	refl = vec3_calc_reflection(ray->direction, coll->normal);
+
+	to_cam = vec3_mul(ray->direction, -1);
+	//to_cam = vec3_sub(coll->point, cam->origin);
+	//vec3_normalize(&to_cam);
+	
+	angle = vec3_dot(refl, to_cam);
+	if (angle > 1.0)
+		angle = 1.0;
+	if (angle < 0.0)
+		angle = 0.0;
+	angle = pow(angle, shine);
+	color_luminosity(&c, angle * light->intensity);
 	return (c);
 }
 
@@ -106,8 +128,8 @@ t_color	ray_to_light(t_program *program, t_collision coll)
 	if (shadow_coll.shape != NULL && shadow_coll.distance < vec3_length(vec3_sub(light->origin, coll.point)))
 		return (ambient_c);
 	diffuse_c = _calc_diffuse(&coll, light, &ray);
-	specular_c = _calc_specular(&coll, light, &ray);
-	return (color_add(ambient_c, diffuse_c));
+	specular_c = _calc_specular(&coll, light, &ray, &(program->camera));
+	return (color_add(specular_c, color_add(diffuse_c, ambient_c)));
 }
 
 t_rdata	raycast(t_program *program, t_ray3 *ray)

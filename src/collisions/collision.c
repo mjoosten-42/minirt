@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 11:46:14 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 11:49:20 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 11:52:26 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ static t_collision	_collision(t_v3 point, t_shape *shape)
 
 void	*collision_get_func(t_shape_type type)
 {
-	static const t_collfunc	f[] =
-	{
-		[SHAPE_NONE] = NULL,
-		[SHAPE_PLANE] = collision_plane,
-		[SHAPE_SQUARE] = NULL,
-		[SHAPE_CIRCLE] = NULL,
-		[SHAPE_TRIANGLE] = NULL,
-		[SHAPE_SPHERE] = collision_sphere,
-		[SHAPE_CYLINDER] = collision_cylinder
+	static const t_collfunc	f[] = {
+	[SHAPE_NONE] = NULL,
+	[SHAPE_PLANE] = collision_plane,
+	[SHAPE_SQUARE] = NULL,
+	[SHAPE_CIRCLE] = NULL,
+	[SHAPE_TRIANGLE] = NULL,
+	[SHAPE_SPHERE] = collision_sphere,
+	[SHAPE_CYLINDER] = collision_cylinder
 	};
 
 	return (f[type]);

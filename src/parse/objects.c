@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 10:49:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/06/01 17:31:00 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 12:32:34 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	build_sphere(char **args, void *ptr)
 	sphere = ft_malloc(sizeof(t_mask_sphere));
 	sphere->radius = atod(args[2]);
 	shape = shape_create(SHAPE_SPHERE, parse_vector(args[1]), parse_color(args[3]), sphere);
-	shape->material = (t_material){MATERIAL_MIRROR, 0.8};
+	//shape->material = (t_material){MATERIAL_MIRROR, 0.8};
 	ft_lstadd_back(ptr, ft_lstnew(shape));
 }
 

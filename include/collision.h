@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/03 11:29:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 11:47:16 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 12:25:20 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,10 @@ typedef struct s_collision
 	double	distance;
 }			t_collision;
 
-/**
-**	Ray data accumulated over bounces
-*/
-typedef struct s_rdata
-{
-	t_collision	last_coll;
-	t_color		color;
-}	t_rdata;
-
 typedef t_collision (*t_collfunc)(const t_shape *, const t_ray3 *);
 
 /* raycast.c */
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray);
-t_rdata		raycast(t_program *program, t_ray3 *ray);
 
 /* collision.c */
 t_collision	collision_none(void);

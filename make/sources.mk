@@ -1,4 +1,5 @@
 SOURCES :=	src/camera.c \
+	src/collisions/collision.c \
 	src/collisions/cylinder.c \
 	src/collisions/plane.c \
 	src/collisions/sphere.c \
@@ -17,6 +18,7 @@ SOURCES :=	src/camera.c \
 	src/program/scene_draw.c \
 	src/ray/ray3.c \
 	src/ray/ray3_debug.c \
+	src/raycast_material.c \
 	src/raycasting.c \
 	src/shapes/shape.c \
 	src/shapes/shape_debug.c \

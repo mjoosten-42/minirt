@@ -6,13 +6,14 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:42:17 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 17:46:44 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 12:28:46 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "program.h"
 #include "collision.h"
 #include "color.h"
+#include "raycasting.h"
 #include <math.h>
 
 t_color	ray_to_light(t_program *program, t_collision coll);

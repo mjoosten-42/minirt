@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 11:46:11 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 12:36:03 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "log.h"
 #include "program.h"
 #include <math.h>
+
+#include "raycasting.h"
 
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 {
@@ -84,28 +86,19 @@ t_color	ray_to_light(t_program *program, t_collision coll)
 t_rdata	raycast(t_program *program, t_ray3 *ray)
 {
 	t_rdata			rdata;
+	t_rdata			rdata2;
 	t_material_type	mtype;
+	t_rcastfunc		func;
 
 	rdata.last_coll = raycast_get_collision(program->shapes, ray);
 	if (rdata.last_coll.shape == NULL)
 		return (rdata);
 	mtype = rdata.last_coll.shape->material.type;
-	if (ray->bounces >= RAY_MAX_BOUNCES || mtype == MATERIAL_DEFAULT)
-	{
-		rdata.color = ray_to_light(program, rdata.last_coll);
-	}
-	//	TODO: Move every material implementation to other functions
-	else if (mtype == MATERIAL_MIRROR)
-	{
-		//	Formala for mirroring a vector: 𝑟=𝑑−2(𝑑⋅𝑛)𝑛
-		t_ray3	new_ray;
-		new_ray.origin = rdata.last_coll.point;
-		new_ray.direction = vec3_sub(ray->direction, vec3_mul(vec3_mul(rdata.last_coll.normal, vec3_dot(ray->direction, rdata.last_coll.normal)), 2));
-		new_ray.origin = vec3_add(new_ray.origin, vec3_mul(new_ray.direction, __FLT_EPSILON__));
-		new_ray.bounces = ray->bounces + 1;
-		t_rdata new_rd = raycast(program, &new_ray);
-		rdata.color = color_blend(ray_to_light(program, rdata.last_coll), new_rd.color, rdata.last_coll.shape->material.reflection);
-		//rdata.color = new_rd.color;
-	}
+	if (ray->bounces >= RAY_MAX_BOUNCES)
+		func = material_get_func(MATERIAL_DEFAULT);
+	else
+		func = material_get_func(rdata.last_coll.shape->material.type);
+	rdata2 = func(program, ray, rdata);
+	rdata.color = rdata2.color;
 	return (rdata);
 }

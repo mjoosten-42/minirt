@@ -6,6 +6,7 @@ SOURCES :=	src/camera.c \
 	src/colors/color_basics.c \
 	src/colors/color_debug.c \
 	src/colors/color_math.c \
+	src/colors/color_math2.c \
 	src/lights/light.c \
 	src/log.c \
 	src/mat4.c \
@@ -25,6 +26,7 @@ SOURCES :=	src/camera.c \
 	src/shapes/shape_mask.c \
 	src/shapes/shape_material.c \
 	src/shapes/shape_plane.c \
+	src/vec3/vec3_advanced.c \
 	src/vec3/vec3_basics.c \
 	src/vec3/vec3_debug.c \
 	src/vec3/vec3_math.c \

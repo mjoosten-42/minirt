@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 12:36:03 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 14:24:31 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,35 +52,62 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 	return (closest_collision);
 }
 
+static t_ray3	_calc_lightray(const t_light *light, const t_collision *coll)
+{
+	t_ray3	ray;
+
+	ray.origin = coll->point;
+	ray.direction = vec3_sub(light->origin, coll->point);
+	vec3_normalize(&ray.direction);
+	ray.origin = vec3_add(ray.origin, vec3_mul(ray.direction, __FLT_EPSILON__));
+	return (ray);
+}
+
+static t_color	_calc_ambient(t_color c, const t_ambience *amb)
+{
+	c = color_mul(c, amb->color);
+	color_luminosity(&c, amb->intensity);
+	return (c);
+}
+
+static t_color	_calc_diffuse(const t_collision *coll,
+	const t_light *light, const t_ray3 *ray)
+{
+	t_color	c;
+
+	c = color_mul(light->color, coll->shape->color);
+	color_luminosity(&c, vec3_dot(ray->direction, coll->normal));
+	return (c);
+}
+
+static t_color	_calc_specular(const t_collision *coll,
+	const t_light *light, const t_ray3 *ray)
+{
+	t_color	c;
+
+	return (c);
+}
+
 t_color	ray_to_light(t_program *program, t_collision coll)
 {
-	t_color		c;
+	t_color		ambient_c;
+	t_color		diffuse_c;
+	t_color		specular_c;
 	t_ray3		ray;
 	t_collision	shadow_coll;
 	t_light		*light;
 
-	c = coll.shape->color;
+	ambient_c = _calc_ambient(coll.shape->color, &(program->ambience));
 	if (program->lights == NULL)
-		return (color_f(0, 0, 0));
-	shadow_coll = collision_none();
+		return (ambient_c);
 	light = (t_light *)program->lights->content;
-	ray.origin = coll.point;
-	ray.direction = vec3_sub(light->origin, coll.point);
-	vec3_normalize(&ray.direction);
-	ray.origin = vec3_add(ray.origin, vec3_mul(ray.direction, __FLT_EPSILON__));
+	ray = _calc_lightray(light, &coll);
 	shadow_coll = raycast_get_collision(program->shapes, &ray);
-	c = coll.shape->color;
 	if (shadow_coll.shape != NULL && shadow_coll.distance < vec3_length(vec3_sub(light->origin, coll.point)))
-	{
-		color_luminosity(&c, program->ambience.intensity);
-		return (c);
-	}
-	color_luminosity(&c, fmax(light->intensity, program->ambience.intensity));
-	//float phong;
-	//phong = 3.0 * vec3_dot(coll.normal, ray.direction);
-	//color_luminosity(&c, fmax(phong, program->ambience.intensity));
-	color_luminosity(&c, fmax(vec3_dot(coll.normal, ray.direction), program->ambience.intensity));
-	return (c);
+		return (ambient_c);
+	diffuse_c = _calc_diffuse(&coll, light, &ray);
+	specular_c = _calc_specular(&coll, light, &ray);
+	return (color_add(ambient_c, diffuse_c));
 }
 
 t_rdata	raycast(t_program *program, t_ray3 *ray)

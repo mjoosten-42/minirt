@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 10:32:26 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/23 10:49:15 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 14:20:05 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,13 @@ t_color	color_blend(t_color c1, t_color c2, float percentage);
 void	color_luminosity(t_color *c, float multiplier);
 void	color_norm_if_large(t_color *c);
 void	color_cap(t_color *c);
+t_color	color_mul(t_color c1, t_color c2);
 
 /* color_debug.c */
 void	color_print_hex(t_color c);
 void	color_print_f(t_color c);
+
+/* color_math2.c */
+t_color	color_add(t_color c1, t_color c2);
 
 #endif

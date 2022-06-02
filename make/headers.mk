@@ -7,6 +7,7 @@ HEADERS :=	include/collision.h \
 	include/parse.h \
 	include/program.h \
 	include/ray3.h \
+	include/raycasting.h \
 	include/shape.h \
 	include/shape_masks.h \
 	include/vec3.h \

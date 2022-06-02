@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 12:02:48 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/03/03 16:04:16 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 13:59:21 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ void	color_luminosity(t_color *c, float multiplier)
 	c->r *= multiplier;
 	c->g *= multiplier;
 	c->b *= multiplier;
+}
+
+t_color	color_mul(t_color c1, t_color c2)
+{
+	t_color	result;
+
+	result.r = c1.r * c2.r;
+	result.g = c1.g * c2.g;
+	result.b = c1.b * c2.b;
+	return (result);
 }
 
 /*

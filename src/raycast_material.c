@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 11:50:42 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 13:16:49 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 14:11:38 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_rdata	material_cast_mirror(t_program *program, t_ray3 *ray, t_rdata rdata)
 	t_rdata new_rd;
 
 	mirrored_ray.origin = rdata.last_coll.point;
-	mirrored_ray.direction = vec3_sub(ray->direction, vec3_mul(vec3_mul(rdata.last_coll.normal, vec3_dot(ray->direction, rdata.last_coll.normal)), 2));
+	mirrored_ray.direction = vec3_calc_reflection(ray->direction, rdata.last_coll.normal);
 	mirrored_ray.origin = vec3_add(mirrored_ray.origin, vec3_mul(mirrored_ray.direction, __FLT_EPSILON__));
 	mirrored_ray.bounces = ray->bounces + 1;
 	new_rd = raycast(program, &mirrored_ray);

@@ -1,52 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   sphere.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/01 12:06:19 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 11:48:40 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   sphere.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 12:06:19 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/02 17:02:32 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "collision.h"
 #include <math.h>
-
-typedef struct s_abc
-{
-	double	a;
-	double	b;
-	double	c;
-}	t_abc;
-
-static double	_discriminant(t_abc values)
-{
-	return (values.b * values.b - 4.0 * values.a * values.c);
-}
-
-static void	_quadratic(double t[2], t_abc values, double discr)
-{
-	double	q;
-	double	temp;
-
-	t[0] = -0.5 * values.b / values.a;
-	t[1] = t[0];
-	if (values.b > 0)
-		q = -1 * (values.b + sqrt(discr)) / 2;
-	else
-		q = -1 * (values.b - sqrt(discr)) / 2;
-	t[0] = q / values.a;
-	t[1] = values.c / q;
-	if (t[0] > t[1])
-	{
-		temp = t[0];
-		t[0] = t[1];
-		t[1] = temp;
-	}
-	if (t[0] < 0)
-		t[0] = t[1];
-}
+#include "equations.h"
 
 t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray)
 {

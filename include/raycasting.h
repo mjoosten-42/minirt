@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycasting.h                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/02 12:24:49 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 15:50:23 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/02 12:24:49 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/06 15:22:55 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "ray3.h"
 # include "collision.h"
 # include "color.h"
+# include "material.h"
 
 /**
 **	Ray data accumulated over bounces

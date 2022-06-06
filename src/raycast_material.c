@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycast_material.c                                 :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/02 11:50:42 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 15:50:18 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycast_material.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/02 11:50:42 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/06 15:23:53 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "material.h"
 #include "raycasting.h"
+#include "shape.h"
 
 t_rdata	material_cast_default(t_program *program, t_ray3 *ray, t_rdata rdata)
 {

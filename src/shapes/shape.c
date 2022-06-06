@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 12:00:24 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 15:22:15 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "parse.h"
 #include "vec3.h"
 #include "libft.h"
+#include "collision.h"
 
 static t_shape	*build_shape(char **args, t_shape_type type)
 {
@@ -29,12 +30,13 @@ static t_shape	*build_shape(char **args, t_shape_type type)
 
 void	build_sphere(char **args, void *ptr)
 {
-	t_shape	*spere;
+	t_shape	*sphere;
 
-	spere = build_shape(args, SHAPE_SPHERE);
-	spere->sp = (t_mask_sphere){atod(args[2]) / 2};
-	spere->material = (t_material){MATERIAL_MIRROR, 0.6, 2.0};
-	ft_lstadd_back(ptr, ft_lstnew(spere));
+	sphere = build_shape(args, SHAPE_SPHERE);
+	sphere->sp = (t_mask_sphere){atod(args[2]) / 2};
+	sphere->material = (t_material){MATERIAL_MIRROR, 0.6, 2.0};
+	sphere->f = collision_sphere;
+	ft_lstadd_back(ptr, ft_lstnew(sphere));
 }
 
 void	build_plane(char **args, void *ptr)
@@ -43,6 +45,7 @@ void	build_plane(char **args, void *ptr)
 
 	plane = build_shape(args, SHAPE_PLANE);
 	plane->pl.normal = parse_vector_norm(args[2]);
+	plane->f = collision_plane;
 	ft_lstadd_back(ptr, ft_lstnew(plane));
 }
 
@@ -57,5 +60,6 @@ void	build_cylinder(char **args, void *ptr)
 	cylinder->cy.axis = vec3_cross(cylinder->cy.normal, vec3(0, 1, 0));
 	vec3_normalize(&cylinder->cy.axis);
 	cylinder->cy.angle = vec3_angle(cylinder->cy.normal, vec3(0, 1, 0));
+	cylinder->f = collision_cylinder;
 	ft_lstadd_back(ptr, ft_lstnew(cylinder));
 }

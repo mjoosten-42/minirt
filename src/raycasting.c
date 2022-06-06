@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycasting.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 15:59:32 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/06 15:21:05 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 #include "log.h"
 #include "program.h"
 #include <math.h>
+#include "shape.h"
 
 #include "raycasting.h"
 
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 {
 	t_shape		*current_shape;
-	t_collfunc	f;
 	t_collision	coll;
 	t_collision	closest_collision;
 
@@ -39,14 +39,10 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 			LOG_ERR("Content == NULL");
 			return (collision_none());
 		}
-		f = collision_get_func(current_shape->type);
-		if (f != NULL)
-		{
-			coll = f(current_shape, ray);
-			if (coll.shape != NULL)
-				if (coll.distance < closest_collision.distance)
-					closest_collision = coll;
-		}
+		coll = current_shape->f(current_shape, ray);
+		if (coll.shape != NULL)
+			if (coll.distance < closest_collision.distance)
+				closest_collision = coll;
 		shapes = shapes->next;
 	}
 	return (closest_collision);

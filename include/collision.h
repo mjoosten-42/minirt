@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 11:29:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 13:33:04 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 15:17:33 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define COLLISION_H
 
 # include "vec3.h"
-# include "shape.h"
 # include "ray3.h"
 # include "program.h"
+
+typedef struct s_shape	t_shape;
 
 /**
 **	Collision data of ray intersecting a shape
@@ -40,7 +41,6 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray);
 
 /* collision.c */
 t_collision	collision_none(void);
-void		*collision_get_func(t_shape_type type);
 
 t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray);
 

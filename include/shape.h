@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 11:57:11 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 15:19:56 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include "color.h"
 # include "material.h"
 # include "shape_masks.h"
+# include "ray3.h"
+
+typedef struct s_shape	t_shape;
+typedef struct s_collision	(*t_collfunc)(const t_shape *, const t_ray3 *);
 
 /**
 **	Represents a default shape
@@ -24,8 +28,9 @@
 **	@param type <t_shape_type> Enumerator for the type of shape (like circle)
 **	@param origin <t_v3> Origin point vector of the shape. Usually the center
 **	@param color <t_color> Color the shape has overall.
+**	@param f Function used to check collision
 */
-typedef struct s_shape
+struct s_shape
 {
 	union
 	{
@@ -40,7 +45,8 @@ typedef struct s_shape
 	t_v3			origin;
 	t_color			color;
 	t_material		material;
-}					t_shape;
+	t_collfunc		f;
+};
 
 /* shape_debug.c */
 void	shape_print(t_shape *shape);

@@ -6,29 +6,16 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 11:51:34 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:56:45 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shape_masks.h"
 #include "parse.h"
 #include "libft.h"
 #include "program.h"
 #include "light.h"
 #include "log.h"
 #include <math.h>
-
-static t_shape	*build_shape(char **args, t_shape_type type)
-{
-	t_shape	*shape;
-
-	shape = ft_malloc(sizeof(t_shape));
-	shape->type = type;
-	shape->material = (t_material){MATERIAL_DEFAULT, 0.1, 1.0};
-	shape->origin = parse_vector(args[1]);
-	shape->color = parse_color(args[ft_argsize(args) - 1]);
-	return (shape);
-}
 
 void	build_ambience(char **args, void *ptr)
 {
@@ -91,35 +78,14 @@ void	build_light(char **args, void *ptr)
 	ft_lstadd_back(ptr, ft_lstnew(light));
 }
 
-void	build_sphere(char **args, void *ptr)
+void	light_print(t_light *light)
 {
-	t_shape	*spere;
-
-	spere = build_shape(args, SHAPE_SPHERE);
-	spere->sp = (t_mask_sphere){atod(args[2]) / 2};
-	spere->material = (t_material){MATERIAL_MIRROR, 0.6, 2.0};
-	ft_lstadd_back(ptr, ft_lstnew(spere));
-}
-
-void	build_plane(char **args, void *ptr)
-{
-	t_shape	*plane;
-
-	plane = build_shape(args, SHAPE_PLANE);
-	plane->pl.normal = parse_vector_norm(args[2]);
-	ft_lstadd_back(ptr, ft_lstnew(plane));
-}
-
-void	build_cylinder(char **args, void *ptr)
-{
-	t_shape	*cylinder;
-
-	cylinder = build_shape(args, SHAPE_CYLINDER);
-	cylinder->cy.normal = parse_vector_norm(args[2]);
-	cylinder->cy.radius = atod(args[3]) / 2;
-	cylinder->cy.height = atod(args[4]);
-	cylinder->cy.axis = vec3_cross(cylinder->cy.normal, vec3(0, 1, 0));
-	vec3_normalize(&cylinder->cy.axis);
-	cylinder->cy.angle = vec3_angle(cylinder->cy.normal, vec3(0, 1, 0));
-	ft_lstadd_back(ptr, ft_lstnew(cylinder));
+	printf("# - LIGHT - - - - - - - - - - - - - - - -\n");
+	printf("|  origin ");
+	vec3_print(light->origin);
+	printf("|  color ");
+	color_print_f(light->color);
+	printf("|  intensity: %.3f\n", light->intensity);
+	printf("|  range: %.3f\n", light->range);
+	printf("# - - - - - - - - - - - - - - - - - - - -\n");
 }

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 11:51:23 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:57:11 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,10 @@ typedef struct s_shape
 
 /* shape_debug.c */
 void	shape_print(t_shape *shape);
+
+/* shape.c */
+void	build_sphere(char **args, void *ptr);
+void	build_plane(char **args, void *ptr);
+void	build_cylinder(char **args, void *ptr);
 
 #endif

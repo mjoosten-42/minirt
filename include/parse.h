@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:16:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/05/31 11:42:23 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:59:47 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "shape.h"
 # include "shape_masks.h"
+# include "light.h"
 
 typedef enum e_object
 {
@@ -46,9 +47,8 @@ typedef struct s_object
 void	build_ambience(char **args, void *ptr);
 void	build_camera(char **args, void *ptr);
 void	build_light(char **args, void *ptr);
-void	build_sphere(char **args, void *ptr);
-void	build_plane(char **args, void *ptr);
-void	build_cylinder(char **args, void *ptr);
+
+void	light_print(t_light *light);
 
 double	atod(char *str);
 

@@ -7,7 +7,6 @@ SOURCES :=	src/camera.c \
 	src/colors/color_debug.c \
 	src/colors/color_math.c \
 	src/colors/color_math2.c \
-	src/lights/light.c \
 	src/log.c \
 	src/mat4.c \
 	src/math/quadratic.c \
@@ -23,6 +22,7 @@ SOURCES :=	src/camera.c \
 	src/ray/ray3_debug.c \
 	src/raycast_material.c \
 	src/raycasting.c \
+	src/shapes/shape.c \
 	src/shapes/shape_debug.c \
 	src/vec3/vec3_advanced.c \
 	src/vec3/vec3_basics.c \

@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: mjoosten <mjoosten@student.42.fr>            +#+                      #
-#                                                    +#+                       #
-#    Created: 2021/07/15 14:47:03 by ngerrets      #+#    #+#                  #
-#    Updated: 2022/06/02 17:10:23 by ngerrets      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/07/15 14:47:03 by ngerrets          #+#    #+#              #
+#    Updated: 2022/06/06 11:31:30 by mjoosten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ MAIN ?= main.c
 
 NAME := minirt
 INCLUDE_DIRS := -I "lib/libft/include/" -I "lib/MLX42/include/"
-COMPILE_FLAGS ?= -Wall -Wextra
+COMPILE_FLAGS ?= -Wall -Wextra -g
 LINKING_FLAGS ?= libft.a libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 
 SRC_DIR ?= src

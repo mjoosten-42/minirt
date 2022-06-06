@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   material.h                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/02 11:54:38 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 14:51:49 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   material.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/02 11:54:38 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/06 11:36:52 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef enum e_material_type
 {
-	MATERIAL_DEFAULT = 0,
+	MATERIAL_DEFAULT,
 	MATERIAL_MIRROR
 }	t_material_type;
 

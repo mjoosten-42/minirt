@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:15:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 10:10:24 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:29:32 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,15 @@ typedef struct s_mask_sphere
 /**
 **	SHAPE_CYLINDER
 **	@param normal <t_v3> Normal vector
-**	@param diameter <double> Diameter
+**	@param diameter <double> Radius
 **	@param height <double> Height
+**	@param axis <double> Vector to rotate around
+**	@param angle <double> Angle of rotation
 */
 typedef struct s_mask_cylinder
 {
 	t_v3	normal;
-	double	diameter;
+	double	radius;
 	double	height;
 	t_v3	axis;
 	double	angle;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   program_init.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/01 15:43:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 17:11:10 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   program_init.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/06 11:44:32 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	program_terminate(t_program *program)
 	LOG("Freed screen buffer");
 	mlx_terminate(program->mlx);
 	LOG("Terminated MLX");
-	ft_lstclear(&program->shapes, shape_free);
+	ft_lstclear(&program->shapes, free);
 	LOG("Freed shape list");
 	ft_lstclear(&program->lights, free);
 	LOG("Freed light list");

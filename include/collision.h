@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   collision.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/03 11:29:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 12:25:20 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   collision.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/03 11:29:31 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/06 11:46:29 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 */
 typedef struct s_collision
 {
-	t_v3	point;
-	t_v3	normal;
-	t_shape	*shape;
-	double	distance;
-}			t_collision;
+	t_v3			point;
+	t_v3			normal;
+	const t_shape	*shape;
+	double			distance;
+}					t_collision;
 
 typedef t_collision (*t_collfunc)(const t_shape *, const t_ray3 *);
 

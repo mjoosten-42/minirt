@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:51:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/30 15:47:13 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:45:09 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,31 @@
 
 static void	_shape_print_mask(t_shape *shape)
 {
-	if (shape->mask == NULL)
-	{
-		printf("|  |  NULL MASK\n");
-		return ;
-	}
 	if (shape->type == SHAPE_PLANE)
 	{
 		printf("|  |  normal ");
-		vec3_print(((t_mask_plane *)shape->mask)->normal);
+		vec3_print(shape->pl.normal);
 	}
 	if (shape->type == SHAPE_SQUARE)
 	{
 		printf("|  |  normal ");
-		vec3_print(((t_mask_square *)shape->mask)->normal);
-		printf("|  |  width: %.3f\n", ((t_mask_square *)shape->mask)->width);
+		vec3_print(shape->sq.normal);
+		printf("|  |  width: %.3f\n", shape->sq.width);
 	}
 	if (shape->type == SHAPE_CIRCLE)
 	{
 		printf("|  |  normal ");
-		vec3_print(((t_mask_circle *)shape->mask)->normal);
-		printf("|  |  radius: %.3f\n", ((t_mask_circle *)shape->mask)->radius);
+		vec3_print(shape->ci.normal);
+		printf("|  |  radius: %.3f\n", shape->ci.radius);
 	}
 	if (shape->type == SHAPE_SPHERE)
-		printf("|  |  radius: %.3f\n", ((t_mask_sphere *)shape->mask)->radius);
+		printf("|  |  radius: %.3f\n", shape->sp.radius);
 	if (shape->type == SHAPE_CYLINDER)
 	{
 		printf("|  |  normal ");
-		vec3_print(((t_mask_cylinder *)shape->mask)->normal);
-		printf("|  |  diameter: %.3f\n", ((t_mask_cylinder *)shape->mask)->diameter);
-		printf("|  |  height: %.3f\n", ((t_mask_cylinder *)shape->mask)->height);
+		vec3_print(shape->cy.normal);
+		printf("|  |  radius: %.3f\n", shape->cy.radius);
+		printf("|  |  height: %.3f\n", shape->cy.height);
 	}
 }
 

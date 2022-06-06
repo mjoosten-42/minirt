@@ -23,11 +23,7 @@ SOURCES :=	src/camera.c \
 	src/ray/ray3_debug.c \
 	src/raycast_material.c \
 	src/raycasting.c \
-	src/shapes/shape.c \
 	src/shapes/shape_debug.c \
-	src/shapes/shape_mask.c \
-	src/shapes/shape_material.c \
-	src/shapes/shape_plane.c \
 	src/vec3/vec3_advanced.c \
 	src/vec3/vec3_basics.c \
 	src/vec3/vec3_debug.c \

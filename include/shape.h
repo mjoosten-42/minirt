@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   shape.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/16 13:11:37 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 12:23:20 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   shape.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/06 11:51:23 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,34 @@
 
 # include "vec3.h"
 # include "color.h"
-# include "ray3.h"
 # include "material.h"
 # include "shape_masks.h"
-# include <stdlib.h>
 
 /**
 **	Represents a default shape
+**	@param union: contains the mask as a whole struct.
 **	@param type <t_shape_type> Enumerator for the type of shape (like circle)
 **	@param origin <t_v3> Origin point vector of the shape. Usually the center
 **	@param color <t_color> Color the shape has overall.
-**	@param mask <void*> Pointer to the shape's collision data, it's mask.
 */
 typedef struct s_shape
 {
+	union
+	{
+		t_mask_sphere	sp;
+		t_mask_plane	pl;
+		t_mask_cylinder	cy;
+		t_mask_square	sq;
+		t_mask_triangle	tr;
+		t_mask_circle	ci;
+	};
 	t_shape_type	type;
 	t_v3			origin;
 	t_color			color;
 	t_material		material;
-	void			*mask;
 }					t_shape;
-
-/* shape.c */
-t_shape	*shape_create(t_shape_type type, t_v3 origin, t_color col, void *mask);
-void	shape_free(void *shape);
-
-/* shape_mask.c */
-void	*shape_mask(t_shape_type type, void *data);
 
 /* shape_debug.c */
 void	shape_print(t_shape *shape);
-
-/* shape_material.c */
-int	shape_is_default_material(t_shape *shape);
 
 #endif

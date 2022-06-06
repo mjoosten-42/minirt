@@ -6,23 +6,22 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:59:35 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/02 17:01:53 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:44:40 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "equations.h"
 #include <math.h>
 
-double	_discriminant(t_abc values)
+int	_quadratic(double t[2], t_abc values)
 {
-	return (values.b * values.b - 4.0 * values.a * values.c);
-}
-
-void	_quadratic(double t[2], t_abc values, double discr)
-{
+	double	discr;
 	double	q;
 	double	temp;
 
+	discr = values.b * values.b - 4.0 * values.a * values.c;
+	if (discr < 0)
+		return (-1);
 	t[0] = -0.5 * values.b / values.a;
 	t[1] = t[0];
 	if (values.b > 0)
@@ -39,4 +38,5 @@ void	_quadratic(double t[2], t_abc values, double discr)
 	}
 	if (t[0] < 0)
 		t[0] = t[1];
+	return (0);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   objects.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/05/30 10:49:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/06/02 15:07:26 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   objects.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/06/06 10:11:04 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ void	build_cylinder(char **args, void *ptr)
 	cylinder->normal = parse_vector_norm(args[2]);
 	cylinder->diameter = atod(args[3]);
 	cylinder->height = atod(args[4]);
+	cylinder->axis = vec3_cross(cylinder->normal, vec3(0, 1, 0));
+	cylinder->angle = vec3_angle(cylinder->normal, vec3(0, 1, 0));
 	shape = shape_create(SHAPE_CYLINDER, parse_vector(args[1]), parse_color(args[5]), cylinder);
 	ft_lstadd_back(ptr, ft_lstnew(shape));
 }

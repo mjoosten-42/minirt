@@ -6,14 +6,14 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 17:01:02 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 10:43:12 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 13:32:46 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EQUATIONS_H
 # define EQUATIONS_H
 
-#include "vec3.h"
+# include "vec3.h"
 
 typedef struct s_abc
 {

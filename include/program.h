@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   program.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 17:11:51 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   program.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/06 13:26:41 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "vec3.h"
 # include "light.h"
 # include "mat4.h"
+# include "threads.h"
 
 # define WINDOW_W 1280
 # define WINDOW_H 800
@@ -57,6 +58,7 @@ typedef struct s_program
 {
 	t_mlx		*mlx;
 	t_mlx_image	*buffer;
+	t_threads	threads;
 	t_cam		camera;
 	t_ambience	ambience;
 	int			lights_amount;
@@ -73,6 +75,6 @@ void		program_terminate(t_program *program);
 void		camera_calculate_matrix(t_cam *camera);
 
 /* scene_draw.c */
-void		scene_draw(t_program *program);
+void		scene_draw(void *ptr);
 
 #endif

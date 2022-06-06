@@ -18,6 +18,7 @@ SOURCES :=	src/camera.c \
 	src/parse/vector.c \
 	src/program/program_init.c \
 	src/program/scene_draw.c \
+	src/program/threads.c \
 	src/ray/ray3.c \
 	src/ray/ray3_debug.c \
 	src/raycast_material.c \

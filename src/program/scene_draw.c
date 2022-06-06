@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   scene_draw.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/01 11:42:17 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 12:28:46 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   scene_draw.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/06 13:37:13 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,6 @@ static t_v3 _get_direction(int x, int y, t_program *program)
 	return (direction);
 }
 
-//static t_v3	_apply_rotation(t_v3 *dir, t_cam* camera)
-//{
-	
-//}
-
-static void	_clear(t_mlx_image *img)
-{
-	unsigned int	x;
-	unsigned int	y;
-
-	x = 0;
-	while (x < img->width)
-	{
-		y = 0;
-		while (y < img->height)
-		{
-			mlx_putpixel(img, x, y, 0xFFFFFFFF);
-			y++;
-		}
-		x++;
-	}
-}
-
 //	This function gets run for every pixel, returning the color that it should have
 t_color	calc_pixel(t_program *program, unsigned int x, unsigned int y)
 {
@@ -76,24 +53,26 @@ t_color	calc_pixel(t_program *program, unsigned int x, unsigned int y)
 	return (color_f(0, 0, 0));
 }
 
-void	scene_draw(t_program *program)
+void	scene_draw(void *ptr)
 {
-	unsigned int	x;
-	unsigned int	y;
-	t_color			c;
+	t_program				*program;
+	unsigned int			x;
+	unsigned int			y;
+	t_color					c;
+	static unsigned int		i;
 
-	_clear(program->buffer);
-	y = 0;
-	while (y < program->buffer->height)
+	program = (t_program *)ptr;
+	pthread_mutex_lock(&program->threads.mutex);
+	while (i < program->buffer->width * program->buffer->height)
 	{
-		x = 0;
-		while (x < program->buffer->width)
-		{
-			c = calc_pixel(program, x, y);
-			color_cap(&c);
-			mlx_putpixel(program->buffer, x, y, color_to_int(c));
-			x++;
-		}
-		y++;
+		x = i % program->buffer->width;
+		y = i / program->buffer->width;
+		i++;
+		pthread_mutex_unlock(&program->threads.mutex);
+		c = calc_pixel(program, x, y);
+		color_cap(&c);
+		mlx_putpixel(program->buffer, x, y, color_to_int(c));
+		pthread_mutex_lock(&program->threads.mutex);
 	}
+	pthread_mutex_unlock(&program->threads.mutex);
 }

@@ -11,4 +11,5 @@ HEADERS :=	include/collision.h \
 	include/raycasting.h \
 	include/shape.h \
 	include/shape_masks.h \
+	include/threads.h \
 	include/vec3.h \

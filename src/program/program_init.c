@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 11:44:32 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 13:46:23 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,25 @@ void	_init_mlx(t_program *program)
 	LOG("Initialized screen buffer");
 }
 
+void	_clear(t_mlx_image *img)
+{
+	unsigned int	x;
+	unsigned int	y;
+
+	x = 0;
+	while (x < img->width)
+	{
+		y = 0;
+		while (y < img->height)
+		{
+			mlx_putpixel(img, x, y, 0xFFFFFFFF);
+			y++;
+		}
+		x++;
+	}
+}
+
+
 void	program_run(t_program *program)
 {
 	//mlx_image_to_window(program->mlx, program->buffer, 0, 0);
@@ -53,9 +72,9 @@ void	program_run(t_program *program)
 	else
 		LOG("Put screen buffer to window");
 	LOG("Drawing scene...");
-	scene_draw(program);
-	//ft_bzero(program->buffer->pixels, program->buffer->width * program->buffer->height);
-	LOG("Scene drawn");
+	_clear(program->buffer);
+	thread_init(program);
+	LOG("Threads initialized");
 	mlx_key_hook(program->mlx, (t_mlx_keyfunc)_mlx_keypress, program);
 	LOG("ESC hook");
 	LOG("Running mlx_loop");
@@ -64,6 +83,7 @@ void	program_run(t_program *program)
 
 void	program_terminate(t_program *program)
 {
+	thread_terminate(program);
 	mlx_delete_image(program->mlx, program->buffer);
 	LOG("Freed screen buffer");
 	mlx_terminate(program->mlx);

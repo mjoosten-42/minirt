@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 11:29:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 11:46:29 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 13:33:04 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_collision
 	double			distance;
 }					t_collision;
 
-typedef t_collision (*t_collfunc)(const t_shape *, const t_ray3 *);
+typedef t_collision	(*t_collfunc)(const t_shape *, const t_ray3 *);
 
 /* raycast.c */
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray);

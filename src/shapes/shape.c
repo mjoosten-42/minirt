@@ -6,13 +6,13 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:22:20 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 14:56:38 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 17:11:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape.h"
 #include "log.h"
-#include "../lib/libft/include/libft.h"
+#include "libft.h"
 
 static t_material	_material_default(void)
 {

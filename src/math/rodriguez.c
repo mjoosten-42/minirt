@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   equations.h                                        :+:      :+:    :+:   */
+/*   rodriguez.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 17:01:02 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 10:43:12 by mjoosten         ###   ########.fr       */
+/*   Created: 2022/06/06 10:09:16 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/06/06 10:16:10 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EQUATIONS_H
-# define EQUATIONS_H
-
 #include "vec3.h"
+#include <math.h>
 
-typedef struct s_abc
+t_v3	rodrigues(t_v3 v, t_v3 axis, double angle)
 {
-	double	a;
-	double	b;
-	double	c;
-}	t_abc;
+	t_v3	t1;
+	t_v3	t2;
+	t_v3	t3;
 
-void	_quadratic(double t[2], t_abc values, double discr);
-double	_discriminant(t_abc values);
-
-t_v3	rodrigues(t_v3 v, t_v3 axis, double angle);
-
-#endif
+	t1 = vec3_mul(v, cos(angle));
+	t2 = vec3_mul(vec3_cross(axis, v), sin(angle));
+	t3 = vec3_mul(vec3_mul(axis, vec3_dot(axis, v)), 1 - cos(angle));
+	return (vec3_add(vec3_add(t1, t2), t3));
+}

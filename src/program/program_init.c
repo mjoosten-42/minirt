@@ -6,14 +6,14 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/01 15:43:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/01 15:43:34 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 17:11:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "program.h"
 #include "log.h"
 #include "shape.h"
-#include "../lib/libft/include/libft.h"
+#include "libft.h"
 
 #define ESC 256
 

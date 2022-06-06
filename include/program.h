@@ -6,15 +6,15 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 15:51:20 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/02 17:11:51 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROGRAM_H
 # define PROGRAM_H
 
-# include "../lib/MLX42/include/MLX42/MLX42.h"
-# include "../lib/libft/include/libft.h"
+# include "MLX42/MLX42.h"
+# include "libft.h"
 # include <stdlib.h>
 # include "vec3.h"
 # include "light.h"

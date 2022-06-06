@@ -6,13 +6,13 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 10:11:04 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 10:14:14 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape_masks.h"
 #include "parse.h"
-#include "../lib/libft/include/libft.h"
+#include "libft.h"
 #include "program.h"
 #include "light.h"
 #include "log.h"
@@ -111,6 +111,7 @@ void	build_cylinder(char **args, void *ptr)
 	cylinder->diameter = atod(args[3]);
 	cylinder->height = atod(args[4]);
 	cylinder->axis = vec3_cross(cylinder->normal, vec3(0, 1, 0));
+	vec3_normalize(&cylinder->axis);
 	cylinder->angle = vec3_angle(cylinder->normal, vec3(0, 1, 0));
 	shape = shape_create(SHAPE_CYLINDER, parse_vector(args[1]), parse_color(args[5]), cylinder);
 	ft_lstadd_back(ptr, ft_lstnew(shape));

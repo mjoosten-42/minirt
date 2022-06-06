@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:15:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/05/30 15:42:39 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 10:10:24 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct s_mask_cylinder
 	t_v3	normal;
 	double	diameter;
 	double	height;
+	t_v3	axis;
+	double	angle;
 }			t_mask_cylinder;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 13:21:55 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 14:26:15 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 15:57:36 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "program.h"
 # include <pthread.h>
 
-# define NB_THREADS 8
+# define NB_THREADS 7
 
 typedef struct s_program	t_program;
 

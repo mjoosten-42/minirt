@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 15:04:29 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 15:59:17 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,38 +27,40 @@
 **	c = o.x^2 + o.z^2 - r^2
 */
 
-t_collision	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray);
+double	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray);
 
 t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 {
 	t_collision	coll;
 
-	coll = collision_cylinder_inf(cylinder, ray);
+	coll = collision_none();
+	coll.distance = collision_cylinder_inf(cylinder, ray);
+	if (coll.distance < 0)
+		return (collision_none());
+	coll.shape = cylinder;
+	coll.normal = ray->direction;
+	coll.point = vec3_add(ray->origin, vec3_mul(ray->direction, coll.distance));
 	return (coll);
 }
 
-t_collision	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray)
+double	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray)
 {	
-	t_collision	coll;
-	t_v3		rot;
-	t_v3		mov;
+	t_ray3		rot_ray;
 	t_abc		abc;
 	double		t[2];
 
-	mov = vec3_sub(ray->origin, cylinder->origin);
-	rot = rodrigues(ray->direction, cylinder->cy.axis, cylinder->cy.angle);
-	abc.a = rot.x * rot.x + rot.z * rot.z;
-	abc.b = 2 * (rot.x * mov.x + rot.z * mov.z);
-	abc.c = mov.x * mov.x + mov.z * mov.z
+	rot_ray.origin = vec3_sub(ray->origin, cylinder->origin);
+	rot_ray.origin = rodrigues(ray->origin, cylinder->cy.axis, cylinder->cy.angle);
+	rot_ray.direction = rodrigues(ray->direction, cylinder->cy.axis, cylinder->cy.angle);
+	abc.a = rot_ray.direction.x * rot_ray.direction.x
+		+ rot_ray.direction.z * rot_ray.direction.z;
+	abc.b = 2 * (rot_ray.direction.x * rot_ray.origin.x
+		+ rot_ray.direction.z * rot_ray.origin.z);
+	abc.c = rot_ray.origin.x * rot_ray.origin.x
+		+ rot_ray.origin.z * rot_ray.origin.z
 		- cylinder->cy.radius * cylinder->cy.radius;
 	if (_quadratic(t, abc) < 0)
-		return (collision_none());
-	coll.shape = (t_shape *)cylinder;
-	coll.distance = t[0];
-	coll.point = vec3_add(mov, vec3_mul(rot, t[0]));
-	if (coll.point.z < 0)
-		return (collision_none());
-	coll.normal = ray->direction;
-	return (coll);
+		return (-1);
+	return (t[0]);
 
 }

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 13:46:23 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:27:46 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	_clear(t_mlx_image *img)
 	}
 }
 
-
 void	program_run(t_program *program)
 {
 	//mlx_image_to_window(program->mlx, program->buffer, 0, 0);
@@ -83,7 +82,8 @@ void	program_run(t_program *program)
 
 void	program_terminate(t_program *program)
 {
-	thread_terminate(program);
+	pthread_mutex_destroy(&program->threads.mutex);
+	LOG("Destroyed mutex");
 	mlx_delete_image(program->mlx, program->buffer);
 	LOG("Freed screen buffer");
 	mlx_terminate(program->mlx);

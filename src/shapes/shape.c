@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shape.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 14:34:34 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   shape.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/06 11:55:37 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/06/07 15:18:03 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	build_cylinder(char **args, void *ptr)
 	vec3_normalize(&cylinder->cy.axis);
 	cylinder->cy.angle = vec3_angle(cylinder->cy.normal, vec3(0, 1, 0));
 	cylinder->f = collision_cylinder;
-	cylinder->material = (t_material){MATERIAL_MIRROR, 1, 1.0};
+	cylinder->material = (t_material){MATERIAL_MIRROR, 0.5, 2.0};
 	ft_lstadd_back(ptr, ft_lstnew(cylinder));
 }
 

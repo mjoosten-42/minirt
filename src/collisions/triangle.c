@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   triangle.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:25:46 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 15:39:06 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   triangle.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/07 15:25:46 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/06/07 15:42:16 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 #include "ray3.h"
 
 static t_shape	build_plane_from_triangle(const t_shape *triangle);
+
+static int	point_is_in_triangle(const t_shape *triangle, t_v3 point)
+{
+	return (0);
+}
 
 t_collision	collision_triangle(const t_shape *triangle, const t_ray3 *ray)
 {
@@ -43,9 +48,4 @@ static t_shape	build_plane_from_triangle(const t_shape *triangle)
 	plane.pl.normal = triangle->tr.normal;
 	plane.material = triangle->material;
 	return (plane);
-}
-
-static int	point_is_in_triangle(const t_shape *triangle, t_v3 point)
-{
-	return (0);
 }

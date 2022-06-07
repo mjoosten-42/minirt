@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 11:56:45 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 11:04:14 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	build_light(char **args, void *ptr)
 		exit(EXIT_FAILURE);
 	}
 	light->color = parse_color(args[3]);
+	light->range = LIGHT_DEFAULT_RANGE;
 	ft_lstadd_back(ptr, ft_lstnew(light));
 }
 

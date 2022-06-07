@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 11:48:52 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:04:42 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	build_scene(t_program *program, char *file)
 	}
 	close(fd);
 	LOG("build scene");
-	ft_lstiter(program->shapes, (void (*)(void *))shape_print);
 	ft_lstiter(program->lights, (void (*)(void *))light_print);
+	ft_lstiter(program->shapes, (void (*)(void *))shape_print);
 	if (program->camera.fov == 0)
 	{
 		LOG_ERR("Missing camera");
@@ -101,7 +101,8 @@ t_object	get_object(t_program *program, char *str)
 	{OBJECT_LIGHT, "L", 4, build_light, &program->lights},
 	{OBJECT_SPHERE, "sp", 4, build_sphere, &program->shapes},
 	{OBJECT_PLANE, "pl", 4, build_plane, &program->shapes},
-	{OBJECT_CYLINDER, "cy", 6, build_cylinder, &program->shapes}
+	{OBJECT_CYLINDER, "cy", 6, build_cylinder, &program->shapes},
+	{OBJECT_CIRCLE, "ci", 5, build_circle, &program->shapes}
 	};
 	int				tablesize;
 	int				i;

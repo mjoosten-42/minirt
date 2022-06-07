@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:06:03 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/02 16:16:58 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 12:12:01 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,9 @@ t_v3	vec3_calc_reflection(t_v3 incoming, t_v3 normal)
 double	vec3_angle(t_v3 v1, t_v3 v2)
 {
 	return (acos(vec3_dot(v1, v2) / (vec3_length(v1) * vec3_length(v2))));
+}
+
+double	vec3_distance(t_v3 v1, t_v3 v2)
+{
+	return (vec3_length(vec3_sub(v1, v2)));
 }

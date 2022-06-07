@@ -6,15 +6,14 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 15:59:17 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:11:02 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "shape.h"
 #include "collision.h"
 #include "ray3.h"
-#include "shape.h"
 #include "shape_masks.h"
-#include <math.h>
 #include "equations.h"
 
 /*	https://www.pbr-book.org/3ed-2018/Shapes/Cylinders
@@ -27,7 +26,9 @@
 **	c = o.x^2 + o.z^2 - r^2
 */
 
-double	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray);
+static t_shape	build_cap(const t_shape *cylinder);
+t_collision		collision_caps(const t_shape *cylinder, const t_ray3 *ray);
+double			collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray);
 
 t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 {
@@ -35,11 +36,19 @@ t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 
 	coll = collision_none();
 	coll.distance = collision_cylinder_inf(cylinder, ray);
-	if (coll.distance < 0)
-		return (collision_none());
-	coll.shape = cylinder;
-	coll.normal = ray->direction;
-	coll.point = vec3_add(ray->origin, vec3_mul(ray->direction, coll.distance));
+	if (coll.distance >= 0)
+	{
+		coll.shape = cylinder;
+		coll.normal = vec3(0, 0, -1);
+		coll.point = ray_point(ray, coll.distance);
+	}
+	else
+	{
+		coll = collision_caps(cylinder, ray);
+		if (coll.shape == NULL)
+			return (collision_none());
+		coll.shape = cylinder;
+	}
 	return (coll);
 }
 
@@ -47,10 +56,10 @@ double	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray)
 {	
 	t_ray3		rot_ray;
 	t_abc		abc;
+	t_v3		point;
 	double		t[2];
 
 	rot_ray.origin = vec3_sub(ray->origin, cylinder->origin);
-	rot_ray.origin = rodrigues(ray->origin, cylinder->cy.axis, cylinder->cy.angle);
 	rot_ray.direction = rodrigues(ray->direction, cylinder->cy.axis, cylinder->cy.angle);
 	abc.a = rot_ray.direction.x * rot_ray.direction.x
 		+ rot_ray.direction.z * rot_ray.direction.z;
@@ -61,6 +70,37 @@ double	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray)
 		- cylinder->cy.radius * cylinder->cy.radius;
 	if (_quadratic(t, abc) < 0)
 		return (-1);
+	point = ray_point(&rot_ray, t[0]);
+	if (point.y < 0 || point.y > cylinder->cy.height)
+		return (-1);
 	return (t[0]);
+}
 
+t_collision	collision_caps(const t_shape *cylinder, const t_ray3 *ray)
+{
+	t_collision	coll;
+	t_shape		circle;
+
+	circle = build_cap(cylinder);
+	coll = collision_circle(&circle, ray);
+	if (coll.shape != NULL)
+		return (coll);
+	circle.origin = vec3_add(cylinder->origin, vec3_mul(cylinder->cy.normal, cylinder->cy.height));
+	coll = collision_circle(&circle, ray);
+	if (coll.shape != NULL)
+		return (coll);
+	return (collision_none());
+}
+
+static t_shape	build_cap(const t_shape *cylinder)
+{
+	t_shape	circle;
+
+	circle.origin = cylinder->origin;
+	circle.ci.normal = cylinder->cy.normal;
+	circle.color = cylinder->color;
+	circle.type = SHAPE_CIRCLE;
+	circle.material = cylinder->material;
+	circle.ci.radius = cylinder->cy.radius;
+	return (circle);
 }

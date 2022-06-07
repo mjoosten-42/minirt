@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 15:22:15 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:10:11 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	build_sphere(char **args, void *ptr)
 
 	sphere = build_shape(args, SHAPE_SPHERE);
 	sphere->sp = (t_mask_sphere){atod(args[2]) / 2};
-	sphere->material = (t_material){MATERIAL_MIRROR, 0.6, 2.0};
+	sphere->material = (t_material){MATERIAL_MIRROR, 1, 2.0};
 	sphere->f = collision_sphere;
 	ft_lstadd_back(ptr, ft_lstnew(sphere));
 }
@@ -61,5 +61,17 @@ void	build_cylinder(char **args, void *ptr)
 	vec3_normalize(&cylinder->cy.axis);
 	cylinder->cy.angle = vec3_angle(cylinder->cy.normal, vec3(0, 1, 0));
 	cylinder->f = collision_cylinder;
+	cylinder->material = (t_material){MATERIAL_MIRROR, 0.2, 2.0};
 	ft_lstadd_back(ptr, ft_lstnew(cylinder));
+}
+
+void	build_circle(char **args, void *ptr)
+{
+	t_shape	*circle;
+
+	circle = build_shape(args, SHAPE_CIRCLE);
+	circle->ci.normal = parse_vector_norm(args[2]);
+	circle->ci.radius = atod(args[3]) / 2;
+	circle->f = collision_circle;
+	ft_lstadd_back(ptr, ft_lstnew(circle));
 }

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 11:29:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 15:31:15 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 12:36:16 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,8 @@ t_collision	collision_plane(const t_shape *plane, const t_ray3 *ray);
 
 /* cylinder */
 t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray);
+
+/* circle */
+t_collision	collision_circle(const t_shape *circle, const t_ray3 *ray);
 
 #endif

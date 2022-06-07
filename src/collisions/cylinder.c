@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 13:11:02 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:22:11 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ double	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray)
 	double		t[2];
 
 	rot_ray.origin = vec3_sub(ray->origin, cylinder->origin);
+	rot_ray.origin = rodrigues(rot_ray.origin, cylinder->cy.axis, cylinder->cy.angle);
 	rot_ray.direction = rodrigues(ray->direction, cylinder->cy.axis, cylinder->cy.angle);
 	abc.a = rot_ray.direction.x * rot_ray.direction.x
 		+ rot_ray.direction.z * rot_ray.direction.z;

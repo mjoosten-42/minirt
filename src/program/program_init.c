@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 14:15:40 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:34:27 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	_clear(t_mlx_image *img)
 
 void	program_run(t_program *program)
 {
-	//mlx_image_to_window(program->mlx, program->buffer, 0, 0);
 	if (mlx_image_to_window(program->mlx, program->buffer, 0, 0) == NULL)
 		LOG_ERR("Unable to put image to window");
 	else

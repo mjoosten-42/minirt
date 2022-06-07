@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 14:30:20 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:34:15 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ double	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray)
 	abc.c = rot_ray.origin.x * rot_ray.origin.x
 		+ rot_ray.origin.z * rot_ray.origin.z
 		- cylinder->cy.radius * cylinder->cy.radius;
-	if (_quadratic(t, abc) < 0)
+	if (quadratic(t, abc) < 0)
 		return (-1);
 	point = ray_point(&rot_ray, t[0]);
 	if (point.y < 0 || point.y > cylinder->cy.height)
@@ -89,7 +89,8 @@ t_collision	collision_caps(const t_shape *cylinder, const t_ray3 *ray)
 	coll = collision_circle(&circle, ray);
 	if (coll.shape != NULL)
 		return (coll);
-	circle.origin = vec3_add(cylinder->origin, vec3_mul(cylinder->cy.normal, cylinder->cy.height));
+	circle.origin = vec3_add(cylinder->origin,
+		vec3_mul(cylinder->cy.normal, cylinder->cy.height));
 	coll = collision_circle(&circle, ray);
 	if (coll.shape != NULL)
 		return (coll);

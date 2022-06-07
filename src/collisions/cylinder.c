@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 14:34:15 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:43:16 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 		coll.shape = cylinder;
 		coll.normal = vec3_sub(coll.point, cylinder->origin);
 		coll.normal = vec3_sub(coll.normal,
-			vec3_project(coll.normal, cylinder->cy.normal));
+			vec3_project(cylinder->cy.normal, coll.normal));
 		vec3_normalize(&coll.normal);
 		coll.point = ray_point(ray, coll.distance);
 	}

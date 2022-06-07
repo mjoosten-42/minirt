@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   vector.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/05/30 13:09:47 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/06/02 17:13:48 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   vector.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/06/07 13:35:20 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_v3	parse_vector(char *str)
 	vector.x = atod(strs[0]);
 	vector.y = atod(strs[1]);
 	vector.z = atod(strs[2]);
+	ft_free_array(strs);
 	return (vector);
 }
 

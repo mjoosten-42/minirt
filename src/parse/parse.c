@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 13:04:42 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:34:30 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	build_scene(t_program *program, char *file)
 		if (args[0])
 			build_object(program, args);
 		free(line);
+		ft_free_array(args);
 		line = ft_get_next_line(fd);
 	}
 	close(fd);
@@ -54,6 +55,7 @@ void	build_scene(t_program *program, char *file)
 		LOG_ERR("Missing lighting");
 		exit(EXIT_FAILURE);
 	}
+	program->lights_amount = ft_lstsize(program->lights);
 }
 
 char	**get_args(char *line)

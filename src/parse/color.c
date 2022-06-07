@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   color.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/05/30 13:23:19 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/06/02 17:11:10 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   color.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/30 13:23:19 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/06/07 13:35:06 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_color	parse_color(char *str)
 	color.r = parse_rgb_value(strs[0]);
 	color.g = parse_rgb_value(strs[1]);
 	color.b = parse_rgb_value(strs[2]);
+	ft_free_array(strs);
 	return (color);
 }
 

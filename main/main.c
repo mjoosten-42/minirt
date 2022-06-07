@@ -6,14 +6,12 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:11:40 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 13:25:54 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:35:39 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "program.h"
 #include "log.h"
-
-void	build_scene(t_program *program, char *file);
 
 int	main(int argc, char **argv)
 {
@@ -23,7 +21,6 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		argv[1] = "scenes/nick.rt";
 	build_scene(&program, argv[1]);
-	program.lights_amount = ft_lstsize(program.lights);
 	program_run(&program);
 	program_terminate(&program);
 	LOG("Program end");

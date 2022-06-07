@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 13:26:41 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:32:32 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void		program_terminate(t_program *program);
 
 /* camera.c */
 void		camera_calculate_matrix(t_cam *camera);
+
+/* parse.c */
+void		build_scene(t_program *program, char *file);
 
 /* scene_draw.c */
 void		scene_draw(void *ptr);

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 13:34:30 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:48:02 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,6 @@ void	build_scene(t_program *program, char *file)
 	if (program->camera.fov == 0)
 	{
 		LOG_ERR("Missing camera");
-		exit(EXIT_FAILURE);
-	}
-	if (program->lights == NULL && program->ambience.intensity == 0)
-	{
-		LOG_ERR("Missing lighting");
 		exit(EXIT_FAILURE);
 	}
 	program->lights_amount = ft_lstsize(program->lights);

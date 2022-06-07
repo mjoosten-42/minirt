@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 14:27:46 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:15:40 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ void	program_run(t_program *program)
 
 void	program_terminate(t_program *program)
 {
-	pthread_mutex_destroy(&program->threads.mutex);
-	LOG("Destroyed mutex");
+	thread_terminate(program);
 	mlx_delete_image(program->mlx, program->buffer);
 	LOG("Freed screen buffer");
 	mlx_terminate(program->mlx);

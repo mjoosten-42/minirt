@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 13:21:55 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 15:57:36 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:18:54 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ typedef struct s_threads
 }					t_threads;
 
 void	thread_init(t_program *program);
+void	thread_terminate(t_program *program);
 
 #endif

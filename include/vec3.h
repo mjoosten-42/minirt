@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:03:06 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 12:12:08 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:29:24 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	vec3_print(t_v3 vec3);
 t_v3	vec3_calc_reflection(t_v3 incoming, t_v3 normal);
 double	vec3_angle(t_v3 v1, t_v3 v2);
 double	vec3_distance(t_v3 v1, t_v3 v2);
+t_v3	vec3_project(t_v3 v1, t_v3 v2);
 
 #endif

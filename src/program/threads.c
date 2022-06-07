@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:23:05 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 14:26:18 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:15:50 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,20 @@ void	thread_init(t_program *program)
 		exit(EXIT_FAILURE);
 	}
 	LOG("Created mutex");
-	while (i < NB_THREADS)
+	while (i < NB_THREADS - 1)
 		pthread_create(&program->threads.threads[i++], NULL,
 			(void *(*)(void *))scene_draw, program);
 	LOG("Created threads");
+}
+
+void	thread_terminate(t_program *program)
+{
+	int	i;
+
+	i = 0;
+	while (i < NB_THREADS)
+		pthread_join(program->threads.threads[i++], NULL);
+	LOG("Joined with threads");
+	pthread_mutex_destroy(&program->threads.mutex);
+	LOG("Destroyed mutex");
 }

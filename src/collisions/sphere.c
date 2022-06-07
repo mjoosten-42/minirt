@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   sphere.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/01 12:06:19 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/07 14:26:09 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   sphere.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 12:06:19 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/07 15:26:20 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <math.h>
 #include "equations.h"
 #include "shape.h"
+#include "shape_masks.h"
 
 t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray)
 {

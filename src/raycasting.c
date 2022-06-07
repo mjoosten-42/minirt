@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 15:10:54 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/07 15:37:09 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray3.h"
 #include "collision.h"
 #include "log.h"
 #include "program.h"
 #include <math.h>
 #include "shape.h"
-
 #include "raycasting.h"
 
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)

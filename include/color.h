@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 10:32:26 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 14:20:05 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/07 15:41:05 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,6 @@ typedef struct s_color
 	float	g;
 	float	b;
 }			t_color;
-
-/* HIGHLY ILLIGAL STUFF? */
-static const t_color	g_black = (t_color){0, 0, 0};
-static const t_color	g_white = (t_color){1, 1, 1};
-static const t_color	g_red = (t_color){1, 0, 0};
-static const t_color	g_green = (t_color){0, 1, 0};
-static const t_color	g_blue = (t_color){0, 0, 1};
 
 /* color_basics.c */
 t_color	color_rgb(int r, int g, int b);

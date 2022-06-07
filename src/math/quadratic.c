@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   quadratic.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 16:59:35 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/06 14:44:40 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   quadratic.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/02 16:59:35 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/06/07 14:24:40 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "equations.h"
 #include <math.h>
 
-int	_quadratic(double t[2], t_abc values)
+int	quadratic(double t[2], t_abc values)
 {
 	double	discr;
 	double	q;

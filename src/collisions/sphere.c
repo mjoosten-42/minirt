@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 12:06:19 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 12:15:57 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   sphere.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 12:06:19 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/07 14:26:09 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray)
 	len_vec = vec3_sub(ray->origin, sphere->origin);
 	values.a = vec3_dot(ray->direction, ray->direction);
 	values.b = 2.0 * vec3_dot(ray->direction, len_vec);
-	values.c = vec3_dot(len_vec, len_vec) - (sphere->sp.radius * sphere->sp.radius);
-	if (_quadratic(t, values) < 0 || t[0] < 0)
+	values.c = vec3_dot(len_vec, len_vec)
+		- (sphere->sp.radius * sphere->sp.radius);
+	if (quadratic(t, values) < 0 || t[0] < 0)
 		return (collision_none());
-	coll.shape = (t_shape *)sphere;
+	coll.shape = sphere;
 	coll.point = ray_point(ray, t[0]);
 	coll.normal = vec3_sub(coll.point, sphere->origin);
 	vec3_normalize(&(coll.normal));

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 15:29:54 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/07 14:31:47 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ static t_color	ray_to_light(t_program *program, t_collision coll, const t_light 
 
 	ray = _calc_lightray(light, &coll);
 	shadow_coll = raycast_get_collision(program->shapes, &ray);
-	if (shadow_coll.shape != NULL && shadow_coll.distance < vec3_length(vec3_sub(light->origin, coll.point)))
+	if (shadow_coll.shape != NULL
+		&& shadow_coll.distance < vec3_length(vec3_sub(light->origin, coll.point)))
 		return (color_f(0, 0, 0));
 	diffuse_c = _calc_diffuse(&coll, light, &ray);
 	specular_c = _calc_specular(&coll, light, &ray, coll.shape->material.shine);

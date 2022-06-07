@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   program_init.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 14:27:46 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   program_init.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/01 15:43:29 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/07 14:14:16 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	_clear(t_mlx_image *img)
 
 void	program_run(t_program *program)
 {
-	//mlx_image_to_window(program->mlx, program->buffer, 0, 0);
 	if (mlx_image_to_window(program->mlx, program->buffer, 0, 0) == NULL)
 		LOG_ERR("Unable to put image to window");
 	else

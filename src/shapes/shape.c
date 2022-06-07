@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shape.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 13:23:23 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   shape.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/06 11:55:37 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/06/07 14:30:58 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_shape	*build_shape(char **args, t_shape_type type)
 
 	shape = ft_malloc(sizeof(t_shape));
 	shape->type = type;
-	shape->material = (t_material){MATERIAL_DEFAULT, 0.1, 1.0};
+	shape->material = (t_material){MATERIAL_DEFAULT, 0.1, 20.0};
 	shape->origin = parse_vector(args[1]);
 	shape->color = parse_color(args[ft_argsize(args) - 1]);
 	return (shape);

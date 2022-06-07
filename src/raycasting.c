@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 14:34:40 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:10:54 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 	t_collision	closest_collision;
 
 	closest_collision = collision_none();
-	if (shapes == NULL)
-	{
-		LOG_ERR("No shapes to check collision on");
-		exit(EXIT_FAILURE);
-	}
 	while (shapes != NULL)
 	{
 		current_shape = (t_shape *)shapes->content;

@@ -4,6 +4,7 @@ SOURCES :=	src/camera.c \
 	src/collisions/cylinder.c \
 	src/collisions/plane.c \
 	src/collisions/sphere.c \
+	src/collisions/triangle.c \
 	src/colors/color_basics.c \
 	src/colors/color_debug.c \
 	src/colors/color_math.c \

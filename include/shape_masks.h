@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:15:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/06 11:29:32 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:28:52 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_mask_triangle
 {
 	t_v3	point2;
 	t_v3	point3;
+	t_v3	normal;
 }			t_mask_triangle;
 
 /**

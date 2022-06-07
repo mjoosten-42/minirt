@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 14:34:34 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:36:11 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,16 @@ void	build_circle(char **args, void *ptr)
 	circle->ci.radius = atod(args[3]) / 2;
 	circle->f = collision_circle;
 	ft_lstadd_back(ptr, ft_lstnew(circle));
+}
+
+void	build_triangle(char **args, void *ptr)
+{
+	t_shape	*triangle;
+
+	triangle = build_shape(args, SHAPE_TRIANGLE);
+	triangle->tr.point2 = parse_vector(args[2]);
+	triangle->tr.point3 = parse_vector(args[3]);
+	triangle->f = collision_triangle;
+	triangle->tr.normal = vec3_cross(triangle->origin, triangle->tr.point2);
+	ft_lstadd_back(ptr, ft_lstnew(triangle));
 }

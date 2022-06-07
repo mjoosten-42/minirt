@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 12:45:54 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:34:22 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void	build_sphere(char **args, void *ptr);
 void	build_plane(char **args, void *ptr);
 void	build_cylinder(char **args, void *ptr);
 void	build_circle(char **args, void *ptr);
+void	build_triangle(char **args, void *ptr);
 
 #endif

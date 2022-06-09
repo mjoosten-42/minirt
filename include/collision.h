@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 11:29:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 15:31:00 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:07:36 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,5 @@ t_collision	collision_none(void);
 t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray);
 t_collision	collision_plane(const t_shape *plane, const t_ray3 *ray);
 t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray);
-t_collision	collision_circle(const t_shape *circle, const t_ray3 *ray);
-t_collision	collision_triangle(const t_shape *triangle, const t_ray3 *ray);
 
 #endif

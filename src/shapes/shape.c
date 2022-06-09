@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 15:39:40 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:07:32 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,27 +63,4 @@ void	build_cylinder(char **args, void *ptr)
 	cylinder->f = collision_cylinder;
 	cylinder->material = (t_material){MATERIAL_MIRROR, 0.5, 2.0};
 	ft_lstadd_back(ptr, ft_lstnew(cylinder));
-}
-
-void	build_circle(char **args, void *ptr)
-{
-	t_shape	*circle;
-
-	circle = build_shape(args, SHAPE_CIRCLE);
-	circle->ci.normal = parse_vector_norm(args[2]);
-	circle->ci.radius = atod(args[3]) / 2;
-	circle->f = collision_circle;
-	ft_lstadd_back(ptr, ft_lstnew(circle));
-}
-
-void	build_triangle(char **args, void *ptr)
-{
-	t_shape	*triangle;
-
-	triangle = build_shape(args, SHAPE_TRIANGLE);
-	triangle->tr.point2 = parse_vector(args[2]);
-	triangle->tr.point3 = parse_vector(args[3]);
-	triangle->f = collision_triangle;
-	triangle->tr.normal = vec3_cross(triangle->origin, triangle->tr.point2);
-	ft_lstadd_back(ptr, ft_lstnew(triangle));
 }

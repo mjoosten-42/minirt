@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   plane.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/01 11:00:30 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/06/07 14:25:48 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   plane.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/01 11:00:30 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/06/09 11:17:14 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@
 t_collision	collision_plane(const t_shape *plane, const t_ray3 *ray)
 {
 	t_collision	coll;
-	double		denom;
+	double		d;
 	double		t;
 
 	coll = collision_none();
-	denom = vec3_dot(ray->direction, plane->pl.normal);
-	if (fabs(denom) < __DBL_EPSILON__)
+	d = vec3_dot(ray->direction, plane->pl.normal);
+	if (fabs(d) < __DBL_EPSILON__)
 		return (coll);
-	t = vec3_dot(vec3_sub(plane->origin, ray->origin), plane->pl.normal) / denom;
+	t = vec3_dot(vec3_sub(plane->origin, ray->origin), plane->pl.normal) / d;
 	if (t > __DBL_EPSILON__)
 	{
 		coll.point = ray_point(ray, t);
 		coll.shape = plane;
-		if (denom < 0)
+		if (d < 0)
 			coll.normal = plane->pl.normal;
 		else
 			coll.normal = vec3_inv(plane->pl.normal);

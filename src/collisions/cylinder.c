@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 14:48:05 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:21:34 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@
 
 static t_shape	build_cap(const t_shape *cylinder);
 t_collision		collision_caps(const t_shape *cylinder, const t_ray3 *ray);
-double			collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray);
+double			collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray);
 
 t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 {
 	t_collision	coll;
 
 	coll = collision_none();
-	coll.distance = collision_cylinder_inf(cylinder, ray);
+	coll.distance = collision_cy_inf(cylinder, ray);
 	if (coll.distance >= 0)
 	{
 		coll.shape = cylinder;
 		coll.normal = vec3_sub(vec3_sub(coll.point, cylinder->origin),
-			vec3_project(cylinder->cy.normal,
-			vec3_sub(coll.point, cylinder->origin)));
+				vec3_project(cylinder->cy.normal,
+						vec3_sub(coll.point, cylinder->origin)));
 		vec3_normalize(&coll.normal);
 		coll.point = ray_point(ray, coll.distance);
 	}
@@ -55,7 +55,7 @@ t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 	return (coll);
 }
 
-double	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray)
+double	collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray)
 {	
 	t_ray3		rot_ray;
 	t_abc		abc;
@@ -63,12 +63,14 @@ double	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray)
 	double		t[2];
 
 	rot_ray.origin = vec3_sub(ray->origin, cylinder->origin);
-	rot_ray.origin = rodrigues(rot_ray.origin, cylinder->cy.axis, cylinder->cy.angle);
-	rot_ray.direction = rodrigues(ray->direction, cylinder->cy.axis, cylinder->cy.angle);
+	rot_ray.origin = rodrigues(rot_ray.origin,
+				cylinder->cy.axis, cylinder->cy.angle);
+	rot_ray.direction = rodrigues(ray->direction,
+				cylinder->cy.axis, cylinder->cy.angle);
 	abc.a = rot_ray.direction.x * rot_ray.direction.x
 		+ rot_ray.direction.z * rot_ray.direction.z;
 	abc.b = 2 * (rot_ray.direction.x * rot_ray.origin.x
-		+ rot_ray.direction.z * rot_ray.origin.z);
+				+ rot_ray.direction.z * rot_ray.origin.z);
 	abc.c = rot_ray.origin.x * rot_ray.origin.x
 		+ rot_ray.origin.z * rot_ray.origin.z
 		- cylinder->cy.radius * cylinder->cy.radius;
@@ -83,29 +85,30 @@ double	collision_cylinder_inf(const t_shape *cylinder, const t_ray3 *ray)
 t_collision	collision_caps(const t_shape *cylinder, const t_ray3 *ray)
 {
 	t_collision	coll;
-	t_shape		circle;
+	t_shape		plane;
 
-	circle = build_cap(cylinder);
-	coll = collision_circle(&circle, ray);
+	plane = build_cap(cylinder);
+	coll = collision_plane(&plane, ray);
 	if (coll.shape != NULL)
-		return (coll);
-	circle.origin = vec3_add(cylinder->origin,
-		vec3_mul(cylinder->cy.normal, cylinder->cy.height));
-	coll = collision_circle(&circle, ray);
+		if (vec3_distance(coll.point, plane.origin) < cylinder->cy.radius)
+			return (coll);
+	plane.origin = vec3_add(cylinder->origin,
+			vec3_mul(cylinder->cy.normal, cylinder->cy.height));
+	coll = collision_plane(&plane, ray);
 	if (coll.shape != NULL)
-		return (coll);
+		if (vec3_distance(coll.point, plane.origin) < cylinder->cy.radius)
+			return (coll);
 	return (collision_none());
 }
 
 static t_shape	build_cap(const t_shape *cylinder)
 {
-	t_shape	circle;
+	t_shape	plane;
 
-	circle.origin = cylinder->origin;
-	circle.ci.normal = cylinder->cy.normal;
-	circle.color = cylinder->color;
-	circle.type = SHAPE_CIRCLE;
-	circle.material = cylinder->material;
-	circle.ci.radius = cylinder->cy.radius;
-	return (circle);
+	plane.origin = cylinder->origin;
+	plane.pl.normal = cylinder->cy.normal;
+	plane.color = cylinder->color;
+	plane.type = SHAPE_PLANE;
+	plane.material = cylinder->material;
+	return (plane);
 }

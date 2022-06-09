@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   equations.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/02 17:01:02 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/06/07 14:24:40 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   equations.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/02 17:01:02 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/06/09 11:08:45 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_abc
 }	t_abc;
 
 int		quadratic(double t[2], t_abc values);
-
 t_v3	rodrigues(t_v3 v, t_v3 axis, double angle);
 
 #endif

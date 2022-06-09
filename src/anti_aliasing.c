@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:00:07 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/09 16:02:06 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:19:38 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,22 @@ t_color			calc_pixel(t_program *program, double x, double y);
 t_color	anti_aliasing(t_program *program, double x, double y)
 {
 	t_color	colors[AA][AA];
+	int		i;
+	int		j;
 
-	colors[0][0] = calc_pixel(program, x - 0.5, y - 0.5);
-	colors[0][1] = calc_pixel(program, x + 0.5, y - 0.5);
-	colors[1][0] = calc_pixel(program, x - 0.5, y + 0.5);
-	colors[1][1] = calc_pixel(program, x + 0.5, y + 0.5);
+	j = 0;
+	while (j < AA)
+	{
+		i = 0;
+		while (i < AA)
+		{
+			colors[i][j] = calc_pixel(program,
+				x - 0.5 + (double)i / AA,
+				y - 0.5 + (double)j / AA);
+			i++;
+		}
+		j++;
+	}
 	return (color_sum(colors));
 }
 

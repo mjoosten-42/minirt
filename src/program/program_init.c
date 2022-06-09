@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/09 15:38:19 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:09:59 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	program_terminate(t_program *program)
 	LOG("Freed shape list");
 	ft_lstclear(&program->lights, free);
 	LOG("Freed light list");
+	free(program->shuffled);
 }
 
 t_program	program_get(void)
@@ -98,5 +99,6 @@ t_program	program_get(void)
 
 	ft_bzero(&program, sizeof(program));
 	_init_mlx(&program);
+	program.shuffled = shuffle(program.buffer->width * program.buffer->height);
 	return (program);
 }

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/09 16:03:40 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:09:02 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_program
 {
 	t_mlx		*mlx;
 	t_mlx_image	*buffer;
+	int			*shuffled;
 	t_threads	threads;
 	t_cam		camera;
 	t_ambience	ambience;

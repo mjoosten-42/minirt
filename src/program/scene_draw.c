@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/09 16:01:30 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:10:15 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,19 @@ void	scene_draw(void *ptr)
 	unsigned int			y;
 	t_color					c;
 	static unsigned int		i;
-	static int				*shuffled;
 
 	program = (t_program *)ptr;
 	pthread_mutex_lock(&program->threads.mutex);
-	if (!shuffled)
-		shuffled = shuffle(program->buffer->width * program->buffer->height);
 	while (i < program->buffer->width * program->buffer->height)
 	{
-		x = shuffled[i] % program->buffer->width;
-		y = shuffled[i] / program->buffer->width;
+		x = program->shuffled[i] % program->buffer->width;
+		y = program->shuffled[i] / program->buffer->width;
 		i++;
 		pthread_mutex_unlock(&program->threads.mutex);
 		c = anti_aliasing(program, x, y);
 		color_cap(&c);
 		mlx_putpixel(program->buffer, x, y, color_to_int(c));
 		pthread_mutex_lock(&program->threads.mutex);
-	}
-	if (shuffled)
-	{
-		free(shuffled);
-		shuffled = NULL;
 	}
 	pthread_mutex_unlock(&program->threads.mutex);
 }

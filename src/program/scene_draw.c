@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/09 16:10:15 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:33:59 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 #include "color.h"
 #include "raycasting.h"
 #include <math.h>
-
-t_color	ray_to_light(t_program *program, t_collision coll);
-
-static t_v3	_get_origin(t_program *program)
-{
-	return (program->camera.origin);
-}
 
 static t_v3	_get_direction(t_program *program, double x, double y)
 {
@@ -34,7 +27,6 @@ static t_v3	_get_direction(t_program *program, double x, double y)
 	direction.y = (1.0 - 2.0 * (y + 0.5) / program->mlx->height)
 		* program->camera.fov;
 	direction.z = 1.0;
-	vec3_normalize(&direction);
 	direction = mat4_mul_vec3(&program->camera.view_matrix, &direction);
 	vec3_normalize(&direction);
 	return (direction);
@@ -46,7 +38,7 @@ t_color	calc_pixel(t_program *program, double x, double y)
 	t_ray3			ray;
 	t_rdata			rdata;
 
-	ray = ray3(_get_origin(program), _get_direction(program, x, y));
+	ray = ray3(program->camera.origin, _get_direction(program, x, y));
 	rdata = raycast(program, &ray);
 	if (rdata.last_coll.shape != NULL)
 		return (rdata.color);

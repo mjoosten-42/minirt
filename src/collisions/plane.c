@@ -6,12 +6,13 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:00:30 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/09 11:17:14 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:39:03 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray3.h"
 #include "collision.h"
+#include "ray3.h"
+#include "vec3.h"
 #include "shape.h"
 #include "shape_masks.h"
 #include <math.h>

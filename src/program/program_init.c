@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 14:34:27 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:38:19 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	_clear(t_mlx_image *img)
 		y = 0;
 		while (y < img->height)
 		{
-			mlx_putpixel(img, x, y, 0xFFFFFFFF);
+			mlx_putpixel(img, x, y, 0x0);
 			y++;
 		}
 		x++;

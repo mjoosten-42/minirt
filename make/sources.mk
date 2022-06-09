@@ -1,4 +1,5 @@
-SOURCES :=	src/camera.c \
+SOURCES :=	src/anti_aliasing.c \
+	src/camera.c \
 	src/collisions/collision.c \
 	src/collisions/cylinder.c \
 	src/collisions/plane.c \
@@ -25,6 +26,7 @@ SOURCES :=	src/camera.c \
 	src/raycasting.c \
 	src/shapes/shape.c \
 	src/shapes/shape_debug.c \
+	src/shuffle.c \
 	src/vec3/vec3_advanced.c \
 	src/vec3/vec3_basics.c \
 	src/vec3/vec3_debug.c \

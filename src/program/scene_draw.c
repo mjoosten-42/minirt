@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/09 11:16:34 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:01:30 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_v3	_get_origin(t_program *program)
 	return (program->camera.origin);
 }
 
-static t_v3	_get_direction(int x, int y, t_program *program)
+static t_v3	_get_direction(t_program *program, double x, double y)
 {
 	t_v3	direction;
 	double	aspect;
@@ -41,12 +41,12 @@ static t_v3	_get_direction(int x, int y, t_program *program)
 }
 
 //	This function gets run for every pixel, returning the color
-t_color	calc_pixel(t_program *program, unsigned int x, unsigned int y)
+t_color	calc_pixel(t_program *program, double x, double y)
 {
 	t_ray3			ray;
 	t_rdata			rdata;
 
-	ray = ray3(_get_origin(program), _get_direction(x, y, program));
+	ray = ray3(_get_origin(program), _get_direction(program, x, y));
 	rdata = raycast(program, &ray);
 	if (rdata.last_coll.shape != NULL)
 		return (rdata.color);
@@ -60,19 +60,27 @@ void	scene_draw(void *ptr)
 	unsigned int			y;
 	t_color					c;
 	static unsigned int		i;
+	static int				*shuffled;
 
 	program = (t_program *)ptr;
 	pthread_mutex_lock(&program->threads.mutex);
+	if (!shuffled)
+		shuffled = shuffle(program->buffer->width * program->buffer->height);
 	while (i < program->buffer->width * program->buffer->height)
 	{
-		x = i % program->buffer->width;
-		y = i / program->buffer->width;
+		x = shuffled[i] % program->buffer->width;
+		y = shuffled[i] / program->buffer->width;
 		i++;
 		pthread_mutex_unlock(&program->threads.mutex);
-		c = calc_pixel(program, x, y);
+		c = anti_aliasing(program, x, y);
 		color_cap(&c);
 		mlx_putpixel(program->buffer, x, y, color_to_int(c));
 		pthread_mutex_lock(&program->threads.mutex);
+	}
+	if (shuffled)
+	{
+		free(shuffled);
+		shuffled = NULL;
 	}
 	pthread_mutex_unlock(&program->threads.mutex);
 }

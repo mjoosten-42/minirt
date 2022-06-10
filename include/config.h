@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/10 13:34:08 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:23:48 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@
 /* shape.c */
 # define DEFAULT_MATERIAL MATERIAL_DEFAULT
 # define DEFAULT_REFLECTIVENESS 0.1
-# define DEFAULT_PHONG 4
+# define DEFAULT_PHONG INFINITY
 
 #endif

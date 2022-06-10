@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/09 11:08:01 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:10:31 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_collision	(*t_collfunc)(const t_shape *, const t_ray3 *);
 **	Represents a default shape
 **	@param union: contains the mask as a whole struct.
 **	@param type <t_shape_type> Enumerator for the type of shape (like circle)
-**	@param origin <t_v3> Origin point vector of the shape. Usually the center
+**	@param o <t_v3> Origin point vector of the shape. Usually the center
 **	@param color <t_color> Color the shape has overall.
 **	@param f Function used to check collision
 */
@@ -40,7 +40,7 @@ struct s_shape
 		t_mask_square	sq;
 	};
 	t_shape_type	type;
-	t_v3			origin;
+	t_v3			o;
 	t_color			color;
 	t_material		material;
 	t_collfunc		f;

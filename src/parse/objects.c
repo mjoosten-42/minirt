@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/10 11:56:10 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:13:26 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	build_light(char **args, void *ptr)
 	t_light	*light;
 
 	light = ft_malloc(sizeof(t_light));
-	light->origin = parse_vector(args[1]);
+	light->o = parse_vector(args[1]);
 	light->intensity = atod(args[2]);
 	if (light->intensity < 0 || light->intensity > 1)
 	{
@@ -82,7 +82,7 @@ void	light_print(t_light *light)
 {
 	printf("# - LIGHT - - - - - - - - - - - - - - - -\n");
 	printf("|  origin ");
-	vec3_print(light->origin);
+	vec3_print(light->o);
 	printf("|  color ");
 	color_print_f(light->color);
 	printf("|  intensity: %.3f\n", light->intensity);

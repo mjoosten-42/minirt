@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycasting.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/07 15:37:09 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/10 15:12:58 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static t_ray3	_calc_lightray(const t_light *light, const t_collision *coll)
 {
 	t_ray3	ray;
 
-	ray.origin = coll->point;
-	ray.direction = vec3_sub(light->origin, coll->point);
-	vec3_normalize(&ray.direction);
-	ray.origin = vec3_add(ray.origin, vec3_mul(ray.direction, __FLT_EPSILON__));
+	ray.o = coll->point;
+	ray.d = vec3_sub(light->o, coll->point);
+	vec3_normalize(&ray.d);
+	ray.o = vec3_add(ray.o, vec3_mul(ray.d, __FLT_EPSILON__));
 	return (ray);
 }
 
@@ -65,7 +65,7 @@ static t_color	_calc_diffuse(const t_collision *coll,
 	t_color	c;
 
 	c = color_mul(light->color, coll->shape->color);
-	color_luminosity(&c, vec3_dot(ray->direction, coll->normal) * light->intensity);
+	color_luminosity(&c, vec3_dot(ray->d, coll->normal) * light->intensity);
 	return (c);
 }
 
@@ -78,9 +78,9 @@ static t_color	_calc_specular(const t_collision *coll,
 	double	angle;
 
 	c = light->color;
-	refl = vec3_calc_reflection(ray->direction, coll->normal);
+	refl = vec3_calc_reflection(ray->d, coll->normal);
 
-	to_cam = vec3_mul(ray->direction, -1);
+	to_cam = vec3_mul(ray->d, -1);
 	
 	angle = vec3_dot(refl, to_cam);
 	if (angle > 1.0)
@@ -102,7 +102,7 @@ static t_color	ray_to_light(t_program *program, t_collision coll, const t_light 
 	ray = _calc_lightray(light, &coll);
 	shadow_coll = raycast_get_collision(program->shapes, &ray);
 	if (shadow_coll.shape != NULL
-		&& shadow_coll.distance < vec3_length(vec3_sub(light->origin, coll.point)))
+		&& shadow_coll.distance < vec3_length(vec3_sub(light->o, coll.point)))
 		return (color_f(0, 0, 0));
 	diffuse_c = _calc_diffuse(&coll, light, &ray);
 	specular_c = _calc_specular(&coll, light, &ray, coll.shape->material.shine);

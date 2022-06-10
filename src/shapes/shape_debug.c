@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:51:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/09 11:09:29 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:13:38 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	shape_print(t_shape *shape)
 	printf("# - SHAPE - - - - - - - - - - - - - - - -\n");
 	printf("|  type %s\n", shape_names[shape->type]);
 	printf("|  origin ");
-	vec3_print(shape->origin);
+	vec3_print(shape->o);
 	printf("|  color ");
 	color_print_f(shape->color);
 	printf("|  MASK:\n");

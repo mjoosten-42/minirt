@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycast_material.c                                 :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/02 11:50:42 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/07 14:17:16 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycast_material.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/02 11:50:42 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/10 15:12:35 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ t_rdata	material_cast_mirror(t_program *program, t_ray3 *ray, t_rdata rdata)
 	t_ray3	mray;
 	t_rdata new_rd;
 
-	mray.origin = rdata.last_coll.point;
-	mray.direction = vec3_calc_reflection(ray->direction,
+	mray.o = rdata.last_coll.point;
+	mray.d = vec3_calc_reflection(ray->d,
 		rdata.last_coll.normal);
-	mray.origin = vec3_add(mray.origin,
-		vec3_mul(mray.direction, __FLT_EPSILON__));
+	mray.o = vec3_add(mray.o,
+		vec3_mul(mray.d, __FLT_EPSILON__));
 	mray.bounces = ray->bounces + 1;
 	new_rd = raycast(program, &mray);
 	rdata.color = color_blend(raycast_calc_lighting(program, rdata.last_coll),

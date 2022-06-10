@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/09 16:39:15 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:11:51 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 	if (coll.distance >= 0)
 	{
 		coll.shape = cylinder;
-		coll.normal = vec3_sub(vec3_sub(coll.point, cylinder->origin),
+		coll.normal = vec3_sub(vec3_sub(coll.point, cylinder->o),
 				vec3_project(cylinder->cy.normal,
-						vec3_sub(coll.point, cylinder->origin)));
+						vec3_sub(coll.point, cylinder->o)));
 		vec3_normalize(&coll.normal);
 		coll.point = ray_point(ray, coll.distance);
 	}
@@ -63,17 +63,12 @@ double	collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray)
 	t_v3		point;
 	double		t[2];
 
-	rot_ray.origin = vec3_sub(ray->origin, cylinder->origin);
-	rot_ray.origin = rodrigues(rot_ray.origin,
-				cylinder->cy.axis, cylinder->cy.angle);
-	rot_ray.direction = rodrigues(ray->direction,
-				cylinder->cy.axis, cylinder->cy.angle);
-	abc.a = rot_ray.direction.x * rot_ray.direction.x
-		+ rot_ray.direction.z * rot_ray.direction.z;
-	abc.b = 2 * (rot_ray.direction.x * rot_ray.origin.x
-				+ rot_ray.direction.z * rot_ray.origin.z);
-	abc.c = rot_ray.origin.x * rot_ray.origin.x
-		+ rot_ray.origin.z * rot_ray.origin.z
+	rot_ray.o = vec3_sub(ray->o, cylinder->o);
+	rot_ray.o = rodrigues(rot_ray.o, cylinder->cy.axis, cylinder->cy.angle);
+	rot_ray.d = rodrigues(ray->d, cylinder->cy.axis, cylinder->cy.angle);
+	abc.a = rot_ray.d.x * rot_ray.d.x + rot_ray.d.z * rot_ray.d.z;
+	abc.b = 2 * (rot_ray.d.x * rot_ray.o.x + rot_ray.d.z * rot_ray.o.z);
+	abc.c = rot_ray.o.x * rot_ray.o.x + rot_ray.o.z * rot_ray.o.z
 		- cylinder->cy.radius * cylinder->cy.radius;
 	if (quadratic(t, abc) < 0)
 		return (-1);
@@ -91,13 +86,13 @@ t_collision	collision_caps(const t_shape *cylinder, const t_ray3 *ray)
 	plane = build_cap(cylinder);
 	coll = collision_plane(&plane, ray);
 	if (coll.shape != NULL)
-		if (vec3_distance(coll.point, plane.origin) < cylinder->cy.radius)
+		if (vec3_distance(coll.point, plane.o) < cylinder->cy.radius)
 			return (coll);
-	plane.origin = vec3_add(cylinder->origin,
+	plane.o = vec3_add(cylinder->o,
 			vec3_mul(cylinder->cy.normal, cylinder->cy.height));
 	coll = collision_plane(&plane, ray);
 	if (coll.shape != NULL)
-		if (vec3_distance(coll.point, plane.origin) < cylinder->cy.radius)
+		if (vec3_distance(coll.point, plane.o) < cylinder->cy.radius)
 			return (coll);
 	return (collision_none());
 }
@@ -106,7 +101,7 @@ static t_shape	build_cap(const t_shape *cylinder)
 {
 	t_shape	plane;
 
-	plane.origin = cylinder->origin;
+	plane.o = cylinder->o;
 	plane.pl.normal = cylinder->cy.normal;
 	plane.color = cylinder->color;
 	plane.type = SHAPE_PLANE;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ray3_debug.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/15 19:34:01 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/17 11:18:07 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ray3_debug.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/15 19:34:01 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/10 15:12:20 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ray_print(t_ray3 ray3)
 {
 	printf("# -  RAY  - - - - - - - - - - - - - - - -\n");
 	printf("| origin ");
-	vec3_print(ray3.origin);
+	vec3_print(ray3.o);
 	printf("| direction ");
-	vec3_print(ray3.direction);
+	vec3_print(ray3.d);
 	printf("| distance: ");
 	if (ray3.distance == INFINITY)
 		printf("INFINITY\n");

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:32:21 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 12:16:29 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:12:08 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ t_ray3	ray3(t_v3 origin, t_v3 normalized_direction)
 
 t_v3	ray_point(const t_ray3 *ray, double t)
 {
-	return (vec3_add(ray->origin, vec3_mul(ray->direction, t)));
+	return (vec3_add(ray->o, vec3_mul(ray->d, t)));
 }

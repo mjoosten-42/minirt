@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/10 13:50:20 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:10:25 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_shape	*build_shape(char **args, t_shape_type type)
 	shape->type = type;
 	shape->material =
 		(t_material){DEFAULT_MATERIAL, DEFAULT_REFLECTIVENESS, DEFAULT_PHONG};
-	shape->origin = parse_vector(args[1]);
+	shape->o = parse_vector(args[1]);
 	shape->color = parse_color(args[ft_argsize(args) - 1]);
 	return (shape);
 }

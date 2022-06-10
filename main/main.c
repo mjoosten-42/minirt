@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:11:40 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 13:35:39 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:18:00 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	program = program_get();
 	if (argc < 2)
-		argv[1] = "scenes/nick.rt";
+		argv[1] = "scenes/maarten.rt";
 	build_scene(&program, argv[1]);
 	program_run(&program);
 	program_terminate(&program);

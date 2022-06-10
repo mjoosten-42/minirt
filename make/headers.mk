@@ -1,5 +1,6 @@
 HEADERS :=	include/collision.h \
 	include/color.h \
+	include/config.h \
 	include/equations.h \
 	include/light.h \
 	include/log.h \

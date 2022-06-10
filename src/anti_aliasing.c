@@ -6,14 +6,13 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:00:07 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/09 16:35:34 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:54:23 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "program.h"
 #include "color.h"
-
-#define AA 2
+#include "config.h"
 
 t_color	calc_pixel(t_program *program, double x, double y);
 

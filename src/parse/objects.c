@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 11:04:14 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:56:10 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	build_light(char **args, void *ptr)
 		exit(EXIT_FAILURE);
 	}
 	light->color = parse_color(args[3]);
-	light->range = LIGHT_DEFAULT_RANGE;
 	ft_lstadd_back(ptr, ft_lstnew(light));
 }
 
@@ -87,6 +86,5 @@ void	light_print(t_light *light)
 	printf("|  color ");
 	color_print_f(light->color);
 	printf("|  intensity: %.3f\n", light->intensity);
-	printf("|  range: %.3f\n", light->range);
 	printf("# - - - - - - - - - - - - - - - - - - - -\n");
 }

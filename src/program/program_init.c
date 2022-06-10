@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/09 16:09:59 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:10:00 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	_mlx_keypress(int key, int os_key, void *program)
 {
 	if (key == ESC)
 	{
-		program_terminate(program);
 		exit(EXIT_SUCCESS);
+		program_terminate(program);
 	}
 	(void)os_key;
 }

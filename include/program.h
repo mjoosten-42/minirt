@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/09 16:09:02 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:53:21 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@
 # include "light.h"
 # include "mat4.h"
 # include "threads.h"
-
-# define WINDOW_W 1280
-# define WINDOW_H 800
-# define WINDOW_TITLE "WINDOW TITLE"
-# define WINDOW_RESIZE 0
+# include "config.h"
 
 // typedef struct s_img
 // {

@@ -26,7 +26,6 @@ SOURCES :=	src/anti_aliasing.c \
 	src/raycasting.c \
 	src/shapes/shape.c \
 	src/shapes/shape_debug.c \
-	src/shuffle.c \
 	src/vec3/vec3_advanced.c \
 	src/vec3/vec3_basics.c \
 	src/vec3/vec3_debug.c \

@@ -6,13 +6,16 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:00:07 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/10 11:54:23 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:27:10 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "program.h"
 #include "color.h"
 #include "config.h"
+#include <time.h>
+#include <stdlib.h>
+#include "libft.h"
 
 t_color	calc_pixel(t_program *program, double x, double y);
 
@@ -41,4 +44,29 @@ t_color	anti_aliasing(t_program *program, double x, double y)
 	color.g /= (AA * AA);
 	color.b /= (AA * AA);
 	return (color);
+}
+
+int	*shuffle(int pixels)
+{
+	int	*shuffled;
+	int	tmp;
+	int	i;
+	int	j;
+
+	i = 0;
+	srand(time(NULL));
+	shuffled = ft_malloc(sizeof(int) * pixels);
+	while (i < pixels)
+	{
+		shuffled[i] = i;
+		i++;
+	}
+	while (i-- > 1)
+	{
+		j = rand() % i;
+		tmp = shuffled[j];
+		shuffled[j] = shuffled[i];
+		shuffled[i] = tmp;
+	}
+	return (shuffled);
 }

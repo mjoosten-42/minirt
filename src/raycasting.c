@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/13 14:40:43 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:35:03 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 	closest_collision = collision_none();
 	while (shapes != NULL)
 	{
-		coll = ((t_shape *)shapes->content)->f(shapes->content, ray); // This line breaks things
+		coll = ((t_shape *)shapes->content)->f(shapes->content, ray);
 		if (coll.shape != NULL)
 			if (coll.distance < closest_collision.distance)
 				closest_collision = coll;
@@ -94,9 +94,9 @@ static t_color	ray_to_light(t_program *program, t_collision coll, const t_light 
 
 	ray = _calc_lightray(light, &coll);
 	shadow_coll = raycast_get_collision(program->shapes, &ray);
-	if (shadow_coll.shape != NULL
-		&& shadow_coll.distance < vec3_length(vec3_sub(light->o, coll.point)))
-		return (color_f(0, 0, 0));
+	if (shadow_coll.shape != NULL)
+		if (shadow_coll.distance < vec3_distance(light->o, coll.point))
+			return (color_f(0, 0, 0));
 	diffuse_c = _calc_diffuse(&coll, light, &ray);
 	specular_c = _calc_specular(&coll, light, &ray, coll.shape->material.shine);
 	return (color_add(specular_c, diffuse_c));
@@ -104,14 +104,10 @@ static t_color	ray_to_light(t_program *program, t_collision coll, const t_light 
 
 t_color	raycast_calc_lighting(t_program *program, t_collision coll)
 {
-	float	ratio;
 	t_list	*list;
 	t_color	c;
 
 	c = _calc_ambient(coll.shape->color, &(program->ambience));
-	if (program->lights_amount == 0)
-		return (c);
-	ratio = 1.0 / (float)program->lights_amount;
 	list = program->lights;
 	while (list != NULL)
 	{

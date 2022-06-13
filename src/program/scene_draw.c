@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/09 16:33:59 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/13 13:40:35 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ t_color	calc_pixel(t_program *program, double x, double y)
 
 void	scene_draw(void *ptr)
 {
-	t_program				*program;
-	unsigned int			x;
-	unsigned int			y;
-	t_color					c;
-	static unsigned int		i;
+	t_program			*program;
+	t_color				color;
+	unsigned int		x;
+	unsigned int		y;
+	static unsigned int	i;
 
 	program = (t_program *)ptr;
 	pthread_mutex_lock(&program->threads.mutex);
@@ -61,9 +61,9 @@ void	scene_draw(void *ptr)
 		y = program->shuffled[i] / program->buffer->width;
 		i++;
 		pthread_mutex_unlock(&program->threads.mutex);
-		c = anti_aliasing(program, x, y);
-		color_cap(&c);
-		mlx_putpixel(program->buffer, x, y, color_to_int(c));
+		color = anti_aliasing(program, x, y);
+		color_cap(&color);
+		mlx_putpixel(program->buffer, x, y, color_to_int(color));
 		pthread_mutex_lock(&program->threads.mutex);
 	}
 	pthread_mutex_unlock(&program->threads.mutex);

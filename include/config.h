@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/10 15:23:48 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/13 14:56:20 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 # define WINDOW_W 1024
 # define WINDOW_H 720
 # define WINDOW_TITLE "minirt"
-# define WINDOW_RESIZE 1
+# define WINDOW_RESIZE 0
+
+/* threads.c */
+# define NB_THREADS 7
 
 /* raycasting.c */
 # define RAY_MAX_BOUNCES 16

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/07 13:35:20 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/13 13:02:00 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,19 @@
 #include "log.h"
 #include <math.h>
 
-int	nb_of_char(char *str, char c);
+int	nb_of_char(char *str, char c)
+{
+	int	amount;
+
+	amount = 0;
+	while (*str)
+	{
+		if (*str == c)
+			amount++;
+		str++;
+	}
+	return (amount);
+}
 
 t_v3	parse_vector_norm(char *str)
 {
@@ -62,18 +74,4 @@ t_v3	parse_vector(char *str)
 	vector.z = atod(strs[2]);
 	ft_free_array(strs);
 	return (vector);
-}
-
-int	nb_of_char(char *str, char c)
-{
-	int	amount;
-
-	amount = 0;
-	while (*str)
-	{
-		if (*str == c)
-			amount++;
-		str++;
-	}
-	return (amount);
 }

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/10 15:10:25 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/13 13:10:55 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	build_sphere(char **args, void *ptr)
 
 	sphere = build_shape(args, SHAPE_SPHERE);
 	sphere->sp = (t_mask_sphere){atod(args[2]) / 2};
-	sphere->material = (t_material){MATERIAL_MIRROR, 1, 2.0};
+	sphere->material = (t_material){MATERIAL_MIRROR, 0.9, 2.0};
 	sphere->f = collision_sphere;
 	ft_lstadd_back(ptr, ft_lstnew(sphere));
 }
@@ -48,7 +48,6 @@ void	build_plane(char **args, void *ptr)
 	plane = build_shape(args, SHAPE_PLANE);
 	plane->pl.normal = parse_vector_norm(args[2]);
 	plane->f = collision_plane;
-	plane->material = (t_material){MATERIAL_MIRROR, 0.9, INFINITY};
 	ft_lstadd_back(ptr, ft_lstnew(plane));
 }
 

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/10 15:10:31 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:35:23 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ struct s_shape
 		t_mask_sphere	sp;
 		t_mask_plane	pl;
 		t_mask_cylinder	cy;
-		t_mask_square	sq;
 	};
 	t_shape_type	type;
 	t_v3			o;

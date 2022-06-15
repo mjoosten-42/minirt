@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/10 15:13:26 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:28:42 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,10 @@ void	build_ambience(char **args, void *ptr)
 	t_ambience	ambience;
 
 	if (once)
-	{
-		LOG_ERR("Multipe ambient lightings");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(NULL, "Multiple ambient lightings");
 	ambience.intensity = atod(args[1]);
 	if (ambience.intensity < 0 || ambience.intensity > 1)
-	{
-		LOG_ERR("Ambient lighting ratio out of range");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(args[1], "intensity out of range");
 	ambience.color = parse_color(args[2]);
 	*(t_ambience *)ptr = ambience;
 	once = 1;
@@ -44,18 +38,12 @@ void	build_camera(char **args, void *ptr)
 	t_cam		camera;
 
 	if (once)
-	{
-		LOG_ERR("Multipe cameras");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(NULL, "Multiple cameras");
 	camera.origin = parse_vector(args[1]);
 	camera.direction = parse_vector_norm(args[2]);
 	camera.fov = ft_atoi(args[3]);
 	if (camera.fov < 0 || camera.fov > 180)
-	{
-		LOG_ERR("FOV out of range");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(args[3], "fov out of range");
 	camera.fov = tan(camera.fov / 2 * M_PI / 180);
 	camera_calculate_matrix(&camera);
 	*(t_cam *)ptr = camera;
@@ -70,10 +58,7 @@ void	build_light(char **args, void *ptr)
 	light->o = parse_vector(args[1]);
 	light->intensity = atod(args[2]);
 	if (light->intensity < 0 || light->intensity > 1)
-	{
-		LOG_ERR("Brightness out of range");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(args[2], "brightness out of range");
 	light->color = parse_color(args[3]);
 	ft_lstadd_back(ptr, ft_lstnew(light));
 }

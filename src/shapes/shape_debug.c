@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:51:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/10 15:13:38 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:10:57 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ static void	_shape_print_mask(t_shape *shape)
 	{
 		printf("|  |  normal ");
 		vec3_print(shape->pl.normal);
-	}
-	if (shape->type == SHAPE_SQUARE)
-	{
-		printf("|  |  normal ");
-		vec3_print(shape->sq.normal);
-		printf("|  |  width: %.3f\n", shape->sq.width);
 	}
 	if (shape->type == SHAPE_SPHERE)
 		printf("|  |  radius: %.3f\n", shape->sp.radius);
@@ -41,9 +35,8 @@ void	shape_print(t_shape *shape)
 {
 	char	*shape_names[] = {
 	"NONE",
-	"PLANE",
-	"SQUARE",
 	"SPHERE",
+	"PLANE",
 	"CYLINDER"
 	};
 

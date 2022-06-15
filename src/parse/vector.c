@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/13 13:02:00 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:23:08 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,12 @@ t_v3	parse_vector(char *str)
 	char	**strs;
 
 	if (nb_of_char(str, ',') != 2)
-	{
-		LOG_ERR("Only two comma's per vector allowed");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(str, "vector incorrectly formatted");
 	strs = ft_split(str, ',');
 	if (!strs)
-	{
-		LOG_ERR("Split allocation failed");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(NULL, "Split allocation failed");
 	if (ft_argsize(strs) != 3)
-	{
-		LOG_ERR("Incorrect amount of doubles");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(str, "vector incorrectly formatted");
 	vector.x = atod(strs[0]);
 	vector.y = atod(strs[1]);
 	vector.z = atod(strs[2]);

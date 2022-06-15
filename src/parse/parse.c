@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/09 11:07:27 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:33:59 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ void	build_scene(t_program *program, char *file)
 	ft_lstiter(program->lights, (void (*)(void *))light_print);
 	ft_lstiter(program->shapes, (void (*)(void *))shape_print);
 	if (program->camera.fov == 0)
-	{
-		LOG_ERR("Missing camera");
-		exit(EXIT_FAILURE);
-	}
-	program->lights_amount = ft_lstsize(program->lights);
+		rt_error(NULL, "Missing camera");
 }
 
 char	**get_args(char *line)
@@ -62,16 +58,10 @@ char	**get_args(char *line)
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = 0;
 	if (line[0] == ' ')
-	{
-		LOG_ERR("Line starting with space");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(NULL, "Line starting with space");
 	args = ft_split(line, ' ');
 	if (!args)
-	{
-		LOG_ERR("split allocation failed");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(NULL, "Split allocation failed");
 	return (args);
 }
 
@@ -83,10 +73,7 @@ void	build_object(t_program *program, char **args)
 	object = get_object(program, args[0]);
 	argsize = ft_argsize(args);
 	if (argsize != object.nb_args)
-	{
-		LOG_ERR("Wrong amount of arguments");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(NULL, "Wrong amount of arguments");
 	object.f(args, object.ptr);
 }
 
@@ -111,8 +98,8 @@ t_object	get_object(t_program *program, char *str)
 			return ((t_object){table[i].type, table[i].id, table[i].nb_args, table[i].f, table[i].ptr});
 		i++;
 	}
-	LOG_ERR(ft_strjoin(str, ": not an identifier"));
-	exit(EXIT_FAILURE);
+	rt_error(str, "not an identifier");
+	return ((t_object){});
 }
 
 int	open_rt(char *file)
@@ -122,16 +109,24 @@ int	open_rt(char *file)
 
 	len = ft_strlen(file);
 	if (len < 3 || ft_strncmp(file + len - 3, ".rt", len))
-	{
-		LOG_ERR("Expected .rt file");
-		exit(EXIT_FAILURE);
-	}
+		rt_error(file, "not a .rt file");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
 		perror(file);
 		exit(EXIT_FAILURE);
 	}
-	LOG("Opened file");
 	return (fd);
+}
+
+void	rt_error(char *s1, char *s2)
+{
+	ft_putstr_fd("Error\n", 2);
+	if (s1)
+	{
+		ft_putstr_fd(s1, 2);
+		ft_putstr_fd(": ", 2);
+	}
+	ft_putendl_fd(s2, 2);
+	exit(EXIT_FAILURE);
 }

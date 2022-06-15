@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/10 14:27:02 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:34:01 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct s_program
 	t_threads	threads;
 	t_cam		camera;
 	t_ambience	ambience;
-	int			lights_amount;
 	t_list		*lights;
 	t_list		*shapes;
 }				t_program;

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/13 15:35:03 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 14:36:24 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ static t_ray3	_calc_lightray(const t_light *light, const t_collision *coll)
 	t_ray3	ray;
 
 	ray.o = coll->point;
-	ray.d = vec3_sub(light->o, coll->point);
-	vec3_normalize(&ray.d);
+	ray.d = vec3_norm(vec3_sub(light->o, coll->point));
 	ray.o = vec3_add(ray.o, vec3_mul(ray.d, __FLT_EPSILON__));
 	return (ray);
 }

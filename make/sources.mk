@@ -1,6 +1,7 @@
 SOURCES :=	src/anti_aliasing.c \
 	src/camera.c \
 	src/collisions/collision.c \
+	src/collisions/cone.c \
 	src/collisions/cylinder.c \
 	src/collisions/plane.c \
 	src/collisions/sphere.c \

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:15:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/15 11:32:19 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:39:52 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,9 @@ typedef enum e_shape_type
 	SHAPE_NONE,
 	SHAPE_SPHERE,
 	SHAPE_PLANE,
-	SHAPE_CYLINDER
+	SHAPE_CYLINDER,
+	SHAPE_CONE
 }	t_shape_type;
-
-/**
-**	SHAPE_PLANE
-**	@param normal <t_v3> Normal vector
-*/
-typedef struct s_mask_plane
-{
-	t_v3	normal;
-}			t_mask_plane;
 
 /**
 **	SHAPE_SPHERE
@@ -51,11 +43,20 @@ typedef struct s_mask_sphere
 */
 typedef struct s_mask_cylinder
 {
-	t_v3	normal;
 	double	radius;
 	double	height;
 	t_v3	axis;
 	double	angle;
 }			t_mask_cylinder;
+
+/**
+**	SHAPE_CONE
+**	@param normal <t_v3> Normal vector
+*/
+typedef struct s_mask_cone
+{
+	double	height;
+	double	angle;
+}			t_mask_cone;
 
 #endif

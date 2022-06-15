@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:03:06 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/07 14:29:24 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:43:57 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_v3
 /* vec3_basics.c */
 t_v3	vec3(double x, double y, double z);
 double	vec3_length(t_v3 vec3);
-void	vec3_normalize(t_v3 *vec3);
+t_v3	vec3_norm(t_v3 vec3);
 t_v3	vec3_dup(t_v3 vec3);
 t_v3	vec3_inv(t_v3 vec3);
 

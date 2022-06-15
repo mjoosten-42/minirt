@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/13 13:22:18 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:41:52 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 	{
 		coll.point = ray_point(ray, coll.distance);
 		tmp = vec3_sub(coll.point, cylinder->o);
-		coll.normal = vec3_sub(tmp,	vec3_project(tmp, cylinder->cy.normal));
-		vec3_normalize(&coll.normal);
+		coll.normal = vec3_norm(vec3_sub(tmp,
+			vec3_project(tmp, cylinder->n)));
 		coll.point = ray_point(ray, coll.distance);
 		return (coll);
 	}
@@ -76,13 +76,13 @@ t_collision	collision_caps(const t_shape *cylinder, const t_ray3 *ray)
 
 	plane = *cylinder;
 	plane.type = SHAPE_PLANE;
-	plane.pl.normal = cylinder->cy.normal;
+	plane.n = cylinder->n;
 	coll = collision_plane(&plane, ray);
 	if (coll.shape != NULL)
 		if (vec3_distance(coll.point, plane.o) < cylinder->cy.radius)
 			return (coll);
 	plane.o = vec3_add(cylinder->o,
-			vec3_mul(cylinder->cy.normal, cylinder->cy.height));
+			vec3_mul(cylinder->n, cylinder->cy.height));
 	coll = collision_plane(&plane, ray);
 	if (coll.shape != NULL)
 		if (vec3_distance(coll.point, plane.o) < cylinder->cy.radius)

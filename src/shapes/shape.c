@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/13 13:10:55 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 16:09:12 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "collision.h"
 #include "config.h"
 
-static t_shape	*build_shape(char **args, t_shape_type type)
+static t_shape	*build_shape(char **args, t_shape_type type, void *ptr)
 {
 	t_shape	*shape;
 
@@ -27,6 +27,7 @@ static t_shape	*build_shape(char **args, t_shape_type type)
 		(t_material){DEFAULT_MATERIAL, DEFAULT_REFLECTIVENESS, DEFAULT_PHONG};
 	shape->o = parse_vector(args[1]);
 	shape->color = parse_color(args[ft_argsize(args) - 1]);
+	ft_lstadd_front(ptr, ft_lstnew(shape));
 	return (shape);
 }
 
@@ -34,34 +35,42 @@ void	build_sphere(char **args, void *ptr)
 {
 	t_shape	*sphere;
 
-	sphere = build_shape(args, SHAPE_SPHERE);
+	sphere = build_shape(args, SHAPE_SPHERE, ptr);
 	sphere->sp = (t_mask_sphere){atod(args[2]) / 2};
 	sphere->material = (t_material){MATERIAL_MIRROR, 0.9, 2.0};
 	sphere->f = collision_sphere;
-	ft_lstadd_back(ptr, ft_lstnew(sphere));
 }
 
 void	build_plane(char **args, void *ptr)
 {
 	t_shape	*plane;
 
-	plane = build_shape(args, SHAPE_PLANE);
-	plane->pl.normal = parse_vector_norm(args[2]);
+	plane = build_shape(args, SHAPE_PLANE, ptr);
+	plane->n = parse_vector_norm(args[2]);
 	plane->f = collision_plane;
-	ft_lstadd_back(ptr, ft_lstnew(plane));
 }
 
 void	build_cylinder(char **args, void *ptr)
 {
 	t_shape	*cylinder;
 
-	cylinder = build_shape(args, SHAPE_CYLINDER);
-	cylinder->cy.normal = parse_vector_norm(args[2]);
+	cylinder = build_shape(args, SHAPE_CYLINDER, ptr);
+	cylinder->n = parse_vector_norm(args[2]);
 	cylinder->cy.radius = atod(args[3]) / 2;
 	cylinder->cy.height = atod(args[4]);
-	cylinder->cy.axis = vec3_cross(cylinder->cy.normal, vec3(0, 1, 0));
-	vec3_normalize(&cylinder->cy.axis);
-	cylinder->cy.angle = vec3_angle(cylinder->cy.normal, vec3(0, 1, 0));
+	cylinder->cy.axis = vec3_norm(vec3_cross(cylinder->n, vec3(0, 1, 0)));
+	cylinder->cy.angle = vec3_angle(cylinder->n, vec3(0, 1, 0));
 	cylinder->f = collision_cylinder;
-	ft_lstadd_back(ptr, ft_lstnew(cylinder));
+}
+
+void	build_cone(char **args, void *ptr)
+{
+	t_shape	*cone;
+
+	cone = build_shape(args, SHAPE_CONE, ptr);
+	cone->n = parse_vector_norm(args[2]);
+	cone->co.height = atod(args[4]);
+	cone->co.angle = atan(atod(args[3]) / (2 * cone->co.height));
+	cone->f = collision_cone;
+	cone->material = (t_material){MATERIAL_MIRROR, 0.9, 2.0};
 }

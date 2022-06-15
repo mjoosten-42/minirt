@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/15 11:23:08 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 14:36:52 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_v3	parse_vector_norm(char *str)
 		exit(EXIT_FAILURE);
 	}
 	*/
-	vec3_normalize(&vector);
+	vector = vec3_norm(vector);
 	return (vector);
 }
 

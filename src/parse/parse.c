@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/15 11:33:59 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:46:33 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ t_object	get_object(t_program *program, char *str)
 	{OBJECT_LIGHT, "L", 4, build_light, &program->lights},
 	{OBJECT_SPHERE, "sp", 4, build_sphere, &program->shapes},
 	{OBJECT_PLANE, "pl", 4, build_plane, &program->shapes},
-	{OBJECT_CYLINDER, "cy", 6, build_cylinder, &program->shapes}
+	{OBJECT_CYLINDER, "cy", 6, build_cylinder, &program->shapes},
+	{OBJECT_CONE, "co", 6, build_cone, &program->shapes}
 	};
 	int				tablesize;
 	int				i;

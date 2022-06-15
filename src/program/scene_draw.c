@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/13 13:40:35 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 14:36:40 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static t_v3	_get_direction(t_program *program, double x, double y)
 	direction.y = (1.0 - 2.0 * (y + 0.5) / program->mlx->height)
 		* program->camera.fov;
 	direction.z = 1.0;
-	direction = mat4_mul_vec3(&program->camera.view_matrix, &direction);
-	vec3_normalize(&direction);
+	direction = vec3_norm(mat4_mul_vec3(&program->camera.view_matrix, &direction));
 	return (direction);
 }
 

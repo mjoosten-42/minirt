@@ -6,28 +6,36 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:51:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/15 11:10:57 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:42:40 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape.h"
 #include <stdio.h>
+#include <math.h>
 
 static void	_shape_print_mask(t_shape *shape)
 {
 	if (shape->type == SHAPE_PLANE)
 	{
 		printf("|  |  normal ");
-		vec3_print(shape->pl.normal);
+		vec3_print(shape->n);
 	}
 	if (shape->type == SHAPE_SPHERE)
 		printf("|  |  radius: %.3f\n", shape->sp.radius);
 	if (shape->type == SHAPE_CYLINDER)
 	{
 		printf("|  |  normal ");
-		vec3_print(shape->cy.normal);
+		vec3_print(shape->n);
 		printf("|  |  radius: %.3f\n", shape->cy.radius);
 		printf("|  |  height: %.3f\n", shape->cy.height);
+	}
+	if (shape->type == SHAPE_CONE)
+	{
+		printf("|  |  normal ");
+		vec3_print(shape->n);
+		printf("|  |  height: %.3f\n", shape->co.height);
+		printf("|  |  angle: %.3f\n", shape->co.angle * 180 / M_PI);
 	}
 }
 
@@ -37,7 +45,8 @@ void	shape_print(t_shape *shape)
 	"NONE",
 	"SPHERE",
 	"PLANE",
-	"CYLINDER"
+	"CYLINDER",
+	"CONE"
 	};
 
 	printf("# - SHAPE - - - - - - - - - - - - - - - -\n");

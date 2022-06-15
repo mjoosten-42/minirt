@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:16:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/15 11:16:50 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:43:26 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef enum e_object
 	OBJECT_AMBIENCE,
 	OBJECT_PLANE,
 	OBJECT_SPHERE,
-	OBJECT_CYLINDER
+	OBJECT_CYLINDER,
+	OBJECT_CONE
 }	t_object_type;
 
 /**

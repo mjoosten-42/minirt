@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 12:06:19 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/13 14:32:51 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/15 14:36:33 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray)
 		return (collision_none());
 	coll.shape = sphere;
 	coll.point = ray_point(ray, t[0]);
-	coll.normal = vec3_sub(coll.point, sphere->o);
-	vec3_normalize(&coll.normal);
+	coll.normal = vec3_norm(vec3_sub(coll.point, sphere->o));
 	coll.distance = t[0];
 	return (coll);
 }

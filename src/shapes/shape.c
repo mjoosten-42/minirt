@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/15 16:09:12 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/16 10:59:10 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void	build_cone(char **args, void *ptr)
 	cone->co.height = atod(args[4]);
 	cone->co.angle = atan(atod(args[3]) / (2 * cone->co.height));
 	cone->f = collision_cone;
-	cone->material = (t_material){MATERIAL_MIRROR, 0.9, 2.0};
+	cone->material = (t_material){MATERIAL_MIRROR, 0.5, 2.0};
 }

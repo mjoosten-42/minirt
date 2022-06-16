@@ -6,31 +6,32 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:51:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/15 15:42:40 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:34:27 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape.h"
 #include <stdio.h>
 #include <math.h>
+#include "objects.h"
 
 static void	_shape_print_mask(t_shape *shape)
 {
-	if (shape->type == SHAPE_PLANE)
+	if (shape->type == OBJECT_PLANE)
 	{
 		printf("|  |  normal ");
 		vec3_print(shape->n);
 	}
-	if (shape->type == SHAPE_SPHERE)
+	if (shape->type == OBJECT_SPHERE)
 		printf("|  |  radius: %.3f\n", shape->sp.radius);
-	if (shape->type == SHAPE_CYLINDER)
+	if (shape->type == OBJECT_CYLINDER)
 	{
 		printf("|  |  normal ");
 		vec3_print(shape->n);
 		printf("|  |  radius: %.3f\n", shape->cy.radius);
 		printf("|  |  height: %.3f\n", shape->cy.height);
 	}
-	if (shape->type == SHAPE_CONE)
+	if (shape->type == OBJECT_CONE)
 	{
 		printf("|  |  normal ");
 		vec3_print(shape->n);
@@ -43,6 +44,9 @@ void	shape_print(t_shape *shape)
 {
 	char	*shape_names[] = {
 	"NONE",
+	"CAMERA",
+	"LIGHT",
+	"AMBIENCE",
 	"SPHERE",
 	"PLANE",
 	"CYLINDER",

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:16:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/15 11:43:26 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:33:17 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,7 @@
 # include "shape.h"
 # include "shape_masks.h"
 # include "light.h"
-
-typedef enum e_object
-{
-	OBJECT_NONE,
-	OBJECT_CAMERA,
-	OBJECT_LIGHT,
-	OBJECT_AMBIENCE,
-	OBJECT_PLANE,
-	OBJECT_SPHERE,
-	OBJECT_CYLINDER,
-	OBJECT_CONE
-}	t_object_type;
+# include "objects.h"
 
 /**
 **	@param type <t_object> Object enum

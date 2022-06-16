@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/15 15:41:52 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:03:14 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ t_collision	collision_caps(const t_shape *cylinder, const t_ray3 *ray)
 	t_shape		plane;
 
 	plane = *cylinder;
-	plane.type = SHAPE_PLANE;
-	plane.n = cylinder->n;
 	coll = collision_plane(&plane, ray);
 	if (coll.shape != NULL)
 		if (vec3_distance(coll.point, plane.o) < cylinder->cy.radius)

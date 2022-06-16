@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/16 10:59:10 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:31:33 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #include "libft.h"
 #include "collision.h"
 #include "config.h"
+#include "objects.h"
 
-static t_shape	*build_shape(char **args, t_shape_type type, void *ptr)
+static t_shape	*build_shape(char **args, t_object_type type, void *ptr)
 {
 	t_shape	*shape;
 
@@ -35,7 +36,7 @@ void	build_sphere(char **args, void *ptr)
 {
 	t_shape	*sphere;
 
-	sphere = build_shape(args, SHAPE_SPHERE, ptr);
+	sphere = build_shape(args, OBJECT_SPHERE, ptr);
 	sphere->sp = (t_mask_sphere){atod(args[2]) / 2};
 	sphere->material = (t_material){MATERIAL_MIRROR, 0.9, 2.0};
 	sphere->f = collision_sphere;
@@ -45,7 +46,7 @@ void	build_plane(char **args, void *ptr)
 {
 	t_shape	*plane;
 
-	plane = build_shape(args, SHAPE_PLANE, ptr);
+	plane = build_shape(args, OBJECT_PLANE, ptr);
 	plane->n = parse_vector_norm(args[2]);
 	plane->f = collision_plane;
 }
@@ -54,7 +55,7 @@ void	build_cylinder(char **args, void *ptr)
 {
 	t_shape	*cylinder;
 
-	cylinder = build_shape(args, SHAPE_CYLINDER, ptr);
+	cylinder = build_shape(args, OBJECT_CYLINDER, ptr);
 	cylinder->n = parse_vector_norm(args[2]);
 	cylinder->cy.radius = atod(args[3]) / 2;
 	cylinder->cy.height = atod(args[4]);
@@ -67,10 +68,12 @@ void	build_cone(char **args, void *ptr)
 {
 	t_shape	*cone;
 
-	cone = build_shape(args, SHAPE_CONE, ptr);
+	cone = build_shape(args, OBJECT_CONE, ptr);
 	cone->n = parse_vector_norm(args[2]);
 	cone->co.height = atod(args[4]);
-	cone->co.angle = atan(atod(args[3]) / (2 * cone->co.height));
+	cone->co.radius = atod(args[3]) / 2;
+	cone->co.angle = atan(cone->co.radius / cone->co.height);
+	cone->co.angle = cos(cone->co.angle) * cos(cone->co.angle);
 	cone->f = collision_cone;
 	cone->material = (t_material){MATERIAL_MIRROR, 0.5, 2.0};
 }

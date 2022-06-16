@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:40:22 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/16 10:58:22 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:33:54 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,38 +23,42 @@
 ** https://stackoverflow.com/questions/66343772/cone-normal-vector
 */
 
-static t_v3	cone_normal(t_v3 point, const t_shape *cone);
-t_collision	collision_cone_inf(const t_shape *cone, const t_ray3 *ray);
+t_collision			collision_cone_inf(const t_shape *cone, const t_ray3 *ray);
+static t_collision	collision_cap(const t_shape *cone, const t_ray3 *ray);
+static t_v3			cone_normal(t_v3 point, const t_shape *cone);
 
 t_collision	collision_cone(const t_shape *cone, const t_ray3 *ray)
 {
 	t_collision	coll;
 	
 	coll = collision_cone_inf(cone, ray);
+	if (coll.shape)
+		return (coll);
+	coll = collision_cap(cone, ray);
+	if (coll.shape)
+		coll.shape = cone;
 	return (coll);
 }
 
+// t[1] holds height
 t_collision	collision_cone_inf(const t_shape *cone, const t_ray3 *ray)
 {
 	t_collision	coll;
 	t_abc		abc;
 	t_v3		co;
 	double		t[2];
-	double		h;
-	double		a;
 	
-	a = cos(cone->co.angle) * cos(cone->co.angle);
 	co = vec3_sub(ray->o, cone->o);
-	abc.a = vec3_dot(ray->d, cone->n) * vec3_dot(ray->d, cone->n) - a;
+	abc.a = vec3_dot(ray->d, cone->n) * vec3_dot(ray->d, cone->n) - cone->co.angle;
 	abc.b = 2 * (vec3_dot(ray->d, cone->n) * vec3_dot(co, cone->n)
-		- vec3_dot(ray->d, co) * a);
+		- vec3_dot(ray->d, co) * cone->co.angle);
 	abc.c = vec3_dot(co, cone->n) * vec3_dot(co, cone->n)
-		- vec3_dot(co, co) * a;
+		- vec3_dot(co, co) * cone->co.angle;
 	if (quadratic(t, abc) < 0 || t[0] < 0)
 		return (collision_none());
 	coll.point = ray_point(ray, t[0]);
-	h = vec3_dot(vec3_sub(coll.point, cone->o), cone->n);
-	if (h < 0 || h > cone->co.height)
+	t[1] = vec3_dot(vec3_sub(coll.point, cone->o), cone->n);
+	if (t[1] < 0 || t[1] > cone->co.height)
 		return (collision_none());
 	coll.distance = t[0];
 	coll.normal = cone_normal(coll.point, cone);
@@ -69,4 +73,17 @@ static t_v3	cone_normal(t_v3 point, const t_shape *cone)
 	cp = vec3_sub(point, cone->o);
 	cp = vec3_mul(vec3_mul(cp, vec3_dot(cone->n, cp)), 1 / vec3_dot(cp, cp));
 	return (vec3_norm(vec3_sub(cp, cone->n)));
+}
+
+static t_collision	collision_cap(const t_shape *cone, const t_ray3 *ray)
+{
+	t_collision	coll;
+	t_shape		plane;
+
+	plane = *cone;
+	plane.o = vec3_add(cone->o, vec3_mul(cone->n, cone->co.height));
+	coll = collision_plane(&plane, ray);
+	if (vec3_distance(coll.point, plane.o) > cone->co.radius)
+		return (coll);
+	return (collision_none());
 }

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/16 11:01:02 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:30:34 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "material.h"
 # include "shape_masks.h"
 # include "ray3.h"
+# include "objects.h"
 
 typedef struct s_shape	t_shape;
 typedef struct s_collision	(*t_collfunc)(const t_shape *, const t_ray3 *);
@@ -39,7 +40,7 @@ struct s_shape
 		t_mask_cylinder	cy;
 		t_mask_cone		co;
 	};
-	t_shape_type	type;
+	t_object_type	type;
 	t_v3			o;
 	t_v3			n;
 	t_color			color;

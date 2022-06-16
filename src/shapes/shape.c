@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/16 11:31:33 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:41:47 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	build_plane(char **args, void *ptr)
 	plane = build_shape(args, OBJECT_PLANE, ptr);
 	plane->n = parse_vector_norm(args[2]);
 	plane->f = collision_plane;
+	plane->material = (t_material){MATERIAL_MIRROR, 0.9, 2.0};
 }
 
 void	build_cylinder(char **args, void *ptr)
@@ -75,5 +76,4 @@ void	build_cone(char **args, void *ptr)
 	cone->co.angle = atan(cone->co.radius / cone->co.height);
 	cone->co.angle = cos(cone->co.angle) * cos(cone->co.angle);
 	cone->f = collision_cone;
-	cone->material = (t_material){MATERIAL_MIRROR, 0.5, 2.0};
 }

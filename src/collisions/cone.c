@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:40:22 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/16 11:33:54 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:40:23 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_collision	collision_cone_inf(const t_shape *cone, const t_ray3 *ray)
 	t_abc		abc;
 	t_v3		co;
 	double		t[2];
+	double		h;
 	
 	co = vec3_sub(ray->o, cone->o);
 	abc.a = vec3_dot(ray->d, cone->n) * vec3_dot(ray->d, cone->n) - cone->co.angle;
@@ -57,8 +58,8 @@ t_collision	collision_cone_inf(const t_shape *cone, const t_ray3 *ray)
 	if (quadratic(t, abc) < 0 || t[0] < 0)
 		return (collision_none());
 	coll.point = ray_point(ray, t[0]);
-	t[1] = vec3_dot(vec3_sub(coll.point, cone->o), cone->n);
-	if (t[1] < 0 || t[1] > cone->co.height)
+	h = vec3_dot(vec3_sub(coll.point, cone->o), cone->n);
+	if (h < 0 || h > cone->co.height)
 		return (collision_none());
 	coll.distance = t[0];
 	coll.normal = cone_normal(coll.point, cone);
@@ -84,6 +85,6 @@ static t_collision	collision_cap(const t_shape *cone, const t_ray3 *ray)
 	plane.o = vec3_add(cone->o, vec3_mul(cone->n, cone->co.height));
 	coll = collision_plane(&plane, ray);
 	if (vec3_distance(coll.point, plane.o) > cone->co.radius)
-		return (coll);
-	return (collision_none());
+		return (collision_none());
+	return (coll);
 }

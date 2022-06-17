@@ -6,13 +6,14 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:06:03 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/17 17:10:24 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:11:24 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
 #include <math.h>
 
+//	Formula for mirroring a vector: 𝑟=𝑑−2(𝑑⋅𝑛)𝑛
 t_v3	vec3_calc_reflection(t_v3 incoming, t_v3 normal)
 {
 	t_v3	refl;
@@ -54,7 +55,7 @@ t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
 // 	double	k;
 // 	t_v3	refr;
 
-// 	cosi = vec3_dot(incoming, normal);
+// 	cosi = vec3_dot(incoming, vec3_inv(normal));
 // 	if (cosi > 0.0f)
 // 	{
 // 		n1 = strength;
@@ -66,13 +67,15 @@ t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
 // 		n1 = 1.0;
 // 		n2 = strength;
 // 		cosi = -cosi;
+// 		//normal = vec3_inv(normal);
 // 	}
 // 	eta = n1 / n2;
-// 	k = 1.0 - (eta * eta) * (1.0 - cosi * cosi);
-// 	if (k < 0.0)
-// 		refr = vec3_calc_reflection(incoming, normal);
-// 	else
+// 	k = 2.0 - (eta * eta) * (1.0 - cosi * cosi);
+// 	// if (k < 0.0)
+// 	// 	refr = vec3_calc_reflection(incoming, normal);
+// 	// else
 // 		refr = vec3_add( vec3_mul(incoming, eta), vec3_mul(normal, eta * cosi * sqrt(k)) );
+// 	refr = vec3_norm(refr);
 // 	return (refr);
 // }
 

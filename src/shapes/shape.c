@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shape.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/17 14:50:33 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   shape.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/06 11:55:37 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/06/17 15:09:39 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static t_material	parse_material(char *str)
 	{"diffuse", 0, 0, 1, DEFAULT_PHONG},
 	{"water", 0, 0.5, 1.3, DEFAULT_PHONG},
 	{"mirror", 0.9, 0, 1, INFINITY},
-	{"glass", 0, 0.9, 1.5, INFINITY}
+	{"glass", 0, 0.9, 1.5, INFINITY},
+	{"refract", 0, 1.0, 1.5, DEFAULT_PHONG}
 	};
 	int						tablesize;
 	int						len;

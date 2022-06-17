@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/17 12:31:02 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/17 14:47:06 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,23 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 	{
 		coll = ((t_shape *)shapes->content)->f(shapes->content, ray);
 		if (coll.shape != NULL)
+			if (coll.distance < closest_collision.distance)
+				closest_collision = coll;
+		shapes = shapes->next;
+	}
+	return (closest_collision);
+}
+
+t_collision	raycast_get_coll_ignore_refr(t_list *shapes, const t_ray3 *ray)
+{
+	t_collision	coll;
+	t_collision	closest_collision;
+
+	closest_collision = collision_none();
+	while (shapes != NULL)
+	{
+		coll = ((t_shape *)shapes->content)->f(shapes->content, ray);
+		if (coll.shape != NULL && coll.shape->material.refraction == 0.0)
 			if (coll.distance < closest_collision.distance)
 				closest_collision = coll;
 		shapes = shapes->next;
@@ -92,7 +109,7 @@ static t_color	ray_to_light(t_program *program, t_collision coll, const t_light 
 	t_collision	shadow_coll;
 
 	ray = _calc_lightray(light, &coll);
-	shadow_coll = raycast_get_collision(program->shapes, &ray);
+	shadow_coll = raycast_get_coll_ignore_refr(program->shapes, &ray);
 	if (shadow_coll.shape != NULL)
 		if (shadow_coll.distance < vec3_distance(light->o, coll.point))
 			return (color_f(0, 0, 0));

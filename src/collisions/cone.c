@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:40:22 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/16 11:40:23 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 10:51:11 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_v3			cone_normal(t_v3 point, const t_shape *cone);
 t_collision	collision_cone(const t_shape *cone, const t_ray3 *ray)
 {
 	t_collision	coll;
-	
+
 	coll = collision_cone_inf(cone, ray);
 	if (coll.shape)
 		return (coll);
@@ -40,7 +40,6 @@ t_collision	collision_cone(const t_shape *cone, const t_ray3 *ray)
 	return (coll);
 }
 
-// t[1] holds height
 t_collision	collision_cone_inf(const t_shape *cone, const t_ray3 *ray)
 {
 	t_collision	coll;
@@ -48,11 +47,12 @@ t_collision	collision_cone_inf(const t_shape *cone, const t_ray3 *ray)
 	t_v3		co;
 	double		t[2];
 	double		h;
-	
+
 	co = vec3_sub(ray->o, cone->o);
-	abc.a = vec3_dot(ray->d, cone->n) * vec3_dot(ray->d, cone->n) - cone->co.angle;
+	abc.a = vec3_dot(ray->d, cone->n) * vec3_dot(ray->d, cone->n)
+		- cone->co.angle;
 	abc.b = 2 * (vec3_dot(ray->d, cone->n) * vec3_dot(co, cone->n)
-		- vec3_dot(ray->d, co) * cone->co.angle);
+			- vec3_dot(ray->d, co) * cone->co.angle);
 	abc.c = vec3_dot(co, cone->n) * vec3_dot(co, cone->n)
 		- vec3_dot(co, co) * cone->co.angle;
 	if (quadratic(t, abc) < 0 || t[0] < 0)

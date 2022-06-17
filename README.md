@@ -2,4 +2,4 @@
 The awesome, but mini, minirt!
 
 TODO:
- * Occasional vertical black line
+ * Occasional vertical black line (planes colliding)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 12:06:19 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/15 14:36:33 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   sphere.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 12:06:19 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/06/17 11:54:36 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray)
 	coll.shape = sphere;
 	coll.point = ray_point(ray, t[0]);
 	coll.normal = vec3_norm(vec3_sub(coll.point, sphere->o));
+	if (vec3_distance(ray->o, sphere->o) < sphere->sp.radius)
+		coll.normal = vec3_inv(coll.normal);
 	coll.distance = t[0];
 	return (coll);
 }

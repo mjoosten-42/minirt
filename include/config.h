@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/17 14:53:15 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:09:43 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define WINDOW_RESIZE 0
 
 /* threads.c */
-# define NB_THREADS 1
+# define NB_THREADS 7
 
 /* raycasting.c */
 # define RAY_MAX_BOUNCES 16

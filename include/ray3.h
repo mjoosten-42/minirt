@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:08:36 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/13 14:56:58 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 16:24:05 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 **	@param o <t_v3> Origin point of the ray
 **	@param d <t_v3> Normalized vector as direction
 **  @param bounces <int> Amount of times ray has bounced
+**  @param index <double> Refractive index of the material the ray is in
 */
 typedef struct s_ray3
 {
 	t_v3	o;
 	t_v3	d;
 	int		bounces;
+	double	index;
 }			t_ray3;
 
 /* ray3.c */

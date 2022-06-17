@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   shape.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/06 11:55:37 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/06/17 15:09:39 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   shape.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/06/17 16:10:10 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 static t_material	parse_material(char *str)
 {
 	const static t_material	table[] = {
-	{"diffuse", 0, 0, 1, DEFAULT_PHONG},
 	{"water", 0, 0.5, 1.3, DEFAULT_PHONG},
 	{"mirror", 0.9, 0, 1, INFINITY},
 	{"glass", 0, 0.9, 1.5, INFINITY},

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   vec3_advanced.c                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/02 14:06:03 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/17 15:03:48 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   vec3_advanced.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/02 14:06:03 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/06/17 17:10:24 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
 		angle = 1.0;
 	else if (angle < 0.0)
 		angle = 0.0;
-	angle = pow(angle, 4.0);
+	angle = pow(angle, strength);
 	out = incoming;
 	out.x += (out.x - refl.x) * angle;
 	out.y += (out.y - refl.y) * angle;

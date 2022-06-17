@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/17 10:51:42 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 12:40:37 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define WINDOW_RESIZE 0
 
 /* threads.c */
-# define NB_THREADS 7
+# define NB_THREADS 1
 
 /* raycasting.c */
 # define RAY_MAX_BOUNCES 16
@@ -32,8 +32,5 @@
 # define AA 1
 
 /* shape.c */
-# define DEFAULT_MATERIAL MATERIAL_DEFAULT
-# define DEFAULT_REFLECTIVENESS 0
-# define DEFAULT_PHONG INFINITY
-
+# define DEFAULT_PHONG 10
 #endif

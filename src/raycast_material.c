@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 11:50:42 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/17 14:40:28 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/17 15:09:20 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_rdata	material_cast(t_program *program, t_ray3 *ray, t_rdata rdata)
 	rdata.color = raycast_calc_lighting(program, rdata.last_coll);
 	if (ray->bounces >= RAY_MAX_BOUNCES)
 		return (rdata);
-	if (rdata.last_coll.shape->material.reflection > __DBL_EPSILON__)
+	if (rdata.last_coll.shape->material.reflection > 0)
 	{
 		mray.o = rdata.last_coll.point;
 		mray.o = vec3_add(mray.o, vec3_mul(rdata.last_coll.normal, __FLT_EPSILON__));
@@ -35,17 +35,17 @@ t_rdata	material_cast(t_program *program, t_ray3 *ray, t_rdata rdata)
 		rdata.color = color_blend(rdata.color,
 			new_rd.color, rdata.last_coll.shape->material.reflection);
 	}
-	else if (rdata.last_coll.shape->material.refraction > __DBL_EPSILON__)
+	if (rdata.last_coll.shape->material.refraction > 0)
 	{
 		mray.o = rdata.last_coll.point;
-		mray.o = vec3_add(mray.o, vec3_mul(rdata.last_coll.normal, __FLT_EPSILON__ * -2.0));
-		mray.d = vec3_calc_refraction(ray->d, rdata.last_coll.normal,
-			rdata.last_coll.shape->material.index);
+		mray.d = ray->d;
+		mray.o = vec3_add(mray.o, vec3_mul(mray.d, __FLT_EPSILON__));
 		mray.bounces = ray->bounces + 1;
 		new_rd = raycast(program, &mray);
 		if (new_rd.last_coll.shape == NULL)
 			new_rd.color = color_f(0, 0, 0);
-		rdata.color = new_rd.color;
+		rdata.color = color_blend(rdata.color,
+			new_rd.color, rdata.last_coll.shape->material.refraction);
 	}
 	return (rdata);
 }

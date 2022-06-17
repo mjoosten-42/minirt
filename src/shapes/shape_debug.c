@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:51:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/16 11:34:27 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 14:25:46 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "objects.h"
+#include "material.h"
 
 static void	_shape_print_mask(t_shape *shape)
 {
@@ -61,5 +62,6 @@ void	shape_print(t_shape *shape)
 	color_print_f(shape->color);
 	printf("|  MASK:\n");
 	_shape_print_mask(shape);
+	material_print(&shape->material);
 	printf("# - - - - - - - - - - - - - - - - - - - -\n");
 }

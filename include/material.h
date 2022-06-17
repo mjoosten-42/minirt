@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:54:38 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/17 12:26:43 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 14:24:29 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ typedef struct s_material
 	float	index;
 	float	shine;
 }	t_material;
+
+void	material_print(const t_material *material);
 
 #endif

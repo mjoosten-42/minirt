@@ -6,6 +6,7 @@ HEADERS :=	include/collision.h \
 	include/log.h \
 	include/mat4.h \
 	include/material.h \
+	include/objects.h \
 	include/parse.h \
 	include/program.h \
 	include/ray3.h \

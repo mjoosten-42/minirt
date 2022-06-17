@@ -11,6 +11,7 @@ SOURCES :=	src/anti_aliasing.c \
 	src/colors/color_math2.c \
 	src/log.c \
 	src/mat4.c \
+	src/material.c \
 	src/math/quadratic.c \
 	src/math/rodriguez.c \
 	src/parse/atod.c \

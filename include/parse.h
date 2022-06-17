@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:16:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/16 11:33:17 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 14:15:32 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct s_object
 {
 	t_object_type	type;
 	char			*id;
-	int				nb_args;
+	int				min_args;
+	int				max_args;
 	void			(*f)(char **, void *);
 	void			*ptr;
 }					t_object;

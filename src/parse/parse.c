@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/17 12:35:02 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 14:19:27 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,11 @@ char	**get_args(char *line)
 void	build_object(t_program *program, char **args)
 {
 	t_object	object;
+	int			argsize;
 
+	argsize = ft_argsize(args);
 	object = get_object(program, args[0]);
-	if (ft_argsize(args) != object.nb_args)
+	if (argsize < object.min_args || argsize > object.max_args)
 		rt_error(NULL, "Wrong amount of arguments");
 	object.f(args, object.ptr);
 }
@@ -78,13 +80,13 @@ void	build_object(t_program *program, char **args)
 t_object	get_object(t_program *program, char *str)
 {
 	const t_object	table[] = {
-	{OBJECT_AMBIENCE, "A", 3, build_ambience, &program->ambience},
-	{OBJECT_CAMERA, "C", 4, build_camera, &program->camera},
-	{OBJECT_LIGHT, "L", 4, build_light, &program->lights},
-	{OBJECT_SPHERE, "sp", 5, build_sphere, &program->shapes},
-	{OBJECT_PLANE, "pl", 5, build_plane, &program->shapes},
-	{OBJECT_CYLINDER, "cy", 7, build_cylinder, &program->shapes},
-	{OBJECT_CONE, "co", 7, build_cone, &program->shapes}
+	{OBJECT_AMBIENCE, "A", 3, 3, build_ambience, &program->ambience},
+	{OBJECT_CAMERA, "C", 4, 4, build_camera, &program->camera},
+	{OBJECT_LIGHT, "L", 4, 4, build_light, &program->lights},
+	{OBJECT_SPHERE, "sp", 4, 5, build_sphere, &program->shapes},
+	{OBJECT_PLANE, "pl", 4, 5, build_plane, &program->shapes},
+	{OBJECT_CYLINDER, "cy", 6, 7, build_cylinder, &program->shapes},
+	{OBJECT_CONE, "co", 6, 7, build_cone, &program->shapes}
 	};
 	int				tablesize;
 	int				len;
@@ -96,7 +98,8 @@ t_object	get_object(t_program *program, char *str)
 	while (i < tablesize)
 	{
 		if (ft_strncmp(str, table[i].id, len) == 0)
-			return ((t_object){table[i].type, table[i].id, table[i].nb_args, table[i].f, table[i].ptr});
+			return ((t_object){table[i].type, table[i].id, table[i].min_args,
+				table[i].max_args, table[i].f, table[i].ptr});
 		i++;
 	}
 	rt_error(str, "not an identifier");

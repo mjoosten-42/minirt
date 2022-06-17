@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/15 14:36:24 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 12:31:02 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,20 +116,15 @@ t_color	raycast_calc_lighting(t_program *program, t_collision coll)
 	return (c);
 }
 
+t_rdata	material_cast(t_program *program, t_ray3 *ray, t_rdata rdata);
+
 t_rdata	raycast(t_program *program, t_ray3 *ray)
 {
-	t_rdata			rdata;
-	t_material_type	mtype;
-	t_rcastfunc		func;
+	t_rdata	rdata;
 
 	rdata.last_coll = raycast_get_collision(program->shapes, ray);
 	if (rdata.last_coll.shape == NULL)
 		return (rdata);
-	mtype = rdata.last_coll.shape->material.type;
-	if (ray->bounces >= RAY_MAX_BOUNCES)
-		func = material_get_func(MATERIAL_DEFAULT);
-	else
-		func = material_get_func(rdata.last_coll.shape->material.type);
-	rdata.color = func(program, ray, rdata).color;
+	rdata.color = material_cast(program, ray, rdata).color;
 	return (rdata);
 }

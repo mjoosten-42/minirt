@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/15 11:46:33 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/17 12:35:02 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,9 @@ char	**get_args(char *line)
 void	build_object(t_program *program, char **args)
 {
 	t_object	object;
-	int			argsize;
 
 	object = get_object(program, args[0]);
-	argsize = ft_argsize(args);
-	if (argsize != object.nb_args)
+	if (ft_argsize(args) != object.nb_args)
 		rt_error(NULL, "Wrong amount of arguments");
 	object.f(args, object.ptr);
 }
@@ -83,19 +81,21 @@ t_object	get_object(t_program *program, char *str)
 	{OBJECT_AMBIENCE, "A", 3, build_ambience, &program->ambience},
 	{OBJECT_CAMERA, "C", 4, build_camera, &program->camera},
 	{OBJECT_LIGHT, "L", 4, build_light, &program->lights},
-	{OBJECT_SPHERE, "sp", 4, build_sphere, &program->shapes},
-	{OBJECT_PLANE, "pl", 4, build_plane, &program->shapes},
-	{OBJECT_CYLINDER, "cy", 6, build_cylinder, &program->shapes},
-	{OBJECT_CONE, "co", 6, build_cone, &program->shapes}
+	{OBJECT_SPHERE, "sp", 5, build_sphere, &program->shapes},
+	{OBJECT_PLANE, "pl", 5, build_plane, &program->shapes},
+	{OBJECT_CYLINDER, "cy", 7, build_cylinder, &program->shapes},
+	{OBJECT_CONE, "co", 7, build_cone, &program->shapes}
 	};
 	int				tablesize;
+	int				len;
 	int				i;
 
 	i = 0;
+	len = ft_strlen(str);
 	tablesize = sizeof(table) / sizeof(*table);
 	while (i < tablesize)
 	{
-		if (ft_strncmp(str, table[i].id, ft_strlen(str)) == 0)
+		if (ft_strncmp(str, table[i].id, len) == 0)
 			return ((t_object){table[i].type, table[i].id, table[i].nb_args, table[i].f, table[i].ptr});
 		i++;
 	}

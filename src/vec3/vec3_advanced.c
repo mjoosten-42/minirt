@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 14:06:03 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/17 14:08:48 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/17 15:03:48 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,84 +22,59 @@ t_v3	vec3_calc_reflection(t_v3 incoming, t_v3 normal)
 	return (refl);
 }
 
-/*
-inline void Refract(
-  VEC3 &out, const VEC3 &incidentVec, const VEC3 &normal, float eta)
-{
-  float N_dot_I = Dot(normal, incidentVec);
-  float k = 1.f - eta * eta * (1.f - N_dot_I * N_dot_I);
-  if (k < 0.f)
-    out = VEC3(0.f, 0.f, 0.f);
-  else
-    out = eta * incidentVec - (eta * N_dot_I + sqrtf(k)) * normal;
-}
-*/
-/*
-Vec3 computeRefraction(const Vec3& I, const Vec3& N, const float &ior, Vec3& intersection) {
-    Vec3 normal = N; normal.normalize();
-    normal = normal;
-    Vec3 incident = I; incident.normalize();
-    float cosi = incident.dot(normal);
-    float n1, n2;
-    if (cosi > 0.0f) { 
-        //Incident and normal have same direction, INSIDE sphere
-        n1 = ior;
-        n2 = 1.0f;
-        normal = -normal;
-    } else { 
-        //Incident and normal have opposite direction, OUTSIDE sphere
-        n1 = 1.0f;
-        n2 = ior;
-        cosi = -cosi;
-    }
-
-    float eta = n1 / n2;
-    float k = 1.0f - (eta * eta) * (1.0f - cosi * cosi);
-
-    if (k < 0.0f) {   
-        //internal reflection
-        Vec3 reflectionRay = computeReflection(incident, normal);
-        intersection = intersection + (normal * BIAS);
-        return reflectionRay;
-    } else {
-        Vec3 refractionVector = incident * eta + normal * (eta * cosi - sqrt(k));
-        refractionVector.normalize();
-        intersection = intersection - (normal * BIAS);
-        return refractionVector;
-    }
-}
-*/
-
+//	Really weird "warping" refraction, but it looks like glass
 t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
 {
-	double	cosi;
-	double	n1;
-	double	n2;
-	double	eta;
-	double	k;
-	t_v3	refr;
+	t_v3	refl;
+	t_v3	out;
+	double	angle;
 
-	cosi = vec3_dot(incoming, normal);
-	if (cosi > 0.0f)
-	{
-		n1 = strength;
-		n2 = 1.0;
-		normal = vec3_inv(normal);
-	}
-	else
-	{
-		n1 = 1.0;
-		n2 = strength;
-		cosi = -cosi;
-	}
-	eta = n1 / n2;
-	k = 1.0 - (eta * eta) * (1.0 - cosi * cosi);
-	if (k < 0.0)
-		refr = vec3_calc_reflection(incoming, normal);
-	else
-		refr = vec3_add( vec3_mul(incoming, eta), vec3_mul(normal, eta * cosi * sqrt(k)) );
-	return (refr);
+	refl = vec3_calc_reflection(incoming, normal);
+	
+	angle = vec3_dot(refl, incoming);
+	if (angle > 1.0)
+		angle = 1.0;
+	else if (angle < 0.0)
+		angle = 0.0;
+	angle = pow(angle, 4.0);
+	out = incoming;
+	out.x += (out.x - refl.x) * angle;
+	out.y += (out.y - refl.y) * angle;
+	out.z += (out.z - refl.z) * angle;
+	out = vec3_norm(out);
+	return (out);
 }
+
+// t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
+// {
+// 	double	cosi;
+// 	double	n1;
+// 	double	n2;
+// 	double	eta;
+// 	double	k;
+// 	t_v3	refr;
+
+// 	cosi = vec3_dot(incoming, normal);
+// 	if (cosi > 0.0f)
+// 	{
+// 		n1 = strength;
+// 		n2 = 1.0;
+// 		normal = vec3_inv(normal);
+// 	}
+// 	else
+// 	{
+// 		n1 = 1.0;
+// 		n2 = strength;
+// 		cosi = -cosi;
+// 	}
+// 	eta = n1 / n2;
+// 	k = 1.0 - (eta * eta) * (1.0 - cosi * cosi);
+// 	if (k < 0.0)
+// 		refr = vec3_calc_reflection(incoming, normal);
+// 	else
+// 		refr = vec3_add( vec3_mul(incoming, eta), vec3_mul(normal, eta * cosi * sqrt(k)) );
+// 	return (refr);
+// }
 
 double	vec3_angle(t_v3 v1, t_v3 v2)
 {

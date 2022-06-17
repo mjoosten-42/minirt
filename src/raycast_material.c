@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 11:50:42 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/17 15:09:20 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/17 15:27:59 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "raycasting.h"
 #include "shape.h"
 
-//	Formula for mirroring a vector: 𝑟=𝑑−2(𝑑⋅𝑛)𝑛
 t_rdata	material_cast(t_program *program, t_ray3 *ray, t_rdata rdata)
 {
 	t_ray3	mray;
@@ -38,8 +37,9 @@ t_rdata	material_cast(t_program *program, t_ray3 *ray, t_rdata rdata)
 	if (rdata.last_coll.shape->material.refraction > 0)
 	{
 		mray.o = rdata.last_coll.point;
-		mray.d = ray->d;
-		mray.o = vec3_add(mray.o, vec3_mul(mray.d, __FLT_EPSILON__));
+		mray.o = vec3_add(mray.o, vec3_mul(ray->d, __FLT_EPSILON__));
+		mray.d = vec3_calc_refraction(ray->d, rdata.last_coll.normal,
+			rdata.last_coll.shape->material.index);
 		mray.bounces = ray->bounces + 1;
 		new_rd = raycast(program, &mray);
 		if (new_rd.last_coll.shape == NULL)

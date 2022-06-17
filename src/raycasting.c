@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/17 14:47:06 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/06/17 16:40:05 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,27 @@ t_collision	raycast_get_coll_ignore_refr(t_list *shapes, const t_ray3 *ray)
 		shapes = shapes->next;
 	}
 	return (closest_collision);
+}
+
+double	raycast_get_light_perc(t_list *shapes, const t_ray3 *ray, double max_dist)
+{
+	t_collision	coll;
+	double		percent;
+
+	percent = 1.0;
+	while (shapes != NULL)
+	{
+		coll = ((t_shape *)shapes->content)->f(shapes->content, ray);
+		if (coll.shape != NULL)
+			if (coll.distance < max_dist)
+			{
+				percent *= coll.shape->material.refraction;
+				if (percent < __FLT_EPSILON__)
+					return (0.0);
+			}
+		shapes = shapes->next;
+	}
+	return (percent);
 }
 
 static t_ray3	_calc_lightray(const t_light *light, const t_collision *coll)
@@ -105,17 +126,20 @@ static t_color	ray_to_light(t_program *program, t_collision coll, const t_light 
 {
 	t_color		diffuse_c;
 	t_color		specular_c;
+	t_color		total_c;
 	t_ray3		ray;
-	t_collision	shadow_coll;
+	double		light_percent;
 
 	ray = _calc_lightray(light, &coll);
-	shadow_coll = raycast_get_coll_ignore_refr(program->shapes, &ray);
-	if (shadow_coll.shape != NULL)
-		if (shadow_coll.distance < vec3_distance(light->o, coll.point))
-			return (color_f(0, 0, 0));
+	light_percent = raycast_get_light_perc(program->shapes, &ray,
+		vec3_distance(light->o, coll.point));
+	if (light_percent < __FLT_EPSILON__)
+		return (color_f(0, 0, 0));
 	diffuse_c = _calc_diffuse(&coll, light, &ray);
 	specular_c = _calc_specular(&coll, light, &ray, coll.shape->material.shine);
-	return (color_add(specular_c, diffuse_c));
+	total_c = color_add(specular_c, diffuse_c);
+	color_luminosity(&total_c, light_percent);
+	return (total_c);
 }
 
 t_color	raycast_calc_lighting(t_program *program, t_collision coll)

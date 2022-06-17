@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   config.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/17 14:48:42 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   config.h                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/10 11:53:24 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/06/17 16:18:06 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 # define WINDOW_RESIZE 0
 
 /* threads.c */
-# define NB_THREADS 1
+# define NB_THREADS 8
 
 /* raycasting.c */
-# define RAY_MAX_BOUNCES 16
+# define RAY_MAX_BOUNCES 8
 
 /* anti_aliasing.c */
 # define AA 1
 
 /* shape.c */
-# define DEFAULT_PHONG 10
+# define DEFAULT_PHONG 4
 #endif

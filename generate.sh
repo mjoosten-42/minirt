@@ -2,7 +2,7 @@
 
 FILE=scenes/random.rt
 
-echo 'C  -10,-10,-10       1,1,1 90'     > $FILE
+echo 'C  -10,-10,-10          1,1,1 70'  > $FILE
 echo 'A  0.2               255,255,255' >> $FILE
 echo                                    >> $FILE
 echo 'L  0,0,0         0.5 255,255,255' >> $FILE
@@ -14,7 +14,8 @@ echo 'L  100,0,100     0.5 255,255,255' >> $FILE
 echo 'L  0,100,100     0.5 255,255,255' >> $FILE
 echo 'L  100,100,100   0.5 255,255,255' >> $FILE
 echo                                    >> $FILE
-echo 'pl 110,110,110   1,1,1 63,63,63'  >> $FILE
+echo 'pl 110,110,110   1,1,1  63,63,63' >> $FILE
+echo                                    >> $FILE
 
 function randomObject
 {
@@ -22,32 +23,30 @@ function randomObject
 		0)
 			echo -n 'sp ' >> $FILE
 			randomPoint
-			randomDiameter
+			randomNumber "20"
 			randomColor
 			randomMaterial
-			echo >> $FILE
 			;;
 		1)
 			echo -n 'cy ' >> $FILE
 			randomPoint
 			randomPoint
-			randomDiameter
-			randomDiameter
+			randomNumber "30"
+			randomNumber "30"
 			randomColor
 			randomMaterial
-			echo >> $FILE
 			;;
 		2)
 			echo -n 'co ' >> $FILE
 			randomPoint
 			randomPoint
-			randomDiameter
-			randomDiameter
+			randomNumber "30"
+			randomNumber "30"
 			randomColor
 			randomMaterial
-			echo >> $FILE
 			;;
 	esac
+	echo >> $FILE
 }
 
 function randomMaterial
@@ -63,15 +62,15 @@ function randomMaterial
 			MAT="glass"
 			;;
 		3)
-			MAT="water"
+			MAT="metal"
 			;;
 	esac
 	echo -n $MAT >> $FILE
 }
 
-function randomDiameter
+function randomNumber
 {
-	echo -n "$(($RANDOM % 20)).$(($RANDOM % 100)) " >> $FILE
+	echo -n "$(($RANDOM % $1)).$(($RANDOM % 100)) " >> $FILE
 }
 
 function randomColor
@@ -99,6 +98,6 @@ function randomPoint
 	echo -n " " >> $FILE
 }
 
-for i in {1..100} ; do
+for i in {1..10} ; do
 	randomObject
 done

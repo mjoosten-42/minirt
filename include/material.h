@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:54:38 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/17 14:24:29 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:43:03 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /**
 **	data to define behaviour of impacting rays
-**	@param name	<char *> "glass" "mirror" "diffuse"
+**	@param name	<char *> "glass" "mirror"
 **	@param reflection	<float> percentage (0.0 - 1.0)
 **	@param refraction	<float> percentage (0.0 - 1.0)
 **	@param index	<float> the angle at which light passes through an object

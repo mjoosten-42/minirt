@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/17 17:12:25 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:45:11 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static t_material	parse_material(char *str)
 {
 	const static t_material	table[] = {
 	{"water", 0.2, 0.5, 1.3, DEFAULT_PHONG},
-	{"mirror", 0.9, 0, 1, INFINITY},
-	{"glass", 0, 0.9, 1.5, INFINITY},
-	{"refract", 0, 1.0, 1.5, DEFAULT_PHONG}
+	{"mirror", 0.9, 0.0, 1.0, INFINITY},
+	{"glass", 0.0, 0.9, 1.5, INFINITY},
+	{"metal", 0.5, 0.1, 2.0, 2.0}
 	};
 	int						tablesize;
 	int						len;
@@ -41,7 +41,7 @@ static t_material	parse_material(char *str)
 			return (table[i]);
 		i++;
 	}
-	return ((t_material){NULL, 0, 0, 1, INFINITY});
+	return ((t_material){NULL, 0, 0, 1, DEFAULT_PHONG});
 }
 
 static t_shape	*build_shape(char **args, t_object_type type, void *ptr)

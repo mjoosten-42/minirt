@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/15 14:36:40 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:33:17 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static t_v3	_get_direction(t_program *program, double x, double y)
 //	This function gets run for every pixel, returning the color
 t_color	calc_pixel(t_program *program, double x, double y)
 {
-	t_ray3			ray;
-	t_rdata			rdata;
+	t_rdata	rdata;
+	t_ray3	ray;
 
 	ray = ray3(program->camera.origin, _get_direction(program, x, y));
 	rdata = raycast(program, &ray);

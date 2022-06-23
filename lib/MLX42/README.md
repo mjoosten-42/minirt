@@ -6,16 +6,16 @@
   <sub>Written by <a href="https://w2wizard.github.io/">W2.Wizard</a> for the 42 Network</sub>
     <div align="center">
 	</br>
-	<img src="https://img.shields.io/github/license/W2Codam/MLX42" alt="License GPL2.0"> 
+	<img src="https://img.shields.io/github/license/codam-coding-college/MLX42" alt="License GPL2.0"> 
 	<img src="https://svgshare.com/i/Zhy.svg" alt="Linux">
 	<img src="https://svgshare.com/i/ZjP.svg" alt="MacOS">
 	<img src="https://svgshare.com/i/ZhY.sv" alt="Windows">
-	<img src="https://github.com/W2Codam/MLX42/actions/workflows/ci.yml/badge.svg" alt="Build">
-	<img src="https://img.shields.io/github/forks/W2Codam/MLX42" alt="Forks">
+	<img src="https://github.com/codam-coding-college/MLX42/actions/workflows/ci.yml/badge.svg" alt="Build">
+	<img src="https://img.shields.io/github/forks/codam-coding-college/MLX42" alt="Forks">
     </div>
 </div>
 
-My own recreation of the MiniLibX library used by 42, using GLFW &amp; glad, running on OpenGL 3.3.
+A recreation of the MiniLibX library used by 42, using GLFW &amp; glad, running on OpenGL.
 The goal of MLX42 is to replace the outdated and stale MiniLibX library.
 
 For information and documentation about MLX42 check the wiki.
@@ -26,18 +26,12 @@ For information and documentation about MLX42 check the wiki.
 The main idea of MLX42 is to be a cross-platform graphics interface. In 42 everything runs (currently) on MacOS, but it's
 very useful to be able to work remotely on different machines. With MiniLibX this is not possible.
 
-#### Norme Proof
-MLX42 will always adhere fully to the latest norme, if 42 creates a norme, it should also use it. 
-
 #### Documented
 Almost all functions and types are fully documented giving you a clue as to how to approach and use the library.
 No more guessing and searching how something functions or is supposed to work.
 
 #### Custom XPM (XPM42) format
 A custom simple to use XPM-like format which has some minor differences to the XPM3 format.
-
-#### Up-to-date with latest OpenGL
-MLX42 will try to always maintain and use the latest and stable version of OpenGL available.
 
 #### Almost identical usage to MiniLibX
 Switching to MLX42 from MiniLibX is not a lot of work, most features present in MiniLibX are also present in MLX42, albeit with different prototypes.
@@ -50,16 +44,20 @@ In the very end a library is generated, compile your program with this library!
 
 1. Download MLX42
 ```bash 
-➜  ~ git clone https://github.com/W2Codam/MLX42.git
+➜  ~ git clone https://github.com/codam-coding-college/MLX42.git
 ```
 
-### Via Homebrew / Homebrew42 by building from source.
+### Via [Homebrew](https://brew.sh/) / [Homebrew42](https://github.com/kube/42homebrew) by building from source.
 
 2. Install GLFW
+
+Through brew:
 ```bash
 ➜  ~ brew update
 ➜  ~ brew install glfw
 ```
+
+Or, if studying at Codam, you can find GLFW in the [Managed Software Center](munki://detail-GLFW).
 
 3. Compile MLX42
 ```bash 
@@ -68,9 +66,15 @@ In the very end a library is generated, compile your program with this library!
 ```
 
 4. Compile Program
-With normal brew you can now simply compile the program with:
+
+With the normal brew version you can now simply compile the program with:
 ```bash
 ➜  ~ gcc main.c libmlx42.a -lglfw ...
+```
+
+You might have to specify the location explicitly:
+```bash
+➜  ~ gcc main.c libmlx42.a -lglfw -L /opt/homebrew/Cellar/glfw/3.3.6/lib/
 ```
 
 However, with 42Homebrew you have additionally specify the location of the library like here:
@@ -78,15 +82,22 @@ However, with 42Homebrew you have additionally specify the location of the libra
 ➜  ~ gcc main.c libmlx42.a -I include -lglfw -L "/Users/$USER/.brew/opt/glfw/lib/"
 ```
 
+Or, if studying at Codam, compile using the following flags:
+```bash
+➜  ~ gcc main.c libmlx42.a -I include -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+```
+
+5. Run!
+
 ### Pre-compiled libraries
 
-1. Download the binaries directly [here.](https://www.glfw.org/download.html)
+2. Download the binaries directly [here.](https://www.glfw.org/download.html)
 
-2. If possible move the contents of `lib` and `include` of GLFW to `/usr/local/lib` and `/usr/local/include` respectively.
+3. If possible move the contents of `lib` and `include` of GLFW to `/usr/local/lib` and `/usr/local/include` respectively.
    If not possible, move the lib file to the root of MLX42 and move the GLFW directory in include to the include of MLX42.
    NOTE: For the lib choose the appropriate `.a` & `.dylib` file depending on your architecture.
 
-3. Compile MLX42
+4. Compile MLX42
 ```bash 
 ➜  ~ cd MLX42
 ➜  ~ make
@@ -101,7 +112,7 @@ Else, simply compile like this:
 ➜  ~ gcc main.c libmlx42.a -lglfw ...
 ```
 
-4. Run
+5. Run
 
 In case of any security warnings or MacOS telling you it can't verify the author/developer, go to ```Settings > Security & Privacy```.
 There will be a pop-up at the bottom telling you that an application tried to run, click the option to let it run.
@@ -110,32 +121,34 @@ There will be a pop-up at the bottom telling you that an application tried to ru
 
 NOTE: This will not run with Windows Subsystem for Linux (WSL)!!!
 
-1. Download GLFW: [Click Me!](https://github.com/glfw/glfw/releases/download/3.3.6/glfw-3.3.6.zip)
-2. Extract GLFW, and to install, run the following commands:
+1. Install the necessary packages:
+
+For Debian like (Ubuntu, Mint, Pop OS...):
 ```bash 
 ➜  ~ sudo apt update
-➜  ~ sudo apt install build-essential
-➜  ~ sudo apt install cmake
-➜  ~ sudo apt install xorg-dev
+➜  ~ sudo apt install build-essential libx11-dev libglfw3-dev libglfw3 xorg-dev
 ```
-NOTE: For arch-linux you might also have to do ```sudo apt-get install glfw-x11``` if available.
 
-3. Navigate to the extracted GLFW directory and run:
-```bash 
-➜  ~ cmake -G "Unix Makefiles"
-➜  ~ make
-➜  ~ sudo make install
-➜  ~ sudo apt-get install libx11-dev libglu1-mesa-dev freeglut3-dev libglew1.5 libglew1.5-dev libglu1-mesa libgl1-mesa-glx libgl1-mesa-dev libglfw3-dev libglfw3
+For Arch-linux (Manjaro, Endeavor, Garuda):
+```bash
+➜  ~ sudo pacman -S glfw-x11
 ```
-4. Download MLX42 & Build
+OR (if you use sway/wlroots compositor or other wayland compositor)
+
+```bash
+➜  ~ sudo pacman -S glfw-wayland
+```
+
+2. Download MLX42 & Build
 ```bash 
-➜  ~ git clone https://github.com/W2Codam/MLX42.git
+➜  ~ git clone https://github.com/codam-coding-college/MLX42.git
 ➜  ~ cd MLX42
 ➜  ~ make
 ```
-5. Create a ```main.c``` file, include ```MLX42/MLX42.h```, compile with:
- - ```-ldl -lglfw -lGL -lX11 -lpthread -lXrandr -lXi```, make sure to also do ```-I <include_path>```. At the very least ```-ldl -lglfw``` are required.
-6. Run.
+
+3. Create a ```main.c``` file, include ```MLX42/MLX42.h```, compile with ```-ldl -lglfw ```, make sure to also do ```-I <include_path>```.
+ 
+4. Run.
 
 The systems below have not been tested yet.
 
@@ -176,8 +189,6 @@ The systems below have not been tested yet.
 
 13. Go to the directory you assigned in Step 10. Copy the GLFW folder in the include folder to `C:\MinGW\include` & copy the .a file in the lib folder to `C:\MinGW\lib`.
 
-#### NOTE: As of now the build script for windows does not exist, compile by adding every c file manually.
-
 14. Compile your program with these flags:
  - `-lglfw3`
  - `-lopengl32`
@@ -215,11 +226,11 @@ The systems below have not been tested yet.
 #define WIDTH 256
 #define HEIGHT 256
 
-t_mlx_image	*g_img;
+mlx_image_t	*g_img;
 
 void	hook(void *param)
 {
-	t_mlx	*mlx;
+	mlx_t	*mlx;
 
 	mlx = param;
 	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
@@ -236,7 +247,7 @@ void	hook(void *param)
 
 int32_t	main(void)
 {
-	t_mlx	*mlx;
+	mlx_t	*mlx;
 
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)

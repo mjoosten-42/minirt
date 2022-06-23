@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:11:40 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/10 11:18:00 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:01:41 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 int	main(int argc, char **argv)
 {
-	t_program	program;
+	t_program	*program;
 
 	program = program_get();
 	if (argc < 2)
 		argv[1] = "scenes/maarten.rt";
-	build_scene(&program, argv[1]);
-	program_run(&program);
-	program_terminate(&program);
+	build_scene(program, argv[1]);
+	program_run(program);
+	program_terminate(program);
 	LOG("Program end");
 	return (EXIT_SUCCESS);
 }

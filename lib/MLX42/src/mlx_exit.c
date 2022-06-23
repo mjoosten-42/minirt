@@ -6,27 +6,26 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/28 02:43:22 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/02/19 23:54:50 by w2wizard      ########   odam.nl         */
+/*   Updated: 2022/05/31 12:30:27 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42_Int.h"
 
-static void	mlx_free_imagedata(void	*content)
-{
-	t_mlx_image		*img;
+//= Private =//
 
-	img = content;
-	mlx_freen(3, img->context, img->pixels, img->instances);
+static void mlx_free_image(void* content)
+{
+	mlx_image_t* img = content;
+
+	mlx_freen(4, img->context, img->pixels, img->instances, img);
 }
 
-void	mlx_close_window(t_mlx *mlx)
+//= Public =//
+
+void mlx_close_window(mlx_t* mlx)
 {
-	if (!mlx)
-	{
-		mlx_log(MLX_WARNING, MLX_NULL_ARG);
-		return ;
-	}
+	MLX_ASSERT(!mlx);
 	glfwSetWindowShouldClose(mlx->window, true);
 }
 
@@ -34,21 +33,15 @@ void	mlx_close_window(t_mlx *mlx)
  * All of glfw & glads resources are cleaned up by the terminate function.
  * Now its time to cleanup our own mess.
  */
-void	mlx_terminate(t_mlx *mlx)
+void mlx_terminate(mlx_t* mlx)
 {
-	t_mlx_ctx	*mlxctx;
+	MLX_ASSERT(!mlx);
 
-	if (!mlx)
-	{
-		mlx_log(MLX_WARNING, MLX_NULL_ARG);
-		return ;
-	}
-	if (!glfwWindowShouldClose(mlx->window))
-		glfwSetWindowShouldClose(mlx->window, true);
-	mlxctx = mlx->context;
+	mlx_ctx_t *const mlxctx = mlx->context;
+
 	glfwTerminate();
-	mlx_lstclear((t_mlx_list **)(&mlxctx->hooks), &free);
-	mlx_lstclear((t_mlx_list **)(&mlxctx->render_queue), &free);
-	mlx_lstclear((t_mlx_list **)(&mlxctx->images), &mlx_free_imagedata);
+	mlx_lstclear((mlx_list_t**)(&mlxctx->hooks), &free);
+	mlx_lstclear((mlx_list_t**)(&mlxctx->render_queue), &free);
+	mlx_lstclear((mlx_list_t**)(&mlxctx->images), &mlx_free_image);
 	mlx_freen(2, mlxctx, mlx);
 }

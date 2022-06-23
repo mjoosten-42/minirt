@@ -6,144 +6,215 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/21 15:34:45 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/02/18 12:28:15 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/05/15 20:57:16 by jsimonis      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42_Int.h"
 
-// Reference: https://bit.ly/3KuHOu1 (Matrix View Projection)
-static void	mlx_render_texture(t_mlx *mlx, t_mlx_image *img, uint8_t *pixels, \
-t_vert *vertices)
-{
-	t_mlx_ctx		*mlxctx;
-	const int32_t	w = img->width;
-	const int32_t	h = img->height;
-	const float		matrix[16] = {
-		2.f / mlx->width, 0, 0, 0,
-		0, 2. / -mlx->height, 0, 0,
-		0, 0, -2. / (1000. - -1000.), 0,
-		-1, -(mlx->height / -mlx->height),
-		-((1000. + -1000.) / (1000. - -1000.)), 1
-	};
+//= Private =//
 
-	mlxctx = mlx->context;
-	glUseProgram(mlxctx->shaderprogram);
-	glUniformMatrix4fv(glGetUniformLocation(mlxctx->shaderprogram, \
-	"ProjMatrix"), 1, GL_FALSE, matrix);
-	glUniform1i(glGetUniformLocation(mlxctx->shaderprogram, "OutTexture"), 0);
-	glBindVertexArray(mlxctx->vao);
-	glBindBuffer(GL_ARRAY_BUFFER, mlxctx->vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(t_vert) * 6, vertices, \
-	GL_STATIC_DRAW);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, \
-	GL_UNSIGNED_BYTE, pixels);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+void mlx_flush_batch(mlx_ctx_t* mlx)
+{
+	if (mlx->batch_size <= 0)
+		return;
+
+	glBindBuffer(GL_ARRAY_BUFFER, mlx->vbo);
+	glBufferData(GL_ARRAY_BUFFER, mlx->batch_size * sizeof(vertex_t), mlx->batch_vertices, GL_STATIC_DRAW);
+	glDrawArrays(GL_TRIANGLES, 0, mlx->batch_size);
+
+	mlx->batch_size = 0;
+	memset(mlx->bound_textures, 0, sizeof(mlx->bound_textures));
+}
+
+static int8_t mlx_bind_texture(mlx_ctx_t* mlx, mlx_image_t* img)
+{
+	const GLint handle = (GLint)((mlx_image_ctx_t*)img->context)->texture;
+
+	// Attempt to bind the texture, or obtain the index if it is already bound.
+	for (int8_t i = 0; i < 16; i++)
+	{
+		if (mlx->bound_textures[i] == handle)
+			return (i);
+
+		if (mlx->bound_textures[i] == 0)
+		{
+			mlx->bound_textures[i] = handle;
+
+			glActiveTexture(GL_TEXTURE0 + i);
+			glBindTexture(GL_TEXTURE_2D, handle);
+			return (i);
+		}
+	}
+
+	// If no free slot was found, flush the batch and assign the texture to the first available slot
+	mlx_flush_batch(mlx);
+
+	mlx->bound_textures[0] = handle;
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, handle);
+	return (0);
 }
 
 /**
  * Internal function to draw a single instance of an image
  * to the screen.
  */
-void	mlx_draw_instance(t_mlx *mlx, t_mlx_image *img, \
-t_mlx_instance *instance)
+void mlx_draw_instance(mlx_ctx_t* mlx, mlx_image_t* img, mlx_instance_t* instance)
 {
-	t_mlx_image_ctx	*imgctx;
-	const int32_t	w = img->width;
-	const int32_t	h = img->height;	
-	const int32_t	x = instance->x;
-	const int32_t	y = instance->y;
+	float w = (float) img->width;
+	float h = (float) img->height;
+	float x = (float) instance->x;
+	float y = (float) instance->y;
+	float z = (float) instance->z;
+	int8_t tex = mlx_bind_texture(mlx, img);
 
-	imgctx = img->context;
-	imgctx->vertices[0] = (t_vert){x, y, instance->z, 0.f, 0.f};
-	imgctx->vertices[1] = (t_vert){x + w, y + h, instance->z, 1.f, 1.f};
-	imgctx->vertices[2] = (t_vert){x + w, y, instance->z, 1.f, 0.f};
-	imgctx->vertices[3] = (t_vert){x, y, instance->z, 0.f, 0.f};
-	imgctx->vertices[4] = (t_vert){x, y + h, instance->z, 0.f, 1.f};
-	imgctx->vertices[5] = (t_vert){x + w, y + h, instance->z, 1.f, 1.f};
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, imgctx->texture);
-	mlx_render_texture(mlx, img, img->pixels, imgctx->vertices);
+	// NOTE: This is faster than uploading before hand!
+	// glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img->width, img->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img->pixels);
+
+	vertex_t vertices[6] = {
+			(vertex_t){x, y, z, 0.f, 0.f, tex},
+			(vertex_t){x + w, y + h, z, 1.f, 1.f, tex},
+			(vertex_t){x + w, y, z, 1.f, 0.f, tex},
+			(vertex_t){x, y, z, 0.f, 0.f, tex},
+			(vertex_t){x, y + h, z, 0.f, 1.f, tex},
+			(vertex_t){x + w, y + h, z, 1.f, 1.f, tex},
+	};
+	memmove(mlx->batch_vertices + mlx->batch_size, vertices, sizeof(vertices));
+	mlx->batch_size += 6;
+
+	if (mlx->batch_size >= MLX_BATCH_SIZE)
+		mlx_flush_batch(mlx);
 }
 
-//= Exposed =//
+//= Public =//
 
-t_mlx_inst	*mlx_image_to_window(t_mlx *mlx, t_mlx_image *img, int32_t x, \
-int32_t y)
+void mlx_set_instance_depth(mlx_instance_t* instance, int32_t zdepth)
 {
-	int32_t			index;
-	t_mlx_ctx		*mlxctx;
-	t_draw_queue	*queue;
-	t_mlx_instance	*temp;
+	MLX_ASSERT(!instance);
 
-	if (!mlx || !img)
-		return ((void *)mlx_log(MLX_WARNING, MLX_NULL_ARG));
-	mlxctx = mlx->context;
-	temp = realloc(img->instances, (++img->count) * sizeof(t_mlx_instance));
-	queue = calloc(1, sizeof(t_draw_queue));
+	if (instance->z == zdepth)
+		return;
+	instance->z = zdepth;
+
+	/**
+	 * NOTE: The reason why we don't sort directly is that
+	 * the user might call this function multiple times in a row and we don't
+	 * want to sort for every change. Pre-loop wise that is.
+	 */
+	sort_queue = true;
+}
+
+int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y)
+{
+	MLX_ASSERT(!mlx);
+	MLX_ASSERT(!img);
+
+	// Allocate buffers...
+	mlx_instance_t* temp = realloc(img->instances, (++img->count) * sizeof(mlx_instance_t));
+	draw_queue_t* queue = calloc(1, sizeof(draw_queue_t));
 	if (!queue || !temp)
-	{
-		mlx_log(MLX_ERROR, MLX_MEMORY_FAIL);
-		return ((void *)mlx_freen(2, temp, queue));
-	}
-	index = img->count - 1;
+		return (mlx_freen(2, temp, queue), mlx_error(MLX_MEMFAIL), -1);
+
+	// Set data...
+	queue->image = img;
+	int32_t index = queue->instanceid = img->count - 1;
 	img->instances = temp;
 	img->instances[index].x = x;
 	img->instances[index].y = y;
-	img->instances[index].z = mlxctx->zdepth++;
-	queue->image = img;
-	queue->instanceid = index;
-	mlx_lstadd_back(&mlxctx->render_queue, mlx_lstnew(queue));
-	return (&img->instances[index]);
+
+	// NOTE: We keep updating the Z for the convenience of the user.
+	// Always update Z depth to prevent overlapping images by default.
+	img->instances[index].z = ((mlx_ctx_t*)mlx->context)->zdepth++;
+
+	// Add draw call...
+	mlx_list_t* templst;
+	if ((templst = mlx_lstnew(queue)))
+	{
+		mlx_lstadd_back(&((mlx_ctx_t*)mlx->context)->render_queue, templst);
+		return (index);
+	}
+	return (mlx_freen(2, temp, queue), mlx_error(MLX_MEMFAIL), -1);
 }
 
-t_mlx_image	*mlx_new_image(t_mlx *mlx, uint32_t width, uint32_t height)
+mlx_image_t* mlx_new_image(mlx_t* mlx, uint32_t width, uint32_t height)
 {
-	t_mlx_image		*newimg;
-	t_mlx_image_ctx	*newctx;
-	const t_mlx_ctx	*mlxctx = mlx->context;
+	MLX_ASSERT(!mlx);
 
-	newimg = calloc(1, sizeof(t_mlx_image));
-	newctx = calloc(1, sizeof(t_mlx_image_ctx));
+	if (!width || !height || width > INT16_MAX || height > INT16_MAX)
+		return ((void*)mlx_error(MLX_INVDIM));
+
+	const mlx_ctx_t* mlxctx = mlx->context;
+	mlx_image_t* newimg = calloc(1, sizeof(mlx_image_t));
+	mlx_image_ctx_t* newctx = calloc(1, sizeof(mlx_image_ctx_t));
 	if (!newimg || !newctx)
-		return ((void *)mlx_freen(2, newimg, newctx));
-	(*(uint32_t *)&newimg->width) = width;
-	(*(uint32_t *)&newimg->height) = height;
+	{
+		mlx_freen(2, newimg, newctx);
+		return ((void *)mlx_error(MLX_MEMFAIL));
+	}
+	newimg->enabled = true;
 	newimg->context = newctx;
-	newimg->pixels = calloc(width * height, sizeof(int32_t));
-	if (!newimg->pixels)
-		return ((void *)mlx_freen(2, newimg, newctx));
+	(*(uint32_t*)&newimg->width) = width;
+	(*(uint32_t*)&newimg->height) = height;
+	if (!(newimg->pixels = calloc(width * height, sizeof(int32_t))))
+	{
+		mlx_freen(2, newimg, newctx);
+		return ((void *)mlx_error(MLX_MEMFAIL));
+	}
+
+	mlx_list_t* newentry;
+	if (!(newentry = mlx_lstnew(newimg)))
+	{
+		mlx_freen(3, newimg->pixels, newimg->context, newimg);
+		return ((void *)mlx_error(MLX_MEMFAIL));
+	}
+
+	// Generate OpenGL texture
 	glGenTextures(1, &newctx->texture);
 	glBindTexture(GL_TEXTURE_2D, newctx->texture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, \
-	GL_UNSIGNED_BYTE, newimg->pixels);
-	mlx_lstadd_back((t_mlx_list **)(&mlxctx->images), mlx_lstnew(newimg));
-	return (newimg->enabled = true, newimg);
+	mlx_lstadd_back((mlx_list_t**)(&mlxctx->images), newentry);
+	return (newimg);
 }
 
-void	mlx_delete_image(t_mlx *mlx, t_mlx_image *image)
+void mlx_delete_image(mlx_t* mlx, mlx_image_t* image)
 {
-	t_mlx_list		*imglst;
-	t_mlx_list		*quelst;
-	t_mlx_ctx		*mlxctx;
+	MLX_ASSERT(!mlx);
+	MLX_ASSERT(!image);
 
-	mlxctx = mlx->context;
-	imglst = mlx_lstremove(&mlxctx->images, image, &mlx_equal_image);
-	if (imglst)
+	mlx_ctx_t* mlxctx = mlx->context;
+
+	// Delete all instances in the render queue
+	mlx_list_t* quelst;
+	while ((quelst = mlx_lstremove(&mlxctx->render_queue, image, &mlx_equal_inst)))
+		mlx_freen(2, quelst->content, quelst);
+
+	mlx_list_t* imglst;
+	if ((imglst = mlx_lstremove(&mlxctx->images, image, &mlx_equal_image)))
 	{
-		glDeleteTextures(1, &((t_mlx_image_ctx *)image->context)->texture);
-		mlx_freen(3, image->pixels, image->instances, image->context);
-		free(imglst);
+		glDeleteTextures(1, &((mlx_image_ctx_t*)image->context)->texture);
+		mlx_freen(5, image->pixels, image->instances, image->context, imglst, image);
 	}
-	quelst = mlx_lstremove(&mlxctx->render_queue, image, &mlx_equal_inst);
-	if (quelst)
+}
+
+bool mlx_resize_image(mlx_image_t* img, uint32_t nwidth, uint32_t nheight)
+{
+	MLX_ASSERT(!img);
+
+	if (!nwidth || !nheight || nwidth > INT16_MAX || nheight > INT16_MAX)
+		return (mlx_error(MLX_INVDIM));
+	if (nwidth != img->width || nheight != img->height)
 	{
-		free(quelst->content);
-		free(quelst);
+		uint8_t* tempbuff = realloc(img->pixels, (nwidth * nheight) * BPP);
+		if (!tempbuff)
+			return (mlx_error(MLX_MEMFAIL));
+		img->pixels = tempbuff;
+		(*(uint32_t*)&img->width) = nwidth;
+		(*(uint32_t*)&img->height) = nheight;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, nwidth, nheight, 0, GL_RGBA, GL_UNSIGNED_BYTE, img->pixels);
 	}
-	free(image);
+	return (true);
 }

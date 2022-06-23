@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/23 15:47:25 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:11:42 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ typedef struct s_cam
 
 /**
 **	Holds important data needed throughout the program
-**	@param mlx <t_mlx*> Main MLX42 pointer
-**	@param buffer <t_mlx_image*> MLX42-Image that holds the screen buffer
+**	@param mlx <mlx_t*> Main MLX42 pointer
+**	@param buffer <mlx_image_t*> MLX42-Image that holds the screen buffer
 **	@param shapes <t_list*> Pointer to first element of all the shapes
 **	@param light <t_list*> Pointer to first element of all the lights
 */
 typedef struct s_program
 {
-	t_mlx		*mlx;
-	t_mlx_image	*buffer;
+	mlx_t		*mlx;
+	mlx_image_t	*buffer;
 	int			*shuffled;
 	t_threads	threads;
 	t_cam		camera;
@@ -63,7 +63,7 @@ typedef struct s_program
 }				t_program;
 
 /* program_init.c */
-t_program	program_get(void);
+t_program	*program_get(void);
 void		program_run(t_program *program);
 void		program_terminate(t_program *program);
 
@@ -81,6 +81,6 @@ t_color		anti_aliasing(t_program *program, double x, double y);
 int			*shuffle(int pixels);
 
 /* */
-void	rt_error(char *s1, char *s2);
+void		rt_error(char *s1, char *s2);
 
 #endif

@@ -6,43 +6,44 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/01 21:06:45 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/02/21 11:10:42 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/04/13 00:24:08 by w2wizard      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42_Int.h"
 
-static void	*g_param_cb = NULL;
+//= Private =//
 
-void	mlx_key_callback(GLFWwindow *window, ...)
+static void mlx_key_callback(GLFWwindow* window, int32_t key, int32_t scancode, int32_t action, int32_t mods)
 {
-	va_list				args;
-	t_mlx_key_cbdata	callback_data;
-	const t_mlx			*mlx = glfwGetWindowUserPointer(window);
-	const t_mlx_keyfunc	hook = ((t_mlx_ctx *)mlx->context)->key_hook;
+	const mlx_t* mlx = glfwGetWindowUserPointer(window);
+	const mlx_key_t key_hook = ((mlx_ctx_t*)mlx->context)->key_hook;
+	const mlx_key_data_t callback_data = {
+		key,
+		action,
+		scancode,
+		mods,
+	};
 
-	va_start(args, window);
-	callback_data.key = va_arg(args, int32_t);
-	callback_data.os_key = va_arg(args, int32_t);
-	callback_data.action = va_arg(args, int32_t);
-	callback_data.modifier = va_arg(args, int32_t);
-	hook(callback_data, g_param_cb);
-	va_end(args);
+	key_hook.func(callback_data, key_hook.param);
 }
 
-void	mlx_key_hook(t_mlx *mlx, t_mlx_keyfunc func, void *param)
+//= Public =//
+
+void mlx_key_hook(mlx_t* mlx, mlx_keyfunc func, void* param)
 {
-	g_param_cb = param;
-	if (!func)
-	{
-		mlx_log(MLX_WARNING, MLX_NULL_ARG);
-		return ;
-	}
-	((t_mlx_ctx *)mlx->context)->key_hook = func;
-	glfwSetKeyCallback(mlx->window, (GLFWkeyfun)mlx_key_callback);
+	MLX_ASSERT(!mlx );
+	MLX_ASSERT(!func);
+
+	mlx_ctx_t* mlxctx = mlx->context;
+	mlxctx->key_hook.func = func;
+	mlxctx->key_hook.param = param;
+	glfwSetKeyCallback(mlx->window, mlx_key_callback);
 }
 
-bool	mlx_is_key_down(t_mlx *mlx, t_keys key)
+bool mlx_is_key_down(mlx_t* mlx, keys_t key)
 {
+	MLX_ASSERT(!mlx);
+
 	return (glfwGetKey(mlx->window, key) == GLFW_PRESS);
 }

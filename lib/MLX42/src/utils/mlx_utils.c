@@ -6,59 +6,93 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/03 20:13:17 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/02/07 09:07:15 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/04/13 12:07:01 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42_Int.h"
 
-static int32_t	isbase(char c, int32_t base)
+//= Private =//
+
+/**
+ * Function to read a file stream line by line, reusing the same output pointer.
+ * Since the same output pointer is reused it should only be freed once, either on success or failure.
+ * This function is made to be somewhat similar to getline.
+ * Getline cant be used directly since its not standard and there for not available on all platforms.
+ *
+ * @param out Pointer to store output string.
+ * @param out_size Pointer to store output strings length.
+ * @param file File stream to read from.
+ * @return True if line was read, false if EOF was reached or an error ocurred.
+ */
+bool mlx_getline(char** out, size_t* out_size, FILE* file)
 {
-	if (base <= 10)
-		return (isdigit(c));
-	return (isdigit(c) || (c >= 'A' && c <= ('A' + base - 10)) || \
-	(c >= 'a' && c <= ('a' + base - 10)));
+	MLX_ASSERT(!out || !out_size || !file);
+
+	size_t size = 0;
+	char* temp = NULL;
+	static char BUFF[GETLINE_BUFF + 1]; // Add space for '\0'
+
+	if (*out) *out[0] = '\0';
+
+	while (fgets(BUFF, sizeof(BUFF), file))
+	{
+		size += strlen(BUFF);
+		if (!(temp = realloc(*out, sizeof(char) * size + 1)))
+			return (false);
+		if (*out == NULL)
+			memset(temp, '\0', size);
+		temp[size] = '\0';
+
+		*out = temp;
+		*out_size = size;
+
+		strncat(*out, BUFF, size);
+		if (strrchr(BUFF, '\n'))
+			return (true);
+		memset(BUFF, '\0', sizeof(BUFF));
+	}
+	return (size);
 }
 
 /**
- * Converts a given string to an integer of a given base.
+ * String hashing algorithm using FNV-1a.
+ * Source: https://bit.ly/3JcRGHa
  * 
- * @param str The string to convert.
- * @param base A given base, only up to 16.
- * @return The result of the conversion. 
+ * @param str The string to hash
+ * @param len The length of the string.
+ * @return The hashed output.
  */
-int32_t	mlx_atoi_base(const char *str, int32_t base)
+uint64_t mlx_fnv_hash(char* str, size_t len)
 {
-	int32_t	i;
-	int32_t	nbr;
-	int32_t	sign;
+	const uint64_t fnv_prime = 0x100000001b3;
+	const uint64_t fnv_offset = 0xcbf29ce484222325;
+	uint64_t hash = fnv_offset;
 
-	i = 0;
-	nbr = 0;
-	sign = 1;
-	if (!str || (base < 2 || base > 16))
-		return (0);
-	while (isspace(str[i]) || str[i] == '#')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
-			sign = -sign;
-	while (str[i] && isbase(str[i], base))
+	for (size_t i = 0; i < len; i++)
 	{
-		if (str[i] >= 'A' && 'F' >= str[i])
-			nbr = (nbr * base) + (str[i] - 'A' + 10);
-		else if (str[i] >= 'a' && 'f' >= str[i])
-			nbr = (nbr * base) + (str[i] - 'a' + 10);
-		else
-			nbr = (nbr * base) + (str[i] - '0');
-		i++;
+		hash ^= str[i];
+		hash *= fnv_prime;
 	}
-	return (nbr * sign);
+	return (hash);
 }
 
-void	mlx_focus(t_mlx *mlx)
+/**
+ * Utility function that lets you free x amount of pointers.
+ * 
+ * @param count The amount of args provided.
+ * @param ... Any form of pointer.
+ * @return False, this is simply for convinience when necessary.
+ */
+bool mlx_freen(int32_t count, ...)
 {
-	glfwFocusWindow(mlx->window);
+	va_list	args;
+
+	va_start(args, count);
+	for (int32_t i = 0; i < count; i++)
+		free(va_arg(args, void*));
+	va_end(args);
+	return (false);
 }
 
 /**
@@ -70,64 +104,26 @@ void	mlx_focus(t_mlx *mlx)
  * @param color The input RGBA value.
  * @return The rgba value converted to a grayscale color.
  */
-int32_t	mlx_rgba_to_mono(int32_t color)
+uint32_t mlx_rgba_to_mono(uint32_t color)
 {
-	const uint8_t	r = 0.299f * ((color >> 24) & 0xFF);
-	const uint8_t	g = 0.587f * ((color >> 16) & 0xFF);
-	const uint8_t	b = 0.114f * ((color >> 8) & 0xFF);
-	const uint8_t	y = r + g + b;
+	const uint8_t r = 0.299f * ((color >> 24) & 0xFF);
+	const uint8_t g = 0.587f * ((color >> 16) & 0xFF);
+	const uint8_t b = 0.114f * ((color >> 8) & 0xFF);
+	const uint8_t y = r + g + b;
 
 	return (y << 24 | y << 16 | y << 8 | (color & 0xFF));
 }
 
-/**
- * Reads an entire file into a single allocated buffer.
- * 
- * TODO: Convert any path to absolute, on some OS's fopen only 
- * works with an absolute given path.
- * 
- * @param FilePath The path to the file to read.
- * @return The files content in a single buffer.
- */
-char	*mlx_readfile(const char *FilePath)
-{
-	FILE		*file;
-	char		*data;
-	int64_t		filesize;
-	size_t		bread;
+//= Public =//
 
-	file = fopen(FilePath, "r");
-	if (!file)
-		return (NULL);
-	fseek(file, 0L, SEEK_END);
-	filesize = ftell(file);
-	fseek(file, 0L, SEEK_SET);
-	data = calloc(filesize + 1, sizeof(char));
-	if (!data)
-		return (NULL);
-	bread = fread(data, sizeof(char), filesize, file);
-	if (bread <= 0)
-	{
-		free(data);
-		fclose(file);
-		return (NULL);
-	}
-	fclose(file);
-	return (data);
+int32_t mlx_get_time(void)
+{
+	return (glfwGetTime());
 }
 
-/**
- * Converts an RGBA value to a float component/vector.
- * 
- * @note Because norminette is so good! We need to do * without spaces :)
- * @param color The input RGBA value.
- * @param out Float buffer to apply the converted color values to.
- *
-void	mlx_rgba_to_float(int32_t color, float RGBA_Out[4])
+void mlx_focus(mlx_t* mlx)
 {
-	RGBA_Out[0] = (float)(1.0f / UINT8_MAX) *((color >> 24) & 0xFF);
-	RGBA_Out[1] = (float)(1.0f / UINT8_MAX) *((color >> 16) & 0xFF);
-	RGBA_Out[2] = (float)(1.0f / UINT8_MAX) *((color >> 8) & 0xFF);
-	RGBA_Out[3] = (float)(1.0f / UINT8_MAX) *(color & 0xFF);
+	MLX_ASSERT(!mlx);
+
+	glfwFocusWindow(mlx->window);
 }
-*/

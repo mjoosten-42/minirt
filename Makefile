@@ -2,8 +2,8 @@ MAIN ?= main.c
 
 NAME := minirt
 INCLUDE_DIRS := -I "lib/libft/include/" -I "lib/MLX42/include/"
-COMPILE_FLAGS ?= -Wall -Wextra -g
-LINKING_FLAGS ?= libft.a libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+COMPILE_FLAGS ?= -Wall -Wextra -g -fsanitize=undefined
+LINKING_FLAGS ?= libft.a libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -fsanitize=undefined
 
 SRC_DIR ?= src
 HDR_DIR ?= include

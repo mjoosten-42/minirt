@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/23 16:01:12 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:06:35 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static t_v3	_get_direction(t_program *program, double x, double y)
 	t_v3	direction;
 	double	aspect;
 
+	if (program->mlx->width == 0 || program->mlx->height == 0)
+		printf("%d, %d\n", program->mlx->width, program->mlx->height);
 	aspect = ((double)program->mlx->width / (double)program->mlx->height);
 	direction.x = (2.0 * (x + 0.5) / program->mlx->width - 1.0)
 		* program->camera.fov * aspect;
@@ -62,7 +64,7 @@ void	scene_draw(void *ptr)
 		pthread_mutex_unlock(&program->threads.mutex);
 		color = anti_aliasing(program, x, y);
 		color_cap(&color);
-		mlx_putpixel(program->buffer, x, y, color_to_int(color));
+		mlx_put_pixel(program->buffer, x, y, color_to_int(color));
 		pthread_mutex_lock(&program->threads.mutex);
 	}
 	pthread_mutex_unlock(&program->threads.mutex);

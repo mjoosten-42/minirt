@@ -6,13 +6,13 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:35:50 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/15 11:35:35 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 16:02:15 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "log.h"
 #include "parse.h"
+#include "program.h"
 
 double	atod(char *str)
 {

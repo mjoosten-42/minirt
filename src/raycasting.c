@@ -6,12 +6,11 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/17 17:11:42 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 16:02:10 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "collision.h"
-#include "log.h"
 #include "program.h"
 #include <math.h>
 #include "shape.h"

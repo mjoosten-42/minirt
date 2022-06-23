@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/10 11:10:00 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:50:49 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,10 @@ void	_init_mlx(t_program *program)
 {
 	program->mlx = mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE, WINDOW_RESIZE);
 	if (program->mlx == NULL)
-	{
-		LOG_ERR("Failed to initialize MLX");
-		exit(EXIT_FAILURE);
-	}
-	LOG("Initialized MLX");
+		rt_error(NULL, "Failed to initialize MLX");
 	program->buffer = mlx_new_image(program->mlx, WINDOW_W, WINDOW_H);
 	if (program->buffer == NULL)
-	{
-		LOG_ERR("Failed to initialize screen buffer");
-		exit(EXIT_FAILURE);
-	}
-	LOG("Initialized screen buffer");
+		rt_error(NULL, "Failed to initialize image");
 }
 
 void	_clear(t_mlx_image *img)
@@ -66,15 +58,10 @@ void	_clear(t_mlx_image *img)
 void	program_run(t_program *program)
 {
 	if (mlx_image_to_window(program->mlx, program->buffer, 0, 0) == NULL)
-		LOG_ERR("Unable to put image to window");
-	else
-		LOG("Put screen buffer to window");
-	LOG("Drawing scene...");
+		rt_error(NULL, "Unable to put image to window");
 	_clear(program->buffer);
 	thread_init(program);
-	LOG("Threads initialized");
 	mlx_key_hook(program->mlx, (t_mlx_keyfunc)_mlx_keypress, program);
-	LOG("ESC hook");
 	LOG("Running mlx_loop");
 	mlx_loop(program->mlx);
 }
@@ -83,13 +70,9 @@ void	program_terminate(t_program *program)
 {
 	thread_terminate(program);
 	mlx_delete_image(program->mlx, program->buffer);
-	LOG("Freed screen buffer");
 	mlx_terminate(program->mlx);
-	LOG("Terminated MLX");
 	ft_lstclear(&program->shapes, free);
-	LOG("Freed shape list");
 	ft_lstclear(&program->lights, free);
-	LOG("Freed light list");
 	free(program->shuffled);
 }
 

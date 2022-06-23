@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:16:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/17 14:15:32 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:47:13 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_object
 	void			*ptr;
 }					t_object;
 
-void	rt_error(char *s1, char *s2);
 
 void	build_ambience(char **args, void *ptr);
 void	build_camera(char **args, void *ptr);

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:22:16 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/17 14:27:10 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:52:01 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,4 @@ void	material_print(const t_material *material)
 	printf("|  |   refraction: %f\n", material->refraction);
 	printf("|  |   refractive index: %f\n", material->index);
 	printf("|  |   shine: %f\n", material->shine);
-	printf("# - - - - - - - - - - - - - - - - - - - -\n");
 }

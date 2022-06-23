@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/15 11:28:42 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 16:02:25 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "libft.h"
 #include "program.h"
 #include "light.h"
-#include "log.h"
 #include <math.h>
 
 void	build_ambience(char **args, void *ptr)

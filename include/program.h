@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/15 11:34:01 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:47:25 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,8 @@ void		scene_draw(void *ptr);
 /* anti_aliasing.c */
 t_color		anti_aliasing(t_program *program, double x, double y);
 int			*shuffle(int pixels);
+
+/* */
+void	rt_error(char *s1, char *s2);
 
 #endif

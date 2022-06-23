@@ -6,15 +6,15 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/15 14:36:52 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/23 16:02:29 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
 #include "libft.h"
 #include "parse.h"
-#include "log.h"
 #include <math.h>
+#include "program.h"
 
 int	nb_of_char(char *str, char c)
 {

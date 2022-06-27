@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:15:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/16 11:20:28 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:12:01 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ typedef struct s_mask_cylinder
 
 /**
 **	SHAPE_CONE
-**	@param height <t_v3> Height
 **	@param radius <t_v3> Radius at cone base
+**	@param height <t_v3> Height
 **	@param angle <t_v3> Holds cos(angle)^2
 */
 typedef struct s_mask_cone
 {
-	double	height;
 	double	radius;
+	double	height;
 	double	angle;
 }			t_mask_cone;
 

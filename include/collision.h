@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 11:29:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 12:39:57 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:05:16 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 **	@param normal <t_v3> Normal vector of collision
 **	@param shape <t_shape*> Shape that got collided with
 **	@param distance <double> Distance to the collision point, in t
+**	@param inside <bool> Whether collision is inside an object
 */
 typedef struct s_collision
 {
@@ -31,6 +32,7 @@ typedef struct s_collision
 	t_v3			normal;
 	const t_shape	*shape;
 	double			distance;
+	bool			inside;
 }					t_collision;
 
 /* raycast.c */

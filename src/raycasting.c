@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/23 16:02:10 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:05:42 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ static t_color	_calc_specular(const t_collision *coll,
 	return (c);
 }
 
-static t_color	ray_to_light(t_program *program, t_collision coll, const t_light *light)
+static t_color	ray_to_light(const t_program *program, t_collision coll, const t_light *light)
 {
 	t_color		diffuse_c;
 	t_color		specular_c;
@@ -141,7 +141,7 @@ static t_color	ray_to_light(t_program *program, t_collision coll, const t_light 
 	return (total_c);
 }
 
-t_color	raycast_calc_lighting(t_program *program, t_collision coll)
+t_color	raycast_calc_lighting(const t_program *program, t_collision coll)
 {
 	t_list	*list;
 	t_color	c;
@@ -156,9 +156,9 @@ t_color	raycast_calc_lighting(t_program *program, t_collision coll)
 	return (c);
 }
 
-t_rdata	material_cast(t_program *program, t_ray3 *ray, t_rdata rdata);
+t_rdata	material_cast(const t_program *program, t_ray3 *ray, t_rdata rdata);
 
-t_rdata	raycast(t_program *program, t_ray3 *ray)
+t_rdata	raycast(const t_program *program, t_ray3 *ray)
 {
 	t_rdata	rdata;
 

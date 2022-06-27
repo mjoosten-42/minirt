@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:24:49 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/17 12:05:36 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:05:49 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_rdata
 typedef t_rdata (*t_rcastfunc)(t_program *, t_ray3 *, t_rdata);
 
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray);
-t_color		raycast_calc_lighting(t_program *program, t_collision coll);
-t_rdata		raycast(t_program *program, t_ray3 *ray);
+t_color		raycast_calc_lighting(const t_program *program, t_collision coll);
+t_rdata		raycast(const t_program *program, t_ray3 *ray);
 
 
 #endif

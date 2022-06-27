@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 10:40:02 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:06:08 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "raycasting.h"
 #include <math.h>
 
-static t_v3	_get_direction(t_program *program, double x, double y)
+static t_v3	_get_direction(const t_program *program, double x, double y)
 {
 	t_v3	direction;
 	double	aspect;
@@ -32,7 +32,7 @@ static t_v3	_get_direction(t_program *program, double x, double y)
 }
 
 //	This function gets run for every pixel, returning the color
-t_color	calc_pixel(t_program *program, double x, double y)
+t_color	calc_pixel(const t_program *program, double x, double y)
 {
 	t_rdata	rdata;
 	t_ray3	ray;

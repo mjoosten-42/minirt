@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:00:07 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/27 11:30:37 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:06:39 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,18 @@
 #include <stdlib.h>
 #include "libft.h"
 
-t_color		calc_pixel(t_program *program, double x, double y);
-static void	swap(int *a, int *b);
+static void	swap(int *a, int *b)
+{
+	int	tmp;
 
-t_color	anti_aliasing(t_program *program, double x, double y)
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+t_color		calc_pixel(const t_program *program, double x, double y);
+
+t_color	anti_aliasing(const t_program *program, double x, double y)
 {
 	t_color	color;
 	int		i;
@@ -63,13 +71,4 @@ int	*shuffle(int pixels)
 	while (i-- > 1)
 		swap(&shuffled[i], &shuffled[rand() % i]);
 	return (shuffled);
-}
-
-static void	swap(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
 }

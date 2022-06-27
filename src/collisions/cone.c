@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:40:22 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/17 10:51:11 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:10:08 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_collision	collision_cone_inf(const t_shape *cone, const t_ray3 *ray)
 	coll.distance = t[0];
 	coll.normal = cone_normal(coll.point, cone);
 	coll.shape = cone;
+	coll.inside = false;
 	return (coll);
 }
 

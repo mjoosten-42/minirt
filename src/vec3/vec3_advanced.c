@@ -6,12 +6,13 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:06:03 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/17 17:11:24 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:55:54 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
 #include <math.h>
+#include "equations.h"
 
 //	Formula for mirroring a vector: 𝑟=𝑑−2(𝑑⋅𝑛)𝑛
 t_v3	vec3_calc_reflection(t_v3 incoming, t_v3 normal)
@@ -33,10 +34,7 @@ t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
 	refl = vec3_calc_reflection(incoming, normal);
 	
 	angle = vec3_dot(refl, incoming);
-	if (angle > 1.0)
-		angle = 1.0;
-	else if (angle < 0.0)
-		angle = 0.0;
+	angle = clamp(angle, 0.0, 1.0);
 	angle = pow(angle, strength);
 	out = incoming;
 	out.x += (out.x - refl.x) * angle;

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:50:42 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 16:15:09 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:03:12 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_rdata	material_cast(const t_program *program, t_ray3 *ray, t_rdata rdata)
 {
 	t_ray3	mray;
 	t_rdata new_rd;
+	int		index;
 
 	rdata.color = raycast_calc_lighting(program, rdata.last_coll);
 	if (ray->bounces >= RAY_MAX_BOUNCES)
@@ -39,8 +40,10 @@ t_rdata	material_cast(const t_program *program, t_ray3 *ray, t_rdata rdata)
 	if (rdata.last_coll.shape->material.refraction > 0)
 	{
 		mray.o = rdata.last_coll.point;
-		mray.d = vec3_calc_refraction(ray->d, rdata.last_coll.normal,
-			rdata.last_coll.shape->material.index);
+		index = rdata.last_coll.shape->material.index;
+		if (rdata.last_coll.inside)
+			index = 1.0;
+		mray.d = vec3_calc_refraction(ray->d, rdata.last_coll.normal, index);
 		mray.o = vec3_add(mray.o, vec3_mul(ray->d, __FLT_EPSILON__));
 		mray.bounces = ray->bounces + 1;
 		mray.index = rdata.last_coll.shape->material.index;

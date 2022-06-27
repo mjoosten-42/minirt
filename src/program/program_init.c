@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 13:00:45 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:23:18 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 #include "log.h"
 #include "shape.h"
 #include "libft.h"
+#include "MLX42/MLX42_Input.h"
 
-#define ESC 256
-
-void	_mlx_keypress(int key)
+void	_mlx_keypress(keys_t key)
 {
-	if (key == ESC)
+	if (key == MLX_KEY_ESCAPE)
 		exit(EXIT_SUCCESS);
 }
 
-void	_inimlx_t(t_program *program)
+void	_initmlx_t(t_program *program)
 {
 	program->mlx = mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE, WINDOW_RESIZE);
 	if (program->mlx == NULL)
@@ -35,14 +34,14 @@ void	_inimlx_t(t_program *program)
 
 void	_clear(mlx_image_t *img)
 {
-	unsigned int	x;
-	unsigned int	y;
+	int	x;
+	int	y;
 
 	x = 0;
-	while (x < img->width)
+	while (x < WINDOW_W)
 	{
 		y = 0;
-		while (y < img->height)
+		while (y < WINDOW_H)
 		{
 			mlx_put_pixel(img, x, y, 0x0);
 			y++;
@@ -77,7 +76,7 @@ t_program	program_get(void)
 	t_program	program;
 
 	ft_bzero(&program, sizeof(t_program));
-	_inimlx_t(&program);
+	_initmlx_t(&program);
 	program.shuffled = shuffle(WINDOW_W * WINDOW_H);
 	return (program);
 }

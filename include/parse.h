@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:16:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/23 15:47:13 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:53:57 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 /**
 **	@param type <t_object> Object enum
 **	@param id <char*> Letter identifier
-**	@param nb_args <int> Amount of arguments
+**	@param min_args <int> Minimum amount of arguments
+**	@param max_args <int> Maximum amount of arguments
 **	@param f <void(*f)(char **, void *)> Function to return object
 **	@param ptr <void*> Second argument of f: address to put object in/add to
 */
@@ -34,7 +35,6 @@ typedef struct s_object
 	void			(*f)(char **, void *);
 	void			*ptr;
 }					t_object;
-
 
 void	build_ambience(char **args, void *ptr);
 void	build_camera(char **args, void *ptr);

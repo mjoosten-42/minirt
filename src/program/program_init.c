@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/23 17:09:43 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:00:45 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,10 @@
 
 #define ESC 256
 
-void	_mlx_keypress(int key, int os_key, void *program)
+void	_mlx_keypress(int key)
 {
 	if (key == ESC)
-	{
 		exit(EXIT_SUCCESS);
-		program_terminate(program);
-	}
-	(void)os_key;
 }
 
 void	_inimlx_t(t_program *program)
@@ -76,13 +72,12 @@ void	program_terminate(t_program *program)
 	free(program->shuffled);
 }
 
-t_program	*program_get(void)
+t_program	program_get(void)
 {
-	t_program	*program;
+	t_program	program;
 
-	program = ft_malloc(sizeof(t_program));
-	ft_bzero(program, sizeof(program));
-	_inimlx_t(program);
-	program->shuffled = shuffle(program->buffer->width * program->buffer->height);
+	ft_bzero(&program, sizeof(t_program));
+	_inimlx_t(&program);
+	program.shuffled = shuffle(WINDOW_W * WINDOW_H);
 	return (program);
 }

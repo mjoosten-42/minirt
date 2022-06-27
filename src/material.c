@@ -6,11 +6,41 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:22:16 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/23 15:52:01 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:56:46 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "material.h"
+#include "config.h"
+#include "libft.h"
+#include <math.h>
+
+t_material	parse_material(char *str)
+{
+	const static t_material	table[] = {
+	{"water", 0.2, 0.5, 1.3, DEFAULT_PHONG},
+	{"mirror", 0.9, 0.0, 1.0, INFINITY},
+	{"glass", 0.0, 0.9, 1.5, INFINITY},
+	{"metal", 0.5, 0.1, 2.0, 2.0}
+	};
+	int						tablesize;
+	int						len;
+	int						i;
+
+	if (!str)
+		return ((t_material){NULL, 0, 0, 1, INFINITY});
+	i = 0;
+	len = ft_strlen(str);
+	tablesize = sizeof(table) / sizeof(*table);
+	while (i < tablesize)
+	{
+		if (ft_strncmp(str, table[i].name, len) == 0)
+			return (table[i]);
+		i++;
+	}
+	return ((t_material){NULL, 0, 0, 1, DEFAULT_PHONG});
+}
+
 #include <stdio.h>
 
 void	material_print(const t_material *material)

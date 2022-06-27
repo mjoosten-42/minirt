@@ -98,6 +98,6 @@ function randomPoint
 	echo -n " " >> $FILE
 }
 
-for i in {1..10} ; do
+for i in {1..50} ; do
 	randomObject
 done

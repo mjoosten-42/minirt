@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/16 11:30:34 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:41:18 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,18 @@
 # include "ray3.h"
 # include "objects.h"
 
-typedef struct s_shape	t_shape;
-typedef struct s_collision	(*t_collfunc)(const t_shape *, const t_ray3 *);
+typedef struct s_collision t_collision;
 
 /**
 **	Represents a default shape
 **	@param union: contains the mask as a whole struct.
-**	@param type <t_shape_type> Enumerator for the type of shape (like circle)
-**	@param o <t_v3> Origin point vector of the shape. Usually the center
+**	@param o <t_v3> Origin point vector of the shape.
 **	@param n <t_v3> normal direction vector of the shape.
+**	@param type <t_shape_type> Enumerator for the type of shape
 **	@param color <t_color> Color the shape has overall.
 **	@param f Function used to check collision
 */
-struct s_shape
+typedef struct s_shape
 {
 	union
 	{
@@ -40,13 +39,13 @@ struct s_shape
 		t_mask_cylinder	cy;
 		t_mask_cone		co;
 	};
-	t_object_type	type;
 	t_v3			o;
 	t_v3			n;
+	t_object_type	type;
 	t_color			color;
 	t_material		material;
-	t_collfunc		f;
-};
+	t_collision		(*f)(const struct s_shape *shape, const t_ray3 *ray);
+}	t_shape;
 
 /* shape_debug.c */
 void	shape_print(t_shape *shape);
@@ -55,7 +54,6 @@ void	shape_print(t_shape *shape);
 void	build_sphere(char **args, void *ptr);
 void	build_plane(char **args, void *ptr);
 void	build_cylinder(char **args, void *ptr);
-void	build_circle(char **args, void *ptr);
 void	build_cone(char **args, void *ptr);
 
 #endif

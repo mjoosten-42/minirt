@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/20 14:46:55 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 11:50:49 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,10 @@ t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 		return (coll);
 	}
 	coll = collision_caps(cylinder, ray);
-	if (coll.shape != NULL)
-	{
-		coll.shape = cylinder;
-		return (coll);
-	}
-	return (collision_none());
+	if (coll.shape == NULL)
+		return (collision_none());
+	coll.shape = cylinder;
+	return (coll);
 }
 
 double	collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray)
@@ -60,7 +58,7 @@ double	collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray)
 	abc.b = 2 * (rot.d.x * rot.o.x + rot.d.z * rot.o.z);
 	abc.c = rot.o.x * rot.o.x + rot.o.z * rot.o.z
 		- cylinder->cy.radius * cylinder->cy.radius;
-	if (quadratic(t, abc) < 0)
+	if (quadratic(t, abc) < 0 || t[0] < 0)
 		return (-1);
 	y = rot.o.y + t[0] * rot.d.y;
 	if (y < 0 || y > cylinder->cy.height)

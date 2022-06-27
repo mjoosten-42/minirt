@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 11:29:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/15 11:41:28 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:39:57 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include "vec3.h"
 # include "ray3.h"
 # include "program.h"
-
-typedef struct s_shape	t_shape;
+# include "shape.h"
 
 /**
 **	Collision data of ray intersecting a shape

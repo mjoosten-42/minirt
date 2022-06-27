@@ -6,15 +6,12 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/17 17:12:12 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:51:18 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONFIG_H
 # define CONFIG_H
-
-# include "material.h"
-# include <math.h>
 
 /* program.init.c */
 # define WINDOW_W 1024
@@ -33,4 +30,5 @@
 
 /* shape.c */
 # define DEFAULT_PHONG 4
+
 #endif

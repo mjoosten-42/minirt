@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:50:42 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 16:04:10 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:15:09 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,4 @@ t_rdata	material_cast(const t_program *program, t_ray3 *ray, t_rdata rdata)
 			new_rd.color, rdata.last_coll.shape->material.refraction);
 	}
 	return (rdata);
-}
-
-static t_rdata	send_ray(t_program *program, const t_ray3 *ray, const t_collision *coll, t_v3 (*f)(t_v3, t_v3, double))
-{
-	t_rdata	rd;
-	t_ray3	mray;
-
-	mray.o = coll->point;
-	mray.d = f(ray->d, coll->normal, coll->shape->material.index);
-	mray.o = vec3_add(mray.o, vec3_mul(ray->d, __FLT_EPSILON__));
-	mray.bounces = ray->bounces + 1;
-	mray.index = coll->shape->material.index;
-	rd = raycast(program, &mray);
-	if (rd.last_coll.shape == NULL)
-		rd.color = color_f(0, 0, 0);
-	return (rd);
 }

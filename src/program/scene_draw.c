@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/23 17:06:35 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:40:02 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ static t_v3	_get_direction(t_program *program, double x, double y)
 	t_v3	direction;
 	double	aspect;
 
-	if (program->mlx->width == 0 || program->mlx->height == 0)
-		printf("%d, %d\n", program->mlx->width, program->mlx->height);
-	aspect = ((double)program->mlx->width / (double)program->mlx->height);
-	direction.x = (2.0 * (x + 0.5) / program->mlx->width - 1.0)
+	aspect = ((double)WINDOW_W / (double)WINDOW_H);
+	direction.x = (2.0 * (x + 0.5) / WINDOW_W - 1.0)
 		* program->camera.fov * aspect;
-	direction.y = (1.0 - 2.0 * (y + 0.5) / program->mlx->height)
+	direction.y = (1.0 - 2.0 * (y + 0.5) / WINDOW_H)
 		* program->camera.fov;
 	direction.z = 1.0;
 	direction = vec3_norm(mat4_mul_vec3(&program->camera.view_matrix, &direction));
@@ -56,10 +54,10 @@ void	scene_draw(void *ptr)
 
 	program = (t_program *)ptr;
 	pthread_mutex_lock(&program->threads.mutex);
-	while (i < program->buffer->width * program->buffer->height)
+	while (i < WINDOW_W * WINDOW_H)
 	{
-		x = program->shuffled[i] % program->buffer->width;
-		y = program->shuffled[i] / program->buffer->width;
+		x = program->shuffled[i] % WINDOW_W;
+		y = program->shuffled[i] / WINDOW_W;
 		i++;
 		pthread_mutex_unlock(&program->threads.mutex);
 		color = anti_aliasing(program, x, y);

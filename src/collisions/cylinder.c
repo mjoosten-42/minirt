@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cylinder.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:33 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cylinder.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/01 16:11:54 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/07/04 15:18:54 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 		coll.shape = cylinder;
 		coll.point = ray_point(ray, coll.distance);
 		tmp = vec3_sub(coll.point, cylinder->o);
-		coll.normal = vec3_norm(vec3_sub(tmp, vec3_project(tmp, cylinder->cy.n)));
+		coll.normal = vec3_norm(
+				vec3_sub(tmp, vec3_project(tmp, cylinder->cy.n)));
 		coll.inside = false;
 		return (coll);
 	}

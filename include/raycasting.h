@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 12:24:49 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 14:12:49 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting.h                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/02 12:24:49 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/04 15:28:47 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,19 @@ typedef struct s_rdata
 	t_color		color;
 }	t_rdata;
 
-typedef t_rdata (*t_rcastfunc)(t_program *, t_ray3 *, t_rdata);
+typedef t_rdata	(*t_rcastfunc)(t_program *, t_ray3 *, t_rdata);
 
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray);
 t_color		raycast_calc_lighting(const t_program *program, t_collision coll);
+t_color		ray_to_light(const t_program *program,
+				t_collision coll,
+				const t_light *light);
+double		raycast_get_light_perc(t_list *shapes,
+				const t_ray3 *ray,
+				double max_dist);
 t_rdata		raycast(const t_program *program, const t_ray3 *ray);
-t_rdata		material_cast(const t_program *program, const t_ray3 *ray, t_rdata rdata);
-
+t_rdata		material_cast(const t_program *program,
+				const t_ray3 *ray,
+				t_rdata rdata);
 
 #endif

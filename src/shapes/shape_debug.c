@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shape_debug.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 13:51:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:04 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   shape_debug.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/16 13:51:29 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/04 15:23:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ static void	_shape_print_mask(t_shape *shape)
 
 void	shape_print(t_shape *shape)
 {
-	char	*shape_names[] = {
-	"NONE",
-	"CAMERA",
-	"LIGHT",
-	"AMBIENCE",
-	"SPHERE",
-	"PLANE",
-	"CYLINDER",
-	"CONE"
+	static char	*shape_names[] = {
+		"NONE",
+		"CAMERA",
+		"LIGHT",
+		"AMBIENCE",
+		"SPHERE",
+		"PLANE",
+		"CYLINDER",
+		"CONE"
 	};
 
 	printf("# - SHAPE - - - - - - - - - - - - - - - -\n");

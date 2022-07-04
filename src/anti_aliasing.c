@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   anti_aliasing.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 16:00:07 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/04 11:43:16 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   anti_aliasing.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/09 16:00:07 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/07/04 15:30:01 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_color	anti_aliasing(const t_program *program, double x, double y)
 	int		i;
 	int		j;
 
-	color = BLACK;
+	color = (t_color){0, 0, 0};
 	j = 0;
 	while (j < AA)
 	{
@@ -42,9 +42,9 @@ t_color	anti_aliasing(const t_program *program, double x, double y)
 		while (i < AA)
 		{
 			color = color_add(
-				color, calc_pixel(program,
-					x - 0.5 + (double)i / AA,
-					y - 0.5 + (double)j / AA));
+					color, calc_pixel(program,
+						x - 0.5 + (double)i / AA,
+						y - 0.5 + (double)j / AA));
 			i++;
 		}
 		j++;

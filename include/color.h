@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 10:32:26 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 11:26:58 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   color.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/16 10:32:26 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/04 15:29:15 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # define COLOR_DEBUG_HEX_PRINT_MSG "COLORX: #%.8X\n"
 # define COLOR_DEBUG_FLOAT_PRINT_MSG "COLORF: (%.3f, %.3f, %.3f)\n"
-
-# define BLACK (t_color){0, 0, 0}
 
 /**
 **	Represents a color, values usually range from 0.0 to and including 1.0

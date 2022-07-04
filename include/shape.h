@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shape.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 14:39:37 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   shape.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/16 13:11:37 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/04 15:43:40 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@
 # include "material.h"
 # include "program.h"
 
-struct s_shape;
-typedef struct s_collision (*t_collfunc)(const struct s_shape *, const t_ray3 *);
+//	Ugly but necessary to norm the typedef below
+# define _C const
+
+struct						s_shape;
+typedef struct s_collision	(*t_collfunc)(_C struct s_shape *, _C t_ray3 *);
 
 /**
 **	Represents a default shape

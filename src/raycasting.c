@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 14:14:57 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:34:46 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <math.h>
 #include "shape.h"
 #include "raycasting.h"
+#include "equations.h"
 
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 {
@@ -112,10 +113,7 @@ static t_color	_calc_specular(const t_collision *coll,
 	to_cam = vec3_mul(ray->d, -1);
 	
 	angle = vec3_dot(refl, to_cam);
-	if (angle > 1.0)
-		angle = 1.0;
-	if (angle < 0.0)
-		angle = 0.0;
+	angle = clamp(angle, 0.0, 1.0);
 	angle = pow(angle, shine);
 	color_luminosity(&c, angle * light->intensity);
 	return (c);
@@ -133,7 +131,7 @@ static t_color	ray_to_light(const t_program *program, t_collision coll, const t_
 	light_percent = raycast_get_light_perc(program->shapes, &ray,
 		vec3_distance(light->o, coll.point));
 	if (light_percent < __FLT_EPSILON__)
-		return (color_f(0, 0, 0));
+		return (BLACK);
 	diffuse_c = _calc_diffuse(&coll, light, &ray);
 	specular_c = _calc_specular(&coll, light, &ray, coll.shape->material.shine);
 	total_c = color_add(specular_c, diffuse_c);

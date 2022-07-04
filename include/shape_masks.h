@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:15:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 13:12:01 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:39:30 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,17 @@ typedef struct s_mask_sphere
 }			t_mask_sphere;
 
 /**
+**	SHAPE_PLANE
+**	@param n <t_v3> Normal vector
+*/
+typedef struct s_mask_plane
+{
+	t_v3	n;
+}			t_mask_plane;
+
+/**
 **	SHAPE_CYLINDER
-**	@param normal <t_v3> Normal vector
+**	@param n <t_v3> Normal vector
 **	@param diameter <double> Radius
 **	@param height <double> Height
 **	@param axis <double> Vector to rotate around
@@ -34,6 +43,7 @@ typedef struct s_mask_sphere
 */
 typedef struct s_mask_cylinder
 {
+	t_v3	n;
 	double	radius;
 	double	height;
 	t_v3	axis;
@@ -42,12 +52,14 @@ typedef struct s_mask_cylinder
 
 /**
 **	SHAPE_CONE
+**	@param n <t_v3> Normal vector
 **	@param radius <t_v3> Radius at cone base
 **	@param height <t_v3> Height
 **	@param angle <t_v3> Holds cos(angle)^2
 */
 typedef struct s_mask_cone
 {
+	t_v3	n;
 	double	radius;
 	double	height;
 	double	angle;

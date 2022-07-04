@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/04 11:06:45 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:40:46 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	build_plane(char **args, t_program *program)
 	t_shape	*plane;
 
 	plane = build_shape(args, OBJECT_PLANE, program);
-	plane->n = parse_vector_norm(args[2]);
+	plane->pl.n = parse_vector_norm(args[2]);
 	plane->color = parse_color(args[3]);
 	plane->f = collision_plane;
 }
@@ -57,12 +57,12 @@ void	build_cylinder(char **args, t_program *program)
 	t_shape	*cylinder;
 
 	cylinder = build_shape(args, OBJECT_CYLINDER, program);
-	cylinder->n = parse_vector_norm(args[2]);
+	cylinder->cy.n = parse_vector_norm(args[2]);
 	cylinder->cy.radius = atod(args[3]) / 2;
 	cylinder->cy.height = atod(args[4]);
 	cylinder->color = parse_color(args[5]);
-	cylinder->cy.axis = vec3_norm(vec3_cross(cylinder->n, vec3(0, 1, 0)));
-	cylinder->cy.angle = vec3_angle(cylinder->n, vec3(0, 1, 0));
+	cylinder->cy.axis = vec3_norm(vec3_cross(cylinder->cy.n, vec3(0, 1, 0)));
+	cylinder->cy.angle = vec3_angle(cylinder->cy.n, vec3(0, 1, 0));
 	cylinder->f = collision_cylinder;
 }
 
@@ -71,7 +71,7 @@ void	build_cone(char **args, t_program *program)
 	t_shape	*cone;
 
 	cone = build_shape(args, OBJECT_CONE, program);
-	cone->n = parse_vector_norm(args[2]);
+	cone->cy.n = parse_vector_norm(args[2]);
 	cone->co.radius = atod(args[3]) / 2;
 	cone->co.height = atod(args[4]);
 	cone->color = parse_color(args[5]);

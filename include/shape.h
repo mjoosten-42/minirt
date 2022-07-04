@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 13:20:21 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:39:37 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ typedef struct s_shape
 	union
 	{
 		t_mask_sphere	sp;
+		t_mask_plane	pl;
 		t_mask_cylinder	cy;
 		t_mask_cone		co;
 	};
 	t_v3			o;
-	t_v3			n;
 	t_object_type	type;
 	t_color			color;
 	t_material		material;

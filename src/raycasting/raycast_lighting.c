@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/04 15:02:46 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/04 15:30:29 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/04 16:44:46 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static t_color	_calc_specular(const t_collision *coll,
 	t_v3	to_cam;
 	double	angle;
 
+	if (!ENABLE_SPECULAR)
+		return ((t_color){0, 0, 0});
 	c = light->color;
 	refl = vec3_calc_reflection(ray->d, coll->normal);
 	to_cam = vec3_mul(ray->d, -1);

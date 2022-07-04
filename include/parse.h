@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:16:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/27 12:53:57 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:56:26 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "shape_masks.h"
 # include "light.h"
 # include "objects.h"
+# include "program.h"
 
 /**
 **	@param type <t_object> Object enum
@@ -32,15 +33,12 @@ typedef struct s_object
 	char			*id;
 	int				min_args;
 	int				max_args;
-	void			(*f)(char **, void *);
-	void			*ptr;
+	void			(*f)(char **, t_program *);
 }					t_object;
 
-void	build_ambience(char **args, void *ptr);
-void	build_camera(char **args, void *ptr);
-void	build_light(char **args, void *ptr);
-
-void	light_print(t_light *light);
+void	build_ambience(char **args, t_program *program);
+void	build_camera(char **args, t_program *program);
+void	build_light(char **args, t_program *program);
 
 double	atod(char *str);
 

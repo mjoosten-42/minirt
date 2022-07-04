@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/23 15:49:46 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:55:01 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 char		**get_args(char *line);
 void		build_object(t_program *program, char **args);
-t_object	get_object(t_program *program, char *str);
+t_object	get_object(char *str);
 int			open_rt(char *file);
 
 void	build_scene(t_program *program, char *file)
@@ -69,26 +69,26 @@ void	build_object(t_program *program, char **args)
 	int			argsize;
 
 	argsize = ft_argsize(args);
-	object = get_object(program, args[0]);
+	object = get_object(args[0]);
 	if (argsize < object.min_args || argsize > object.max_args)
 		rt_error(NULL, "Wrong amount of arguments");
-	object.f(args, object.ptr);
+	object.f(args, program);
 }
 
-t_object	get_object(t_program *program, char *str)
+t_object	get_object(char *str)
 {
-	const t_object	table[] = {
-	{OBJECT_AMBIENCE, "A", 3, 3, build_ambience, &program->ambience},
-	{OBJECT_CAMERA, "C", 4, 4, build_camera, &program->camera},
-	{OBJECT_LIGHT, "L", 4, 4, build_light, &program->lights},
-	{OBJECT_SPHERE, "sp", 4, 5, build_sphere, &program->shapes},
-	{OBJECT_PLANE, "pl", 4, 5, build_plane, &program->shapes},
-	{OBJECT_CYLINDER, "cy", 6, 7, build_cylinder, &program->shapes},
-	{OBJECT_CONE, "co", 6, 7, build_cone, &program->shapes}
+	static const t_object	table[] = {
+	{OBJECT_AMBIENCE, "A", 3, 3, build_ambience},
+	{OBJECT_CAMERA, "C", 4, 4, build_camera},
+	{OBJECT_LIGHT, "L", 4, 4, build_light},
+	{OBJECT_SPHERE, "sp", 4, 5, build_sphere},
+	{OBJECT_PLANE, "pl", 4, 5, build_plane},
+	{OBJECT_CYLINDER, "cy", 6, 7, build_cylinder},
+	{OBJECT_CONE, "co", 6, 7, build_cone}
 	};
-	int				tablesize;
-	int				len;
-	int				i;
+	int						tablesize;
+	int						len;
+	int						i;
 
 	i = 0;
 	len = ft_strlen(str);
@@ -96,8 +96,7 @@ t_object	get_object(t_program *program, char *str)
 	while (i < tablesize)
 	{
 		if (ft_strncmp(str, table[i].id, len) == 0)
-			return ((t_object){table[i].type, table[i].id, table[i].min_args,
-				table[i].max_args, table[i].f, table[i].ptr});
+			return (table[i]);
 		i++;
 	}
 	rt_error(str, "not an identifier");
@@ -119,16 +118,4 @@ int	open_rt(char *file)
 		exit(EXIT_FAILURE);
 	}
 	return (fd);
-}
-
-void	rt_error(char *s1, char *s2)
-{
-	ft_putstr_fd("Error\n", 2);
-	if (s1)
-	{
-		ft_putstr_fd(s1, 2);
-		ft_putstr_fd(": ", 2);
-	}
-	ft_putendl_fd(s2, 2);
-	exit(EXIT_FAILURE);
 }

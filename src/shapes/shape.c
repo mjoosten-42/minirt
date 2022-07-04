@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/27 12:57:46 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:06:45 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 #include "collision.h"
 #include "objects.h"
 #include "material.h"
+#include "program.h"
 #include <math.h>
 
-static t_shape	*build_shape(char **args, t_object_type type, void *ptr)
+t_shape	*build_shape(char **args, t_object_type type, t_program *program)
 {
 	t_shape	*shape;
 
@@ -27,35 +28,35 @@ static t_shape	*build_shape(char **args, t_object_type type, void *ptr)
 	shape->type = type;
 	shape->o = parse_vector(args[1]);
 	shape->material = parse_material(args[ft_argsize(args) - 1]);
-	ft_lstadd_front(ptr, ft_lstnew(shape));
+	ft_lstadd_front(&program->shapes, ft_lstnew(shape));
 	return (shape);
 }
 
-void	build_sphere(char **args, void *ptr)
+void	build_sphere(char **args, t_program *program)
 {
 	t_shape	*sphere;
 
-	sphere = build_shape(args, OBJECT_SPHERE, ptr);
+	sphere = build_shape(args, OBJECT_SPHERE, program);
 	sphere->sp = (t_mask_sphere){atod(args[2]) / 2};
 	sphere->color = parse_color(args[3]);
 	sphere->f = collision_sphere;
 }
 
-void	build_plane(char **args, void *ptr)
+void	build_plane(char **args, t_program *program)
 {
 	t_shape	*plane;
 
-	plane = build_shape(args, OBJECT_PLANE, ptr);
+	plane = build_shape(args, OBJECT_PLANE, program);
 	plane->n = parse_vector_norm(args[2]);
 	plane->color = parse_color(args[3]);
 	plane->f = collision_plane;
 }
 
-void	build_cylinder(char **args, void *ptr)
+void	build_cylinder(char **args, t_program *program)
 {
 	t_shape	*cylinder;
 
-	cylinder = build_shape(args, OBJECT_CYLINDER, ptr);
+	cylinder = build_shape(args, OBJECT_CYLINDER, program);
 	cylinder->n = parse_vector_norm(args[2]);
 	cylinder->cy.radius = atod(args[3]) / 2;
 	cylinder->cy.height = atod(args[4]);
@@ -65,11 +66,11 @@ void	build_cylinder(char **args, void *ptr)
 	cylinder->f = collision_cylinder;
 }
 
-void	build_cone(char **args, void *ptr)
+void	build_cone(char **args, t_program *program)
 {
 	t_shape	*cone;
 
-	cone = build_shape(args, OBJECT_CONE, ptr);
+	cone = build_shape(args, OBJECT_CONE, program);
 	cone->n = parse_vector_norm(args[2]);
 	cone->co.radius = atod(args[3]) / 2;
 	cone->co.height = atod(args[4]);

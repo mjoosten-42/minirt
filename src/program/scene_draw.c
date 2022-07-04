@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 16:06:08 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:04:29 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_v3	_get_direction(const t_program *program, double x, double y)
 	t_v3	direction;
 	double	aspect;
 
-	aspect = ((double)WINDOW_W / (double)WINDOW_H);
+	aspect = (double)WINDOW_W / (double)WINDOW_H;
 	direction.x = (2.0 * (x + 0.5) / WINDOW_W - 1.0)
 		* program->camera.fov * aspect;
 	direction.y = (1.0 - 2.0 * (y + 0.5) / WINDOW_H)
@@ -39,20 +39,18 @@ t_color	calc_pixel(const t_program *program, double x, double y)
 
 	ray = ray3(program->camera.origin, _get_direction(program, x, y));
 	rdata = raycast(program, &ray);
-	if (rdata.last_coll.shape != NULL)
-		return (rdata.color);
-	return (color_f(0, 0, 0));
+	if (rdata.coll.shape == NULL)
+		return (BLACK);
+	return (rdata.color);
 }
 
-void	scene_draw(void *ptr)
+void	scene_draw(t_program *program)
 {
-	t_program			*program;
 	t_color				color;
 	unsigned int		x;
 	unsigned int		y;
 	static unsigned int	i;
 
-	program = (t_program *)ptr;
 	pthread_mutex_lock(&program->threads.mutex);
 	while (i < WINDOW_W * WINDOW_H)
 	{

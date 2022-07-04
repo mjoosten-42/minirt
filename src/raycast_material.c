@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:50:42 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 17:03:12 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:14:37 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,51 @@
 #include "raycasting.h"
 #include "shape.h"
 #include "vec3.h"
+#include "color.h"
 
-t_rdata	material_cast(const t_program *program, t_ray3 *ray, t_rdata rdata)
+#define REFLECTION 0
+#define REFRACTION 1
+
+t_ray3	modified_ray(const t_ray3 *ray, const t_rdata *rdata, int mode)
 {
 	t_ray3	mray;
-	t_rdata new_rd;
-	int		index;
 
-	rdata.color = raycast_calc_lighting(program, rdata.last_coll);
+	mray.o = rdata->coll.point;
+	if (mode == REFLECTION)
+		mray.d = vec3_calc_reflection(ray->d, rdata->coll.normal);
+	else
+		mray.d = vec3_calc_refraction(ray->d, rdata->coll.normal, ray->index);
+	mray.o = vec3_add(mray.o, vec3_mul(mray.d, __FLT_EPSILON__));
+	mray.bounces = ray->bounces + 1;
+	mray.index = rdata->coll.shape->material.index;
+	return (mray);
+}
+
+t_color	blend_ray(const t_program *program, const t_ray3 *ray, t_rdata rdata, int mode)
+{
+	t_rdata	new_rd;
+	t_ray3	mray;
+	float	percentage;
+
+	mray = modified_ray(ray, &rdata, mode);
+	new_rd = raycast(program, &mray);
+	if (new_rd.coll.shape == NULL)
+		new_rd.color = BLACK;
+	if (mode == REFLECTION)
+		percentage = rdata.coll.shape->material.reflection;
+	else
+		percentage = rdata.coll.shape->material.refraction;
+	return (color_blend(rdata.color, new_rd.color, percentage));
+}
+
+t_rdata	material_cast(const t_program *program, const t_ray3 *ray, t_rdata rdata)
+{
+	rdata.color = raycast_calc_lighting(program, rdata.coll);
 	if (ray->bounces >= RAY_MAX_BOUNCES)
 		return (rdata);
-	if (rdata.last_coll.shape->material.reflection > 0)
-	{
-		mray.o = rdata.last_coll.point;
-		mray.d = vec3_calc_reflection(ray->d, rdata.last_coll.normal);
-		mray.o = vec3_add(mray.o, vec3_mul(rdata.last_coll.normal, __FLT_EPSILON__));
-		mray.bounces = ray->bounces + 1;
-		new_rd = raycast(program, &mray);
-		if (new_rd.last_coll.shape == NULL)
-			new_rd.color = color_f(0, 0, 0);
-		rdata.color = color_blend(rdata.color,
-			new_rd.color, rdata.last_coll.shape->material.reflection);
-	}
-	if (rdata.last_coll.shape->material.refraction > 0)
-	{
-		mray.o = rdata.last_coll.point;
-		index = rdata.last_coll.shape->material.index;
-		if (rdata.last_coll.inside)
-			index = 1.0;
-		mray.d = vec3_calc_refraction(ray->d, rdata.last_coll.normal, index);
-		mray.o = vec3_add(mray.o, vec3_mul(ray->d, __FLT_EPSILON__));
-		mray.bounces = ray->bounces + 1;
-		mray.index = rdata.last_coll.shape->material.index;
-		new_rd = raycast(program, &mray);
-		if (new_rd.last_coll.shape == NULL)
-			new_rd.color = color_f(0, 0, 0);
-		rdata.color = color_blend(rdata.color,
-			new_rd.color, rdata.last_coll.shape->material.refraction);
-	}
+	if (rdata.coll.shape->material.reflection > 0)
+		rdata.color = blend_ray(program, ray, rdata, REFLECTION);
+	if (rdata.coll.shape->material.refraction > 0)
+		rdata.color = blend_ray(program, ray, rdata, REFRACTION);
 	return (rdata);
 }

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 16:23:18 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:11:41 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	program_run(t_program *program)
 		rt_error(NULL, "Unable to put image to window");
 	_clear(program->buffer);
 	thread_init(program);
+	//scene_draw(program);
 	mlx_key_hook(program->mlx, (mlx_keyfunc)_mlx_keypress, program);
 	LOG("Running mlx_loop");
 	mlx_loop(program->mlx);

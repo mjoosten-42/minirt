@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 16:05:42 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:14:57 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,14 +156,12 @@ t_color	raycast_calc_lighting(const t_program *program, t_collision coll)
 	return (c);
 }
 
-t_rdata	material_cast(const t_program *program, t_ray3 *ray, t_rdata rdata);
-
-t_rdata	raycast(const t_program *program, t_ray3 *ray)
+t_rdata	raycast(const t_program *program, const t_ray3 *ray)
 {
 	t_rdata	rdata;
 
-	rdata.last_coll = raycast_get_collision(program->shapes, ray);
-	if (rdata.last_coll.shape == NULL)
+	rdata.coll = raycast_get_collision(program->shapes, ray);
+	if (rdata.coll.shape == NULL)
 		return (rdata);
 	rdata.color = material_cast(program, ray, rdata).color;
 	return (rdata);

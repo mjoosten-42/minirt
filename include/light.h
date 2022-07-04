@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 20:08:57 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/10 15:13:12 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:56:14 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ typedef struct s_ambience
 }			t_ambience;
 
 t_light	*light_create(t_v3 origin, t_color color);
-void	light_print(t_light *light);
+void	light_print(const t_light *light);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 16:04:18 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:55:32 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@
 # include "mat4.h"
 # include "threads.h"
 # include "config.h"
-
-// typedef struct s_img
-// {
-//     void    *mlx_img;
-//     void    *addr;
-// }           t_img;
 
 /**
 **	Camera data
@@ -74,13 +68,13 @@ void		camera_calculate_matrix(t_cam *camera);
 void		build_scene(t_program *program, char *file);
 
 /* scene_draw.c */
-void		scene_draw(void *ptr);
+void		scene_draw(t_program *program);
 
 /* anti_aliasing.c */
 t_color		anti_aliasing(const t_program *program, double x, double y);
 int			*shuffle(int pixels);
 
-/* */
+/* error.c */
 void		rt_error(char *s1, char *s2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/23 16:02:25 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:56:04 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "light.h"
 #include <math.h>
 
-void	build_ambience(char **args, void *ptr)
+void	build_ambience(char **args, t_program *program)
 {
 	static int	once;
 	t_ambience	ambience;
@@ -27,11 +27,11 @@ void	build_ambience(char **args, void *ptr)
 	if (ambience.intensity < 0 || ambience.intensity > 1)
 		rt_error(args[1], "intensity out of range");
 	ambience.color = parse_color(args[2]);
-	*(t_ambience *)ptr = ambience;
+	program->ambience = ambience;
 	once = 1;
 }
 
-void	build_camera(char **args, void *ptr)
+void	build_camera(char **args, t_program *program)
 {
 	static int	once;
 	t_cam		camera;
@@ -45,11 +45,11 @@ void	build_camera(char **args, void *ptr)
 		rt_error(args[3], "fov out of range");
 	camera.fov = tan(camera.fov / 2 * M_PI / 180);
 	camera_calculate_matrix(&camera);
-	*(t_cam *)ptr = camera;
+	program->camera = camera;
 	once = 1;
 }
 
-void	build_light(char **args, void *ptr)
+void	build_light(char **args, t_program *program)
 {
 	t_light	*light;
 
@@ -59,10 +59,10 @@ void	build_light(char **args, void *ptr)
 	if (light->intensity < 0 || light->intensity > 1)
 		rt_error(args[2], "brightness out of range");
 	light->color = parse_color(args[3]);
-	ft_lstadd_back(ptr, ft_lstnew(light));
+	ft_lstadd_back(&program->lights, ft_lstnew(light));
 }
 
-void	light_print(t_light *light)
+void	light_print(const t_light *light)
 {
 	printf("# - LIGHT - - - - - - - - - - - - - - - -\n");
 	printf("|  origin ");

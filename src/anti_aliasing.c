@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:00:07 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/27 16:06:39 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:43:16 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_color	anti_aliasing(const t_program *program, double x, double y)
 	int		i;
 	int		j;
 
-	color = color_f(0, 0, 0);
+	color = BLACK;
 	j = 0;
 	while (j < AA)
 	{

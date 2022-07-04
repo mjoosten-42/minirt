@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:00:30 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/27 17:03:46 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:27:11 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ t_collision	collision_plane(const t_shape *plane, const t_ray3 *ray)
 	coll.point = ray_point(ray, t);
 	coll.normal = plane->n;
 	if (d >= 0)
-		coll.normal = vec3_inv(coll.normal);
+		coll.normal = vec3_mul(coll.normal, -1.0);
 	return (coll);
 }

@@ -9,6 +9,7 @@ SOURCES :=	src/anti_aliasing.c \
 	src/colors/color_debug.c \
 	src/colors/color_math.c \
 	src/colors/color_math2.c \
+	src/error.c \
 	src/log.c \
 	src/mat4.c \
 	src/material.c \

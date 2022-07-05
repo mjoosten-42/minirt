@@ -18,7 +18,13 @@ include make/headers.mk
 SOURCES += main/$(MAIN)
 OBJECTS := $(patsubst %,$(OBJ_DIR)/%,$(SOURCES:.c=.o))
 
+ENABLE_DEBUG ?= 0
+
+.PHONY: all debug files
 all: $(NAME)
+
+debug:
+	$(MAKE) ENABLE_DEBUG=1 re
 
 files:
 	./make/make_sources.sh
@@ -31,8 +37,9 @@ $(NAME): $(HEADERS) $(OBJECTS)
 $(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@echo "Compiling: $@"
 	@mkdir -p $(@D)
-	@$(CC)  $(COMPILE_FLAGS) $(INCLUDE_DIRS) $(patsubst %,-I%,$(dir $(HEADERS))) -c -o $@ $<
+	@$(CC) -D ENABLE_DEBUG=$(ENABLE_DEBUG) $(COMPILE_FLAGS) $(INCLUDE_DIRS) $(patsubst %,-I%,$(dir $(HEADERS))) -c -o $@ $<
 
+.PHONY: clean fclean re print run
 clean:
 	@rm -Rf $(OBJ_DIR)/
 	@echo "Objects cleaned."
@@ -50,6 +57,3 @@ print:
 
 run: all
 	./$(NAME)
-
-.PHONY: all clean fclean re
-.PHONY: files print run

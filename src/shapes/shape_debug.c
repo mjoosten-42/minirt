@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:51:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/04 15:23:10 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 11:02:23 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	shape_print(t_shape *shape)
 		"CONE"
 	};
 
+	if (!ENABLE_DEBUG)
+		return ;
 	printf("# - SHAPE - - - - - - - - - - - - - - - -\n");
 	printf("|  type %s\n", shape_names[shape->type]);
 	printf("|  origin ");

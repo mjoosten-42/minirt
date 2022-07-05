@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 10:49:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 10:40:18 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 11:04:52 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	build_light(char **args, t_program *program)
 
 void	light_print(const t_light *light)
 {
+	if (!ENABLE_DEBUG)
+		return ;
 	printf("# - LIGHT - - - - - - - - - - - - - - - -\n");
 	printf("|  origin ");
 	vec3_print(light->o);

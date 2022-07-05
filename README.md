@@ -10,13 +10,13 @@ minirt requires two submodules:
  * [MLX42](https://github.com/codam-coding-college/MLX42)
  * [libft](https://github.com/mjoosten42/libft)
 
-## Compiling:
+## Compiling
 
 Before being able to compile you need glfw, on Codam Mac's you can use Managed Software Center:
 
 	Open MSC, search glfw and press install.
 
-Or you can use Homebrew:
+Or you can use Homebrew (the install.sh script does this for you):
 
 	brew update
 	brew install glfw

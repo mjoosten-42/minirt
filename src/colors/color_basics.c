@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 10:38:34 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 17:16:21 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 19:09:26 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 t_color	color_rgb(int r, int g, int b)
 {
 	return ((t_color){(float)r / 255.0, (float)g / 255.0, (float)b / 255.0});
-}
-
-t_color	color_f(float r, float g, float b)
-{
-	return ((t_color){r, g, b});
 }
 
 int	color_to_int(t_color c)

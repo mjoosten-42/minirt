@@ -5,6 +5,7 @@ COMPILE_FLAGS ?= -Wall -Wextra -Werror
 SRC_DIR ?= src
 HDR_DIR ?= include
 OBJ_DIR ?= obj
+LIBS = lib/MLX42/libmlx42.a lib/libft/libft.a
 INCLUDE_DIRS := \
 	-I "lib/libft/include/" \
 	-I "lib/MLX42/include/"
@@ -27,19 +28,18 @@ OBJECTS := $(patsubst %,$(OBJ_DIR)/%,$(SOURCES:.c=.o))
 # Default debug option (0 = no debug)
 DEBUG ?= 1
 
-.PHONY: all files dependencies
-all: dependencies $(NAME)
+all: $(NAME)
 
 files:
 	./make/make_sources.sh
 
-dependencies:
+$(LIBS):
 	@echo "libft:"
 	@$(MAKE) -C lib/libft/
 	@echo "libmlx42:"
 	@$(MAKE) -C lib/MLX42/
 
-$(NAME): $(HEADERS) $(OBJECTS)
+$(NAME): $(LIBS) $(HEADERS) $(OBJECTS)
 	@echo "\nLinking files..."
 	@$(CC) $(OBJECTS) -o $(NAME) $(LINKING_FLAGS)
 	@echo "Done!"
@@ -53,7 +53,6 @@ $(OBJ_DIR)/%.o: %.c $(HEADERS)
 		$(patsubst %,-I%,$(dir $(HEADERS))) \
 		-c -o $@ $<
 
-.PHONY: clean fclean clean_deps fclean_deps re print run
 clean: clean_deps
 	@echo "Cleaning minirt:"
 	@rm -Rf $(OBJ_DIR)/
@@ -82,3 +81,5 @@ print:
 
 run: all
 	./$(NAME)
+
+.PHONY: all files clean fclean clean_deps fclean_deps re print run

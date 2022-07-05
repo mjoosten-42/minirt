@@ -10,7 +10,6 @@ SOURCES :=	src/anti_aliasing.c \
 	src/colors/color_math.c \
 	src/colors/texture.c \
 	src/error.c \
-	src/log.c \
 	src/mat4.c \
 	src/material.c \
 	src/math/clamp.c \

@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/04 15:02:46 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 18:53:10 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 19:07:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static t_ray3	_calc_lightray(const t_light *light, const t_collision *coll)
 	return (ray);
 }
 
-static t_color	_calc_diffuse(const t_collision *coll,
+static t_color	calc_diffuse(const t_collision *coll,
 	const t_light *light, const t_ray3 *ray)
 {
 	t_color	c;
@@ -84,20 +84,20 @@ t_color	ray_to_light(const t_program *program,
 	t_collision coll,
 	const t_light *light)
 {
-	t_color		diffuse_c;
-	t_color		specular_c;
-	t_color		total_c;
+	t_color		diffuse;
+	t_color		specular;
+	t_color		total;
 	t_ray3		ray;
 	double		light_percent;
 
-	ray = _calc_lightray(light, &coll);
+	ray = calc_lightray(light, &coll);
 	light_percent = raycast_get_light_perc(program->shapes, &ray,
 			vec3_distance(light->o, coll.point));
 	if (light_percent < __FLT_EPSILON__)
 		return ((t_color){0, 0, 0});
-	diffuse_c = _calc_diffuse(&coll, light, &ray);
-	specular_c = _calc_specular(&coll, light, &ray);
-	total_c = color_add(specular_c, diffuse_c);
-	color_luminosity(&total_c, light_percent);
-	return (total_c);
+	diffuse = calc_diffuse(&coll, light, &ray);
+	specular = calc_specular(&coll, light, &ray);
+	total = color_add(specular, diffuse);
+	color_luminosity(&total, light_percent);
+	return (total);
 }

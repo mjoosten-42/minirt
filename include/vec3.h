@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 19:03:06 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 14:55:59 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 19:08:52 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	vec3_print(t_v3 vec3);
 
 /* vec3_advanced.c */
 t_v3	vec3_calc_reflection(t_v3 incoming, t_v3 normal);
-t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength);
+t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double n1, double n2);
 double	vec3_angle(t_v3 v1, t_v3 v2);
 double	vec3_distance(t_v3 v1, t_v3 v2);
 t_v3	vec3_project(t_v3 v1, t_v3 v2);

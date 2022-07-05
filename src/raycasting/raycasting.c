@@ -6,16 +6,18 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:59:34 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 19:09:47 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "collision.h"
+#include "ray3.h"
 #include "program.h"
 #include <math.h>
 #include "shape.h"
 #include "raycasting.h"
 #include "equations.h"
+#include "color.h"
 
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 {
@@ -33,23 +35,6 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 	}
 	return (closest_collision);
 }
-
-// t_collision	raycast_get_coll_ignore_refr(t_list *shapes, const t_ray3 *ray)
-// {
-// 	t_collision	coll;
-// 	t_collision	closest_collision;
-
-// 	closest_collision = collision_none();
-// 	while (shapes != NULL)
-// 	{
-// 		coll = ((t_shape *)shapes->content)->f(shapes->content, ray);
-// 		if (coll.shape != NULL && coll.shape->material.refraction == 0.0)
-// 			if (coll.distance < closest_collision.distance)
-// 				closest_collision = coll;
-// 		shapes = shapes->next;
-// 	}
-// 	return (closest_collision);
-// }
 
 double	raycast_get_light_perc(t_list *shapes,
 	const t_ray3 *ray,
@@ -76,7 +61,7 @@ double	raycast_get_light_perc(t_list *shapes,
 	return (percent);
 }
 
-static t_color	_calc_ambient(t_color c, const t_ambience *amb)
+static t_color	calc_ambient(t_color c, const t_ambience *amb)
 {
 	c = color_mul(c, amb->color);
 	color_luminosity(&c, amb->intensity);

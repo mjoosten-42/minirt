@@ -1,7 +1,7 @@
 #!/bin/bash
 
 FILE=scenes/random.rt
-AMOUNT=50
+AMOUNT=10
 
 echo 'C  -10,-10,-10          1,1,1 70'  > $FILE
 echo 'A  0.2               255,255,255' >> $FILE

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/01 11:00:30 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 15:08:43 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 19:09:20 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ t_collision	collision_plane(t_shape *plane, const t_ray3 *ray)
 	coll.normal = plane->pl.n;
 	if (d >= 0)
 		coll.normal = vec3_mul(coll.normal, -1.0);
+	coll.inside = false;
 	return (coll);
 }

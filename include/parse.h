@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 13:16:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/04 13:56:26 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/30 13:16:24 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/07/05 10:46:20 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	build_ambience(char **args, t_program *program);
 void	build_camera(char **args, t_program *program);
 void	build_light(char **args, t_program *program);
 
+char	*double_err_check(char *str);
 double	atod(char *str);
 
 t_v3	parse_vector(char *str);

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/01 15:43:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/04 15:21:21 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 11:54:05 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	_mlx_keypress(keys_t key)
 		exit(EXIT_SUCCESS);
 }
 
-void	_initmlx_t(t_program *program)
+void	program_init_mlx(t_program *program)
 {
 	program->mlx = mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE, WINDOW_RESIZE);
 	if (program->mlx == NULL)
@@ -58,7 +58,6 @@ t_program	program_get(void)
 	t_program	program;
 
 	ft_bzero(&program, sizeof(t_program));
-	_initmlx_t(&program);
 	program.shuffled = shuffle(WINDOW_W * WINDOW_H);
 	return (program);
 }

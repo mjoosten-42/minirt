@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:50:42 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/05 14:57:19 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:11:21 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "shape.h"
 #include "vec3.h"
 #include "color.h"
+#include "ray3.h"
 
 #define REFLECTION 0
 #define REFRACTION 1

@@ -8,7 +8,6 @@ SOURCES :=	src/anti_aliasing.c \
 	src/colors/color_basics.c \
 	src/colors/color_debug.c \
 	src/colors/color_math.c \
-	src/colors/color_math2.c \
 	src/error.c \
 	src/log.c \
 	src/mat4.c \
@@ -16,8 +15,8 @@ SOURCES :=	src/anti_aliasing.c \
 	src/math/clamp.c \
 	src/math/quadratic.c \
 	src/math/rodriguez.c \
-	src/parse/atod.c \
 	src/parse/color.c \
+	src/parse/double.c \
 	src/parse/objects.c \
 	src/parse/parse.c \
 	src/parse/vector.c \

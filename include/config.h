@@ -6,14 +6,17 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/05 14:14:13 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:12:20 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONFIG_H
 # define CONFIG_H
 
-# define ENABLE_SPECULAR 1
+/* debugging can be enabled by compiling with ENABLE_DEBUG */
+# ifndef ENABLE_DEBUG
+#  define ENABLE_DEBUG 0
+# endif
 
 /* program.init.c */
 # define WINDOW_W 1024
@@ -32,5 +35,7 @@
 
 /* shape.c */
 # define DEFAULT_PHONG 4
+
+# define ENABLE_SPECULAR 1
 
 #endif

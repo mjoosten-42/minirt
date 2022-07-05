@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 13:09:47 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/04 15:19:30 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 10:40:33 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ t_v3	parse_vector(char *str)
 		rt_error(NULL, "Split allocation failed");
 	if (ft_argsize(strs) != 3)
 		rt_error(str, "vector incorrectly formatted");
-	vector.x = atod(strs[0]);
-	vector.y = atod(strs[1]);
-	vector.z = atod(strs[2]);
+	vector.x = atod(double_err_check(strs[0]));
+	vector.y = atod(double_err_check(strs[1]));
+	vector.z = atod(double_err_check(strs[2]));
 	ft_free_array(strs);
 	return (vector);
 }

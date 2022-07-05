@@ -6,16 +6,18 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/05 14:15:31 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:11:36 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "collision.h"
+#include "ray3.h"
 #include "program.h"
 #include <math.h>
 #include "shape.h"
 #include "raycasting.h"
 #include "equations.h"
+#include "color.h"
 
 t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 {

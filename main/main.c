@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 11:11:40 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/06/27 11:09:46 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/17 11:11:40 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/05 11:54:30 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		argv[1] = "scenes/maarten.rt";
 	build_scene(&program, argv[1]);
+	program_init_mlx(&program);
 	program_run(&program);
 	program_terminate(&program);
 	LOG("Program end");

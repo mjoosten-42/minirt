@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   objects.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/04 13:56:04 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   objects.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/30 10:49:24 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/07/05 11:04:52 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	build_ambience(char **args, t_program *program)
 
 	if (once)
 		rt_error(NULL, "Multiple ambient lightings");
-	ambience.intensity = atod(args[1]);
+	ambience.intensity = atod(double_err_check(args[1]));
 	if (ambience.intensity < 0 || ambience.intensity > 1)
 		rt_error(args[1], "intensity out of range");
 	ambience.color = parse_color(args[2]);
@@ -55,7 +55,7 @@ void	build_light(char **args, t_program *program)
 
 	light = ft_malloc(sizeof(t_light));
 	light->o = parse_vector(args[1]);
-	light->intensity = atod(args[2]);
+	light->intensity = atod(double_err_check(args[2]));
 	if (light->intensity < 0 || light->intensity > 1)
 		rt_error(args[2], "brightness out of range");
 	light->color = parse_color(args[3]);
@@ -64,6 +64,8 @@ void	build_light(char **args, t_program *program)
 
 void	light_print(const t_light *light)
 {
+	if (!ENABLE_DEBUG)
+		return ;
 	printf("# - LIGHT - - - - - - - - - - - - - - - -\n");
 	printf("|  origin ");
 	vec3_print(light->o);

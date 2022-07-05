@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   color.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/16 10:32:26 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/04 15:29:15 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   color.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/16 10:32:26 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/05 11:15:55 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ typedef struct s_color
 
 /* color_basics.c */
 t_color	color_rgb(int r, int g, int b);
-t_color	color_f(float r, float g, float b);
 int		color_to_int(t_color c);
-t_color	color_from_int(int c);
 void	color_normalize(t_color *c);
 
 /* color_math.c */

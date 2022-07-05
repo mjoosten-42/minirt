@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:35:50 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/23 16:02:15 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:08:39 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ double	atod(char *str)
 	{
 		if (!ft_isdigit(str[len]))
 			rt_error(str, "double incorrectly formatted");
-		double_part = double_part / 10 + (double)(str[len] - '0') / 10;
+		double_part = double_part / 10.0 + (double)(str[len] - '0') / 10.0;
 	}
 	return ((int_part + double_part) * sign);
 }

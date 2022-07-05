@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycasting.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/04 15:18:20 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/05 14:15:31 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,6 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 	}
 	return (closest_collision);
 }
-
-// t_collision	raycast_get_coll_ignore_refr(t_list *shapes, const t_ray3 *ray)
-// {
-// 	t_collision	coll;
-// 	t_collision	closest_collision;
-
-// 	closest_collision = collision_none();
-// 	while (shapes != NULL)
-// 	{
-// 		coll = ((t_shape *)shapes->content)->f(shapes->content, ray);
-// 		if (coll.shape != NULL && coll.shape->material.refraction == 0.0)
-// 			if (coll.distance < closest_collision.distance)
-// 				closest_collision = coll;
-// 		shapes = shapes->next;
-// 	}
-// 	return (closest_collision);
-// }
 
 double	raycast_get_light_perc(t_list *shapes,
 	const t_ray3 *ray,

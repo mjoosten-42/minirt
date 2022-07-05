@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:40:22 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/04 14:38:48 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:43:58 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 #include "ray3.h"
 #include "vec3.h"
 #include "equations.h"
-
-/* https://www.geometrictools.com/Documentation/IntersectionLineCone.pdf
-** https://www.shadertoy.com/view/MtcXWr
-**   normalize(cp * dot(s.v, cp) / dot(cp, cp) - s.v);
-** https://stackoverflow.com/questions/66343772/cone-normal-vector
-*/
 
 t_collision			collision_cone_inf(const t_shape *cone, const t_ray3 *ray);
 static t_collision	collision_cap(const t_shape *cone, const t_ray3 *ray);

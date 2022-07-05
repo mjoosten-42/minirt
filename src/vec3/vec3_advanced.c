@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:06:03 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/05 10:16:04 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:57:16 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,77 +24,24 @@ t_v3	vec3_calc_reflection(t_v3 incoming, t_v3 normal)
 	return (refl);
 }
 
-// n1 * sin(angle1) = n2 * sin(angle2)
-// sin(angle2) = n1 * sin(angle1) / n2
-// angle = asin(n1 * sin(angle1) / n2)
-t_v3	vec3_calc_refraction_m(t_v3 incoming, t_v3 normal, double n1, double n2)
+t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double n1, double n2)
 {
 	t_v3	refr;
 	t_v3	axis;
-	double	angle;
+	double	incident;
+	double	refraction;
 
-	angle = vec3_angle(incoming, normal);
-	angle = asin(n1 / n2 * sin(angle));
-	if (angle > asin(n2 / n1))
+	if (n1 != 1.0)
+		n2 = 1.0;
+	incident = vec3_angle(incoming, vec3_mul(normal, -1.0));
+	refraction = n1 / n2 * sin(incident);
+	if (refraction > 1.0)
 		return (vec3_calc_reflection(incoming, normal));
-	axis = vec3_cross(incoming, normal);
-	refr = rodrigues(incoming, axis, angle);
+	refraction = asin(refraction);
+	axis = vec3_norm(vec3_cross(incoming, normal));
+	refr = vec3_norm(rodrigues(incoming, axis, refraction - incident));
 	return (refr);
 }
-
-//	Really weird "warping" refraction, but it looks like glass
-t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
-{
-	t_v3	refl;
-	t_v3	out;
-	double	angle;
-
-	refl = vec3_calc_reflection(incoming, normal);
-	angle = vec3_dot(refl, incoming);
-	angle = clamp(angle, 0.0, 1.0);
-	angle = pow(angle, strength);
-	out = incoming;
-	out.x += (out.x - refl.x) * angle;
-	out.y += (out.y - refl.y) * angle;
-	out.z += (out.z - refl.z) * angle;
-	out = vec3_norm(out);
-	return (out);
-}
-
-// t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
-// {
-// 	double	cosi;
-// 	double	n1;
-// 	double	n2;
-// 	double	eta;
-// 	double	k;
-// 	t_v3	refr;
-
-// 	cosi = vec3_dot(incoming, vec3_inv(normal));
-// 	if (cosi > 0.0f)
-// 	{
-// 		n1 = strength;
-// 		n2 = 1.0;
-// 		normal = vec3_inv(normal);
-// 	}
-// 	else
-// 	{
-// 		n1 = 1.0;
-// 		n2 = strength;
-// 		cosi = -cosi;
-// 		//normal = vec3_inv(normal);
-// 	}
-// 	eta = n1 / n2;
-// 	k = 2.0 - (eta * eta) * (1.0 - cosi * cosi);
-// 	// if (k < 0.0)
-// 	// 	refr = vec3_calc_reflection(incoming, normal);
-// 	// else
-// 		refr =
-//	vec3_add( vec3_mul(incoming, eta),
-//	vec3_mul(normal, eta * cosi * sqrt(k)) );
-// 	refr = vec3_norm(refr);
-// 	return (refr);
-// }
 
 double	vec3_angle(t_v3 v1, t_v3 v2)
 {

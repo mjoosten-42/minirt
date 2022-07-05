@@ -6,12 +6,11 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/17 11:11:40 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 15:56:47 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 19:12:40 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "program.h"
-#include "log.h"
 
 int	main(int argc, char **argv)
 {
@@ -24,6 +23,5 @@ int	main(int argc, char **argv)
 	program_init_mlx(&program);
 	program_run(&program);
 	program_terminate(&program);
-	LOG("Program end");
 	return (EXIT_SUCCESS);
 }

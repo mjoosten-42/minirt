@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/01 16:11:54 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:09:15 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 19:11:20 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "shape_masks.h"
 #include "equations.h"
 
-t_collision		collision_caps(const t_shape *cylinder, const t_ray3 *ray);
-double			collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray);
+t_collision		collision_caps(t_shape *cylinder, const t_ray3 *ray);
+double			collision_cy_inf(t_shape *cylinder, const t_ray3 *ray);
 
 t_collision	collision_cylinder(t_shape *cylinder, const t_ray3 *ray)
 {

@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/04 15:02:46 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:07:10 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 19:12:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_color	get_color(const t_collision *coll)
 	return (c);
 }
 
-static t_ray3	_calc_lightray(const t_light *light, const t_collision *coll)
+static t_ray3	calc_lightray(const t_light *light, const t_collision *coll)
 {
 	t_ray3	ray;
 
@@ -60,7 +60,7 @@ static t_color	calc_diffuse(const t_collision *coll,
 	return (c);
 }
 
-static t_color	_calc_specular(const t_collision *coll,
+static t_color	calc_specular(const t_collision *coll,
 	const t_light *light, const t_ray3 *ray)
 {
 	t_color	c;

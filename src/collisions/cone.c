@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 11:40:22 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:09:08 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 19:11:19 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #include "vec3.h"
 #include "equations.h"
 
-t_collision			collision_cone_inf(const t_shape *cone, const t_ray3 *ray);
-static t_collision	collision_cap(const t_shape *cone, const t_ray3 *ray);
-static t_v3			cone_normal(t_v3 point, const t_shape *cone);
+t_collision			collision_cone_inf(t_shape *cone, const t_ray3 *ray);
+static t_collision	collision_cap(t_shape *cone, const t_ray3 *ray);
+static t_v3			cone_normal(t_v3 point, t_shape *cone);
 
 t_collision	collision_cone(t_shape *cone, const t_ray3 *ray)
 {

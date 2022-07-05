@@ -6,12 +6,11 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/01 15:43:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 11:54:05 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 19:11:45 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "program.h"
-#include "log.h"
 #include "shape.h"
 #include "libft.h"
 #include "MLX42/MLX42_Input.h"
@@ -39,7 +38,6 @@ void	program_run(t_program *program)
 	clear_screen(program->buffer);
 	thread_init(program);
 	mlx_key_hook(program->mlx, (mlx_keyfunc)_mlx_keypress, program);
-	LOG("Running mlx_loop");
 	mlx_loop(program->mlx);
 }
 

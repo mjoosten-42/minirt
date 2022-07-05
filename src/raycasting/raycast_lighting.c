@@ -6,12 +6,12 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/04 15:02:46 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/04 16:44:46 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 12:48:50 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
 #include <math.h>
+#include "raycasting.h"
 #include "equations.h"
 
 static t_ray3	_calc_lightray(const t_light *light, const t_collision *coll)

@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 12:02:48 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/02 13:59:21 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 12:50:23 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,6 @@ t_color	color_mul(t_color c1, t_color c2)
 	return (result);
 }
 
-/*
-**	Only normalizes the color if one of the elements is above 1.0
-*/
-void	color_norm_if_large(t_color *c)
-{
-	if (c->r > 1.0 || c->g > 1.0 || c->b > 1.0)
-		color_normalize(c);
-}
-
 void	color_cap(t_color *c)
 {
 	if (c->r > 1.000)
@@ -58,4 +49,14 @@ void	color_cap(t_color *c)
 		c->g = 1.000;
 	if (c->b > 1.000)
 		c->b = 1.000;
+}
+
+t_color	color_add(t_color c1, t_color c2)
+{
+	t_color	result;
+
+	result.r = c1.r + c2.r;
+	result.g = c1.g + c2.g;
+	result.b = c1.b + c2.b;
+	return (result);
 }

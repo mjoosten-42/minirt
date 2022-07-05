@@ -25,13 +25,10 @@ SOURCES += main/$(MAIN)
 OBJECTS := $(patsubst %,$(OBJ_DIR)/%,$(SOURCES:.c=.o))
 
 # Default debug option (0 = no debug)
-ENABLE_DEBUG ?= 0
+DEBUG ?= 0
 
-.PHONY: all debug files dependencies
+.PHONY: all files dependencies
 all: dependencies $(NAME)
-
-debug:
-	$(MAKE) ENABLE_DEBUG=1 re
 
 files:
 	./make/make_sources.sh
@@ -50,7 +47,7 @@ $(NAME): $(HEADERS) $(OBJECTS)
 $(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@echo "Compiling: $@"
 	@mkdir -p $(@D)
-	@$(CC) -D ENABLE_DEBUG=$(ENABLE_DEBUG) \
+	@$(CC) -D ENABLE_DEBUG=$(DEBUG) \
 		$(COMPILE_FLAGS) \
 		$(INCLUDE_DIRS) \
 		$(patsubst %,-I%,$(dir $(HEADERS))) \

@@ -53,14 +53,25 @@ $(OBJ_DIR)/%.o: %.c $(HEADERS)
 		$(patsubst %,-I%,$(dir $(HEADERS))) \
 		-c -o $@ $<
 
-.PHONY: clean fclean re print run
-clean:
+.PHONY: clean fclean clean_deps fclean_deps re print run
+clean: clean_deps
+	@echo "Cleaning minirt:"
 	@rm -Rf $(OBJ_DIR)/
 	@echo "Objects cleaned."
 
-fclean: clean
+clean_deps:
+	@echo "Cleaning libft:"
+	@$(MAKE) -C lib/libft/ clean
+	@echo "Cleaning libmlx42:"
+	@$(MAKE) -C lib/MLX42/ clean
+
+fclean: fclean_deps clean
 	@rm -f $(NAME)
 	@echo "Binary cleaned."
+
+fclean_deps:
+	@$(MAKE) -C lib/libft/ fclean
+	@$(MAKE) -C lib/MLX42/ fclean
 
 re: fclean all
 

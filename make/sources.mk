@@ -16,8 +16,8 @@ SOURCES :=	src/anti_aliasing.c \
 	src/math/clamp.c \
 	src/math/quadratic.c \
 	src/math/rodriguez.c \
-	src/parse/atod.c \
 	src/parse/color.c \
+	src/parse/double.c \
 	src/parse/objects.c \
 	src/parse/parse.c \
 	src/parse/vector.c \

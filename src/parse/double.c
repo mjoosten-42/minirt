@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 11:35:50 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 10:58:00 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 11:53:06 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "parse.h"
 #include "program.h"
 
-#define ERR_INCORRECT_DOUBLE "double incorrectly formatted"
+#define ERR_INCORRECT_DOUBLE "Double incorrectly formatted"
 
 char	*double_err_check(char *str)
 {
@@ -22,21 +22,21 @@ char	*double_err_check(char *str)
 
 	i = 0;
 	if (!ft_isdigit(str[i]) && str[i] != '-')
-		rt_error(str, ERR_INCORRECT_DOUBLE);
+		rt_error(ERR_INCORRECT_DOUBLE, str);
 	i++;
 	while (ft_isdigit(str[i]))
 		i++;
 	if (str[i] == '\0')
 		return (str);
 	if (str[i] != '.')
-		rt_error(str, ERR_INCORRECT_DOUBLE);
+		rt_error(ERR_INCORRECT_DOUBLE, str);
 	i++;
 	if (!ft_isdigit(str[i]))
-		rt_error(str, ERR_INCORRECT_DOUBLE);
+		rt_error(ERR_INCORRECT_DOUBLE, str);
 	while (ft_isdigit(str[i]))
 		i++;
 	if (str[i] != '\0')
-		rt_error(str, ERR_INCORRECT_DOUBLE);
+		rt_error(ERR_INCORRECT_DOUBLE, str);
 	return (str);
 }
 

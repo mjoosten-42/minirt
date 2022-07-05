@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   vec3_advanced.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 14:06:03 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/05 10:16:04 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   vec3_advanced.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/02 14:06:03 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/05 11:43:17 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_v3	vec3_calc_refraction_m(t_v3 incoming, t_v3 normal, double n1, double n2)
 	return (refr);
 }
 
-//	Really weird "warping" refraction, but it looks like glass
+//	Really weird "warping" refraction, but it kinda looks like glass
 t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
 {
 	t_v3	refl;
@@ -60,41 +60,6 @@ t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
 	out = vec3_norm(out);
 	return (out);
 }
-
-// t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
-// {
-// 	double	cosi;
-// 	double	n1;
-// 	double	n2;
-// 	double	eta;
-// 	double	k;
-// 	t_v3	refr;
-
-// 	cosi = vec3_dot(incoming, vec3_inv(normal));
-// 	if (cosi > 0.0f)
-// 	{
-// 		n1 = strength;
-// 		n2 = 1.0;
-// 		normal = vec3_inv(normal);
-// 	}
-// 	else
-// 	{
-// 		n1 = 1.0;
-// 		n2 = strength;
-// 		cosi = -cosi;
-// 		//normal = vec3_inv(normal);
-// 	}
-// 	eta = n1 / n2;
-// 	k = 2.0 - (eta * eta) * (1.0 - cosi * cosi);
-// 	// if (k < 0.0)
-// 	// 	refr = vec3_calc_reflection(incoming, normal);
-// 	// else
-// 		refr =
-//	vec3_add( vec3_mul(incoming, eta),
-//	vec3_mul(normal, eta * cosi * sqrt(k)) );
-// 	refr = vec3_norm(refr);
-// 	return (refr);
-// }
 
 double	vec3_angle(t_v3 v1, t_v3 v2)
 {

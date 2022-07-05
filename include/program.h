@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   program.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 12:55:32 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   program.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/04 15:21:38 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void		camera_calculate_matrix(t_cam *camera);
 void		build_scene(t_program *program, char *file);
 
 /* scene_draw.c */
+void		clear_screen(mlx_image_t *img);
 void		scene_draw(t_program *program);
 
 /* anti_aliasing.c */

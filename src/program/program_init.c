@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   program_init.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 15:43:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 14:11:41 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   program_init.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/01 15:43:29 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/04 15:21:21 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,12 @@ void	_initmlx_t(t_program *program)
 		rt_error(NULL, "Failed to initialize image");
 }
 
-void	_clear(mlx_image_t *img)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WINDOW_W)
-	{
-		y = 0;
-		while (y < WINDOW_H)
-		{
-			mlx_put_pixel(img, x, y, 0x0);
-			y++;
-		}
-		x++;
-	}
-}
-
 void	program_run(t_program *program)
 {
 	if (mlx_image_to_window(program->mlx, program->buffer, 0, 0) < 0)
 		rt_error(NULL, "Unable to put image to window");
-	_clear(program->buffer);
+	clear_screen(program->buffer);
 	thread_init(program);
-	//scene_draw(program);
 	mlx_key_hook(program->mlx, (mlx_keyfunc)_mlx_keypress, program);
 	LOG("Running mlx_loop");
 	mlx_loop(program->mlx);

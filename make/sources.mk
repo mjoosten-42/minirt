@@ -26,8 +26,9 @@ SOURCES :=	src/anti_aliasing.c \
 	src/program/threads.c \
 	src/ray/ray3.c \
 	src/ray/ray3_debug.c \
-	src/raycast_material.c \
-	src/raycasting.c \
+	src/raycasting/raycast_lighting.c \
+	src/raycasting/raycast_material.c \
+	src/raycasting/raycasting.c \
 	src/shapes/shape.c \
 	src/shapes/shape_debug.c \
 	src/vec3/vec3_advanced.c \

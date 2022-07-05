@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:50:42 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 16:04:42 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/05 10:16:13 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ t_ray3	modified_ray(const t_ray3 *ray, const t_rdata *rdata, int mode)
 	return (mray);
 }
 
-t_color	blend_ray(const t_program *program, const t_ray3 *ray, t_rdata rdata, int mode)
+t_color	blend_ray(const t_program *program,
+	const t_ray3 *ray,
+	t_rdata rdata,
+	int mode)
 {
 	t_rdata	new_rd;
 	t_ray3	mray;
@@ -46,7 +49,7 @@ t_color	blend_ray(const t_program *program, const t_ray3 *ray, t_rdata rdata, in
 	mray = modified_ray(ray, &rdata, mode);
 	new_rd = raycast(program, &mray);
 	if (new_rd.coll.shape == NULL)
-		new_rd.color = BLACK;
+		new_rd.color = (t_color){0, 0, 0};
 	if (mode == REFLECTION)
 		percentage = rdata.coll.shape->material.reflection;
 	else
@@ -54,7 +57,9 @@ t_color	blend_ray(const t_program *program, const t_ray3 *ray, t_rdata rdata, in
 	return (color_blend(rdata.color, new_rd.color, percentage));
 }
 
-t_rdata	material_cast(const t_program *program, const t_ray3 *ray, t_rdata rdata)
+t_rdata	material_cast(const t_program *program,
+	const t_ray3 *ray,
+	t_rdata rdata)
 {
 	rdata.color = raycast_calc_lighting(program, rdata.coll);
 	if (ray->bounces >= RAY_MAX_BOUNCES)

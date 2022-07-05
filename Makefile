@@ -3,7 +3,7 @@ MAIN ?= main.c
 NAME := minirt
 INCLUDE_DIRS := -I "lib/libft/include/" -I "lib/MLX42/include/"
 
-COMPILE_FLAGS ?= -Wall -Wextra -g
+COMPILE_FLAGS ?= -Wall -Wextra -Werror -g
 LINKING_FLAGS ?= libft.a libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -g
 
 SRC_DIR ?= src

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   scene_draw.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 13:04:29 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   scene_draw.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 11:42:17 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/04 15:30:18 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,24 @@
 #include "color.h"
 #include "raycasting.h"
 #include <math.h>
+
+void	clear_screen(mlx_image_t *img)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WINDOW_W)
+	{
+		y = 0;
+		while (y < WINDOW_H)
+		{
+			mlx_put_pixel(img, x, y, 0x0);
+			y++;
+		}
+		x++;
+	}
+}
 
 static t_v3	_get_direction(const t_program *program, double x, double y)
 {
@@ -27,7 +45,8 @@ static t_v3	_get_direction(const t_program *program, double x, double y)
 	direction.y = (1.0 - 2.0 * (y + 0.5) / WINDOW_H)
 		* program->camera.fov;
 	direction.z = 1.0;
-	direction = vec3_norm(mat4_mul_vec3(&program->camera.view_matrix, &direction));
+	direction = vec3_norm(
+			mat4_mul_vec3(&program->camera.view_matrix, &direction));
 	return (direction);
 }
 
@@ -40,7 +59,7 @@ t_color	calc_pixel(const t_program *program, double x, double y)
 	ray = ray3(program->camera.origin, _get_direction(program, x, y));
 	rdata = raycast(program, &ray);
 	if (rdata.coll.shape == NULL)
-		return (BLACK);
+		return ((t_color){0, 0, 0});
 	return (rdata.color);
 }
 

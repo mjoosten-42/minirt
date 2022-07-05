@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/21 15:31:06 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/02/23 10:55:34 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/04 15:31:56 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,16 @@
 /*
 **	NOT NORM way to print log message with file:line & function to STDOUT
 */
-# define LOG(a) log_msg(__LINE__, __FILE__, __func__, a)
+//# define LOG(a) log_msg(__LINE__, __FILE__, __func__, a)
 
 /*
 **	NOT NORM way to print log message with file:line & function to STDOUT. 
 **	Printed text is simply RED for clarity
 */
-# define LOG_ERR(a) log_err(__LINE__, __FILE__, __func__, a)
+//# define LOG_ERR(a) log_err(__LINE__, __FILE__, __func__, a)
+
+# define LOG (void)
+# define LOG_ERR (void)
 
 void	log_msg(int line, const char *file, const char *func, const char *msg);
 void	log_err(int line, const char *file, const char *func, const char *msg);

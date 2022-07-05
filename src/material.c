@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   material.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 14:22:16 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/04 10:51:40 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   material.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/17 14:22:16 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/07/04 15:00:54 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "config.h"
 #include "libft.h"
 #include <math.h>
+#include <stdio.h>
 
 t_material	parse_material(char *str)
 {
@@ -40,8 +41,6 @@ t_material	parse_material(char *str)
 	}
 	return ((t_material){NULL, 0, 0, 1, DEFAULT_PHONG});
 }
-
-#include <stdio.h>
 
 void	material_print(const t_material *material)
 {

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:06:03 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 16:08:56 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/05 10:16:04 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_v3	vec3_calc_reflection(t_v3 incoming, t_v3 normal)
 	t_v3	refl;
 
 	refl = vec3_norm(vec3_sub(incoming,
-			vec3_mul(vec3_mul(normal, vec3_dot(incoming, normal)), 2)));
+				vec3_mul(vec3_mul(normal, vec3_dot(incoming, normal)), 2)));
 	return (refl);
 }
 
@@ -50,7 +50,6 @@ t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
 	double	angle;
 
 	refl = vec3_calc_reflection(incoming, normal);
-	
 	angle = vec3_dot(refl, incoming);
 	angle = clamp(angle, 0.0, 1.0);
 	angle = pow(angle, strength);
@@ -90,7 +89,9 @@ t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength)
 // 	// if (k < 0.0)
 // 	// 	refr = vec3_calc_reflection(incoming, normal);
 // 	// else
-// 		refr = vec3_add( vec3_mul(incoming, eta), vec3_mul(normal, eta * cosi * sqrt(k)) );
+// 		refr =
+//	vec3_add( vec3_mul(incoming, eta),
+//	vec3_mul(normal, eta * cosi * sqrt(k)) );
 // 	refr = vec3_norm(refr);
 // 	return (refr);
 // }

@@ -1,6 +1,10 @@
 # minirt
 The awesome, but mini, minirt!
 
+minirt requires two submodules:
+ * [MLX42](https://github.com/codam-coding-college/MLX42)
+ * [libft](https://github.com/mjoosten42/libft)
+
 ## Compiling:
 	
 Before being able to compile you need glfw, on Codam Mac's you can use Managed Software Center:
@@ -22,6 +26,17 @@ or if already made:
 
 
 ## Features:
+
+### Camera
+
+Every scene requires a camera. The camera is static and it's properties are determined in the scene file like this:
+
+	C <position> <direction> <field_of_view>
+
+**Example:**
+
+	C 0,0,-10 0,0,1 90
+
 ### Unique shapes
 
 There are 4 unique shapes to use with this raytracer: Sphere, plane, cylinder and cone.
@@ -32,23 +47,23 @@ All shapes have their own intersection function.
 
 In the scene files shapes are set up like this:
 
-Spheres:
+**Spheres:**
 
 	sp <position> <diameter> <color> [material]
 
-Planes:
+**Planes:**
 
 	pl <position> <normal> <color> [material]
 
-Cylinders:
+**Cylinders:**
 
 	cy <position> <direction> <diameter> <height> <color> [material]
 
-Cones:
+**Cones:**
 
 	co <position> <direction> <diameter> <height> <color> [material]
 
-Examples:
+**Examples:**
 
 	sp 4,3,0       10       233,44,74   metal
 	pl 0,-10,0     0,1,0    83,255,20

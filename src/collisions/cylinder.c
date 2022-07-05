@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/01 16:11:54 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/04 16:07:18 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 15:08:43 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 // https://www.pbr-book.org/3ed-2018/Shapes/Cylinders
 
-t_collision		collision_caps(const t_shape *cylinder, const t_ray3 *ray);
-double			collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray);
+t_collision		collision_caps(t_shape *cylinder, const t_ray3 *ray);
+double			collision_cy_inf(t_shape *cylinder, const t_ray3 *ray);
 
-t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
+t_collision	collision_cylinder(t_shape *cylinder, const t_ray3 *ray)
 {
 	t_collision	coll;
 	t_v3		to_center;
@@ -50,7 +50,7 @@ t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 	return (coll);
 }
 
-double	collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray)
+double	collision_cy_inf(t_shape *cylinder, const t_ray3 *ray)
 {	
 	t_ray3		rot;
 	t_abc		abc;
@@ -72,7 +72,7 @@ double	collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray)
 	return (t[0]);
 }
 
-t_collision	collision_caps(const t_shape *cylinder, const t_ray3 *ray)
+t_collision	collision_caps(t_shape *cylinder, const t_ray3 *ray)
 {
 	t_collision	coll;
 	t_shape		plane;

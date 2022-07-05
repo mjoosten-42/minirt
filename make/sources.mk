@@ -8,6 +8,7 @@ SOURCES :=	src/anti_aliasing.c \
 	src/colors/color_basics.c \
 	src/colors/color_debug.c \
 	src/colors/color_math.c \
+	src/colors/texture.c \
 	src/error.c \
 	src/log.c \
 	src/mat4.c \
@@ -32,5 +33,6 @@ SOURCES :=	src/anti_aliasing.c \
 	src/shapes/shape_debug.c \
 	src/vec3/vec3_advanced.c \
 	src/vec3/vec3_basics.c \
+	src/vec3/vec3_coordinates.c \
 	src/vec3/vec3_debug.c \
 	src/vec3/vec3_math.c \

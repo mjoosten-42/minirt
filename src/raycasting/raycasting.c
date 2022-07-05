@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/04 15:18:20 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 16:59:34 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ t_color	raycast_calc_lighting(const t_program *program, t_collision coll)
 	t_list	*list;
 	t_color	c;
 
-	c = _calc_ambient(coll.shape->color, &(program->ambience));
+	c = get_color(&coll);
+	c = _calc_ambient(c, &(program->ambience));
 	list = program->lights;
 	while (list != NULL)
 	{

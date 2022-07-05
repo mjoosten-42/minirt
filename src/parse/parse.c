@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/04 12:55:01 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/27 13:59:09 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/07/05 16:40:30 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	build_object(t_program *program, char **args)
 	object = get_object(args[0]);
 	if (argsize < object.min_args || argsize > object.max_args)
 		rt_error(NULL, "Wrong amount of arguments");
-	object.f(args, program);
+	object.f(object, args, program);
 }
 
 t_object	get_object(char *str)
@@ -81,10 +81,10 @@ t_object	get_object(char *str)
 	{OBJECT_AMBIENCE, "A", 3, 3, build_ambience},
 	{OBJECT_CAMERA, "C", 4, 4, build_camera},
 	{OBJECT_LIGHT, "L", 4, 4, build_light},
-	{OBJECT_SPHERE, "sp", 4, 5, build_sphere},
-	{OBJECT_PLANE, "pl", 4, 5, build_plane},
-	{OBJECT_CYLINDER, "cy", 6, 7, build_cylinder},
-	{OBJECT_CONE, "co", 6, 7, build_cone}
+	{OBJECT_SPHERE, "sp", 4, 6, build_sphere},
+	{OBJECT_PLANE, "pl", 4, 6, build_plane},
+	{OBJECT_CYLINDER, "cy", 6, 8, build_cylinder},
+	{OBJECT_CONE, "co", 6, 8, build_cone}
 	};
 	int						tablesize;
 	int						len;

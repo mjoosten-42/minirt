@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 11:54:15 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 16:22:23 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,9 @@ int			*shuffle(int pixels);
 
 /* error.c */
 void		rt_error(char *s1, char *s2);
+
+/* texture.c */
+mlx_texture_t	*load_texture(const char *fname);
+t_color		texture_get_color(mlx_texture_t *tex, double x, double y);
 
 #endif

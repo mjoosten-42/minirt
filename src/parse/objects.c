@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 10:49:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 11:04:52 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 18:09:24 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 #include "light.h"
 #include <math.h>
 
-void	build_ambience(char **args, t_program *program)
+void	build_ambience(t_object object, char **args, t_program *program)
 {
 	static int	once;
 	t_ambience	ambience;
 
+	(void)object;
 	if (once)
 		rt_error(NULL, "Multiple ambient lightings");
 	ambience.intensity = atod(double_err_check(args[1]));
@@ -31,11 +32,12 @@ void	build_ambience(char **args, t_program *program)
 	once = 1;
 }
 
-void	build_camera(char **args, t_program *program)
+void	build_camera(t_object object, char **args, t_program *program)
 {
 	static int	once;
 	t_cam		camera;
 
+	(void)object;
 	if (once)
 		rt_error(NULL, "Multiple cameras");
 	camera.origin = parse_vector(args[1]);
@@ -49,14 +51,15 @@ void	build_camera(char **args, t_program *program)
 	once = 1;
 }
 
-void	build_light(char **args, t_program *program)
+void	build_light(t_object object, char **args, t_program *program)
 {
 	t_light	*light;
 
+	(void)object;
 	light = ft_malloc(sizeof(t_light));
 	light->o = parse_vector(args[1]);
 	light->intensity = atod(double_err_check(args[2]));
-	if (light->intensity < 0 || light->intensity > 1)
+	if (light->intensity < 0 ) //|| light->intensity > 1
 		rt_error(args[2], "brightness out of range");
 	light->color = parse_color(args[3]);
 	ft_lstadd_back(&program->lights, ft_lstnew(light));

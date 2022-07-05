@@ -1,0 +1,12 @@
+C 0,0,-30 0,0,1 90
+L 40,0,-80 1.8 255,255,255
+
+A 0.12 255,255,255
+
+sp 0,0,0 500 255,255,255 clouds textures/stars.png
+
+sp 210,25,130 16 100,100,100 planet textures/jupiter.png
+
+sp 0,0,0 22.5 255,255,255 clouds textures/clouds.png
+sp 0,0,0 20 255,255,255 planet textures/earth.png
+sp 8,-2,-18 6 100,100,100 planet textures/moon.png

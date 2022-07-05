@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:51:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 11:02:23 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 16:48:50 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	shape_print(t_shape *shape)
 	vec3_print(shape->o);
 	printf("|  color ");
 	color_print_f(shape->color);
+	printf("|  Texture: %p\n", shape->texture);
 	printf("|  MASK:\n");
 	_shape_print_mask(shape);
 	material_print(&shape->material);

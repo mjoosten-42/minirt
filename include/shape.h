@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/16 13:11:37 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/04 15:43:40 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 16:43:01 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,24 @@
 # define _C const
 
 struct						s_shape;
-typedef struct s_collision	(*t_collfunc)(_C struct s_shape *, _C t_ray3 *);
+typedef struct s_collision	(*t_collfunc)(struct s_shape *, _C t_ray3 *);
+
+/**
+**	@param type <t_object> Object enum
+**	@param id <char*> Letter identifier
+**	@param min_args <int> Minimum amount of arguments
+**	@param max_args <int> Maximum amount of arguments
+**	@param f <void(*f)(char **, void *)> Function to return object
+**	@param ptr <void*> Second argument of f: address to put object in/add to
+*/
+typedef struct s_object
+{
+	t_object_type	type;
+	char			*id;
+	int				min_args;
+	int				max_args;
+	void			(*f)(struct s_object, char **, t_program *);
+}					t_object;
 
 /**
 **	Represents a default shape
@@ -50,14 +67,15 @@ typedef struct s_shape
 	t_object_type	type;
 	t_color			color;
 	t_material		material;
+	mlx_texture_t	*texture;
 	t_collfunc		f;
 }	t_shape;
 
 /* shape.c */
-void	build_sphere(char **args, t_program *program);
-void	build_plane(char **args, t_program *program);
-void	build_cylinder(char **args, t_program *program);
-void	build_cone(char **args, t_program *program);
+void	build_sphere(t_object object, char **args, t_program *program);
+void	build_plane(t_object object, char **args, t_program *program);
+void	build_cylinder(t_object object, char **args, t_program *program);
+void	build_cone(t_object object, char **args, t_program *program);
 
 /* shape_debug.c */
 void	shape_print(t_shape *shape);

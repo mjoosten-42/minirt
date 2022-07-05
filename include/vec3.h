@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 19:03:06 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 11:43:09 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/05 14:55:59 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,9 @@ t_v3	vec3_calc_refraction_m(t_v3 incoming,
 			t_v3 normal,
 			double n1,
 			double n2);
+
+/* vec3_coordinates.c */
+double	vec3_get_latitude(t_v3 v);
+double	vec3_get_longitude(t_v3 v);
 
 #endif

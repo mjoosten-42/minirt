@@ -25,7 +25,7 @@ SOURCES += main/$(MAIN)
 OBJECTS := $(patsubst %,$(OBJ_DIR)/%,$(SOURCES:.c=.o))
 
 # Default debug option (0 = no debug)
-DEBUG ?= 0
+DEBUG ?= 1
 
 .PHONY: all files dependencies
 all: dependencies $(NAME)

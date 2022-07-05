@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 11:00:30 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/04 14:40:10 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   plane.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/01 11:00:30 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/07/05 15:08:43 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 **
 ** if the denominator l . n is zero, the ray is perpendicular to the plane
 */
-t_collision	collision_plane(const t_shape *plane, const t_ray3 *ray)
+t_collision	collision_plane(t_shape *plane, const t_ray3 *ray)
 {
 	t_collision	coll;
 	double		d;

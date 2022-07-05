@@ -5,7 +5,7 @@ COMPILE_FLAGS ?= -Wall -Wextra -Werror
 SRC_DIR ?= src
 HDR_DIR ?= include
 OBJ_DIR ?= obj
-LIBS = lib/libft/libft.a lib/MLX42/libmlx42.a
+LIBS = lib/MLX42/libmlx42.a lib/libft/libft.a
 INCLUDE_DIRS := \
 	-I "lib/libft/include/" \
 	-I "lib/MLX42/include/"
@@ -39,7 +39,7 @@ $(LIBS):
 	@echo "libmlx42:"
 	@$(MAKE) -C lib/MLX42/
 
-$(NAME): $(HEADERS) $(OBJECTS) $(LIBS)
+$(NAME): $(LIBS) $(HEADERS) $(OBJECTS)
 	@echo "\nLinking files..."
 	@$(CC) $(OBJECTS) -o $(NAME) $(LINKING_FLAGS)
 	@echo "Done!"

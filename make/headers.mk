@@ -3,7 +3,6 @@ HEADERS :=	include/collision.h \
 	include/config.h \
 	include/equations.h \
 	include/light.h \
-	include/log.h \
 	include/mat4.h \
 	include/material.h \
 	include/objects.h \

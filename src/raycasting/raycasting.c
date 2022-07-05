@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/05 15:11:36 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:51:01 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ double	raycast_get_light_perc(t_list *shapes,
 	return (percent);
 }
 
-static t_color	_calc_ambient(t_color c, const t_ambience *amb)
+static t_color	calc_ambient(t_color c, const t_ambience *amb)
 {
 	c = color_mul(c, amb->color);
 	color_luminosity(&c, amb->intensity);
@@ -73,7 +73,7 @@ t_color	raycast_calc_lighting(const t_program *program, t_collision coll)
 	t_list	*list;
 	t_color	c;
 
-	c = _calc_ambient(coll.shape->color, &(program->ambience));
+	c = calc_ambient(coll.shape->color, &(program->ambience));
 	list = program->lights;
 	while (list != NULL)
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   vector.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/05/30 13:09:47 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 10:40:33 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   vector.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/05 16:02:04 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	nb_of_char(char *str, char c)
 /*
 	if (fabs(len - 1) > __DBL_EPSILON__)
 	{
-		LOG_ERR("Vector is not normalized");
+		rt_error(NULL, "Vector is not normalized");
 		exit(EXIT_FAILURE);
 	}
 */
@@ -44,7 +44,7 @@ t_v3	parse_vector_norm(char *str)
 
 	vector = parse_vector(str);
 	len = vec3_length(vector);
-	vector = vec3_norm(vector);
+	vector = vec3_norm(vector); // TODO: error
 	return (vector);
 }
 

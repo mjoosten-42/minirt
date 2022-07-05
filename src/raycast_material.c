@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:50:42 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 14:14:37 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/04 16:04:42 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ t_ray3	modified_ray(const t_ray3 *ray, const t_rdata *rdata, int mode)
 	if (mode == REFLECTION)
 		mray.d = vec3_calc_reflection(ray->d, rdata->coll.normal);
 	else
-		mray.d = vec3_calc_refraction(ray->d, rdata->coll.normal, ray->index);
+		mray.d = vec3_calc_refraction_m(ray->d, rdata->coll.normal, ray->index, rdata->coll.shape->material.index);
 	mray.o = vec3_add(mray.o, vec3_mul(mray.d, __FLT_EPSILON__));
 	mray.bounces = ray->bounces + 1;
-	mray.index = rdata->coll.shape->material.index;
+	mray.index = 1.0;
+	if (!rdata->coll.inside && mode == REFRACTION)
+		mray.index = rdata->coll.shape->material.index;
 	return (mray);
 }
 

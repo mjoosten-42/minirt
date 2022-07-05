@@ -1,6 +1,7 @@
 #!/bin/bash
 
 FILE=scenes/random.rt
+AMOUNT=50
 
 echo 'C  -10,-10,-10          1,1,1 70'  > $FILE
 echo 'A  0.2               255,255,255' >> $FILE
@@ -98,6 +99,13 @@ function randomPoint
 	echo -n " " >> $FILE
 }
 
-for i in {1..50} ; do
+echo -n "["
+printf -- '-%.0s' {1..$(seq 0 $(($AMOUNT - 1)))}
+echo -n "]"
+PROGRESS=""
+for i in {1..$(seq 0 $AMOUNT)} ; do
 	randomObject
+	echo -ne "\r[$PROGRESS"
+	PROGRESS+="#"
 done
+echo

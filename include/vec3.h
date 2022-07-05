@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   vec3.h                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/15 19:03:06 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/06/17 12:15:59 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   vec3.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/15 19:03:06 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/04 15:54:50 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double strength);
 double	vec3_angle(t_v3 v1, t_v3 v2);
 double	vec3_distance(t_v3 v1, t_v3 v2);
 t_v3	vec3_project(t_v3 v1, t_v3 v2);
+
+t_v3	vec3_calc_refraction_m(t_v3 incoming, t_v3 normal, double n1, double n2);
 
 #endif

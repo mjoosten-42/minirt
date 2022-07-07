@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 10:45:11 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 12:35:50 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,31 +74,38 @@ void	build_object(t_program *program, char **args)
 	object.f(object, args, program);
 }
 
+int	table_entry(const char *table, int tablesize, char *s, int objectsize)
+{
+	int	len;
+	int	i;
+
+	i = 0;
+	len = ft_strlen(s);
+	while (i < tablesize)
+	{
+		if (ft_strncmp(s, *(char **)&(table[i]), len) == 0)
+			return (i / objectsize);
+		i += objectsize;
+	}
+	rt_error(s, "not an identifier");
+}
+
 t_object	get_object(char *str)
 {
 	static const t_object	table[] = {
-	{OBJECT_AMBIENCE, "A", 3, 3, build_ambience},
-	{OBJECT_CAMERA, "C", 4, 4, build_camera},
-	{OBJECT_LIGHT, "L", 4, 4, build_light},
-	{OBJECT_SPHERE, "sp", 4, 6, build_sphere},
-	{OBJECT_PLANE, "pl", 4, 6, build_plane},
-	{OBJECT_CYLINDER, "cy", 6, 8, build_cylinder},
-	{OBJECT_CONE, "co", 6, 8, build_cone}
+	{"A", OBJECT_AMBIENCE, 3, 3, build_ambience},
+	{"C", OBJECT_CAMERA, 4, 4, build_camera},
+	{"L", OBJECT_LIGHT, 4, 4, build_light},
+	{"sp", OBJECT_SPHERE, 4, 6, build_sphere},
+	{"pl", OBJECT_PLANE, 4, 6, build_plane},
+	{"cy", OBJECT_CYLINDER, 6, 8, build_cylinder},
+	{"co", OBJECT_CONE, 6, 8, build_cone}
 	};
-	int						tablesize;
-	int						len;
-	int						i;
 
-	i = 0;
-	len = ft_strlen(str);
-	tablesize = sizeof(table) / sizeof(*table);
-	while (i < tablesize)
-	{
-		if (ft_strncmp(str, table[i].id, len) == 0)
-			return (table[i]);
-		i++;
-	}
-	rt_error(str, "not an identifier");
+	return (table[table_entry((const char *)table,
+		sizeof(table),
+		str,
+		sizeof(t_object))]);
 }
 
 int	open_rt(char *file)

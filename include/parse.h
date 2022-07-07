@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/05/30 13:16:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:42:47 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/30 13:16:24 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 12:34:02 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ t_v3	parse_vector(char *str);
 t_v3	parse_vector_norm(char *str);
 t_color	parse_color(char *str);
 
+int		table_entry(const char *table, int tablesize, char *s, int objectsize);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 11:32:32 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 12:10:51 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,16 @@ struct						s_shape;
 typedef struct s_collision	(*t_collfunc)(_C struct s_shape *, _C t_ray3 *);
 
 /**
-**	@param type <t_object> Object enum
 **	@param id <char*> Letter identifier
+**	@param type <t_object> Object enum
 **	@param min_args <int> Minimum amount of arguments
 **	@param max_args <int> Maximum amount of arguments
 **	@param f <void(*f)(char **, void *)> Function to return object
-**	@param ptr <void*> Second argument of f: address to put object in/add to
 */
 typedef struct s_object
 {
-	t_object_type	type;
 	char			*id;
+	t_object_type	type;
 	int				min_args;
 	int				max_args;
 	void			(*f)(struct s_object, char **, t_program *);

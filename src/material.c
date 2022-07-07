@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   material.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/17 14:22:16 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/07 11:47:30 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   material.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 14:22:16 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 12:37:07 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #include <math.h>
 #include <stdio.h>
 #include "program.h"
+#include "parse.h"
 
-static const t_material	*_material_table(void)
+t_material	parse_material(char *str)
 {
 	static const t_material	table[] = {
 	{"default", 0, 0, 1, 1.0, DEFAULT_PHONG, 0},
@@ -33,26 +34,10 @@ static const t_material	*_material_table(void)
 	{NULL, 0, 0, 0, 0, 0, 0}
 	};
 
-	return (table);
-}
-
-t_material	parse_material(char *str)
-{
-	const t_material	*table;
-	int					len;
-
-	table = _material_table();
-	if (!str)
-		return (*table);
-	len = ft_strlen(str);
-	while (table->name)
-	{
-		if (ft_strncmp(str, table->name, len) == 0)
-			return (*table);
-		table++;
-	}
-	rt_error(str, "not a material");
-	return (*(_material_table()));
+	return (table[table_entry((const char *)table,
+		sizeof(table),
+		str,
+		sizeof(t_material))]);
 }
 
 void	material_print(const t_material *material)

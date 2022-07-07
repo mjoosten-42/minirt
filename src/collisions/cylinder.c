@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cylinder.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 11:30:34 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cylinder.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/01 16:11:54 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/07/07 11:57:48 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 t_collision		collision_caps(const t_shape *cylinder, const t_ray3 *ray);
 double			collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray);
 
+static t_v3	_calc_to_cylinder_center(t_v3 from, const t_shape *cylinder)
+{
+	t_v3	to_center;
+
+	to_center = vec3_sub(from, cylinder->o);
+	to_center = vec3_sub(to_center,
+			vec3_project(to_center, cylinder->cy.n));
+	return (to_center);
+}
+
 t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 {
 	t_collision	coll;
@@ -29,13 +39,9 @@ t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 	{
 		coll.shape = cylinder;
 		coll.point = ray_point(ray, coll.distance);
-		to_center = vec3_sub(coll.point, cylinder->o);
-		to_center = vec3_sub(to_center,
-				vec3_project(to_center, cylinder->cy.n));
+		to_center = _calc_to_cylinder_center(coll.point, cylinder);
 		coll.normal = vec3_norm(to_center);
-		to_center = vec3_sub(ray->o, cylinder->o);
-		to_center = vec3_sub(to_center,
-				vec3_project(to_center, cylinder->cy.n));
+		to_center = _calc_to_cylinder_center(ray->o, cylinder);
 		coll.inside = false;
 		if (vec3_length(to_center) < cylinder->cy.radius)
 		{

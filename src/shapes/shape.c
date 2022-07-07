@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shape.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 11:15:04 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   shape.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/06 11:55:37 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/07/07 13:42:18 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	build_sphere(t_object object, char **args, t_program *program)
 	sphere->sp.radius = atod(double_err_check(args[2])) / 2;
 	sphere->color = parse_color(args[3]);
 	sphere->f = collision_sphere;
+	sphere->cf = sphere_get_coordinates;
 }
 
 void	build_plane(t_object object, char **args, t_program *program)
@@ -61,6 +62,7 @@ void	build_plane(t_object object, char **args, t_program *program)
 	plane->pl.n = parse_vector_norm(args[2]);
 	plane->color = parse_color(args[3]);
 	plane->f = collision_plane;
+	plane->cf = plane_get_coordinates;
 }
 
 void	build_cylinder(t_object object, char **args, t_program *program)
@@ -75,6 +77,7 @@ void	build_cylinder(t_object object, char **args, t_program *program)
 	cylinder->cy.axis = vec3_norm(vec3_cross(cylinder->cy.n, (t_v3){0, 1, 0}));
 	cylinder->cy.angle = vec3_angle(cylinder->cy.n, (t_v3){0, 1, 0});
 	cylinder->f = collision_cylinder;
+	cylinder->cf = sphere_get_coordinates;
 }
 
 void	build_cone(t_object object, char **args, t_program *program)
@@ -89,4 +92,5 @@ void	build_cone(t_object object, char **args, t_program *program)
 	cone->co.angle = atan(cone->co.radius / cone->co.height);
 	cone->co.angle = cos(cone->co.angle) * cos(cone->co.angle);
 	cone->f = collision_cone;
+	cone->cf = sphere_get_coordinates;
 }

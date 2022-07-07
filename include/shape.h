@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   shape.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 12:10:51 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   shape.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/16 13:11:37 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/07 13:43:45 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 struct						s_shape;
 typedef struct s_collision	(*t_collfunc)(_C struct s_shape *, _C t_ray3 *);
+typedef t_v3				(*t_coordfunc)(_C struct s_collision *);
 
 /**
 **	@param id <char*> Letter identifier
@@ -68,6 +69,7 @@ typedef struct s_shape
 	t_material		material;
 	mlx_texture_t	*texture;
 	t_collfunc		f;
+	t_coordfunc		cf;
 }	t_shape;
 
 /* shape.c */

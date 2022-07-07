@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 11:00:30 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 11:37:33 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   plane.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/01 11:00:30 by mjoosten      #+#    #+#                 */
+/*   Updated: 2022/07/07 13:43:32 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@
 #include <math.h>
 
 // https://en.wikipedia.org/wiki/Line–plane_intersection
+
+t_v3	plane_get_coordinates(const t_collision *coll)
+{
+	t_v3	v;
+	t_v3	right;
+	t_v3	up;
+	t_v3	r;
+
+	v = vec3_sub(coll->shape->o, coll->point);
+	right = vec3_norm(vec3_cross(v, (t_v3){0,1,0}));
+	up  = vec3_norm(vec3_cross(v, right));
+	r.x = vec3_dot(v, right);
+	r.y = vec3_dot(v, up);
+	r.z = 0;
+	return (r);
+}
 
 t_collision	collision_plane(const t_shape *plane, const t_ray3 *ray)
 {

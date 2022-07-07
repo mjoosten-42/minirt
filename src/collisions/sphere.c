@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 12:06:19 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 11:31:41 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   sphere.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 12:06:19 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/07 13:43:16 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@
 #include "shape_masks.h"
 #include "equations.h"
 #include <math.h>
+
+t_v3	sphere_get_coordinates(const t_collision *coll)
+{
+	t_v3	normal;
+	t_v3	r;
+	normal = vec3_norm(vec3_sub(coll->shape->o, coll->point));
+	r.x = vec3_get_longitude(normal) * 0.5 + 0.5;
+	r.y = vec3_get_latitude(normal) * 0.5 + 0.5;
+	r.z = 0;
+	return (r);
+}
 
 t_collision	collision_sphere(const t_shape *sphere, const t_ray3 *ray)
 {

@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/04 15:02:46 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/07 11:59:31 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/07 13:53:02 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@
 t_color	get_color(const t_collision *coll)
 {
 	t_color	c;
-	t_v3	normal;
+	t_v3	coordinates;
 
 	c = coll->shape->color;
 	if (coll->shape->material.checkerboard)
 	{
-		normal = vec3_norm(vec3_sub(coll->shape->o, coll->point));
-		c = checkerboard_color(normal);
+		coordinates = coll->shape->cf(coll);
+		c = checkerboard_color(coordinates);
 		c = color_mul(c, coll->shape->color);
 	}
 	else if (coll->shape->texture)
 	{
-		normal = vec3_norm(vec3_sub(coll->shape->o, coll->point));
+		coordinates = coll->shape->cf(coll);
 		c = texture_get_color(coll->shape->texture,
-				vec3_get_longitude(normal) * 0.5 + 0.5,
-				vec3_get_latitude(normal) * 0.5 + 0.5);
+				coordinates.x,
+				coordinates.y);
 		c = color_mul(c, coll->shape->color);
 	}
 	return (c);

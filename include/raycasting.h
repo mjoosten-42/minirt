@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 12:24:49 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:59:48 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/07 13:47:35 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ double		raycast_get_light_perc(t_list *shapes,
 				const t_ray3 *ray,
 				double max_dist);
 t_rdata		raycast(const t_program *program, const t_ray3 *ray);
-t_color		checkerboard_color(t_v3 normal);
+t_color		checkerboard_color(t_v3 coordinates);
 t_rdata		material_cast(const t_program *program,
 				const t_ray3 *ray,
 				t_rdata rdata);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycast_material.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 11:50:42 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 13:52:58 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycast_material.c                                 :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/02 11:50:42 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/07 13:54:55 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 #define REFRACTION 1
 
 //	For checkerboard material
-t_color	checkerboard_color(t_v3 normal)
+t_color	checkerboard_color(t_v3 coordinates)
 {
 	double	x;
 	double	y;
 
-	x = 10.0 * (vec3_get_longitude(normal) * 0.5 + 0.5);
-	y = 10.0 * (vec3_get_latitude(normal) * 0.5 + 0.5);
+	x = 10.0 * coordinates.x;
+	y = 10.0 * coordinates.y;
 	if (((int)y % 2 && (int)x % 2) || ((int)y % 2 == 0 && (int)x % 2 == 0))
 		return ((t_color){0, 0, 0});
 	return ((t_color){1.0, 1.0, 1.0});

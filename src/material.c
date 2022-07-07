@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   material.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/17 14:22:16 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:07:39 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   material.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 14:22:16 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 10:45:03 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include <math.h>
 #include <stdio.h>
+#include "program.h"
 
 t_material	parse_material(char *str)
 {
@@ -45,7 +46,7 @@ t_material	parse_material(char *str)
 			return (table[i]);
 		i++;
 	}
-	return (table[0]);
+	rt_error(str, "not a material");
 }
 
 void	material_print(const t_material *material)

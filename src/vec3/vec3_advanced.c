@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:06:03 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/05 15:11:54 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 11:21:56 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,4 @@ t_v3	vec3_calc_refraction(t_v3 incoming, t_v3 normal, double n1, double n2)
 	axis = vec3_norm(vec3_cross(incoming, normal));
 	refr = vec3_norm(rodrigues(incoming, axis, refraction - incident));
 	return (refr);
-}
-
-double	vec3_angle(t_v3 v1, t_v3 v2)
-{
-	return (acos(vec3_dot(v1, v2) / (vec3_length(v1) * vec3_length(v2))));
-}
-
-double	vec3_distance(t_v3 v1, t_v3 v2)
-{
-	return (vec3_length(vec3_sub(v1, v2)));
-}
-
-t_v3	vec3_project(t_v3 v1, t_v3 v2)
-{
-	return (vec3_mul(v2, vec3_dot(v1, v2) / vec3_dot(v2, v2)));
 }

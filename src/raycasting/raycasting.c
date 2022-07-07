@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycasting.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:12:27 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 11:30:34 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 	closest_collision = collision_none();
 	while (shapes != NULL)
 	{
-		coll = ((t_shape *)shapes->content)->f(shapes->content, ray);
+		coll = ((const t_shape *)shapes->content)->f(shapes->content, ray);
 		if (coll.shape != NULL)
 			if (coll.distance < closest_collision.distance)
 				closest_collision = coll;
@@ -46,7 +46,7 @@ double	raycast_get_light_perc(t_list *shapes,
 	percent = 1.0;
 	while (shapes != NULL)
 	{
-		coll = ((t_shape *)shapes->content)->f(shapes->content, ray);
+		coll = ((const t_shape *)shapes->content)->f(shapes->content, ray);
 		if (coll.shape != NULL)
 		{
 			if (coll.distance < max_dist)

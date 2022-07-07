@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   texture.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/07/05 16:06:07 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 17:16:36 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 16:06:07 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 11:38:19 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,14 @@
 mlx_texture_t	*load_texture(const char *fname)
 {
 	mlx_texture_t	*tex;
-	
+
 	tex = mlx_load_png(fname);
 	if (tex == NULL)
-		printf("Bad texture.\n");
+	{
+		ft_putendl_fd("Error!", 2);
+		perror(fname);
+		exit(EXIT_FAILURE);
+	}
 	return (tex);
 }
 
@@ -39,7 +43,7 @@ t_color	texture_get_color(mlx_texture_t *tex, double x, double y)
 	int	color;
 	int	*ipix;
 
-	ipix = (int*)tex->pixels;
+	ipix = (int *)tex->pixels;
 	y *= tex->height;
 	x *= tex->width;
 	color = ipix[tex->width * (int)y + (int)x];

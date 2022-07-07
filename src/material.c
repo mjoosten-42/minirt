@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:22:16 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 11:40:55 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 12:35:26 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "program.h"
+#include "parse.h"
 
 t_material	parse_material(char *str)
 {
@@ -31,22 +32,11 @@ t_material	parse_material(char *str)
 	{"metal", 0.4, 0.0, 2.0, 1.2, 16.0, 0},
 	{"checkerboard", 0.0, 0.0, 1.0, 1.0, DEFAULT_PHONG, 1}
 	};
-	int						tablesize;
-	int						len;
-	int						i;
 
-	if (!str)
-		return (table[0]);
-	i = 0;
-	len = ft_strlen(str);
-	tablesize = sizeof(table) / sizeof(*table);
-	while (i < tablesize)
-	{
-		if (ft_strncmp(str, table[i].name, len) == 0)
-			return (table[i]);
-		i++;
-	}
-	rt_error(str, "not a material");
+	return (table[table_entry((const char *)table,
+		sizeof(table),
+		str,
+		sizeof(t_material))]);
 }
 
 void	material_print(const t_material *material)

@@ -19,6 +19,7 @@ SOURCES :=	src/anti_aliasing.c \
 	src/parse/double.c \
 	src/parse/objects.c \
 	src/parse/parse.c \
+	src/parse/table.c \
 	src/parse/vector.c \
 	src/program/program_init.c \
 	src/program/scene_draw.c \

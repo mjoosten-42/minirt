@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 10:32:26 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/05 15:12:25 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:56:10 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	color_normalize(t_color *c);
 
 /* color_math.c */
 t_color	color_blend(t_color c1, t_color c2, float percentage);
-void	color_luminosity(t_color *c, float multiplier);
+t_color	color_luminosity(t_color c, float mul);
 void	color_cap(t_color *c);
 t_color	color_mul(t_color c1, t_color c2);
 

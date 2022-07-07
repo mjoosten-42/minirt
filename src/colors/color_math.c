@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   color_math.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/16 12:02:48 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 12:50:23 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   color_math.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/16 12:02:48 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 14:00:50 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ t_color	color_blend(t_color c1, t_color c2, float percentage)
 	return (result);
 }
 
-void	color_luminosity(t_color *c, float multiplier)
+t_color	color_luminosity(t_color c, float mul)
 {
-	if (multiplier < 0)
-		multiplier = 0;
-	c->r *= multiplier;
-	c->g *= multiplier;
-	c->b *= multiplier;
+	if (mul < 0)
+		mul = 0;
+	return ((t_color){c.r * mul, c.g * mul, c.b * mul});
 }
 
 t_color	color_mul(t_color c1, t_color c2)

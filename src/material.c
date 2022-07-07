@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:22:16 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 13:25:13 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:11:17 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ t_material	parse_material(char *str)
 	{"checkerboard", 0.0, 0.0, 1.0, 1.0, DEFAULT_PHONG, 1}
 	};
 
-	return (table[table_entry((const char *)table,
-		sizeof(table),
-		str,
-		sizeof(t_material))]);
+	return (table[table_entry(
+				(const char *)table,
+				sizeof(table),
+				str,
+				sizeof(t_material))]);
 }
 
 void	material_print(const t_material *material)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   raycast_lighting.c                                 :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/07/04 15:02:46 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/07 11:59:31 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   raycast_lighting.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/04 15:02:46 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 14:08:10 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static t_color	calc_diffuse(const t_collision *coll,
 
 	c = get_color(coll);
 	c = color_mul(light->color, c);
-	color_luminosity(&c, vec3_dot(ray->d, coll->normal) * light->intensity);
+	c = color_luminosity(c, vec3_dot(ray->d, coll->normal) * light->intensity);
 	return (c);
 }
 
@@ -74,8 +74,8 @@ static t_color	calc_specular(const t_collision *coll,
 	angle = vec3_dot(refl, to_cam);
 	angle = clamp(angle, 0.0, 1.0);
 	angle = pow(angle, coll->shape->material.specular_index);
-	color_luminosity(&c,
-		angle * light->intensity * coll->shape->material.shine);
+	c = color_luminosity(c,
+			angle * light->intensity * coll->shape->material.shine);
 	return (c);
 }
 
@@ -97,6 +97,6 @@ t_color	ray_to_light(const t_program *program,
 	diffuse = calc_diffuse(&coll, light, &ray);
 	specular = calc_specular(&coll, light, &ray);
 	total = color_add(specular, diffuse);
-	color_luminosity(&total, light_percent);
+	total = color_luminosity(total, light_percent);
 	return (total);
 }

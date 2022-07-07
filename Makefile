@@ -21,8 +21,6 @@ include make/sources.mk
 HEADERS :=
 include make/headers.mk
 
-# Can be used for changing the main easily (testing purposes)
-SOURCES += main/$(MAIN)
 OBJECTS := $(patsubst %,$(OBJ_DIR)/%,$(SOURCES:.c=.o))
 
 # Default debug option (0 = no debug)

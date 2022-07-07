@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:02:46 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 14:20:02 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:28:17 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_color	get_color(const t_collision *coll)
 	t_v3	coordinates;
 
 	c = coll->shape->color;
-	if (coll->shape->material.checkerboard)
+	if (coll->shape->material.checkerboard && coll->shape->cf)
 	{
 		coordinates = coll->shape->cf(coll);
 		c = checkerboard_color(coordinates);

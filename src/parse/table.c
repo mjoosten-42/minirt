@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:09:03 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 14:18:48 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:42:40 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_object	get_object(char *str)
 
 	return (table[table_entry(
 				(const char *)table,
-				sizeof(table),
+				sizeof(table) / sizeof(*table),
 				str,
 				sizeof(t_object))]);
 }

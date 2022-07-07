@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   plane.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/01 11:00:30 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/07 14:27:26 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   plane.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/01 11:00:30 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 14:55:23 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ t_v3	plane_get_coordinates(const t_collision *coll)
 	t_v3	r;
 
 	v = vec3_sub(coll->shape->o, coll->point);
-	right = vec3_cross((t_v3){0, 1, 0}, coll->shape->pl.n);;
+	right = vec3_cross((t_v3){0, 1, 0}, coll->shape->pl.n);
 	if (vec3_length(right) < 1.0)
 		right = (t_v3){1, 0, 0};
 	else
 		right = vec3_norm(right);
-	up  = vec3_norm(vec3_cross(coll->shape->pl.n, right));
-	r.x = vec3_dot(v, right) / 100.0;
-	r.y = vec3_dot(v, up) / 100.0;
+	up = vec3_norm(vec3_cross(coll->shape->pl.n, right));
+	r.x = vec3_dot(v, right) / PLANE_COORDINATE_DIVIDER;
+	r.y = vec3_dot(v, up) / PLANE_COORDINATE_DIVIDER;
 	r.x -= (int)r.x;
 	r.y -= (int)r.y;
 	r.x = r.x * 0.5 + 0.5;

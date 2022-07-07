@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 14:33:14 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:54:44 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,8 @@
 # define DEFAULT_PHONG 4
 
 # define ENABLE_SPECULAR 1
+
+/* plane.c */
+# define PLANE_COORDINATE_DIVIDER 64.0
 
 #endif

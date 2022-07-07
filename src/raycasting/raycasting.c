@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 11:44:31 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 11:30:34 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/01 11:44:31 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/07 13:11:17 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_collision	raycast_get_collision(t_list *shapes, const t_ray3 *ray)
 	{
 		coll = ((const t_shape *)shapes->content)->f(shapes->content, ray);
 		if (coll.shape != NULL)
-			if (coll.distance < closest_collision.distance)
+			if (coll.distance < closest_collision.distance + __FLT_EPSILON__ * 2)
 				closest_collision = coll;
 		shapes = shapes->next;
 	}

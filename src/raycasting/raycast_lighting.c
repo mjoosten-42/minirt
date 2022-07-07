@@ -6,7 +6,7 @@
 /*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/04 15:02:46 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/07 11:35:27 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/07 11:59:31 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ static t_color	calc_specular(const t_collision *coll,
 	angle = vec3_dot(refl, to_cam);
 	angle = clamp(angle, 0.0, 1.0);
 	angle = pow(angle, coll->shape->material.specular_index);
-	color_luminosity(&c, angle * light->intensity * coll->shape->material.shine);
+	color_luminosity(&c,
+		angle * light->intensity * coll->shape->material.shine);
 	return (c);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 14:11:33 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 15:07:11 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ void	build_light(t_object object, char **args, t_program *program)
 
 void	light_print(const t_light *light)
 {
-	if (!ENABLE_DEBUG)
-		return ;
 	printf("# - LIGHT - - - - - - - - - - - - - - - -\n");
 	printf("|  origin ");
 	vec3_print(light->o);

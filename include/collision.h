@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   collision.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/03 11:29:31 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/07 13:44:04 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   collision.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/03 11:29:31 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 15:20:50 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_collision	collision_plane(const t_shape *plane, const t_ray3 *ray);
 t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray);
 t_collision	collision_cone(const t_shape *cone, const t_ray3 *ray);
 
-t_v3	plane_get_coordinates(const t_collision *coll);
-t_v3	sphere_get_coordinates(const t_collision *coll);
+t_v3		plane_get_coordinates(const t_collision *coll);
+t_v3		sphere_get_coordinates(const t_collision *coll);
 
 #endif

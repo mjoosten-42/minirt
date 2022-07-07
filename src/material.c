@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:22:16 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 14:42:07 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 15:14:20 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@
 t_material	parse_material(char *str)
 {
 	static const t_material	table[] = {
-	{"default", 0, 0, 1, 1.0, DEFAULT_PHONG, 0},
-	{"clouds", 0, 0.6, 1.5, 0.0, DEFAULT_PHONG, 0},
-	{"water", 0.2, 0.5, 1.3, 1.0, DEFAULT_PHONG, 0},
-	{"mirror", 0.9, 0.0, 1.0, 1.0, DEFAULT_PHONG, 0},
+	{"default", 0.0, 0.0, 1, DEFAULT_SHINE, DEFAULT_PHONG, 0},
+	{"clouds", 0.0, 0.6, 1.5, 0.0, DEFAULT_PHONG, 0},
+	{"water", 0.2, 0.5, 1.3, DEFAULT_SHINE, DEFAULT_PHONG, 0},
+	{"mirror", 0.9, 0.0, 1.0, DEFAULT_SHINE, DEFAULT_PHONG, 0},
 	{"planet", 0.0, 0.0, 1.0, 0.2, 2.0, 0},
 	{"glass", 0.0, 0.9, 1.5, 4.0, 4.0, 0},
 	{"star", 0.0, 0.4, 1.0, 0.8, 2.0, 0},
 	{"shine", 0.0, 0.0, 1.0, 2.6, 2.2, 0},
 	{"metal", 0.3, 0.0, 2.0, 1.2, 16.0, 0},
-	{"checkerboard", 0.0, 0.0, 1.0, 1.0, DEFAULT_PHONG, 1}
+	{"transparent", 0.0, 0.9, 1.0, DEFAULT_SHINE, DEFAULT_PHONG, 0},
+	{"checkerboard", 0.0, 0.0, 1.0, DEFAULT_SHINE, DEFAULT_PHONG, 1}
 	};
 
 	return (table[table_entry(

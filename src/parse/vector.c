@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:09:47 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 14:13:50 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 15:18:18 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	nb_of_char(char *str, char c)
 	return (amount);
 }
 
+//vector = vec3_norm(vector);
+
 t_v3	parse_vector_norm(char *str)
 {
 	t_v3	vector;
@@ -37,9 +39,8 @@ t_v3	parse_vector_norm(char *str)
 
 	vector = parse_vector(str);
 	len = vec3_length(vector);
-	vector = vec3_norm(vector);
-	//if (fabs(len - 1) > __DBL_EPSILON__)
-	//	rt_error(str, "vector is not normalized");
+	if (fabs(len - 1) > __DBL_EPSILON__)
+		rt_error(str, "vector is not normalized");
 	return (vector);
 }
 

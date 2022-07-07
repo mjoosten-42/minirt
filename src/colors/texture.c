@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   texture.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/07/05 16:06:07 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/07 14:50:10 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 16:06:07 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 15:28:44 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ mlx_texture_t	*load_texture(const char *fname)
 
 	tex = mlx_load_png(fname);
 	if (tex == NULL)
-	{
-		ft_putendl_fd("Error!", 2);
-		perror(fname);
-		exit(EXIT_FAILURE);
-	}
+		rt_error(NULL, NULL);
 	return (tex);
 }
 

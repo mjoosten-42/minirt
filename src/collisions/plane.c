@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/01 11:00:30 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/07 14:27:26 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/07 14:32:46 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_v3	plane_get_coordinates(const t_collision *coll)
 	else
 		right = vec3_norm(right);
 	up  = vec3_norm(vec3_cross(coll->shape->pl.n, right));
-	r.x = vec3_dot(v, right) / 100.0;
-	r.y = vec3_dot(v, up) / 100.0;
+	r.x = vec3_dot(v, right) / PLANE_COORDINATE_DIVIDER;
+	r.y = vec3_dot(v, up) / PLANE_COORDINATE_DIVIDER;
 	r.x -= (int)r.x;
 	r.y -= (int)r.y;
 	r.x = r.x * 0.5 + 0.5;

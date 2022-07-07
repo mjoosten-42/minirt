@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/17 14:22:16 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/07 11:37:11 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/07 11:44:31 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <math.h>
 #include <stdio.h>
 
-t_material	parse_material(char *str)
+static const t_material	*_material_table(void)
 {
 	static const t_material	table[] = {
 	{"default", 0, 0, 1, 1.0, DEFAULT_PHONG, 0},
@@ -28,24 +28,29 @@ t_material	parse_material(char *str)
 	{"star", 0.0, 0.4, 1.0, 0.8, 2.0, 0},
 	{"shine", 0.0, 0.0, 1.0, 2.6, 2.2, 0},
 	{"metal", 0.4, 0.0, 2.0, 1.2, 16.0, 0},
-	{"checkerboard", 0.0, 0.0, 1.0, 1.0, DEFAULT_PHONG, 1}
+	{"checkerboard", 0.0, 0.0, 1.0, 1.0, DEFAULT_PHONG, 1},
+	{NULL, 0, 0, 0, 0, 0, 0}
 	};
-	int						tablesize;
-	int						len;
-	int						i;
 
+	return (table);
+}
+
+t_material	parse_material(char *str)
+{
+	const t_material	*table;
+	int					len;
+
+	table = _material_table();
 	if (!str)
-		return (table[0]);
-	i = 0;
+		return (*table);
 	len = ft_strlen(str);
-	tablesize = sizeof(table) / sizeof(*table);
-	while (i < tablesize)
+	while (table->name)
 	{
-		if (ft_strncmp(str, table[i].name, len) == 0)
-			return (table[i]);
-		i++;
+		if (ft_strncmp(str, table->name, len) == 0)
+			return (*table);
+		table++;
 	}
-	return (table[0]);
+	return (*(_material_table()));
 }
 
 void	material_print(const t_material *material)

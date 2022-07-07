@@ -16,7 +16,7 @@ Before being able to compile you need glfw, on Codam Mac's you can use Managed S
 
 	Open MSC, search glfw and press install.
 
-Or you can use Homebrew (the install.sh script does this for you):
+Or you can use Homebrew (the installGLFW.sh script does this for you):
 
 	brew update
 	brew install glfw
@@ -129,6 +129,3 @@ Realistic refraction is a bit more difficult to achieve considering the calculat
 ### Multithreading
 
 Ray-tracing calculations can be quite intensive. You have to cast a ray for every pixel and for every ray you have to do the collision calculations with additional reflection rays, refraction rays and rays to light-sources. Considering we do not use the GPU for the calculations it is incredible handy to utilize all cores of the CPU. This is why we implemented multi-threading. We simply split the load of all pixels across multiple threads. Every thread gets assigned an equal part of the screen to render. (number of threads can be changed in include/config.h -> NB_THREADS)
-
-TODO:
- * Occasional vertical black line (planes colliding)

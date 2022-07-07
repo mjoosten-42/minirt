@@ -53,7 +53,7 @@ In the scene files shapes are set up like this:
 
 **Spheres:**
 
-	sp <position> <diameter> <color> [material]
+	sp <position> <diameter> <color> [material] [texture]
 
 **Planes:**
 
@@ -105,6 +105,18 @@ Specular light or reflection is the "shine" you get from the light reflecting on
 Combining these three different forms of light is incredibly simple. You simply add them together:
 
 	final_color = ambient + diffuse + specular
+
+### Textures
+
+Instead of a solid color, a texture can be applied to objects (currently on to spheres). By calculating where on the object the ray hit, we can convert those coordinates to instead represent a coordinate within a loaded texture. The color we take for the light calculations then gets taken from the texture.
+
+To apply a texture to a sphere it first needs to have a material, then the argument after the material can be the location of the texture:
+
+	sp <position> <diameter> <color> [material] [texture]
+
+**Example:**
+
+	sp 4,3,0   10   233,44,74   metal   textures/earth.png
 
 ### Reflections
 

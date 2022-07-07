@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 13:16:05 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:22:25 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # endif
 
 /* program.init.c */
-# define WINDOW_W 40
-# define WINDOW_H 30
+# define WINDOW_W 1024
+# define WINDOW_H 720
 # define WINDOW_TITLE "minirt"
 # define WINDOW_RESIZE 0
 

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:22:16 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 12:37:07 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:25:13 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ t_material	parse_material(char *str)
 	{"star", 0.0, 0.4, 1.0, 0.8, 2.0, 0},
 	{"shine", 0.0, 0.0, 1.0, 2.6, 2.2, 0},
 	{"metal", 0.4, 0.0, 2.0, 1.2, 16.0, 0},
-	{"checkerboard", 0.0, 0.0, 1.0, 1.0, DEFAULT_PHONG, 1},
-	{NULL, 0, 0, 0, 0, 0, 0}
+	{"checkerboard", 0.0, 0.0, 1.0, 1.0, DEFAULT_PHONG, 1}
 	};
 
 	return (table[table_entry((const char *)table,

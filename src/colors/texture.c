@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 16:06:07 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 11:41:02 by mjoosten         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   texture.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/07/05 16:06:07 by ngerrets      #+#    #+#                 */
+/*   Updated: 2022/07/07 14:50:10 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "program.h"
+#include "equations.h"
 
 mlx_texture_t	*load_texture(const char *fname)
 {
@@ -46,6 +47,8 @@ t_color	texture_get_color(mlx_texture_t *tex, double x, double y)
 	ipix = (int *)tex->pixels;
 	y *= tex->height;
 	x *= tex->width;
+	x = clamp(x, 0.0, tex->width - 1.0);
+	y = clamp(y, 0.0, tex->height - 1.0);
 	color = ipix[tex->width * (int)y + (int)x];
 	return (_color_from_int(color));
 }

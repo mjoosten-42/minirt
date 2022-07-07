@@ -26,6 +26,11 @@ OBJECTS := $(patsubst %,$(OBJ_DIR)/%,$(SOURCES:.c=.o))
 # Default debug option (0 = no debug)
 DEBUG ?= 1
 
+ifeq ($(DEBUG),1)
+	COMPILE_FLAGS += -g -fsanitize=address
+	LINKING_FLAGS += -g -fsanitize=address
+endif
+
 all: $(NAME)
 
 files:

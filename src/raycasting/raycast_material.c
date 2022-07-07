@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 11:50:42 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:09:36 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/07 11:32:39 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ t_color	checkerboard_color(t_v3 normal)
 	double	x;
 	double	y;
 
-	x = 10.0 * (vec3_get_longitude(normal) / 2.0);
-	y = 10.0 * (vec3_get_latitude(normal) / 2.0);
+	x = 10.0 * (vec3_get_longitude(normal) * 0.5 + 0.5);
+	y = 10.0 * (vec3_get_latitude(normal) * 0.5 + 0.5);
 	//printf("longitude: %.3f\n", x);
-	if (normal.y < 0)
-		x += 1.0;
-	if (normal.x > 0)
-		x += 1.0;
+	// if (normal.y < 0)
+	// 	x += 1.0;
+	// if (normal.x > 0)
+	// 	x += 1.0;
 	if (((int)y % 2 && (int)x % 2) || ((int)y % 2 == 0 && (int)x % 2 == 0))
 		return ((t_color){0, 0, 0});
 	return ((t_color){0.9, 0.9, 0.9});

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 11:50:42 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/07 13:54:55 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/07 14:10:59 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_color	checkerboard_color(t_v3 coordinates)
 	double	x;
 	double	y;
 
-	x = 10.0 * coordinates.x;
-	y = 10.0 * coordinates.y;
+	x = 11.0 * coordinates.x;
+	y = 11.0 * coordinates.y;
 	if (((int)y % 2 && (int)x % 2) || ((int)y % 2 == 0 && (int)x % 2 == 0))
 		return ((t_color){0, 0, 0});
 	return ((t_color){1.0, 1.0, 1.0});

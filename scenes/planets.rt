@@ -7,8 +7,6 @@ sp 0,0,0 500 255,255,255 clouds textures/stars.png
 
 sp 210,25,130 16 100,100,100 planet textures/jupiter.png
 
-pl 0,50,0 0,1,0 255,255,255 default textures/jupiter.png
-
 sp 0,0,0 22.5 255,255,255 clouds textures/clouds.png
 sp 0,0,0 20 255,255,255 planet textures/earth.png
 sp 8,-2,-18 6 100,100,100 planet textures/moon.png

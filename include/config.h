@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   config.h                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/10 11:53:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:06:26 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   config.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 13:16:05 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # endif
 
 /* program.init.c */
-# define WINDOW_W 1920
-# define WINDOW_H 1080
+# define WINDOW_W 40
+# define WINDOW_H 30
 # define WINDOW_TITLE "minirt"
 # define WINDOW_RESIZE 0
 
@@ -31,7 +31,7 @@
 # define RAY_MAX_BOUNCES 16
 
 /* anti_aliasing.c */
-# define AA 2
+# define AA 1
 
 /* shape.c */
 # define DEFAULT_PHONG 4

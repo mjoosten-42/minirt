@@ -16,7 +16,7 @@ Before being able to compile you need glfw, on Codam Mac's you can use Managed S
 
 	Open MSC, search glfw and press install.
 
-Or you can use Homebrew (the install.sh script does this for you):
+Or you can use Homebrew (the installGLFW.sh script does this for you):
 
 	brew update
 	brew install glfw

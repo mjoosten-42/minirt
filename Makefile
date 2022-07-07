@@ -24,7 +24,7 @@ include make/headers.mk
 OBJECTS := $(patsubst %,$(OBJ_DIR)/%,$(SOURCES:.c=.o))
 
 # Default debug option (0 = no debug)
-DEBUG ?= 1
+DEBUG ?= 0
 
 ifeq ($(DEBUG),1)
 	COMPILE_FLAGS += -g -fsanitize=address

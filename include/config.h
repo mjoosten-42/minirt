@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   config.h                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/10 11:53:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/07 14:33:09 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   config.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/10 11:53:24 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 14:54:44 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define RAY_MAX_BOUNCES 8
 
 /* anti_aliasing.c */
-# define AA 1
+# define AA 2
 
 /* shape.c */
 # define DEFAULT_PHONG 4

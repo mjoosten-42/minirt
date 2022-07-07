@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/05/27 13:59:09 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:09:30 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/27 13:59:09 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 10:45:11 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ t_object	get_object(char *str)
 		i++;
 	}
 	rt_error(str, "not an identifier");
-	return ((t_object){});
 }
 
 int	open_rt(char *file)
@@ -113,6 +112,7 @@ int	open_rt(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
+		ft_putendl_fd("Error", 2);
 		perror(file);
 		exit(EXIT_FAILURE);
 	}

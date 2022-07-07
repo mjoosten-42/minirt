@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   program.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/17 17:36:28 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:22:23 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   program.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 10:44:51 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,30 @@ typedef struct s_program
 }				t_program;
 
 /* program_init.c */
-t_program	program_get(void);
-void		program_init_mlx(t_program *program);
-void		program_run(t_program *program);
-void		program_terminate(t_program *program);
+t_program		program_get(void);
+void			program_init_mlx(t_program *program);
+void			program_run(t_program *program);
+void			program_terminate(t_program *program);
 
 /* camera.c */
-void		camera_calculate_matrix(t_cam *camera);
+void			camera_calculate_matrix(t_cam *camera);
 
 /* parse.c */
-void		build_scene(t_program *program, char *file);
+void			build_scene(t_program *program, char *file);
 
 /* scene_draw.c */
-void		clear_screen(mlx_image_t *img);
-void		scene_draw(t_program *program);
+void			clear_screen(mlx_image_t *img);
+void			scene_draw(t_program *program);
 
 /* anti_aliasing.c */
-t_color		anti_aliasing(const t_program *program, double x, double y);
-int			*shuffle(int pixels);
+t_color			anti_aliasing(const t_program *program, double x, double y);
+int				*shuffle(int pixels);
 
 /* error.c */
-void		rt_error(char *s1, char *s2);
+_Noreturn void	rt_error(char *s1, char *s2);
 
 /* texture.c */
 mlx_texture_t	*load_texture(const char *fname);
-t_color		texture_get_color(mlx_texture_t *tex, double x, double y);
+t_color			texture_get_color(mlx_texture_t *tex, double x, double y);
 
 #endif

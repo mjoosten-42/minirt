@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   texture.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ngerrets <ngerrets@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/07/05 16:06:07 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/07 11:36:14 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 16:06:07 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 11:41:02 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ mlx_texture_t	*load_texture(const char *fname)
 
 	tex = mlx_load_png(fname);
 	if (tex == NULL)
-		printf("Bad texture.\n");
+	{
+		ft_putendl_fd("Error!", 2);
+		perror(fname);
+		exit(EXIT_FAILURE);
+	}
 	return (tex);
 }
 

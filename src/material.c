@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/17 14:22:16 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/07 11:44:31 by ngerrets      ########   odam.nl         */
+/*   Updated: 2022/07/07 11:47:30 by ngerrets      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include <math.h>
 #include <stdio.h>
+#include "program.h"
 
 static const t_material	*_material_table(void)
 {
@@ -50,6 +51,7 @@ t_material	parse_material(char *str)
 			return (*table);
 		table++;
 	}
+	rt_error(str, "not a material");
 	return (*(_material_table()));
 }
 

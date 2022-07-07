@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   shape.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/06 11:55:37 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:08:20 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   shape.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/06 11:55:37 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 11:15:04 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	build_sphere(t_object object, char **args, t_program *program)
 	t_shape	*sphere;
 
 	sphere = build_shape(object, args, OBJECT_SPHERE, program);
-	sphere->sp = (t_mask_sphere){atod(double_err_check(args[2])) / 2};
+	sphere->sp.radius = atod(double_err_check(args[2])) / 2;
 	sphere->color = parse_color(args[3]);
 	sphere->f = collision_sphere;
 }
@@ -72,8 +72,8 @@ void	build_cylinder(t_object object, char **args, t_program *program)
 	cylinder->cy.radius = atod(double_err_check(args[3])) / 2;
 	cylinder->cy.height = atod(double_err_check(args[4]));
 	cylinder->color = parse_color(args[5]);
-	cylinder->cy.axis = vec3_norm(vec3_cross(cylinder->cy.n, vec3(0, 1, 0)));
-	cylinder->cy.angle = vec3_angle(cylinder->cy.n, vec3(0, 1, 0));
+	cylinder->cy.axis = vec3_norm(vec3_cross(cylinder->cy.n, (t_v3){0, 1, 0}));
+	cylinder->cy.angle = vec3_angle(cylinder->cy.n, (t_v3){0, 1, 0});
 	cylinder->f = collision_cylinder;
 }
 

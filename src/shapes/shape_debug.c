@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   shape_debug.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/16 13:51:29 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:48:50 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   shape_debug.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/16 13:51:29 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 11:44:41 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "objects.h"
 #include "material.h"
 
-static void	_shape_print_mask(t_shape *shape)
+static void	shape_print_mask(const t_shape *shape)
 {
 	if (shape->type == OBJECT_PLANE)
 	{
@@ -41,7 +41,7 @@ static void	_shape_print_mask(t_shape *shape)
 	}
 }
 
-void	shape_print(t_shape *shape)
+void	shape_print(const t_shape *shape)
 {
 	static char	*shape_names[] = {
 		"NONE",
@@ -64,7 +64,7 @@ void	shape_print(t_shape *shape)
 	color_print_f(shape->color);
 	printf("|  Texture: %p\n", shape->texture);
 	printf("|  MASK:\n");
-	_shape_print_mask(shape);
+	shape_print_mask(shape);
 	material_print(&shape->material);
 	printf("# - - - - - - - - - - - - - - - - - - - -\n");
 }

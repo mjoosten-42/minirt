@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cone.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/15 11:40:22 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:11:19 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cone.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/15 11:40:22 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 11:30:34 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 #include "vec3.h"
 #include "equations.h"
 
-t_collision			collision_cone_inf(t_shape *cone, const t_ray3 *ray);
-static t_collision	collision_cap(t_shape *cone, const t_ray3 *ray);
-static t_v3			cone_normal(t_v3 point, t_shape *cone);
+t_collision			collision_cone_inf(const t_shape *cone, const t_ray3 *ray);
+static t_collision	collision_cap(const t_shape *cone, const t_ray3 *ray);
+static t_v3			cone_normal(t_v3 point, const t_shape *cone);
 
-t_collision	collision_cone(t_shape *cone, const t_ray3 *ray)
+t_collision	collision_cone(const t_shape *cone, const t_ray3 *ray)
 {
 	t_collision	coll;
 
@@ -34,7 +34,7 @@ t_collision	collision_cone(t_shape *cone, const t_ray3 *ray)
 	return (coll);
 }
 
-t_collision	collision_cone_inf(t_shape *cone, const t_ray3 *ray)
+t_collision	collision_cone_inf(const t_shape *cone, const t_ray3 *ray)
 {
 	t_collision	coll;
 	t_abc		abc;
@@ -62,7 +62,7 @@ t_collision	collision_cone_inf(t_shape *cone, const t_ray3 *ray)
 	return (coll);
 }
 
-static t_v3	cone_normal(t_v3 point, t_shape *cone)
+static t_v3	cone_normal(t_v3 point, const t_shape *cone)
 {
 	t_v3	cp;
 
@@ -71,7 +71,7 @@ static t_v3	cone_normal(t_v3 point, t_shape *cone)
 	return (vec3_norm(vec3_sub(cp, cone->co.n)));
 }
 
-static t_collision	collision_cap(t_shape *cone, const t_ray3 *ray)
+static t_collision	collision_cap(const t_shape *cone, const t_ray3 *ray)
 {
 	t_collision	coll;
 	t_shape		plane;

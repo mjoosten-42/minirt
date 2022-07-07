@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   plane.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/01 11:00:30 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/05 19:09:20 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   plane.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/01 11:00:30 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 11:37:33 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,9 @@
 #include "shape_masks.h"
 #include <math.h>
 
-/* https://en.wikipedia.org/wiki/Line–plane_intersection
-**
-**     (p0 - l0) . n
-** t = -------------
-**		   l . n
-**
-** p0: plane origin
-** l0: ray origin
-** n: plane normal
-** l: ray direction
-**
-** if the denominator l . n is zero, the ray is perpendicular to the plane
-*/
-t_collision	collision_plane(t_shape *plane, const t_ray3 *ray)
+// https://en.wikipedia.org/wiki/Line–plane_intersection
+
+t_collision	collision_plane(const t_shape *plane, const t_ray3 *ray)
 {
 	t_collision	coll;
 	double		d;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   shape.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/16 13:11:37 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:43:01 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   shape.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 11:32:32 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define _C const
 
 struct						s_shape;
-typedef struct s_collision	(*t_collfunc)(struct s_shape *, _C t_ray3 *);
+typedef struct s_collision	(*t_collfunc)(_C struct s_shape *, _C t_ray3 *);
 
 /**
 **	@param type <t_object> Object enum
@@ -78,6 +78,6 @@ void	build_cylinder(t_object object, char **args, t_program *program);
 void	build_cone(t_object object, char **args, t_program *program);
 
 /* shape_debug.c */
-void	shape_print(t_shape *shape);
+void	shape_print(const t_shape *shape);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:11:54 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 12:40:34 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:05:07 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include "shape_masks.h"
 #include "equations.h"
 
-t_collision		collision_caps(const t_shape *cylinder, const t_ray3 *ray);
-double			collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray);
+t_collision	collision_caps(const t_shape *cylinder, const t_ray3 *ray);
+double		collision_cy_inf(const t_shape *cylinder, const t_ray3 *ray);
 
-static t_v3	calc_to_cylinder_center(t_v3 from, const t_shape *cylinder)
+static t_v3	calc_to_cylinder_center(const t_shape *cylinder, t_v3 from)
 {
 	t_v3	to_center;
 
@@ -38,9 +38,9 @@ t_collision	collision_cylinder(const t_shape *cylinder, const t_ray3 *ray)
 	{
 		coll.shape = cylinder;
 		coll.point = ray_point(ray, coll.distance);
-		to_center = calc_to_cylinder_center(coll.point, cylinder);
+		to_center = calc_to_cylinder_center(cylinder, coll.point);
 		coll.normal = vec3_norm(to_center);
-		to_center = calc_to_cylinder_center(ray->o, cylinder);
+		to_center = calc_to_cylinder_center(cylinder, ray->o);
 		coll.inside = false;
 		if (vec3_length(to_center) < cylinder->cy.radius)
 		{

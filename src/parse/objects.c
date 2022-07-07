@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   objects.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/05/30 10:49:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/07 11:58:19 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   objects.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/30 10:49:24 by mjoosten          #+#    #+#             */
+/*   Updated: 2022/07/07 14:11:33 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	build_light(t_object object, char **args, t_program *program)
 	light = ft_malloc(sizeof(t_light));
 	light->o = parse_vector(args[1]);
 	light->intensity = atod(double_err_check(args[2]));
-	if (light->intensity < 0) //|| light->intensity > 1
+	if (light->intensity < 0 || light->intensity > 1)
 		rt_error(args[2], "brightness out of range");
 	light->color = parse_color(args[3]);
 	ft_lstadd_back(&program->lights, ft_lstnew(light));

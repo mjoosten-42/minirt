@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:51:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 11:38:56 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/07 11:44:41 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	shape_print(const t_shape *shape)
 	color_print_f(shape->color);
 	printf("|  Texture: %p\n", shape->texture);
 	printf("|  MASK:\n");
-	_shape_print_mask(shape);
+	shape_print_mask(shape);
 	material_print(&shape->material);
 	printf("# - - - - - - - - - - - - - - - - - - - -\n");
 }

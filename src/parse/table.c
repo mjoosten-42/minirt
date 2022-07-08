@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:09:03 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/07/07 14:42:40 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/08 10:58:34 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	table_entry(const char *table, int tablesize, char *s, int objectsize)
 	len = ft_strlen(s);
 	while (i < tablesize)
 	{
-		if (ft_strncmp(s, *(char **)&table[i * objectsize], len) == 0)
+		if (ft_strncmp(s, *(char **)&table[i * objectsize], len + 1) == 0)
 			return (i);
 		i++;
 	}

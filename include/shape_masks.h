@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:15:29 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 14:39:30 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/08 11:18:44 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_mask_plane
 /**
 **	SHAPE_CYLINDER
 **	@param n <t_v3> Normal vector
-**	@param diameter <double> Radius
+**	@param radius <double> Radius
 **	@param height <double> Height
 **	@param axis <double> Vector to rotate around
 **	@param angle <double> Angle of rotation

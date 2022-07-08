@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 16:36:18 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/08 11:15:38 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_color	calc_pixel(const t_program *program, double x, double y)
 	t_rdata	rdata;
 	t_ray3	ray;
 
-	ray = ray3(program->camera.origin, get_direction(program, x, y));
+	ray = (t_ray3){program->camera.origin, get_direction(program, x, y), 0, 1};
 	rdata = raycast(program, &ray);
 	if (rdata.coll.shape == NULL)
 		return ((t_color){0, 0, 0});

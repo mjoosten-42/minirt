@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   shape.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/16 13:11:37 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/07 13:43:45 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   shape.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/16 13:11:37 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/08 11:19:50 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef t_v3				(*t_coordfunc)(_C struct s_collision *);
 **	@param type <t_object> Object enum
 **	@param min_args <int> Minimum amount of arguments
 **	@param max_args <int> Maximum amount of arguments
-**	@param f <void(*f)(char **, void *)> Function to return object
+**	@param f <void(*f)(s_object, char **, void *)> Function to create object
 */
 typedef struct s_object
 {

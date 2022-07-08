@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 20:08:57 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/04 13:56:14 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/08 11:11:30 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 /**
 **	Struct that represents a light-source (point-light).
-**	TODO: Need a value/way to calculate light fall-off over distance.
 **	@param o <t_v3> Point of origin vector
 **	@param color <t_color> Color of the light
 **	@param intensity <float> Color gets multiplied by this value.

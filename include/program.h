@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:36:28 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 10:44:51 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/08 11:14:32 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,12 @@ typedef struct s_cam
 **	Holds important data needed throughout the program
 **	@param mlx <mlx_t*> Main MLX42 pointer
 **	@param buffer <mlx_image_t*> MLX42-Image that holds the screen buffer
+**	@param shuffled <int*> Array of shuffled ints up to nb of pixels
+**	@param threads <t_threads> Thread data
+**	@param camera <t_cam> Camera data
+**	@param ambience <t_ambience> Ambient lighting data
+**	@param lights <t_list*> Pointer to first element of all the lights
 **	@param shapes <t_list*> Pointer to first element of all the shapes
-**	@param light <t_list*> Pointer to first element of all the lights
 */
 typedef struct s_program
 {

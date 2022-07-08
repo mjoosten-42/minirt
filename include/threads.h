@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 13:21:55 by mjoosten          #+#    #+#             */
-/*   Updated: 2022/06/13 14:44:24 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/08 11:12:19 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "program.h"
 # include <pthread.h>
 # include "config.h"
-
-typedef struct s_program	t_program;
 
 /**
 **	Thread data
@@ -30,7 +28,9 @@ typedef struct s_threads
 	pthread_mutex_t	mutex;
 }					t_threads;
 
-void	thread_init(t_program *program);
-void	thread_terminate(t_program *program);
+struct	s_program;
+
+void	thread_init(struct s_program *program);
+void	thread_terminate(struct s_program *program);
 
 #endif

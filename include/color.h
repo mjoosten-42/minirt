@@ -6,7 +6,7 @@
 /*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 10:32:26 by ngerrets          #+#    #+#             */
-/*   Updated: 2022/07/07 15:36:33 by mjoosten         ###   ########.fr       */
+/*   Updated: 2022/07/08 11:09:08 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ t_color	color_add(t_color c1, t_color c2);
 /* color_debug.c */
 void	color_print_hex(t_color c);
 void	color_print_f(t_color c);
-
 
 #endif

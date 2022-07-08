@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   scene_draw.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/01 11:42:17 by ngerrets      #+#    #+#                 */
-/*   Updated: 2022/07/04 15:30:18 by ngerrets      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   scene_draw.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjoosten <mjoosten@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/01 11:42:17 by ngerrets          #+#    #+#             */
+/*   Updated: 2022/07/07 16:36:18 by mjoosten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	clear_screen(mlx_image_t *img)
 	}
 }
 
-static t_v3	_get_direction(const t_program *program, double x, double y)
+static t_v3	get_direction(const t_program *program, double x, double y)
 {
 	t_v3	direction;
 	double	aspect;
@@ -56,7 +56,7 @@ t_color	calc_pixel(const t_program *program, double x, double y)
 	t_rdata	rdata;
 	t_ray3	ray;
 
-	ray = ray3(program->camera.origin, _get_direction(program, x, y));
+	ray = ray3(program->camera.origin, get_direction(program, x, y));
 	rdata = raycast(program, &ray);
 	if (rdata.coll.shape == NULL)
 		return ((t_color){0, 0, 0});

@@ -1,5 +1,8 @@
 # minirt
-*The awesome, but mini, minirt!*
+***The awesome, but mini, minirt!***
+
+![example](example.png)
+*this is the planets.rt scene file*
 
 This project showcases how to create a simple ray-tracer in the C programming language. The main principle is simple:
 For every pixel we cast a ray from the camera into the world, using equations to detect collision with predetermined objects. Then another ray is cast towards the lights to determine if the point of collision is lit and which color we should use to draw the pixel.

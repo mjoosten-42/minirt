@@ -1,0 +1,169 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/mjoosten/minirt/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+AA	include/config.h	/^# define AA /;"	d
+COLLISION_H	include/collision.h	/^# define COLLISION_H$/;"	d
+COLOR_DEBUG_FLOAT_PRINT_MSG	include/color.h	/^# define COLOR_DEBUG_FLOAT_PRINT_MSG /;"	d
+COLOR_DEBUG_HEX_PRINT_MSG	include/color.h	/^# define COLOR_DEBUG_HEX_PRINT_MSG /;"	d
+COLOR_H	include/color.h	/^# define COLOR_H$/;"	d
+CONFIG_H	include/config.h	/^# define CONFIG_H$/;"	d
+DEFAULT_PHONG	include/config.h	/^# define DEFAULT_PHONG /;"	d
+DEFAULT_SHINE	include/config.h	/^# define DEFAULT_SHINE /;"	d
+ENABLE_DEBUG	include/config.h	/^#  define ENABLE_DEBUG /;"	d
+ENABLE_SPECULAR	include/config.h	/^# define ENABLE_SPECULAR /;"	d
+EQUATIONS_H	include/equations.h	/^# define EQUATIONS_H$/;"	d
+LIGHT_H	include/light.h	/^# define LIGHT_H$/;"	d
+MAT4_H	include/mat4.h	/^# define MAT4_H$/;"	d
+MATERIAL_H	include/material.h	/^# define MATERIAL_H$/;"	d
+NB_THREADS	include/config.h	/^# define NB_THREADS /;"	d
+OBJECTS_H	include/objects.h	/^# define OBJECTS_H$/;"	d
+OBJECT_AMBIENCE	include/objects.h	/^	OBJECT_AMBIENCE,$/;"	e	enum:e_object_type
+OBJECT_CAMERA	include/objects.h	/^	OBJECT_CAMERA,$/;"	e	enum:e_object_type
+OBJECT_CONE	include/objects.h	/^	OBJECT_CONE$/;"	e	enum:e_object_type
+OBJECT_CYLINDER	include/objects.h	/^	OBJECT_CYLINDER,$/;"	e	enum:e_object_type
+OBJECT_LIGHT	include/objects.h	/^	OBJECT_LIGHT,$/;"	e	enum:e_object_type
+OBJECT_NONE	include/objects.h	/^	OBJECT_NONE,$/;"	e	enum:e_object_type
+OBJECT_PLANE	include/objects.h	/^	OBJECT_PLANE,$/;"	e	enum:e_object_type
+OBJECT_SPHERE	include/objects.h	/^	OBJECT_SPHERE,$/;"	e	enum:e_object_type
+PARSE_H	include/parse.h	/^# define PARSE_H$/;"	d
+PLANE_COORDINATE_DIVIDER	include/config.h	/^# define PLANE_COORDINATE_DIVIDER /;"	d
+PROGRAM_H	include/program.h	/^# define PROGRAM_H$/;"	d
+RAY3_H	include/ray3.h	/^# define RAY3_H$/;"	d
+RAYCASTING_H	include/raycasting.h	/^# define RAYCASTING_H$/;"	d
+RAY_MAX_BOUNCES	include/config.h	/^# define RAY_MAX_BOUNCES /;"	d
+SHAPE_H	include/shape.h	/^# define SHAPE_H$/;"	d
+SHAPE_MASKS_H	include/shape_masks.h	/^# define SHAPE_MASKS_H$/;"	d
+THREADS_H	include/threads.h	/^# define THREADS_H$/;"	d
+VEC3_H	include/vec3.h	/^# define VEC3_H$/;"	d
+VECTOR_DEBUG_PRINT_MESSAGE	include/vec3.h	/^# define VECTOR_DEBUG_PRINT_MESSAGE /;"	d
+WINDOW_H	include/config.h	/^# define WINDOW_H /;"	d
+WINDOW_RESIZE	include/config.h	/^# define WINDOW_RESIZE /;"	d
+WINDOW_TITLE	include/config.h	/^# define WINDOW_TITLE /;"	d
+WINDOW_W	include/config.h	/^# define WINDOW_W /;"	d
+_C	include/shape.h	/^# define _C /;"	d
+__anonca40713f010a	include/shape.h	/^	{$/;"	u	struct:s_shape
+a	include/equations.h	/^	double	a;$/;"	m	struct:s_abc	typeref:typename:double
+ambience	include/program.h	/^	t_ambience	ambience;$/;"	m	struct:s_program	typeref:typename:t_ambience
+angle	include/shape_masks.h	/^	double	angle;$/;"	m	struct:s_mask_cone	typeref:typename:double
+angle	include/shape_masks.h	/^	double	angle;$/;"	m	struct:s_mask_cylinder	typeref:typename:double
+axis	include/shape_masks.h	/^	t_v3	axis;$/;"	m	struct:s_mask_cylinder	typeref:typename:t_v3
+b	include/color.h	/^	float	b;$/;"	m	struct:s_color	typeref:typename:float
+b	include/equations.h	/^	double	b;$/;"	m	struct:s_abc	typeref:typename:double
+bounces	include/ray3.h	/^	int		bounces;$/;"	m	struct:s_ray3	typeref:typename:int
+buffer	include/program.h	/^	mlx_image_t	*buffer;$/;"	m	struct:s_program	typeref:typename:mlx_image_t *
+c	include/equations.h	/^	double	c;$/;"	m	struct:s_abc	typeref:typename:double
+camera	include/program.h	/^	t_cam		camera;$/;"	m	struct:s_program	typeref:typename:t_cam
+cf	include/shape.h	/^	t_coordfunc		cf;$/;"	m	struct:s_shape	typeref:typename:t_coordfunc
+checkerboard	include/material.h	/^	int		checkerboard;$/;"	m	struct:s_material	typeref:typename:int
+co	include/shape.h	/^		t_mask_cone		co;$/;"	m	union:s_shape::__anonca40713f010a	typeref:typename:t_mask_cone
+coll	include/raycasting.h	/^	t_collision	coll;$/;"	m	struct:s_rdata	typeref:typename:t_collision
+color	include/light.h	/^	t_color	color;$/;"	m	struct:s_ambience	typeref:typename:t_color
+color	include/light.h	/^	t_color	color;$/;"	m	struct:s_light	typeref:typename:t_color
+color	include/raycasting.h	/^	t_color		color;$/;"	m	struct:s_rdata	typeref:typename:t_color
+color	include/shape.h	/^	t_color			color;$/;"	m	struct:s_shape	typeref:typename:t_color
+cy	include/shape.h	/^		t_mask_cylinder	cy;$/;"	m	union:s_shape::__anonca40713f010a	typeref:typename:t_mask_cylinder
+d	include/ray3.h	/^	t_v3	d;$/;"	m	struct:s_ray3	typeref:typename:t_v3
+data	include/mat4.h	/^	double	data[4][4];$/;"	m	struct:s_mat4	typeref:typename:double[4][4]
+direction	include/program.h	/^	t_v3	direction;$/;"	m	struct:s_cam	typeref:typename:t_v3
+distance	include/collision.h	/^	double			distance;$/;"	m	struct:s_collision	typeref:typename:double
+e_object_type	include/objects.h	/^typedef enum e_object_type$/;"	g
+f	include/shape.h	/^	t_collfunc		f;$/;"	m	struct:s_shape	typeref:typename:t_collfunc
+f	include/shape.h	/^	void			(*f)(struct s_object, char **, t_program *);$/;"	m	struct:s_object	typeref:typename:void (*)(struct s_object,char **,t_program *)
+fov	include/program.h	/^	float	fov;$/;"	m	struct:s_cam	typeref:typename:float
+g	include/color.h	/^	float	g;$/;"	m	struct:s_color	typeref:typename:float
+height	include/shape_masks.h	/^	double	height;$/;"	m	struct:s_mask_cone	typeref:typename:double
+height	include/shape_masks.h	/^	double	height;$/;"	m	struct:s_mask_cylinder	typeref:typename:double
+id	include/shape.h	/^	char			*id;$/;"	m	struct:s_object	typeref:typename:char *
+index	include/material.h	/^	float	index;$/;"	m	struct:s_material	typeref:typename:float
+index	include/ray3.h	/^	double	index;$/;"	m	struct:s_ray3	typeref:typename:double
+inside	include/collision.h	/^	bool			inside;$/;"	m	struct:s_collision	typeref:typename:bool
+intensity	include/light.h	/^	float	intensity;$/;"	m	struct:s_ambience	typeref:typename:float
+intensity	include/light.h	/^	float	intensity;$/;"	m	struct:s_light	typeref:typename:float
+lights	include/program.h	/^	t_list		*lights;$/;"	m	struct:s_program	typeref:typename:t_list *
+material	include/shape.h	/^	t_material		material;$/;"	m	struct:s_shape	typeref:typename:t_material
+max_args	include/shape.h	/^	int				max_args;$/;"	m	struct:s_object	typeref:typename:int
+min_args	include/shape.h	/^	int				min_args;$/;"	m	struct:s_object	typeref:typename:int
+mlx	include/program.h	/^	mlx_t		*mlx;$/;"	m	struct:s_program	typeref:typename:mlx_t *
+mutex	include/threads.h	/^	pthread_mutex_t	mutex;$/;"	m	struct:s_threads	typeref:typename:pthread_mutex_t
+n	include/shape_masks.h	/^	t_v3	n;$/;"	m	struct:s_mask_cone	typeref:typename:t_v3
+n	include/shape_masks.h	/^	t_v3	n;$/;"	m	struct:s_mask_cylinder	typeref:typename:t_v3
+n	include/shape_masks.h	/^	t_v3	n;$/;"	m	struct:s_mask_plane	typeref:typename:t_v3
+name	include/material.h	/^	char	*name;$/;"	m	struct:s_material	typeref:typename:char *
+normal	include/collision.h	/^	t_v3			normal;$/;"	m	struct:s_collision	typeref:typename:t_v3
+o	include/light.h	/^	t_v3	o;$/;"	m	struct:s_light	typeref:typename:t_v3
+o	include/ray3.h	/^	t_v3	o;$/;"	m	struct:s_ray3	typeref:typename:t_v3
+o	include/shape.h	/^	t_v3			o;$/;"	m	struct:s_shape	typeref:typename:t_v3
+origin	include/program.h	/^	t_v3	origin;$/;"	m	struct:s_cam	typeref:typename:t_v3
+pl	include/shape.h	/^		t_mask_plane	pl;$/;"	m	union:s_shape::__anonca40713f010a	typeref:typename:t_mask_plane
+point	include/collision.h	/^	t_v3			point;$/;"	m	struct:s_collision	typeref:typename:t_v3
+r	include/color.h	/^	float	r;$/;"	m	struct:s_color	typeref:typename:float
+radius	include/shape_masks.h	/^	double	radius;$/;"	m	struct:s_mask_cone	typeref:typename:double
+radius	include/shape_masks.h	/^	double	radius;$/;"	m	struct:s_mask_cylinder	typeref:typename:double
+radius	include/shape_masks.h	/^	double	radius;$/;"	m	struct:s_mask_sphere	typeref:typename:double
+reflection	include/material.h	/^	float	reflection;$/;"	m	struct:s_material	typeref:typename:float
+refraction	include/material.h	/^	float	refraction;$/;"	m	struct:s_material	typeref:typename:float
+s_abc	include/equations.h	/^typedef struct s_abc$/;"	s
+s_ambience	include/light.h	/^typedef struct s_ambience$/;"	s
+s_cam	include/program.h	/^typedef struct s_cam$/;"	s
+s_collision	include/collision.h	/^typedef struct s_collision$/;"	s
+s_color	include/color.h	/^typedef struct s_color$/;"	s
+s_light	include/light.h	/^typedef struct s_light$/;"	s
+s_mask_cone	include/shape_masks.h	/^typedef struct s_mask_cone$/;"	s
+s_mask_cylinder	include/shape_masks.h	/^typedef struct s_mask_cylinder$/;"	s
+s_mask_plane	include/shape_masks.h	/^typedef struct s_mask_plane$/;"	s
+s_mask_sphere	include/shape_masks.h	/^typedef struct s_mask_sphere$/;"	s
+s_mat4	include/mat4.h	/^typedef struct s_mat4$/;"	s
+s_material	include/material.h	/^typedef struct s_material$/;"	s
+s_object	include/shape.h	/^typedef struct s_object$/;"	s
+s_program	include/program.h	/^typedef struct s_program$/;"	s
+s_ray3	include/ray3.h	/^typedef struct s_ray3$/;"	s
+s_rdata	include/raycasting.h	/^typedef struct s_rdata$/;"	s
+s_shape	include/shape.h	/^typedef struct s_shape$/;"	s
+s_threads	include/threads.h	/^typedef struct s_threads$/;"	s
+s_v3	include/vec3.h	/^typedef struct s_v3$/;"	s
+shape	include/collision.h	/^	const t_shape	*shape;$/;"	m	struct:s_collision	typeref:typename:const t_shape *
+shapes	include/program.h	/^	t_list		*shapes;$/;"	m	struct:s_program	typeref:typename:t_list *
+shine	include/material.h	/^	float	shine;$/;"	m	struct:s_material	typeref:typename:float
+shuffled	include/program.h	/^	int			*shuffled;$/;"	m	struct:s_program	typeref:typename:int *
+sp	include/shape.h	/^		t_mask_sphere	sp;$/;"	m	union:s_shape::__anonca40713f010a	typeref:typename:t_mask_sphere
+specular_index	include/material.h	/^	float	specular_index;$/;"	m	struct:s_material	typeref:typename:float
+t_abc	include/equations.h	/^}	t_abc;$/;"	t	typeref:struct:s_abc
+t_ambience	include/light.h	/^}			t_ambience;$/;"	t	typeref:struct:s_ambience
+t_cam	include/program.h	/^}			t_cam;$/;"	t	typeref:struct:s_cam
+t_collfunc	include/shape.h	/^typedef struct s_collision	(*t_collfunc)(_C struct s_shape *, _C t_ray3 *);$/;"	t	typeref:struct:s_collision (*)(_C struct s_shape *,_C t_ray3 *)
+t_collision	include/collision.h	/^}					t_collision;$/;"	t	typeref:struct:s_collision
+t_color	include/color.h	/^}			t_color;$/;"	t	typeref:struct:s_color
+t_coordfunc	include/shape.h	/^typedef t_v3				(*t_coordfunc)(_C struct s_collision *);$/;"	t	typeref:typename:t_v3 (*)(_C struct s_collision *)
+t_light	include/light.h	/^}			t_light;$/;"	t	typeref:struct:s_light
+t_mask_cone	include/shape_masks.h	/^}			t_mask_cone;$/;"	t	typeref:struct:s_mask_cone
+t_mask_cylinder	include/shape_masks.h	/^}			t_mask_cylinder;$/;"	t	typeref:struct:s_mask_cylinder
+t_mask_plane	include/shape_masks.h	/^}			t_mask_plane;$/;"	t	typeref:struct:s_mask_plane
+t_mask_sphere	include/shape_masks.h	/^}			t_mask_sphere;$/;"	t	typeref:struct:s_mask_sphere
+t_mat4	include/mat4.h	/^}	t_mat4;$/;"	t	typeref:struct:s_mat4
+t_material	include/material.h	/^}	t_material;$/;"	t	typeref:struct:s_material
+t_object	include/shape.h	/^}					t_object;$/;"	t	typeref:struct:s_object
+t_object_type	include/objects.h	/^}	t_object_type;$/;"	t	typeref:enum:e_object_type
+t_program	include/program.h	/^}				t_program;$/;"	t	typeref:struct:s_program
+t_ray3	include/ray3.h	/^}			t_ray3;$/;"	t	typeref:struct:s_ray3
+t_rcastfunc	include/raycasting.h	/^typedef t_rdata	(*t_rcastfunc)(t_program *, t_ray3 *, t_rdata);$/;"	t	typeref:typename:t_rdata (*)(t_program *,t_ray3 *,t_rdata)
+t_rdata	include/raycasting.h	/^}	t_rdata;$/;"	t	typeref:struct:s_rdata
+t_shape	include/shape.h	/^}	t_shape;$/;"	t	typeref:struct:s_shape
+t_threads	include/threads.h	/^}					t_threads;$/;"	t	typeref:struct:s_threads
+t_v3	include/vec3.h	/^}			t_v3;$/;"	t	typeref:struct:s_v3
+texture	include/shape.h	/^	mlx_texture_t	*texture;$/;"	m	struct:s_shape	typeref:typename:mlx_texture_t *
+threads	include/program.h	/^	t_threads	threads;$/;"	m	struct:s_program	typeref:typename:t_threads
+threads	include/threads.h	/^	pthread_t		threads[NB_THREADS];$/;"	m	struct:s_threads	typeref:typename:pthread_t[]
+type	include/shape.h	/^	t_object_type	type;$/;"	m	struct:s_object	typeref:typename:t_object_type
+type	include/shape.h	/^	t_object_type	type;$/;"	m	struct:s_shape	typeref:typename:t_object_type
+view_matrix	include/program.h	/^	t_mat4	view_matrix;$/;"	m	struct:s_cam	typeref:typename:t_mat4
+x	include/vec3.h	/^	double	x;$/;"	m	struct:s_v3	typeref:typename:double
+y	include/vec3.h	/^	double	y;$/;"	m	struct:s_v3	typeref:typename:double
+z	include/vec3.h	/^	double	z;$/;"	m	struct:s_v3	typeref:typename:double

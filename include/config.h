@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   config.h                                           :+:    :+:            */
+/*   config.h                                            :+:    :+:           */
 /*                                                     +:+                    */
 /*   By: mjoosten <mjoosten@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/10 11:53:24 by mjoosten      #+#    #+#                 */
-/*   Updated: 2022/07/07 16:16:06 by ngerrets      ########   odam.nl         */
+/*   Updated: 2025/01/06 10:22:58 by mjoosten       ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # endif
 
 /* program.init.c */
-# define WINDOW_W 1600
-# define WINDOW_H 1080
+# define WINDOW_W 3840
+# define WINDOW_H 2160
 # define WINDOW_TITLE "minirt"
 # define WINDOW_RESIZE 0
 

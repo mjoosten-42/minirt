@@ -13,7 +13,8 @@ INCLUDE_DIRS := \
 LINKING_FLAGS ?= \
 	-L "lib/libft" -lft \
 	-L "lib/MLX42" -lmlx42 \
-	-L "/Users/$(USER)/.brew/opt/glfw/lib/" -lglfw
+	-lglfw \
+	-lm
 
 # All source and header files are in the .mk files
 SOURCES :=
@@ -37,43 +38,29 @@ files:
 	./make/make_sources.sh
 
 $(LIBS):
-	@echo "libft:"
-	@$(MAKE) -C lib/libft/
-	@echo "libmlx42:"
-	@$(MAKE) -C lib/MLX42/
+	$(MAKE) -C lib/libft/
+	$(MAKE) -C lib/MLX42/
 
 $(NAME): $(LIBS) $(HEADERS) $(OBJECTS)
-	@echo "\nLinking files..."
-	@$(CC) $(OBJECTS) -o $(NAME) $(LINKING_FLAGS)
-	@echo "Done!"
+	$(CC) $(OBJECTS) -o $(NAME) $(LINKING_FLAGS)
 
 $(OBJ_DIR)/%.o: %.c $(HEADERS)
-	@echo "Compiling: $@"
 	@mkdir -p $(@D)
-	@$(CC) -D ENABLE_DEBUG=$(DEBUG) \
-		$(COMPILE_FLAGS) \
-		$(INCLUDE_DIRS) \
-		$(patsubst %,-I%,$(dir $(HEADERS))) \
-		-c -o $@ $<
+	$(CC) -D ENABLE_DEBUG=$(DEBUG) $(COMPILE_FLAGS) $(INCLUDE_DIRS) $(patsubst %,-I%,$(dir $(HEADERS))) -c -o $@ $<
 
 clean: clean_deps
-	@echo "Cleaning minirt:"
-	@rm -Rf $(OBJ_DIR)/
-	@echo "Objects cleaned."
+	rm -Rf $(OBJ_DIR)/
 
 clean_deps:
-	@echo "Cleaning libft:"
-	@$(MAKE) -C lib/libft/ clean
-	@echo "Cleaning libmlx42:"
-	@$(MAKE) -C lib/MLX42/ clean
+	$(MAKE) -C lib/libft/ clean
+	$(MAKE) -C lib/MLX42/ clean
 
 fclean: fclean_deps clean
-	@rm -f $(NAME)
-	@echo "Binary cleaned."
+	rm -f $(NAME)
 
 fclean_deps:
-	@$(MAKE) -C lib/libft/ fclean
-	@$(MAKE) -C lib/MLX42/ fclean
+	$(MAKE) -C lib/libft/ fclean
+	$(MAKE) -C lib/MLX42/ fclean
 
 re: fclean all
 
